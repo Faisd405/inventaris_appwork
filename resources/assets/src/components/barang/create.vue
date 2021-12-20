@@ -7,7 +7,6 @@
 
           <div class="card-body">
             <form @submit.prevent="BarangStore" enctype="multipart/form-data">
-              <!-- 'nama_barang', 'kode_barang', 'detail_barang', 'kategori_id', 'fungsi', 'harga_barang', 'lokasi', 'user_id' -->
               <div class="form-group">
                 <label for="nama_barang">Nama Barang</label>
                 <input
@@ -200,7 +199,8 @@ export default {
       formData.append("kategori_id", this.barang.kategori_id);
       formData.append("fungsi", this.barang.fungsi);
       formData.append("harga_barang", this.barang.harga_barang);
-      formData.append("lokasi", this.barang.lokasi);
+      formData.append("jenis_id", this.barang.jenis_id);
+      formData.append("lokasi_id", this.barang.lokasi);
       formData.append("user_id", this.barang.user_id);
       formData.append("image", this.barang.image);
 

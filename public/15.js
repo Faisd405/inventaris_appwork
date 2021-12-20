@@ -356,7 +356,7 @@ var render = function () {
                     },
                     scopedSlots: _vm._u([
                       {
-                        key: "cell(action)",
+                        key: "action",
                         fn: function (data) {
                           return [
                             _c(

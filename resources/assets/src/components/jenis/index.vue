@@ -68,7 +68,7 @@
                 @filtered="onFiltered"
                 :current-page="currentPage"
                 :per-page="perPage">
-                  <template #cell(action)="data">
+                  <template slot="action" slot-scope="data">
 
                       <router-link
                         :to="{ name: 'edit-jenis', params: { id: data.item.id } }"
@@ -100,6 +100,7 @@ export default {
       fields: [
         { key: "id", label: "Id" },
         { key: "jenis_barang", label: "Jenis Barang" },
+        { key: "action", label: "Action", sortable: false }
       ],
         filter: null,
         filterOn: [],

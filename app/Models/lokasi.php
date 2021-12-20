@@ -17,4 +17,9 @@ class lokasi extends Model
     {
         return $this->belongsTo('App\Models\barang');
     }
+
+    public function buku()
+    {
+        return $this->belongsTo('App\Models\buku');
+    }
 }

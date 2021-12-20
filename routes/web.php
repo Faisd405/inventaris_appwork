@@ -15,4 +15,5 @@ use App\Http\Controllers\BarangController;
 
 Route::get('/barang/barang_pdf', [BarangController::class, 'barang_pdf'])->name('barang.barang_pdf');
 Route::get('/barang/qrbarang_pdf', [BarangController::class, 'qrbarang_pdf'])->name('barang.qrbarang_pdf');
+Route::get('/barang/barang_excel', [BarangController::class, 'barang_excel'])->name('barang.barang_excel');
 Route::get('/{any}', 'ApplicationController')->where('any', '.*');

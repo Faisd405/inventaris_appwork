@@ -76,7 +76,7 @@
                 :current-page="currentPage"
                 :per-page="perPage"
                 >
-                <template #cell(action)="data">
+                <template slot="action" slot-scope="data">
                   <router-link
                     :to="{
                       name: 'detail-users',

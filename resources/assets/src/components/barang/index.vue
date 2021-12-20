@@ -16,6 +16,15 @@
               class="btn btn-md btn-primary"
               >Index Kategori</router-link
             >
+            <a href="/barang/barang_pdf" class="btn btn-md btn-primary">
+              Export PDF
+            </a>
+            <a href="/barang/qrbarang_pdf" class="btn btn-md btn-primary">
+              Export PDF With Qr
+            </a>
+            <a href="/barang/barang_excel" class="btn btn-md btn-primary">
+              Export Excel
+            </a>
             <div>
               <b-row>
                 <b-col lg="6" class="my-1">
@@ -77,11 +86,30 @@
                 :current-page="currentPage"
                 :per-page="perPage"
               >
-<!--
-                <template #cell(action)="data">
-                    {{ data.item.id }}
-                    <p>tes</p>
-                </template> -->
+                <template slot="action" slot-scope="data">
+                  <router-link
+                    :to="{
+                      name: 'detail-barang',
+                      params: { id: data.item.id },
+                    }"
+                    class="btn btn-sm btn-primary"
+                    >Detail</router-link
+                  >
+                  <router-link
+                    :to="{
+                      name: 'edit-barang',
+                      params: { id: data.item.id },
+                    }"
+                    class="btn btn-sm btn-primary"
+                    >Edit</router-link
+                  >
+                  <button
+                    class="btn btn-sm btn-danger"
+                    @click="destroy(data.item.id)"
+                  >
+                    Hapus
+                  </button>
+                </template>
               </b-table>
             </div>
           </div>
@@ -93,7 +121,7 @@
 
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   data() {
     return {
@@ -101,8 +129,8 @@ export default {
         { key: "id", sortable: true },
         { key: "nama_barang", sortable: true, filterByFormatted: true },
         { key: "detail_barang", sortable: true },
-        { key: "kategori.nama_kategori", sortable: true, label: "Kategori"},
-        { key: "jenis.jenis_barang", sortable: true, label: "Jenis"},
+        { key: "kategori.nama_kategori", sortable: true, label: "Kategori" },
+        { key: "jenis.jenis_barang", sortable: true, label: "Jenis" },
         { key: "fungsi", sortable: true },
         { key: "harga_barang", sortable: true },
         { key: "lokasi.lokasi", sortable: true, label: "Lokasi" },

@@ -105,6 +105,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -237,6 +265,33 @@ var render = function () {
                   attrs: { to: { name: "index-kategori" } },
                 },
                 [_vm._v("Index Kategori")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-md btn-primary",
+                  attrs: { href: "/barang/barang_pdf" },
+                },
+                [_vm._v("\n            Export PDF\n          ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-md btn-primary",
+                  attrs: { href: "/barang/qrbarang_pdf" },
+                },
+                [_vm._v("\n            Export PDF With Qr\n          ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-md btn-primary",
+                  attrs: { href: "/barang/barang_excel" },
+                },
+                [_vm._v("\n            Export Excel\n          ")]
               ),
               _vm._v(" "),
               _c(
@@ -374,6 +429,59 @@ var render = function () {
                       },
                       filtered: _vm.onFiltered,
                     },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "action",
+                        fn: function (data) {
+                          return [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "btn btn-sm btn-primary",
+                                attrs: {
+                                  to: {
+                                    name: "detail-barang",
+                                    params: { id: data.item.id },
+                                  },
+                                },
+                              },
+                              [_vm._v("Detail")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "btn btn-sm btn-primary",
+                                attrs: {
+                                  to: {
+                                    name: "edit-barang",
+                                    params: { id: data.item.id },
+                                  },
+                                },
+                              },
+                              [_vm._v("Edit")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-danger",
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.destroy(data.item.id)
+                                  },
+                                },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  Hapus\n                "
+                                ),
+                              ]
+                            ),
+                          ]
+                        },
+                      },
+                    ]),
                   }),
                 ],
                 1

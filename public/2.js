@@ -170,7 +170,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -215,7 +214,8 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("kategori_id", this.barang.kategori_id);
       formData.append("fungsi", this.barang.fungsi);
       formData.append("harga_barang", this.barang.harga_barang);
-      formData.append("lokasi", this.barang.lokasi);
+      formData.append("jenis_id", this.barang.jenis_id);
+      formData.append("lokasi_id", this.barang.lokasi);
       formData.append("user_id", this.barang.user_id);
       formData.append("image", this.barang.image);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/barang", formData, config).then(function (response) {

@@ -115,6 +115,10 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         key: "jenis_barang",
         label: "Jenis Barang"
+      }, {
+        key: "action",
+        label: "Action",
+        sortable: false
       }],
       filter: null,
       filterOn: [],
@@ -337,7 +341,7 @@ var render = function () {
                     },
                     scopedSlots: _vm._u([
                       {
-                        key: "cell(action)",
+                        key: "action",
                         fn: function (data) {
                           return [
                             _c(

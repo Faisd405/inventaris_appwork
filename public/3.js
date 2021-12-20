@@ -36,6 +36,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -52,13 +53,9 @@ __webpack_require__.r(__webpack_exports__);
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/kategori").then(function (response) {
       _this.kategori = response.data.kategori;
-    })["catch"](function (errors) {
-      console.log(errors);
     });
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/barang/" + this.$route.params.id).then(function (response) {
       _this.barang = response.data.barang;
-    })["catch"](function (errors) {
-      console.log(errors);
     });
   }
 });
@@ -117,6 +114,13 @@ var render = function () {
                 domProps: { textContent: _vm._s(_vm.barang.fungsi) },
               }),
               _vm._v(" "),
+              _c("label", [_vm._v("Jenis : ")]),
+              _c("h3", {
+                domProps: {
+                  textContent: _vm._s(_vm.barang.jenis.jenis_barang),
+                },
+              }),
+              _vm._v(" "),
               _c("label", [_vm._v("Harga : ")]),
               _c("h3", {
                 domProps: { textContent: _vm._s(_vm.barang.harga_barang) },
@@ -124,7 +128,7 @@ var render = function () {
               _vm._v(" "),
               _c("label", [_vm._v("Lokasi : ")]),
               _c("h3", {
-                domProps: { textContent: _vm._s(_vm.barang.lokasi) },
+                domProps: { textContent: _vm._s(_vm.barang.lokasi.lokasi) },
               }),
               _vm._v(" "),
               _c("label", [_vm._v("User : ")]),

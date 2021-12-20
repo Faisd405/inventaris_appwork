@@ -8,13 +8,16 @@ use App\Models\kategori;
 use App\Models\User;
 use PDF;
 use Illuminate\Support\Facades\File;
+use App\Exports\BarangExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
 
 class BarangController extends Controller
 {
     //index with json
     public function index()
     {
-        $barang = barang::with('user', 'kategori','jenis','lokasi')->get();
+        $barang = barang::with('user', 'kategori', 'jenis', 'lokasi')->get();
         return response([
             'success' => true,
             'message' => 'List Semua barang',
@@ -106,7 +109,7 @@ class BarangController extends Controller
 
     public function show($id)
     {
-        $barang = barang::with('user', 'kategori')->find($id);
+        $barang = barang::with('user', 'kategori','lokasi','jenis')->find($id);
         $kategori = kategori::all();
         $user = User::all();
         return response()->json([
@@ -129,5 +132,9 @@ class BarangController extends Controller
         $barang = barang::with('user', 'kategori')->get();
         $pdf = PDF::loadView('barang.qrbarang_pdf', compact('barang'));
         return $pdf->stream('barang.pdf');
+    }
+    public function barang_excel()
+    {
+        return Excel::download(new BarangExport, 'barang.xlsx');
     }
 }

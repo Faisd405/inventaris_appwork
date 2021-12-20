@@ -68,7 +68,7 @@
                 @filtered="onFiltered"
                 :current-page="currentPage"
                 :per-page="perPage">
-                  <template #cell(action)="data">
+                  <template slot="action" slot-scope="data">
 
                       <router-link
                         :to="{ name: 'edit-sifat', params: { id: data.item.id } }"
