@@ -105,25 +105,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -143,21 +124,27 @@ __webpack_require__.r(__webpack_exports__);
         sortable: true,
         label: "Kategori"
       }, {
+        key: "jenis.jenis_barang",
+        sortable: true,
+        label: "Jenis"
+      }, {
         key: "fungsi",
         sortable: true
       }, {
         key: "harga_barang",
         sortable: true
       }, {
-        key: "lokasi",
-        sortable: true
+        key: "lokasi.lokasi",
+        sortable: true,
+        label: "Lokasi"
       }, {
         key: "user.name",
         label: "Pemakai",
         sortable: true
       }, {
         key: "action",
-        label: "Detail"
+        label: "Action",
+        sortable: true
       }],
       filter: null,
       filterOn: [],
@@ -387,59 +374,6 @@ var render = function () {
                       },
                       filtered: _vm.onFiltered,
                     },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "cell(action)",
-                        fn: function (data) {
-                          return [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "btn btn-sm btn-primary",
-                                attrs: {
-                                  to: {
-                                    name: "detail-barang",
-                                    params: { id: data.item.id },
-                                  },
-                                },
-                              },
-                              [_vm._v("Detail")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "btn btn-sm btn-primary",
-                                attrs: {
-                                  to: {
-                                    name: "edit-barang",
-                                    params: { id: data.item.id },
-                                  },
-                                },
-                              },
-                              [_vm._v("Edit")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-sm btn-danger",
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.destroy(data.item.id)
-                                  },
-                                },
-                              },
-                              [
-                                _vm._v(
-                                  "\n                  Hapus\n                "
-                                ),
-                              ]
-                            ),
-                          ]
-                        },
-                      },
-                    ]),
                   }),
                 ],
                 1

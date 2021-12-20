@@ -6,7 +6,7 @@
           <div class="card-header">Create Barang</div>
 
           <div class="card-body">
-            <form @submit.prevent="BarangStore">
+            <form @submit.prevent="BarangStore" enctype="multipart/form-data">
               <!-- 'nama_barang', 'kode_barang', 'detail_barang', 'kategori_id', 'fungsi', 'harga_barang', 'lokasi', 'user_id' -->
               <div class="form-group">
                 <label for="nama_barang">Nama Barang</label>
@@ -80,15 +80,40 @@
                 />
               </div>
 
-              <div class="form-group">
-                <label for="lokasi">Lokasi</label>
-                <input
-                  type="text"
-                  name="lokasi"
+              <div class="form=group">
+                <label for="lokasi_id">Lokasi</label>
+                <select
+                  name="lokasi_id"
                   class="form-control"
-                  v-model="barang.lokasi"
-                  placeholder="Masukan Lokasi"
-                />
+                  v-model="barang.lokasi_id"
+                >
+                  <option value="" disabled>Pilih Lokasi</option>
+                  <option
+                    v-for="lokasi in lokasi"
+                    :value="lokasi.id"
+                    :key="lokasi.id"
+                  >
+                    {{ lokasi.lokasi }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="jenis_id">Jenis</label>
+                <select
+                  name="jenis_id"
+                  class="form-control"
+                  v-model="barang.jenis_id"
+                >
+                  <option value="" disabled>Pilih Jenis</option>
+                  <option
+                    v-for="jenis in jenis"
+                    :value="jenis.id"
+                    :key="jenis.id"
+                  >
+                    {{ jenis.jenis_barang }}
+                  </option>
+                </select>
               </div>
 
               <div class="form-group">
@@ -140,27 +165,25 @@ export default {
     return {
       barang: {},
       kategori: [],
+      jenis: [],
+      lokasi: [],
       user: [],
       preview: null,
     };
   },
   created() {
-    axios
-      .get("/api/kategori")
-      .then((response) => {
-        this.kategori = response.data.kategori;
-      })
-      .catch((errors) => {
-        console.log(errors);
-      });
-    axios
-      .get("/api/users")
-      .then((response) => {
-        this.user = response.data.user;
-      })
-      .catch((errors) => {
-        console.log(errors);
-      });
+    axios.get("/api/kategori").then((response) => {
+      this.kategori = response.data.kategori;
+    });
+    axios.get("/api/users").then((response) => {
+      this.user = response.data.user;
+    });
+    axios.get("/api/jenis").then((response) => {
+      this.jenis = response.data.jenis;
+    });
+    axios.get("/api/lokasi").then((response) => {
+      this.lokasi = response.data.lokasi;
+    });
   },
   methods: {
     BarangStore() {
@@ -169,6 +192,7 @@ export default {
           "content-type": "multipart/form-data",
         },
       };
+
       let formData = new FormData();
       formData.append("nama_barang", this.barang.nama_barang);
       formData.append("kode_barang", this.barang.kode_barang);
@@ -181,7 +205,7 @@ export default {
       formData.append("image", this.barang.image);
 
       axios
-        .post("/api/barang", formData,config)
+        .post("/api/barang", formData, config)
         .then((response) => {
           this.$router.push("/barang");
         })

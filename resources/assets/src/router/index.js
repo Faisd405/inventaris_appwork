@@ -99,6 +99,54 @@ const router = new Router({
             path: '/buku/edit/:id',
             component: () => import('@/components/buku/edit')
         },
+        // Route sifat
+        {
+            name: 'index-sifat',
+            path: '/sifat',
+            component: () => import('@/components/sifat/index')
+        },
+        {
+            name: 'create-sifat',
+            path: '/sifat/create',
+            component: () => import('@/components/sifat/create')
+        },
+        {
+            name: 'edit-sifat',
+            path: '/sifat/edit/:id',
+            component: () => import('@/components/sifat/edit')
+        },
+        // Route jenis
+        {
+            name: 'index-jenis',
+            path: '/jenis',
+            component: () => import('@/components/jenis/index')
+        },
+        {
+            name: 'create-jenis',
+            path: '/jenis/create',
+            component: () => import('@/components/jenis/create')
+        },
+        {
+            name: 'edit-jenis',
+            path: '/jenis/edit/:id',
+            component: () => import('@/components/jenis/edit')
+        },
+        // Route lokasi
+        {
+            name: 'index-lokasi',
+            path: '/lokasi',
+            component: () => import('@/components/lokasi/index')
+        },
+        {
+            name: 'create-lokasi',
+            path: '/lokasi/create',
+            component: () => import('@/components/lokasi/create')
+        },
+        {
+            name: 'edit-lokasi',
+            path: '/lokasi/edit/:id',
+            component: () => import('@/components/lokasi/edit')
+        },
         ]
     }]
 })

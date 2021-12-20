@@ -14,7 +14,7 @@ class BarangController extends Controller
     //index with json
     public function index()
     {
-        $barang = barang::with('user', 'kategori')->get();
+        $barang = barang::with('user', 'kategori','jenis','lokasi')->get();
         return response([
             'success' => true,
             'message' => 'List Semua barang',
@@ -42,7 +42,8 @@ class BarangController extends Controller
             'kategori_id' => 'required',
             'fungsi' => 'required',
             'harga_barang' => 'required',
-            'lokasi' => 'required',
+            'lokasi_id' => 'required',
+            'jenis_id' => 'required',
             'user_id' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
@@ -58,7 +59,8 @@ class BarangController extends Controller
         $barang->kategori_id = $request->kategori_id;
         $barang->fungsi = $request->fungsi;
         $barang->harga_barang = $request->harga_barang;
-        $barang->lokasi = $request->lokasi;
+        $barang->lokasi_id = $request->lokasi_id;
+        $barang->jenis_id = $request->jenis_id;
         $barang->user_id = $request->user_id;
 
         $kategori = kategori::find($request->kategori_id);

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class barang extends Model
 {
     protected $table = 'barang';
-    protected $fillable = ['nama_barang', 'kode_barang', 'detail_barang', 'kategori_id', 'fungsi', 'harga_barang', 'lokasi', 'user_id','image'];
+    protected $fillable = ['nama_barang', 'kode_barang', 'detail_barang', 'kategori_id', 'fungsi', 'harga_barang', 'lokasi_id','jenis_id', 'user_id','image'];
 
     public function kategori()
     {
@@ -17,5 +17,15 @@ class barang extends Model
     public function user()
     {
         return $this->hasOne('App\Models\user', 'id', 'user_id');
+    }
+
+    public function lokasi()
+    {
+        return $this->hasOne('App\Models\lokasi', 'id', 'lokasi_id');
+    }
+
+    public function jenis()
+    {
+        return $this->hasOne('App\Models\jenis', 'id', 'jenis_id');
     }
 }

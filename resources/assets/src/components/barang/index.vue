@@ -63,6 +63,7 @@
                   </b-form-group>
                 </b-col>
               </b-row>
+
               <b-table
                 :items="barang"
                 :fields="fields"
@@ -76,31 +77,11 @@
                 :current-page="currentPage"
                 :per-page="perPage"
               >
-
+<!--
                 <template #cell(action)="data">
-                  <router-link
-                    :to="{
-                      name: 'detail-barang',
-                      params: { id: data.item.id },
-                    }"
-                    class="btn btn-sm btn-primary"
-                    >Detail</router-link
-                  >
-                  <router-link
-                    :to="{
-                      name: 'edit-barang',
-                      params: { id: data.item.id },
-                    }"
-                    class="btn btn-sm btn-primary"
-                    >Edit</router-link
-                  >
-                  <button
-                    class="btn btn-sm btn-danger"
-                    @click="destroy(data.item.id)"
-                  >
-                    Hapus
-                  </button>
-                </template>
+                    {{ data.item.id }}
+                    <p>tes</p>
+                </template> -->
               </b-table>
             </div>
           </div>
@@ -121,11 +102,12 @@ export default {
         { key: "nama_barang", sortable: true, filterByFormatted: true },
         { key: "detail_barang", sortable: true },
         { key: "kategori.nama_kategori", sortable: true, label: "Kategori"},
+        { key: "jenis.jenis_barang", sortable: true, label: "Jenis"},
         { key: "fungsi", sortable: true },
         { key: "harga_barang", sortable: true },
-        { key: "lokasi", sortable: true },
+        { key: "lokasi.lokasi", sortable: true, label: "Lokasi" },
         { key: "user.name", label: "Pemakai", sortable: true },
-        { key: "action", label: "Detail" },
+        { key: "action", label: "Action", sortable: true },
       ],
       filter: null,
       filterOn: [],

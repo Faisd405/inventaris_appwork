@@ -34,7 +34,7 @@
                 >
                   <option value="" disabled>Pilih User</option>
                   <option v-for="sifat in sifat" :key="sifat.id" :value="sifat.id">
-                    {{ sifat.jenis_sifat }}
+                    {{ sifat.sifat_kategori }}
                   </option>
                 </select>
               </div>

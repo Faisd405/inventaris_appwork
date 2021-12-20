@@ -97,11 +97,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      buku: {}
+      buku: {},
+      lokasi: []
     };
   },
   created: function created() {
@@ -109,8 +119,9 @@ __webpack_require__.r(__webpack_exports__);
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/buku/".concat(this.$route.params.id)).then(function (response) {
       _this.buku = response.data.buku;
-    })["catch"](function (errors) {
-      console.log(errors);
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/lokasi").then(function (response) {
+      _this.lokasi = response.data.lokasi;
     });
   },
   methods: {
@@ -316,30 +327,65 @@ var render = function () {
                   }),
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Lokasi")]),
+                _c("div", { staticClass: "form=group" }, [
+                  _c("label", { attrs: { for: "lokasi_id" } }, [
+                    _vm._v("Lokasi"),
+                  ]),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.buku.lokasi,
-                        expression: "buku.lokasi",
-                      },
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "text", placeholder: "Masukan Lokasi" },
-                    domProps: { value: _vm.buku.lokasi },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.buku, "lokasi", $event.target.value)
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.buku.lokasi_id,
+                          expression: "buku.lokasi_id",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { name: "lokasi_id" },
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.buku,
+                            "lokasi_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
                       },
                     },
-                  }),
+                    [
+                      _c("option", { attrs: { value: "", disabled: "" } }, [
+                        _vm._v("Pilih Lokasi"),
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.lokasi, function (lokasi) {
+                        return _c(
+                          "option",
+                          { key: lokasi.id, domProps: { value: lokasi.id } },
+                          [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(lokasi.lokasi) +
+                                "\n                "
+                            ),
+                          ]
+                        )
+                      }),
+                    ],
+                    2
+                  ),
                 ]),
                 _vm._v(" "),
                 _vm._m(0),

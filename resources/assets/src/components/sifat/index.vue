@@ -93,12 +93,13 @@
 
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
       fields: [
         { key: "id", label: "Id" },
-        { key: "jenis_sifat", label: "Jenis Sifat Barang" },
+        { key: "sifat_kategori", label: "Jenis Sifat Barang" },
         { key: "action", label: "Action", sortable: false }
       ],
         filter: null,
@@ -112,7 +113,7 @@ export default {
   },
   created() {
     let uri = `/api/sifat`;
-    this.axios.get(uri).then((response) => {
+    axios.get(uri).then((response) => {
       this.sifat = response.data.sifat;
     });
   },

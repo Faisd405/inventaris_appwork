@@ -106,7 +106,7 @@ export default {
         { key: "id", label: "Id" },
         { key: "nama_kategori", label: "Nama Kategori" },
         { key: "fungsi", label: "Fungsi" },
-        { key: "sifat.jenis_sifat", label: "sifat" },
+        { key: "sifat.sifat_kategori", label: "sifat" },
         { key: "jumlah", label: "jumlah" },
         { key: "action", label: "Action", sortable: false }
       ],

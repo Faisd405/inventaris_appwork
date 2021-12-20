@@ -154,9 +154,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'home',
+  name: "home",
   metaInfo: {
-    title: 'Home'
+    title: "Home"
   },
   components: {
     BarChart: _Chart_BarChart_vue__WEBPACK_IMPORTED_MODULE_0__["default"]

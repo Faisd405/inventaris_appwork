@@ -6,6 +6,8 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\SifatController;
+use App\Http\Controllers\LokasiController;
+use App\Http\Controllers\JenisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +56,21 @@ Route::delete('/buku/{id}', [BukuController::class, 'destroy']);
 
 //Route API Sifat
 Route::get('/sifat', [SifatController::class, 'index']);
+Route::get('/sifat/{id}', [SifatController::class, 'show']);
+Route::post('/sifat', [SifatController::class, 'store']);
+Route::put('/sifat/{id}', [SifatController::class, 'update']);
+Route::delete('/sifat/{id}', [SifatController::class, 'destroy']);
+
+//Route API Lokasi
+Route::get('/lokasi', [LokasiController::class, 'index']);
+Route::get('/lokasi/{id}', [LokasiController::class, 'show']);
+Route::post('/lokasi', [LokasiController::class, 'store']);
+Route::put('/lokasi/{id}', [LokasiController::class, 'update']);
+Route::delete('/lokasi/{id}', [LokasiController::class, 'destroy']);
+
+//Route API Jenis
+Route::get('/jenis', [JenisController::class, 'index']);
+Route::get('/jenis/{id}', [JenisController::class, 'show']);
+Route::post('/jenis', [JenisController::class, 'store']);
+Route::put('/jenis/{id}', [JenisController::class, 'update']);
+Route::delete('/jenis/{id}', [JenisController::class, 'destroy']);

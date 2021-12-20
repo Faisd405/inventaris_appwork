@@ -70,9 +70,9 @@ import BarChart from "./Chart/BarChart.vue";
 import axios from "axios";
 
 export default {
-  name: 'home',
+  name: "home",
   metaInfo: {
-    title: 'Home'
+    title: "Home",
   },
   components: {
     BarChart,
@@ -103,5 +103,5 @@ export default {
       this.kategori = response.data.kategori;
     });
   },
-}
+};
 </script>

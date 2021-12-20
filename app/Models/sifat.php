@@ -8,7 +8,7 @@ class sifat extends Model
 {
     protected $table = 'sifat';
 
-    protected $fillable = ['jenis_sifat'];
+    protected $fillable = ['sifat_kategori'];
 
     public function kategori()
     {

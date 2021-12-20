@@ -10,7 +10,7 @@ class BukuController extends Controller
     //index with json
     public function index()
     {
-        $buku = buku::all();
+        $buku = buku::with('lokasi')->get();
         return response([
             'success' => true,
             'message' => 'List Semua buku',

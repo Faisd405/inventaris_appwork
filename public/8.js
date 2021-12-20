@@ -131,7 +131,7 @@ __webpack_require__.r(__webpack_exports__);
         key: "jumlah",
         label: "Jumlah"
       }, {
-        key: "lokasi",
+        key: "lokasi.lokasi",
         label: "Lokasi"
       }, {
         key: "action",

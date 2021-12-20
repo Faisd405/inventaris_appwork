@@ -105,7 +105,7 @@ export default {
         { key: "tanggal", label: "Tanggal" },
         { key: "kondisi", label: "Kondisi" },
         { key: "jumlah", label: "Jumlah" },
-        { key: "lokasi", label: "Lokasi" },
+        { key: "lokasi.lokasi", label: "Lokasi" },
         { key: "action", label: "Action", sortable: false }
       ],
         filter: null,
