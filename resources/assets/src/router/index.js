@@ -147,6 +147,7 @@ const router = new Router({
             path: '/lokasi/edit/:id',
             component: () => import('@/components/lokasi/edit')
         },
+
         ]
     }]
 })

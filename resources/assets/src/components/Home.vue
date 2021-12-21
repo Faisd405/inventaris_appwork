@@ -65,7 +65,10 @@
               </div>
             </div>
             <div>
-              <BarChart></BarChart>
+                <label>Chart Kategori :</label>
+              <KategoriChart></KategoriChart>
+                <label>Chart Total Aset Pertahun :</label>
+              <TotalChart></TotalChart>
             </div>
           </div>
         </div>
@@ -75,7 +78,8 @@
 </template>
 
 <script>
-import BarChart from "./Chart/BarChart.vue";
+import KategoriChart from "./Chart/KategoriChart.vue";
+import TotalChart from "./Chart/TotalChart.vue";
 import axios from "axios";
 
 export default {
@@ -84,7 +88,8 @@ export default {
     title: "Home",
   },
   components: {
-    BarChart,
+    KategoriChart,
+    TotalChart,
   },
   data() {
     return {

@@ -16,6 +16,8 @@
                 <label>Harga : </label><h3 v-text="barang.harga_barang"></h3>
                 <label>Lokasi : </label><h3 v-text="barang.lokasi.lokasi"></h3>
                 <label>User : </label><h3 v-text="barang.user.name"></h3>
+                <label>Tahun : </label><h3 v-text="barang.year"></h3>
+                <label><a :href="'/barang/detailbarang_pdf/'+barang.id">Print</a></label>
             </div>
           </div>
         </div>

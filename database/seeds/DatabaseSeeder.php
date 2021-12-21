@@ -97,6 +97,7 @@ class DatabaseSeeder extends Seeder
             'jenis_id' => '1',
             'kategori_id' => '1',
             'user_id' => '1',
+            'year' => '2020',
             'image' => 'laptop.jpg',
         ]);
 
@@ -110,6 +111,7 @@ class DatabaseSeeder extends Seeder
             'jenis_id' => '1',
             'kategori_id' => '2',
             'user_id' => '2',
+            'year' => '2020',
             'image' => 'meja.jpg',
         ]);
 
@@ -123,6 +125,7 @@ class DatabaseSeeder extends Seeder
             'jenis_id' => '1',
             'kategori_id' => '2',
             'user_id' => '1',
+            'year' => '2021',
             'image' => 'kursi.jpg',
         ]);
 

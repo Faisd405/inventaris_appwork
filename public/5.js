@@ -170,6 +170,9 @@ __webpack_require__.r(__webpack_exports__);
         label: "Pemakai",
         sortable: true
       }, {
+        key: "year",
+        label: "tahun"
+      }, {
         key: "action",
         label: "Action",
         sortable: true

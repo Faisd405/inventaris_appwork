@@ -37,6 +37,30 @@ class BarangController extends Controller
         ], 200);
     }
 
+    public function indexHarga()
+    {
+        $harga_barang = barang::selectRaw('sum(harga_barang) as total, year(year) as year')->groupBy('year')->pluck('total');
+        $year = barang::selectRaw('sum(harga_barang) as total, year(year) as year')->groupBy('year')->pluck('year');
+
+        return response()->json([
+            'success' => true,
+            'message' => 'barang Berhasil Ditampilkan!',
+            'harga_barang'    => $harga_barang,
+            'year'    => $year
+        ], 200);
+    }
+
+    //total harga barang
+    public function total_harga()
+    {
+        $barang = barang::sum('harga_barang');
+        return response()->json([
+            'success' => true,
+            'message' => 'barang Berhasil Ditampilkan!',
+            'total'    => $barang
+        ], 200);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -110,7 +134,7 @@ class BarangController extends Controller
 
     public function show($id)
     {
-        $barang = barang::with('user', 'kategori','lokasi','jenis')->find($id);
+        $barang = barang::with('user', 'kategori', 'lokasi', 'jenis')->find($id);
         $kategori = kategori::all();
         $user = User::all();
         return response()->json([
@@ -122,35 +146,33 @@ class BarangController extends Controller
         ], 200);
     }
 
-    public function total_harga(){
-        $barang = barang::all();
-        $total = 0;
-        foreach($barang as $b){
-            $total = $total + $b->harga_barang;
-        }
-        return response()->json([
-            'success' => true,
-            'message' => 'Total Harga Berhasil Ditampilkan!',
-            'total'    => $total
-        ], 200);
-    }
-
     public function barang_pdf()
     {
-        $barang = barang::with('user', 'kategori')->get();
+        $barang = barang::all();
         $pdf = PDF::loadView('barang.barang_pdf', compact('barang'));
         return $pdf->stream('barang.pdf');
     }
+
     public function qrbarang_pdf()
     {
         $barang = barang::with('user', 'kategori')->get();
         $pdf = PDF::loadView('barang.qrbarang_pdf', compact('barang'));
         return $pdf->stream('barang.pdf');
     }
+
+    public function detailbarang_pdf($id)
+    {
+        $barang = barang::find($id);
+
+    	$pdf = PDF::loadview('barang.detailbarang_pdf', compact('barang'));
+    	return $pdf->stream('detailbarang_pdf.pdf');
+    }
+
     public function barang_excel()
     {
         return Excel::download(new BarangExport, 'barang.xlsx');
     }
+
     public function userbarang_excel()
     {
         return Excel::download(new UserBarangExport, 'userbarang.xlsx');

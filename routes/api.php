@@ -35,6 +35,7 @@ Route::delete('/users/{id}', [UserController::class, 'destroy']);
 Route::get('/barang', [BarangController::class, 'index']);
 Route::get('/barang/NoUser', [BarangController::class, 'indexUser']);
 Route::get('/barang/total', [BarangController::class, 'total_harga']);
+Route::get('/barang/year', [BarangController::class, 'indexHarga']);
 Route::get('/barang/{id}', [BarangController::class, 'show']);
 Route::post('/barang', [BarangController::class, 'store']);
 Route::put('/barang/{id}', [BarangController::class, 'update']);

@@ -37,6 +37,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -135,6 +137,21 @@ var render = function () {
               _c("h3", {
                 domProps: { textContent: _vm._s(_vm.barang.user.name) },
               }),
+              _vm._v(" "),
+              _c("label", [_vm._v("Tahun : ")]),
+              _c("h3", { domProps: { textContent: _vm._s(_vm.barang.year) } }),
+              _vm._v(" "),
+              _c("label", [
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "/barang/detailbarang_pdf/" + _vm.barang.id,
+                    },
+                  },
+                  [_vm._v("Print")]
+                ),
+              ]),
             ]),
           ]),
         ]),

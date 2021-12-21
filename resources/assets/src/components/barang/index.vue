@@ -135,6 +135,7 @@ export default {
         { key: "harga_barang", sortable: true },
         { key: "lokasi.lokasi", sortable: true, label: "Lokasi" },
         { key: "user.name", label: "Pemakai", sortable: true },
+        { key: "year", label: "tahun"},
         { key: "action", label: "Action", sortable: true },
       ],
       filter: null,
