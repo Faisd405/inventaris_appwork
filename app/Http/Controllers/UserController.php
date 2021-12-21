@@ -44,7 +44,7 @@ class UserController extends Controller
     public function show($id)
     {
         $users = User::find($id);
-        $barangs = barang::where('user_id', $id)->get();
+        $barangs = barang::where('user_id', $id)->with('lokasi')->get();
 
         if ($barangs && $users) {
             return response()->json([

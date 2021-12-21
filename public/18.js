@@ -105,6 +105,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -161,7 +163,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var uri = "/api/lokasi/".concat(id);
-      this.axios["delete"](uri).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"](uri).then(function (response) {
         _this2.lokasi = _this2.lokasi.filter(function (lokasi) {
           return lokasi.id != id;
         });
@@ -373,7 +375,7 @@ var render = function () {
                               },
                               [
                                 _vm._v(
-                                  "\n                      Hapus\n                    "
+                                  "\n                  Hapus\n                "
                                 ),
                               ]
                             ),

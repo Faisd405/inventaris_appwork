@@ -12,7 +12,7 @@
               >TAMBAH Data lokasi</router-link
             >
             <div class="table-responsive mt-2">
-                <b-row>
+              <b-row>
                 <b-col lg="6" class="my-1">
                   <b-form-group
                     label="Filter"
@@ -58,7 +58,9 @@
                   </b-form-group>
                 </b-col>
               </b-row>
-              <b-table :items="lokasi" :fields="fields"
+              <b-table
+                :items="lokasi"
+                :fields="fields"
                 :sort-by.sync="sortBy"
                 striped
                 responsive="sm"
@@ -67,21 +69,21 @@
                 :filter-included-fields="filterOn"
                 @filtered="onFiltered"
                 :current-page="currentPage"
-                :per-page="perPage">
-                  <template slot="action" slot-scope="data">
-
-                      <router-link
-                        :to="{ name: 'edit-lokasi', params: { id: data.item.id } }"
-                        class="btn btn-sm btn-primary"
-                        >Edit</router-link
-                      >
-                      <button
-                        class="btn btn-sm btn-danger"
-                        @click="destroy(data.item.id)"
-                      >
-                        Hapus
-                      </button>
-                  </template>
+                :per-page="perPage"
+              >
+                <template slot="action" slot-scope="data">
+                  <router-link
+                    :to="{ name: 'edit-lokasi', params: { id: data.item.id } }"
+                    class="btn btn-sm btn-primary"
+                    >Edit</router-link
+                  >
+                  <button
+                    class="btn btn-sm btn-danger"
+                    @click="destroy(data.item.id)"
+                  >
+                    Hapus
+                  </button>
+                </template>
               </b-table>
             </div>
           </div>
@@ -93,7 +95,7 @@
 
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   data() {
     return {
@@ -101,13 +103,13 @@ export default {
         { key: "id", label: "Id" },
         { key: "lokasi", label: "Lokasi" },
         { key: "kordinat", label: "Kordinat" },
-        { key: "action", label: "Action", sortable: false }
+        { key: "action", label: "Action", sortable: false },
       ],
-        filter: null,
-        filterOn: [],
-        currentPage: 1,
-        perPage: 5,
-        pageOptions: [5, 15, 25, 50,{ value: 100, text: "Show a lot" }],
+      filter: null,
+      filterOn: [],
+      currentPage: 1,
+      perPage: 5,
+      pageOptions: [5, 15, 25, 50, { value: 100, text: "Show a lot" }],
       lokasi: [],
       sortBy: "id",
     };
@@ -127,12 +129,12 @@ export default {
   },
   methods: {
     onFiltered(filteredItems) {
-        this.totalRows = filteredItems.length
-        this.currentPage = 1
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
     },
     destroy(id) {
       let uri = `/api/lokasi/${id}`;
-      this.axios.delete(uri).then((response) => {
+      axios.delete(uri).then((response) => {
         this.lokasi = this.lokasi.filter((lokasi) => lokasi.id != id);
       });
     },

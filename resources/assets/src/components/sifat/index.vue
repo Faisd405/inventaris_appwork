@@ -131,7 +131,7 @@ export default {
     },
     destroy(id) {
       let uri = `/api/sifat/${id}`;
-      this.axios.delete(uri).then((response) => {
+      axios.delete(uri).then((response) => {
         this.sifat = this.sifat.filter((sifat) => sifat.id != id);
       });
     },

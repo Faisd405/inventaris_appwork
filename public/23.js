@@ -62,7 +62,7 @@ __webpack_require__.r(__webpack_exports__);
         label: 'Fungsi',
         sortable: true
       }, {
-        key: 'lokasi',
+        key: 'lokasi.lokasi',
         label: 'Lokasi',
         sortable: true
       }, {
@@ -141,7 +141,7 @@ var render = function () {
                   attrs: { items: _vm.barangs, fields: _vm.fields },
                   scopedSlots: _vm._u([
                     {
-                      key: "cell(action)",
+                      key: "action",
                       fn: function (data) {
                         return [
                           _c(

@@ -140,7 +140,7 @@ export default {
     },
     destroy(id) {
       let uri = `/api/kategori/${id}`;
-      this.axios.delete(uri).then((response) => {
+      axios.delete(uri).then((response) => {
         this.kategori = this.kategori.filter((kategori) => kategori.id != id);
       });
     },

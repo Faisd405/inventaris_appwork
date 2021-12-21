@@ -158,7 +158,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var uri = "/api/sifat/".concat(id);
-      this.axios["delete"](uri).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"](uri).then(function (response) {
         _this2.sifat = _this2.sifat.filter(function (sifat) {
           return sifat.id != id;
         });

@@ -10,7 +10,7 @@
               <h2>Ini adalah barang yang dipakai {{ users.name }}</h2>
               <b-table :items="barangs" :fields="fields">
 
-                <template #cell(action)="data">
+                <template slot="action" slot-scope="data">
                     <Button
                         class="btn btn-sm btn-danger"
                         @click.prevent="update(data.item.id)"
@@ -55,7 +55,7 @@ export default {
                 sortable: true
             },
             {
-                key: 'lokasi',
+                key: 'lokasi.lokasi',
                 label: 'Lokasi',
                 sortable: true
             },
