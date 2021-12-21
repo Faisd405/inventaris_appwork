@@ -9,6 +9,7 @@ use App\Models\User;
 use PDF;
 use Illuminate\Support\Facades\File;
 use App\Exports\BarangExport;
+use App\Exports\UserBarangExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 
@@ -121,6 +122,19 @@ class BarangController extends Controller
         ], 200);
     }
 
+    public function total_harga(){
+        $barang = barang::all();
+        $total = 0;
+        foreach($barang as $b){
+            $total = $total + $b->harga_barang;
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Total Harga Berhasil Ditampilkan!',
+            'total'    => $total
+        ], 200);
+    }
+
     public function barang_pdf()
     {
         $barang = barang::with('user', 'kategori')->get();
@@ -136,5 +150,9 @@ class BarangController extends Controller
     public function barang_excel()
     {
         return Excel::download(new BarangExport, 'barang.xlsx');
+    }
+    public function userbarang_excel()
+    {
+        return Excel::download(new UserBarangExport, 'userbarang.xlsx');
     }
 }

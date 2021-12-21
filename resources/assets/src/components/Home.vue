@@ -54,6 +54,15 @@
                   <h1 class="card-title">{{ NoUser.length }}</h1>
                 </div>
               </div>
+              <div
+                class="card text-white bg-primary col-md-6"
+                style="max-width: 18rem"
+              >
+                <div class="card-header">Total Harga Barang</div>
+                <div class="card-body">
+                  <h1 class="card-title">{{ total }}</h1>
+                </div>
+              </div>
             </div>
             <div>
               <BarChart></BarChart>
@@ -84,6 +93,7 @@ export default {
       user: [],
       NoUser: [],
       kategori: [],
+      total: [],
     };
   },
   created() {
@@ -92,6 +102,9 @@ export default {
     });
     axios.get(`/api/barang/NoUser`).then((response) => {
       this.NoUser = response.data.barang;
+    });
+    axios.get(`/api/barang/total`).then((response) => {
+      this.total = response.data.total;
     });
     axios.get(`/api/buku`).then((response) => {
       this.buku = response.data.buku;

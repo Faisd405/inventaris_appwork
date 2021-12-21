@@ -151,6 +151,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -167,7 +176,8 @@ __webpack_require__.r(__webpack_exports__);
       buku: [],
       user: [],
       NoUser: [],
-      kategori: []
+      kategori: [],
+      total: []
     };
   },
   created: function created() {
@@ -178,6 +188,9 @@ __webpack_require__.r(__webpack_exports__);
     });
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/barang/NoUser").then(function (response) {
       _this.NoUser = response.data.barang;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/barang/total").then(function (response) {
+      _this.total = response.data.total;
     });
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/buku").then(function (response) {
       _this.buku = response.data.buku;
@@ -596,6 +609,25 @@ var render = function () {
                   _c("div", { staticClass: "card-body" }, [
                     _c("h1", { staticClass: "card-title" }, [
                       _vm._v(_vm._s(_vm.NoUser.length)),
+                    ]),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "card text-white bg-primary col-md-6",
+                  staticStyle: { "max-width": "18rem" },
+                },
+                [
+                  _c("div", { staticClass: "card-header" }, [
+                    _vm._v("Total Harga Barang"),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("h1", { staticClass: "card-title" }, [
+                      _vm._v(_vm._s(_vm.total)),
                     ]),
                   ]),
                 ]

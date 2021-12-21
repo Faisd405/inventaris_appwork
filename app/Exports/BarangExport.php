@@ -9,11 +9,11 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use App\Models\barang;
+use Maatwebsite\Excel\Events\AfterSheet;
 
-// custom export barang with headings and data from database
-
-class BarangExport implements FromQuery, WithMapping, WithColumnFormatting,WithHeadings, ShouldAutoSize
+class BarangExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoSize, WithEvents
 {
     use Exportable;
     private $rows = 0;
@@ -40,13 +40,6 @@ class BarangExport implements FromQuery, WithMapping, WithColumnFormatting,WithH
         ];
     }
 
-    public function columnFormats(): array
-    {
-        return [
-            'H' => '"RP. "#,##0.00_-',
-        ];
-    }
-
     public function headings(): array
     {
         return [
@@ -59,7 +52,7 @@ class BarangExport implements FromQuery, WithMapping, WithColumnFormatting,WithH
             'Fungsi',
             'Harga Barang',
             'Lokasi',
-            'User',
+            'Nama Pemakai',
         ];
     }
 
@@ -68,5 +61,21 @@ class BarangExport implements FromQuery, WithMapping, WithColumnFormatting,WithH
         return 'Barang';
     }
 
-
+    // afterSheet total harga_barang dan total barang
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class => function(AfterSheet $event){
+                ++$this->rows;
+                $total_harga_barang = $this->rows+1;
+                $total_barang = $this->rows+2;
+                $event->sheet->getDelegate()->setCellValue('A'. $total_harga_barang, 'Total Harga Barang');
+                $event->sheet->getDelegate()->setCellValue('A'. $total_barang, 'Total Barang');
+                $event->sheet->mergeCells('B'. $total_harga_barang.':J'. $total_harga_barang);
+                $event->sheet->mergeCells('B'. $total_barang.':J'. $total_barang);
+                $event->sheet->getDelegate()->setCellValue('B'. $total_harga_barang, '=SUM(H2:H'.$this->rows.')');
+                $event->sheet->getDelegate()->setCellValue('B'. $total_barang, '=COUNT(H2:H'.$this->rows.')');
+            },
+        ];
+    }
 }

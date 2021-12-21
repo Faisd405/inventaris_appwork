@@ -60,6 +60,8 @@ class UserController extends Controller
                 'data'    => ''
             ], 404);
         }
+
+
     }
 
     public function store(Request $request)
@@ -82,4 +84,5 @@ class UserController extends Controller
             'data'    => $users
         ], 200);
     }
+
 }
