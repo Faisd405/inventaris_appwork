@@ -73,7 +73,8 @@ class BarangController extends Controller
             'lokasi_id' => 'required',
             'jenis_id' => 'required',
             'user_id' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'year' => 'required',
+            'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $imageName = time() . '.' . $request->image->extension();
@@ -90,6 +91,8 @@ class BarangController extends Controller
         $barang->lokasi_id = $request->lokasi_id;
         $barang->jenis_id = $request->jenis_id;
         $barang->user_id = $request->user_id;
+        $barang->year = $request->year;
+
 
         $kategori = kategori::find($request->kategori_id);
         $kategori->jumlah = $kategori->jumlah + 1;
@@ -173,8 +176,4 @@ class BarangController extends Controller
         return Excel::download(new BarangExport, 'barang.xlsx');
     }
 
-    public function userbarang_excel()
-    {
-        return Excel::download(new UserBarangExport, 'userbarang.xlsx');
-    }
 }

@@ -79,7 +79,18 @@
                 />
               </div>
 
-              <div class="form=group">
+              <div class="form-group">
+                <label for="year">year</label>
+                <input
+                  type="year"
+                  name="year"
+                  class="form-control"
+                  v-model="barang.year"
+                  placeholder="Masukan year"
+                />
+              </div>
+
+              <div class="form-group">
                 <label for="lokasi_id">Lokasi</label>
                 <select
                   name="lokasi_id"
@@ -199,8 +210,9 @@ export default {
       formData.append("kategori_id", this.barang.kategori_id);
       formData.append("fungsi", this.barang.fungsi);
       formData.append("harga_barang", this.barang.harga_barang);
+      formData.append("year", this.barang.year);
       formData.append("jenis_id", this.barang.jenis_id);
-      formData.append("lokasi_id", this.barang.lokasi);
+      formData.append("lokasi_id", this.barang.lokasi_id);
       formData.append("user_id", this.barang.user_id);
       formData.append("image", this.barang.image);
 
@@ -211,20 +223,13 @@ export default {
         })
         .catch((errors) => {
           console.log(errors);
-          console.log(formData.append);
+          console.log(formData);
+          console.log(this.barang);
         });
     },
     onFileChange(e) {
       this.barang.image = e.target.files[0];
       this.preview = URL.createObjectURL(e.target.files[0]);
-    },
-    createImage(file) {
-      let reader = new FileReader();
-      let vm = this;
-      reader.onload = (e) => {
-        vm.barang.image = e.target.result;
-      };
-      reader.readAsDataURL(file);
     },
   },
 };

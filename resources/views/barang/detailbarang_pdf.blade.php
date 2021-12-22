@@ -27,12 +27,8 @@
         </div>
         <div class="card-body">
             <br>
-
-
             <img src="{{ public_path('/images/' . $barang->image) }}" class="img-thumbnail rounded mx-auto d-block"
                 width="150px">
-
-
             <h2>Nama Barang : {{ $barang->nama_barang }}</h2>
             <h2>Detail Barang : {{ $barang->detail_barang }}</h2>
             <h2>Harga Barang : {{ $barang->harga_barang }}</h2>

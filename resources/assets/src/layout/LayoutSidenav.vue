@@ -3,14 +3,14 @@
 
     <!-- Inner -->
     <div class="sidenav-inner" :class="{ 'py-1': orientation !== 'horizontal' }">
-        <sidenav-router-link icon="ion ion-ios-contact" to="/" :exact="true">Home</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-ios-home" to="/" :exact="true">Home</sidenav-router-link>
         <sidenav-router-link icon="ion ion-md-desktop" to="/barang" :exact="true">Barang</sidenav-router-link>
         <sidenav-router-link icon="ion ion-md-desktop" to="/jenis" :exact="true">Jenis Barang</sidenav-router-link>
         <sidenav-router-link icon="ion ion-md-desktop" to="/lokasi" :exact="true">Lokasi Barang</sidenav-router-link>
         <sidenav-router-link icon="ion ion-md-desktop" to="/kategori" :exact="true">Kategori Barang</sidenav-router-link>
         <sidenav-router-link icon="ion ion-md-desktop" to="/sifat" :exact="true">Sifat Kategori</sidenav-router-link>
-        <sidenav-router-link icon="ion ion-md-desktop" to="/users" :exact="true">Users</sidenav-router-link>
-        <sidenav-router-link icon="ion ion-md-desktop" to="/buku" :exact="true">Buku</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-person" to="/users" :exact="true">Users</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-book" to="/buku" :exact="true">Buku</sidenav-router-link>
     </div>
   </sidenav>
 </template>

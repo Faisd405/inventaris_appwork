@@ -109,28 +109,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       fields: [{
-        key: 'id',
-        label: 'ID',
+        key: "id",
+        label: "ID",
         sortable: true
       }, {
-        key: 'name',
-        label: 'Nama',
+        key: "name",
+        label: "Nama",
         sortable: true
       }, {
-        key: 'email',
-        label: 'Email',
+        key: "email",
+        label: "Email",
         sortable: true
       }, {
-        key: 'action',
-        label: 'Action',
-        headerClass: 'text-center',
-        "class": 'text-center',
-        width: '100px'
+        key: "action",
+        label: "Action",
+        headerClass: "text-center",
+        "class": "text-center",
+        width: "100px"
       }],
       user: [],
       filter: null,
@@ -166,6 +171,16 @@ __webpack_require__.r(__webpack_exports__);
     onFiltered: function onFiltered(filteredItems) {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
+    },
+    destroy: function destroy(id) {
+      var _this2 = this;
+
+      var uri = "/api/users/".concat(id);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"](uri).then(function (response) {
+        _this2.user = _this2.user.filter(function (user) {
+          return user.id != id;
+        });
+      });
     }
   }
 });
@@ -369,6 +384,25 @@ var render = function () {
                               },
                               [_vm._v("Detail")]
                             ),
+                            _vm._v(" "),
+                            data.item.id != 1
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-sm btn-danger",
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.destroy(data.item.id)
+                                      },
+                                    },
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                  Hapus\n                "
+                                    ),
+                                  ]
+                                )
+                              : _vm._e(),
                           ]
                         },
                       },

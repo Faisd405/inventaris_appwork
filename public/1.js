@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
         // Labels for the bars
         labels: [],
         datasets: [{
-          label: "Jumlah Kategori",
+          label: "Jumlah Barang per Kategori",
           borderWidth: 1,
           // Colors for the bars
           backgroundColor: "rgba(255, 99, 132, 0.2)",

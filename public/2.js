@@ -170,6 +170,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -214,30 +225,22 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("kategori_id", this.barang.kategori_id);
       formData.append("fungsi", this.barang.fungsi);
       formData.append("harga_barang", this.barang.harga_barang);
+      formData.append("year", this.barang.year);
       formData.append("jenis_id", this.barang.jenis_id);
-      formData.append("lokasi_id", this.barang.lokasi);
+      formData.append("lokasi_id", this.barang.lokasi_id);
       formData.append("user_id", this.barang.user_id);
       formData.append("image", this.barang.image);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/barang", formData, config).then(function (response) {
         _this2.$router.push("/barang");
       })["catch"](function (errors) {
         console.log(errors);
-        console.log(formData.append);
+        console.log(formData);
+        console.log(_this2.barang);
       });
     },
     onFileChange: function onFileChange(e) {
       this.barang.image = e.target.files[0];
       this.preview = URL.createObjectURL(e.target.files[0]);
-    },
-    createImage: function createImage(file) {
-      var reader = new FileReader();
-      var vm = this;
-
-      reader.onload = function (e) {
-        vm.barang.image = e.target.result;
-      };
-
-      reader.readAsDataURL(file);
     }
   }
 });
@@ -507,7 +510,37 @@ var render = function () {
                   }),
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "form=group" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "year" } }, [_vm._v("year")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.barang.year,
+                        expression: "barang.year",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "year",
+                      name: "year",
+                      placeholder: "Masukan year",
+                    },
+                    domProps: { value: _vm.barang.year },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.barang, "year", $event.target.value)
+                      },
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "lokasi_id" } }, [
                     _vm._v("Lokasi"),
                   ]),

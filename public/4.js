@@ -133,6 +133,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -142,7 +165,9 @@ __webpack_require__.r(__webpack_exports__);
         kategori: {}
       },
       kategori: [],
-      user: []
+      user: [],
+      lokasi: [],
+      jenis: []
     };
   },
   created: function created() {
@@ -158,10 +183,17 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (errors) {
       console.log(errors);
     });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/kategori").then(function (response) {
+      _this.kategori = response.data.kategori;
+    });
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/users").then(function (response) {
       _this.user = response.data.user;
-    })["catch"](function (errors) {
-      console.log(errors);
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/jenis").then(function (response) {
+      _this.jenis = response.data.jenis;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/lokasi").then(function (response) {
+      _this.lokasi = response.data.lokasi;
     });
   },
   methods: {
@@ -169,7 +201,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var uri = "/api/barang/" + this.$route.params.id;
-      this.axios.put(uri, this.barang).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.barang).then(function (response) {
         _this2.$router.push("/barang");
       });
     }
@@ -441,33 +473,125 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "lokasi" } }, [_vm._v("Lokasi")]),
+                  _c("label", { attrs: { for: "lokasi_id" } }, [
+                    _vm._v("Lokasi"),
+                  ]),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.barang.lokasi,
-                        expression: "barang.lokasi",
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.barang.lokasi_id,
+                          expression: "barang.lokasi_id",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { name: "lokasi_id" },
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.barang,
+                            "lokasi_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
                       },
+                    },
+                    [
+                      _c("option", { attrs: { value: "", disabled: "" } }, [
+                        _vm._v("Pilih Lokasi"),
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.lokasi, function (lokasi) {
+                        return _c(
+                          "option",
+                          { key: lokasi.id, domProps: { value: lokasi.id } },
+                          [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(lokasi.lokasi) +
+                                "\n                "
+                            ),
+                          ]
+                        )
+                      }),
                     ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      name: "lokasi",
-                      placeholder: "Masukan Lokasi",
-                    },
-                    domProps: { value: _vm.barang.lokasi },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.barang, "lokasi", $event.target.value)
+                    2
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "jenis_id" } }, [
+                    _vm._v("Jenis"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.barang.jenis_id,
+                          expression: "barang.jenis_id",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { name: "jenis_id" },
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.barang,
+                            "jenis_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
                       },
                     },
-                  }),
+                    [
+                      _c("option", { attrs: { value: "", disabled: "" } }, [
+                        _vm._v("Pilih Jenis"),
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.jenis, function (jenis) {
+                        return _c(
+                          "option",
+                          { key: jenis.id, domProps: { value: jenis.id } },
+                          [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(jenis.jenis_barang) +
+                                "\n                "
+                            ),
+                          ]
+                        )
+                      }),
+                    ],
+                    2
+                  ),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
@@ -508,7 +632,7 @@ var render = function () {
                     },
                     [
                       _c("option", { attrs: { value: "", disabled: "" } }, [
-                        _vm._v("Pilih Kategori"),
+                        _vm._v("Pilih User"),
                       ]),
                       _vm._v(" "),
                       _vm._l(_vm.user, function (user) {

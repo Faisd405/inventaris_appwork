@@ -33707,7 +33707,7 @@ var render = function () {
         [
           _c(
             "sidenav-router-link",
-            { attrs: { icon: "ion ion-ios-contact", to: "/", exact: true } },
+            { attrs: { icon: "ion ion-ios-home", to: "/", exact: true } },
             [_vm._v("Home")]
           ),
           _vm._v(" "),
@@ -33757,15 +33757,13 @@ var render = function () {
           _vm._v(" "),
           _c(
             "sidenav-router-link",
-            {
-              attrs: { icon: "ion ion-md-desktop", to: "/users", exact: true },
-            },
+            { attrs: { icon: "ion ion-md-person", to: "/users", exact: true } },
             [_vm._v("Users")]
           ),
           _vm._v(" "),
           _c(
             "sidenav-router-link",
-            { attrs: { icon: "ion ion-md-desktop", to: "/buku", exact: true } },
+            { attrs: { icon: "ion ion-md-book", to: "/buku", exact: true } },
             [_vm._v("Buku")]
           ),
         ],

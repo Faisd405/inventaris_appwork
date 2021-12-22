@@ -81,15 +81,41 @@
               </div>
 
               <div class="form-group">
-                <label for="lokasi">Lokasi</label>
-                <input
-                  type="text"
-                  name="lokasi"
+                <label for="lokasi_id">Lokasi</label>
+                <select
+                  name="lokasi_id"
                   class="form-control"
-                  v-model="barang.lokasi"
-                  placeholder="Masukan Lokasi"
-                />
+                  v-model="barang.lokasi_id"
+                >
+                  <option value="" disabled>Pilih Lokasi</option>
+                  <option
+                    v-for="lokasi in lokasi"
+                    :value="lokasi.id"
+                    :key="lokasi.id"
+                  >
+                    {{ lokasi.lokasi }}
+                  </option>
+                </select>
               </div>
+
+              <div class="form-group">
+                <label for="jenis_id">Jenis</label>
+                <select
+                  name="jenis_id"
+                  class="form-control"
+                  v-model="barang.jenis_id"
+                >
+                  <option value="" disabled>Pilih Jenis</option>
+                  <option
+                    v-for="jenis in jenis"
+                    :value="jenis.id"
+                    :key="jenis.id"
+                  >
+                    {{ jenis.jenis_barang }}
+                  </option>
+                </select>
+              </div>
+
               <div class="form-group">
                 <label for="user_id">User</label>
                 <select
@@ -97,16 +123,13 @@
                   class="form-control"
                   v-model="barang.user_id"
                 >
-                  <option value="" disabled>Pilih Kategori</option>
-                  <option
-                    v-for="user in user"
-                    :key="user.id"
-                    :value="user.id"
-                  >
+                  <option value="" disabled>Pilih User</option>
+                  <option v-for="user in user" :key="user.id" :value="user.id">
                     {{ user.name }}
                   </option>
                 </select>
               </div>
+
               <div class="form-group">
                 <button class="btn btn-md btn-success" type="submit">
                   SIMPAN
@@ -130,7 +153,10 @@ export default {
         kategori: {},
       },
       kategori: [],
-        user: [],
+      user: [],
+      lokasi: [],
+      jenis: [],
+
     };
   },
   created() {
@@ -150,19 +176,24 @@ export default {
       .catch((errors) => {
         console.log(errors);
       });
-      axios
-        .get("/api/users")
-        .then((response) => {
-          this.user = response.data.user;
-        })
-        .catch((errors) => {
-          console.log(errors);
-        });
+
+    axios.get("/api/kategori").then((response) => {
+      this.kategori = response.data.kategori;
+    });
+    axios.get("/api/users").then((response) => {
+      this.user = response.data.user;
+    });
+    axios.get("/api/jenis").then((response) => {
+      this.jenis = response.data.jenis;
+    });
+    axios.get("/api/lokasi").then((response) => {
+      this.lokasi = response.data.lokasi;
+    });
   },
   methods: {
     BarangUpdate() {
       let uri = "/api/barang/" + this.$route.params.id;
-      this.axios.put(uri, this.barang).then((response) => {
+      axios.put(uri, this.barang).then((response) => {
         this.$router.push("/barang");
       });
     },

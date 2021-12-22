@@ -11,9 +11,9 @@
               <b-table :items="barangs" :fields="fields">
 
                 <template slot="action" slot-scope="data">
-                    <Button
+                    <Button v-if="data.item.user_id!=1"
                         class="btn btn-sm btn-danger"
-                        @click.prevent="update(data.item.id)"
+                        @click="update(data.item.id)"
                       >
                         Hapus Kepemilikan
                       </Button>

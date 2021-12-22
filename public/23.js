@@ -144,23 +144,24 @@ var render = function () {
                       key: "action",
                       fn: function (data) {
                         return [
-                          _c(
-                            "Button",
-                            {
-                              staticClass: "btn btn-sm btn-danger",
-                              on: {
-                                click: function ($event) {
-                                  $event.preventDefault()
-                                  return _vm.update(data.item.id)
+                          data.item.user_id != 1
+                            ? _c(
+                                "Button",
+                                {
+                                  staticClass: "btn btn-sm btn-danger",
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.update(data.item.id)
+                                    },
+                                  },
                                 },
-                              },
-                            },
-                            [
-                              _vm._v(
-                                "\n                      Hapus Kepemilikan\n                    "
-                              ),
-                            ]
-                          ),
+                                [
+                                  _vm._v(
+                                    "\n                      Hapus Kepemilikan\n                    "
+                                  ),
+                                ]
+                              )
+                            : _vm._e(),
                         ]
                       },
                     },

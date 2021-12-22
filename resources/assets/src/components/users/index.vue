@@ -17,7 +17,7 @@
               >TAMBAH Data Barang ke User</router-link
             >
             <div class="table-responsive mt-2">
-                <b-row>
+              <b-row>
                 <b-col lg="6" class="my-1">
                   <b-form-group
                     label="Filter"
@@ -75,7 +75,7 @@
                 @filtered="onFiltered"
                 :current-page="currentPage"
                 :per-page="perPage"
-                >
+              >
                 <template slot="action" slot-scope="data">
                   <router-link
                     :to="{
@@ -85,9 +85,14 @@
                     class="btn btn-sm btn-primary"
                     >Detail</router-link
                   >
+                  <button v-if="data.item.id != 1"
+                    class="btn btn-sm btn-danger"
+                    @click="destroy(data.item.id)"
+                  >
+                    Hapus
+                  </button>
                 </template>
-                </b-table>
-
+              </b-table>
             </div>
           </div>
         </div>
@@ -97,41 +102,40 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
-
   data() {
     return {
-        fields: [
-            {
-                key: 'id',
-                label: 'ID',
-                sortable: true,
-            },
-            {
-                key: 'name',
-                label: 'Nama',
-                sortable: true,
-            },
-            {
-                key: 'email',
-                label: 'Email',
-                sortable: true,
-            },
-            {
-                key: 'action',
-                label: 'Action',
-                headerClass: 'text-center',
-                class: 'text-center',
-                width: '100px'
-            }
-        ],
+      fields: [
+        {
+          key: "id",
+          label: "ID",
+          sortable: true,
+        },
+        {
+          key: "name",
+          label: "Nama",
+          sortable: true,
+        },
+        {
+          key: "email",
+          label: "Email",
+          sortable: true,
+        },
+        {
+          key: "action",
+          label: "Action",
+          headerClass: "text-center",
+          class: "text-center",
+          width: "100px",
+        },
+      ],
       user: [],
-        filter: null,
-        filterOn: [],
-        currentPage: 1,
-        perPage: 5,
-        pageOptions: [5, 15, 25, 50,{ value: 100, text: "Show a lot" }],
+      filter: null,
+      filterOn: [],
+      currentPage: 1,
+      perPage: 5,
+      pageOptions: [5, 15, 25, 50, { value: 100, text: "Show a lot" }],
       barang: [],
       sortBy: "id",
     };
@@ -152,8 +156,14 @@ export default {
   },
   methods: {
     onFiltered(filteredItems) {
-        this.totalRows = filteredItems.length
-        this.currentPage = 1
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
+    },
+    destroy(id) {
+      let uri = `/api/users/${id}`;
+      axios.delete(uri).then((response) => {
+        this.user = this.user.filter((user) => user.id != id);
+      });
     },
   },
 };
