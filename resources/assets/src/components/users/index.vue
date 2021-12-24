@@ -78,6 +78,7 @@
                 :current-page="currentPage"
                 :per-page="perPage"
               >
+
                 <template slot="action" slot-scope="data">
                   <router-link
                     :to="{

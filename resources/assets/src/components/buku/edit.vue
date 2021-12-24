@@ -6,7 +6,7 @@
           <div class="card-header">Edit Buku</div>
 
           <div class="card-body">
-            <form @submit.prevent="BookStore">
+            <form @submit.prevent="BookUpdate">
               <div class="form-group">
                 <label>Judul Buku</label>
                 <input
@@ -111,7 +111,7 @@ export default {
     });
   },
   methods: {
-    BookStore() {
+    BookUpdate() {
       let uri = "/api/buku/" + this.$route.params.id;
       axios.put(uri, this.buku).then((response) => {
         this.$router.push("/buku");

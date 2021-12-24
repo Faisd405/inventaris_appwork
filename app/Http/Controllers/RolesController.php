@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Role;
+use App\Models\role_user;
+use App\Models\User;
 
 class RolesController extends Controller
 {
@@ -16,5 +18,14 @@ class RolesController extends Controller
             'message' => 'List Semua Role',
             'roles' => $roles,
         ], 200);
+    }
+
+    public function indexrolesuser($id){
+        $roleusers = role_user::where('user_id', $id)->with('role')->get();
+            return response()->json([
+                'success' => true,
+                'message' => 'Role dan User!',
+                'roleusers' => $roleusers
+            ], 200);
     }
 }

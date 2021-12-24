@@ -61,3 +61,7 @@ ehthumbs_vista.db
 
 # Windows shortcuts
 *.lnk
+
+*.zip
+
+/public/images
