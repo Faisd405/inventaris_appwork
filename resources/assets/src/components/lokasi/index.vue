@@ -5,12 +5,14 @@
         <div class="card card-default">
           <div class="card-header">lokasi</div>
 
-          <div class="card-body">
-            <router-link
-              :to="{ name: 'create-lokasi' }"
-              class="btn btn-md btn-primary"
-              >TAMBAH Data lokasi</router-link
-            >
+          <div class="card-body" v-for="roles in user.roles" :key="roles.id">
+            <span v-if="roles.name == 'admin'">
+              <router-link
+                :to="{ name: 'create-lokasi' }"
+                class="btn btn-md btn-primary"
+                >TAMBAH Data lokasi</router-link
+              >
+            </span>
             <div class="table-responsive mt-2">
               <b-row>
                 <b-col lg="6" class="my-1">
@@ -72,17 +74,23 @@
                 :per-page="perPage"
               >
                 <template slot="action" slot-scope="data">
-                  <router-link
-                    :to="{ name: 'edit-lokasi', params: { id: data.item.id } }"
-                    class="btn btn-sm btn-primary"
-                    >Edit</router-link
-                  >
-                  <button
-                    class="btn btn-sm btn-danger"
-                    @click="destroy(data.item.id)"
-                  >
-                    Hapus
-                  </button>
+                  <span v-if="roles.name == 'admin'">
+                    <router-link
+                      :to="{
+                        name: 'edit-lokasi',
+                        params: { id: data.item.id },
+                      }"
+                      class="btn btn-sm btn-primary"
+                      >Edit</router-link
+                    >
+                    <button
+                      class="btn btn-sm btn-danger"
+                      @click="destroy(data.item.id)"
+                    >
+                      Hapus
+                    </button>
+                  </span>
+                  <span v-if="roles.name != 'admin'"> Kamu Bukan Admin </span>
                 </template>
               </b-table>
             </div>
@@ -112,6 +120,8 @@ export default {
       pageOptions: [5, 15, 25, 50, { value: 100, text: "Show a lot" }],
       lokasi: [],
       sortBy: "id",
+      user: null,
+      isLoggedIn: false,
     };
   },
   created() {
@@ -138,6 +148,25 @@ export default {
         this.lokasi = this.lokasi.filter((lokasi) => lokasi.id != id);
       });
     },
+  },
+  mounted() {
+    axios.defaults.headers.common["Content-Type"] = "application/json";
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + localStorage.getItem("token");
+
+    axios
+      .get(`/api/user`)
+      .then((response) => {
+        this.user = response.data;
+        this.loginType = response.data.roles[0].name;
+      })
+      .catch((error) => {
+        if (error.response.status === 401) {
+          localStorage.clear();
+          this.$router.push("/login");
+        }
+        console.error(error);
+      });
   },
 };
 </script>

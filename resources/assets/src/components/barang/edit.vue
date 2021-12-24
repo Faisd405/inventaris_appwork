@@ -117,15 +117,19 @@
               </div>
 
               <div class="form-group">
-                <label for="user_id">User</label>
+                <label for="user_id">users</label>
                 <select
                   name="user_id"
                   class="form-control"
                   v-model="barang.user_id"
                 >
-                  <option value="" disabled>Pilih User</option>
-                  <option v-for="user in user" :key="user.id" :value="user.id">
-                    {{ user.name }}
+                  <option value="" disabled>Pilih users</option>
+                  <option
+                    v-for="users in users"
+                    :key="users.id"
+                    :value="users.id"
+                  >
+                    {{ users.name }}
                   </option>
                 </select>
               </div>
@@ -153,10 +157,11 @@ export default {
         kategori: {},
       },
       kategori: [],
-      user: [],
+      users: [],
       lokasi: [],
       jenis: [],
-
+      user: "",
+      loginType: "",
     };
   },
   created() {
@@ -181,7 +186,7 @@ export default {
       this.kategori = response.data.kategori;
     });
     axios.get("/api/users").then((response) => {
-      this.user = response.data.user;
+      this.users = response.data.user;
     });
     axios.get("/api/jenis").then((response) => {
       this.jenis = response.data.jenis;
@@ -197,6 +202,25 @@ export default {
         this.$router.push("/barang");
       });
     },
+  },
+  mounted() {
+    axios.defaults.headers.common["Content-Type"] = "application/json";
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + localStorage.getItem("token");
+
+    axios
+      .get(`/api/user`)
+      .then((response) => {
+        this.user = response.data;
+        this.loginType = response.data.roles[0].name;
+      })
+      .catch((error) => {
+        if (error.response.status === 401) {
+          localStorage.clear();
+          this.$router.push("/login");
+        }
+        console.error(error);
+      });
   },
 };
 </script>

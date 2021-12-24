@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\barang;
 use App\Models\kategori;
@@ -21,21 +22,18 @@ class DatabaseSeeder extends Seeder
         // Seeder User
         User::create([
             'name' => '4VM',
-            'roles' => 'admin',
             'email' => '4vm@gmail.com',
-            'password' => 'gaktau123'
+            'password' => Hash::make('12345678')
         ]);
         User::create([
             'name' => 'Faisal Dz',
-            'roles' => 'admin',
             'email' => 'faisd405@gmail.com',
-            'password' => 'gaktau123'
+            'password' => Hash::make('12345678')
         ]);
         User::create([
             'name' => 'Giffa',
-            'roles' => 'admin',
             'email' => 'giffa@gmail.com',
-            'password' => 'gaktau321',
+            'password' => Hash::make('12345678')
         ]);
 
         // Seeder Sifat
@@ -149,5 +147,6 @@ class DatabaseSeeder extends Seeder
             'jumlah' => '1',
             'lokasi_id' => '2',
         ]);
+        $this->call([ RolesTableSeeder::class ]);
     }
 }

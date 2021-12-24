@@ -76,7 +76,7 @@ class KategoriController extends Controller
     public function show($id)
     {
         $kategori = kategori::find($id);
-        $barang = barang::where('kategori_id', $id)->get();
+        $barang = barang::with('lokasi')->where('kategori_id', $id)->get();
         return response()->json([
             'success' => true,
             'message' => 'kategori Berhasil Ditampilkan!',

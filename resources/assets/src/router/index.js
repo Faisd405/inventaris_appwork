@@ -10,15 +10,28 @@ import Layout1 from '@/layout/Layout1'
 Vue.use(Router)
 Vue.use(Meta)
 
+
 const router = new Router({
     base: '/',
     mode: 'history',
+
     routes: [{
         path: '/',
         component: Layout1,
         children: [{
             path: '',
             component: () => import('@/components/Home')
+        },
+        // Route Auth
+        {
+            name: 'login',
+            path: '/login',
+            component: () => import('@/components/auth/Login')
+        },
+        {
+            name: 'register',
+            path: '/register',
+            component: () => import('@/components/auth/Register')
         },
         // Route barang
         {
@@ -29,12 +42,20 @@ const router = new Router({
         {
             name: 'create-barang',
             path: '/barang/create',
-            component: () => import('@/components/barang/create')
+            component: () => import('@/components/barang/create'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
         },
         {
             name: 'edit-barang',
             path: '/barang/edit/:id',
-            component: () => import('@/components/barang/edit')
+            component: () => import('@/components/barang/edit'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
         },
         {
             name: 'detail-barang',
@@ -50,12 +71,20 @@ const router = new Router({
         {
             name: 'create-kategori',
             path: '/kategori/create',
-            component: () => import('@/components/kategori/create')
+            component: () => import('@/components/kategori/create'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
         },
         {
             name: 'edit-kategori',
             path: '/kategori/edit/:id',
-            component: () => import('@/components/kategori/edit')
+            component: () => import('@/components/kategori/edit'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
         },
         {
             name: 'detail-kategori',
@@ -71,7 +100,11 @@ const router = new Router({
         {
             name: 'create-users',
             path: '/users/create',
-            component: () => import('@/components/users/create')
+            component: () => import('@/components/users/create'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
         },
         {
             name: 'detail-users',
@@ -81,7 +114,11 @@ const router = new Router({
         {
             name: 'relasiuserbarang',
             path: '/users/relasi',
-            component: () => import('@/components/users/relasi-barang')
+            component: () => import('@/components/users/relasi-barang'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
         },
         // Route Buku
         {
@@ -92,12 +129,20 @@ const router = new Router({
         {
             name: 'create-buku',
             path: '/buku/create',
-            component: () => import('@/components/buku/create')
+            component: () => import('@/components/buku/create'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
         },
         {
             name: 'edit-buku',
             path: '/buku/edit/:id',
-            component: () => import('@/components/buku/edit')
+            component: () => import('@/components/buku/edit'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
         },
         // Route sifat
         {
@@ -108,12 +153,20 @@ const router = new Router({
         {
             name: 'create-sifat',
             path: '/sifat/create',
-            component: () => import('@/components/sifat/create')
+            component: () => import('@/components/sifat/create'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
         },
         {
             name: 'edit-sifat',
             path: '/sifat/edit/:id',
-            component: () => import('@/components/sifat/edit')
+            component: () => import('@/components/sifat/edit'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
         },
         // Route jenis
         {
@@ -124,12 +177,20 @@ const router = new Router({
         {
             name: 'create-jenis',
             path: '/jenis/create',
-            component: () => import('@/components/jenis/create')
+            component: () => import('@/components/jenis/create'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
         },
         {
             name: 'edit-jenis',
             path: '/jenis/edit/:id',
-            component: () => import('@/components/jenis/edit')
+            component: () => import('@/components/jenis/edit'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
         },
         // Route lokasi
         {
@@ -140,12 +201,20 @@ const router = new Router({
         {
             name: 'create-lokasi',
             path: '/lokasi/create',
-            component: () => import('@/components/lokasi/create')
+            component: () => import('@/components/lokasi/create'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
         },
         {
             name: 'edit-lokasi',
             path: '/lokasi/edit/:id',
-            component: () => import('@/components/lokasi/edit')
+            component: () => import('@/components/lokasi/edit'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
         },
 
         ]
@@ -166,8 +235,35 @@ router.beforeEach((to, from, next) => {
     // Set loading state
     document.body.classList.add('app-loading')
 
-    // Add tiny timeout to finish page transition
-    setTimeout(() => next(), 10)
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        let token = localStorage.getItem('token') != null;
+        if (!token) {
+            next({
+                path: '/login',
+                query: {
+                    redirect: to.fullPath
+                }
+            })
+        } else {
+            let user = JSON.parse(localStorage.getItem('user'))
+            let roles = user.roles.map(role => role.name)
+            console.log(roles[0]);
+             if (to.matched.some(record => record.meta.isAdmin)) {
+                if (roles.includes('admin')) next()
+                else if (roles[0] === 'user') {
+                    next({
+                        name: 'user'
+                    })
+                } else next({
+                    name: 'home'
+                })
+            } else {
+                next()
+            }
+        }
+    } else {
+        next()
+    }
 })
 
 export default router

@@ -35,11 +35,16 @@
                 />
               </div>
               <div class="form-group">
-                <label>Role</label>
-                <select class="form-control" v-model="users.roles">
-                  <option disabled value="">Pilih Role</option>
-                  <option value="admin">Admin</option>
-                  <option value="user">User</option>
+                <label for="sifat_id">roles Kategori</label>
+                <select
+                  name="sifat_id"
+                  class="form-control"
+                  v-model="users.roles"
+                >
+                  <option value="" disabled>Pilih User</option>
+                  <option v-for="roles in roles" :key="roles.id" :value="roles.id">
+                    {{ roles.name }}
+                  </option>
                 </select>
               </div>
               <div class="form-group">
@@ -56,11 +61,23 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
-      users: {},
+      users: {
+        name: '',
+        email: '',
+        password: '',
+        roles: '',
+      },
+      roles: [],
     };
+  },
+  created(){
+      axios.get('/api/roles').then(response => {
+        this.roles = response.data.roles;
+      });
   },
   methods: {
     UserStore() {

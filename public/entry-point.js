@@ -1826,16 +1826,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'app',
+  name: "app",
   metaInfo: {
-    title: 'Index',
-    titleTemplate: '%s - Laravel + Vue.js Starter'
+    title: "Index",
+    titleTemplate: "%s - Inventaris Barang"
   },
   updated: function updated() {
     // Remove loading state
     setTimeout(function () {
-      return document.body.classList.remove('app-loading');
+      return document.body.classList.remove("app-loading");
     }, 1);
+  },
+  data: function data() {
+    return {
+      user: null,
+      isLoggedIn: false
+    };
+  },
+  mounted: function mounted() {
+    this.setUser();
+  },
+  methods: {
+    setUser: function setUser() {
+      this.user = JSON.parse(localStorage.getItem('user'));
+      this.isLoggedIn = localStorage.getItem('token') != null;
+    },
+    logout: function logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      this.setUser();
+      this.$router.push('/');
+    }
   }
 });
 
@@ -1965,8 +1986,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'app-layout-navbar',
+  name: "app-layout-navbar",
   props: {
     sidenavToggle: {
       type: Boolean,
@@ -1979,7 +2021,26 @@ __webpack_require__.r(__webpack_exports__);
     },
     getLayoutNavbarBg: function getLayoutNavbarBg() {
       return this.layoutNavbarBg;
+    },
+    setUser: function setUser() {
+      this.user = JSON.parse(localStorage.getItem("user"));
+      this.isLoggedIn = localStorage.getItem("token") != null;
+    },
+    logout: function logout() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      this.setUser();
+      this.$router.push("/");
     }
+  },
+  data: function data() {
+    return {
+      user: null,
+      isLoggedIn: false
+    };
+  },
+  mounted: function mounted() {
+    this.setUser();
   }
 });
 
@@ -2012,9 +2073,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'app-layout-sidenav',
+  data: function data() {
+    return {
+      user: null,
+      isLoggedIn: false
+    };
+  },
+  name: "app-layout-sidenav",
   components: {
     Sidenav: _vendor_libs_sidenav__WEBPACK_IMPORTED_MODULE_0__["Sidenav"],
     SidenavLink: _vendor_libs_sidenav__WEBPACK_IMPORTED_MODULE_0__["SidenavLink"],
@@ -2027,18 +2115,18 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     orientation: {
       type: String,
-      "default": 'vertical'
+      "default": "vertical"
     }
   },
   computed: {
     curClasses: function curClasses() {
       var bg = this.layoutSidenavBg;
 
-      if (this.orientation === 'horizontal' && (bg.indexOf(' sidenav-dark') !== -1 || bg.indexOf(' sidenav-light') !== -1)) {
-        bg = bg.replace(' sidenav-dark', '').replace(' sidenav-light', '').replace('-darker', '').replace('-dark', '');
+      if (this.orientation === "horizontal" && (bg.indexOf(" sidenav-dark") !== -1 || bg.indexOf(" sidenav-light") !== -1)) {
+        bg = bg.replace(" sidenav-dark", "").replace(" sidenav-light", "").replace("-darker", "").replace("-dark", "");
       }
 
-      return "bg-".concat(bg, " ") + (this.orientation !== 'horizontal' ? 'layout-sidenav' : 'layout-sidenav-horizontal container-p-x flex-grow-0');
+      return "bg-".concat(bg, " ") + (this.orientation !== "horizontal" ? "layout-sidenav" : "layout-sidenav-horizontal container-p-x flex-grow-0");
     }
   },
   methods: {
@@ -2046,7 +2134,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.$route.path.indexOf(url) === 0;
     },
     isMenuOpen: function isMenuOpen(url) {
-      return this.$route.path.indexOf(url) === 0 && this.orientation !== 'horizontal';
+      return this.$route.path.indexOf(url) === 0 && this.orientation !== "horizontal";
     },
     toggleSidenav: function toggleSidenav() {
       this.layoutHelpers.toggleCollapsed();
@@ -33487,7 +33575,12 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "app" } }, [_c("router-view")], 1)
+  return _c(
+    "div",
+    { attrs: { id: "app" } },
+    [_c("router-view", { on: { IsloggedIn: _vm.setUser } })],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -33651,23 +33744,65 @@ var render = function () {
       _vm._v(" "),
       _c("b-navbar-toggle", { attrs: { target: "app-layout-navbar" } }),
       _vm._v(" "),
-      _c(
-        "b-collapse",
-        { attrs: { "is-nav": "", id: "app-layout-navbar" } },
-        [
-          _c(
-            "b-navbar-nav",
-            { staticClass: "align-items-lg-center" },
+      _vm.isLoggedIn
+        ? _c(
+            "b-collapse",
+            { attrs: { "is-nav": "", id: "app-layout-navbar" } },
             [
-              _c("b-nav-item", { attrs: { href: "#" } }),
-              _vm._v(" "),
-              _c("b-nav-item", { attrs: { href: "#" } }),
+              _c(
+                "b-navbar-nav",
+                { staticClass: "align-items-lg-center" },
+                [
+                  _c(
+                    "b-nav-item",
+                    { attrs: { to: {} } },
+                    [
+                      _vm._v(_vm._s(_vm.user.name) + ", Seorang\n        "),
+                      _vm._l(_vm.user.roles, function (roles) {
+                        return _c("span", { key: roles.id }, [
+                          _vm._v(
+                            "\n          " + _vm._s(roles.name) + "\n        "
+                          ),
+                        ])
+                      }),
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c("b-nav-item", { on: { click: _vm.logout } }, [
+                    _vm._v("Logout"),
+                  ]),
+                ],
+                1
+              ),
             ],
             1
-          ),
-        ],
-        1
-      ),
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.isLoggedIn
+        ? _c(
+            "b-collapse",
+            { attrs: { "is-nav": "", id: "app-layout-navbar" } },
+            [
+              _c(
+                "b-navbar-nav",
+                { staticClass: "align-items-lg-center" },
+                [
+                  _c("b-nav-item", { attrs: { to: { name: "login" } } }, [
+                    _vm._v("Login"),
+                  ]),
+                  _vm._v(" "),
+                  _c("b-nav-item", { attrs: { to: { name: "register" } } }, [
+                    _vm._v("Register"),
+                  ]),
+                ],
+                1
+              ),
+            ],
+            1
+          )
+        : _vm._e(),
     ],
     1
   )
@@ -51063,156 +51198,225 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! @/components/Home */ "./resources/assets/src/components/Home.vue"));
       }
+    }, // Route Auth
+    {
+      name: 'login',
+      path: '/login',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! @/components/auth/Login */ "./resources/assets/src/components/auth/Login.vue"));
+      }
+    }, {
+      name: 'register',
+      path: '/register',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! @/components/auth/Register */ "./resources/assets/src/components/auth/Register.vue"));
+      }
     }, // Route barang
     {
       name: 'index-barang',
       path: '/barang',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! @/components/barang/index */ "./resources/assets/src/components/barang/index.vue"));
+        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! @/components/barang/index */ "./resources/assets/src/components/barang/index.vue"));
       }
     }, {
       name: 'create-barang',
       path: '/barang/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! @/components/barang/create */ "./resources/assets/src/components/barang/create.vue"));
+        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! @/components/barang/create */ "./resources/assets/src/components/barang/create.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
       }
     }, {
       name: 'edit-barang',
       path: '/barang/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! @/components/barang/edit */ "./resources/assets/src/components/barang/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! @/components/barang/edit */ "./resources/assets/src/components/barang/edit.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
       }
     }, {
       name: 'detail-barang',
       path: '/barang/detail/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! @/components/barang/detail */ "./resources/assets/src/components/barang/detail.vue"));
+        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! @/components/barang/detail */ "./resources/assets/src/components/barang/detail.vue"));
       }
     }, // Route kategori
     {
       name: 'index-kategori',
       path: '/kategori',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! @/components/kategori/index */ "./resources/assets/src/components/kategori/index.vue"));
+        return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! @/components/kategori/index */ "./resources/assets/src/components/kategori/index.vue"));
       }
     }, {
       name: 'create-kategori',
       path: '/kategori/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! @/components/kategori/create */ "./resources/assets/src/components/kategori/create.vue"));
+        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! @/components/kategori/create */ "./resources/assets/src/components/kategori/create.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
       }
     }, {
       name: 'edit-kategori',
       path: '/kategori/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! @/components/kategori/edit */ "./resources/assets/src/components/kategori/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.bind(null, /*! @/components/kategori/edit */ "./resources/assets/src/components/kategori/edit.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
       }
     }, {
       name: 'detail-kategori',
       path: '/kategori/detail/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! @/components/kategori/detail */ "./resources/assets/src/components/kategori/detail.vue"));
+        return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! @/components/kategori/detail */ "./resources/assets/src/components/kategori/detail.vue"));
       }
     }, // Route users
     {
       name: 'index-users',
       path: '/users',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 24).then(__webpack_require__.bind(null, /*! @/components/users/index */ "./resources/assets/src/components/users/index.vue"));
+        return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! @/components/users/index */ "./resources/assets/src/components/users/index.vue"));
       }
     }, {
       name: 'create-users',
       path: '/users/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! @/components/users/create */ "./resources/assets/src/components/users/create.vue"));
+        return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! @/components/users/create */ "./resources/assets/src/components/users/create.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
       }
     }, {
       name: 'detail-users',
       path: '/users/detail/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 23).then(__webpack_require__.bind(null, /*! @/components/users/detail */ "./resources/assets/src/components/users/detail.vue"));
+        return __webpack_require__.e(/*! import() */ 27).then(__webpack_require__.bind(null, /*! @/components/users/detail */ "./resources/assets/src/components/users/detail.vue"));
       }
     }, {
       name: 'relasiuserbarang',
       path: '/users/relasi',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! @/components/users/relasi-barang */ "./resources/assets/src/components/users/relasi-barang.vue"));
+        return __webpack_require__.e(/*! import() */ 29).then(__webpack_require__.bind(null, /*! @/components/users/relasi-barang */ "./resources/assets/src/components/users/relasi-barang.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
       }
     }, // Route Buku
     {
       name: 'index-buku',
       path: '/buku',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! @/components/buku/index */ "./resources/assets/src/components/buku/index.vue"));
+        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! @/components/buku/index */ "./resources/assets/src/components/buku/index.vue"));
       }
     }, {
       name: 'create-buku',
       path: '/buku/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! @/components/buku/create */ "./resources/assets/src/components/buku/create.vue"));
+        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! @/components/buku/create */ "./resources/assets/src/components/buku/create.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
       }
     }, {
       name: 'edit-buku',
       path: '/buku/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! @/components/buku/edit */ "./resources/assets/src/components/buku/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! @/components/buku/edit */ "./resources/assets/src/components/buku/edit.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
       }
     }, // Route sifat
     {
       name: 'index-sifat',
       path: '/sifat',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! @/components/sifat/index */ "./resources/assets/src/components/sifat/index.vue"));
+        return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! @/components/sifat/index */ "./resources/assets/src/components/sifat/index.vue"));
       }
     }, {
       name: 'create-sifat',
       path: '/sifat/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! @/components/sifat/create */ "./resources/assets/src/components/sifat/create.vue"));
+        return __webpack_require__.e(/*! import() */ 23).then(__webpack_require__.bind(null, /*! @/components/sifat/create */ "./resources/assets/src/components/sifat/create.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
       }
     }, {
       name: 'edit-sifat',
       path: '/sifat/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.bind(null, /*! @/components/sifat/edit */ "./resources/assets/src/components/sifat/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 24).then(__webpack_require__.bind(null, /*! @/components/sifat/edit */ "./resources/assets/src/components/sifat/edit.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
       }
     }, // Route jenis
     {
       name: 'index-jenis',
       path: '/jenis',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! @/components/jenis/index */ "./resources/assets/src/components/jenis/index.vue"));
+        return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! @/components/jenis/index */ "./resources/assets/src/components/jenis/index.vue"));
       }
     }, {
       name: 'create-jenis',
       path: '/jenis/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! @/components/jenis/create */ "./resources/assets/src/components/jenis/create.vue"));
+        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! @/components/jenis/create */ "./resources/assets/src/components/jenis/create.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
       }
     }, {
       name: 'edit-jenis',
       path: '/jenis/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! @/components/jenis/edit */ "./resources/assets/src/components/jenis/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! @/components/jenis/edit */ "./resources/assets/src/components/jenis/edit.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
       }
     }, // Route lokasi
     {
       name: 'index-lokasi',
       path: '/lokasi',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.bind(null, /*! @/components/lokasi/index */ "./resources/assets/src/components/lokasi/index.vue"));
+        return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! @/components/lokasi/index */ "./resources/assets/src/components/lokasi/index.vue"));
       }
     }, {
       name: 'create-lokasi',
       path: '/lokasi/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! @/components/lokasi/create */ "./resources/assets/src/components/lokasi/create.vue"));
+        return __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.bind(null, /*! @/components/lokasi/create */ "./resources/assets/src/components/lokasi/create.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
       }
     }, {
       name: 'edit-lokasi',
       path: '/lokasi/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! @/components/lokasi/edit */ "./resources/assets/src/components/lokasi/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! @/components/lokasi/edit */ "./resources/assets/src/components/lokasi/edit.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
       }
     }]
   }]
@@ -51230,11 +51434,44 @@ router.afterEach(function () {
 });
 router.beforeEach(function (to, from, next) {
   // Set loading state
-  document.body.classList.add('app-loading'); // Add tiny timeout to finish page transition
+  document.body.classList.add('app-loading');
 
-  setTimeout(function () {
-    return next();
-  }, 10);
+  if (to.matched.some(function (record) {
+    return record.meta.requiresAuth;
+  })) {
+    var token = localStorage.getItem('token') != null;
+
+    if (!token) {
+      next({
+        path: '/login',
+        query: {
+          redirect: to.fullPath
+        }
+      });
+    } else {
+      var user = JSON.parse(localStorage.getItem('user'));
+      var roles = user.roles.map(function (role) {
+        return role.name;
+      });
+      console.log(roles[0]);
+
+      if (to.matched.some(function (record) {
+        return record.meta.isAdmin;
+      })) {
+        if (roles.includes('admin')) next();else if (roles[0] === 'user') {
+          next({
+            name: 'user'
+          });
+        } else next({
+          name: 'home'
+        });
+      } else {
+        next();
+      }
+    }
+  } else {
+    next();
+  }
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
 
@@ -52812,7 +53049,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\laravel-vue-starter\laravel-vue-starter\resources\assets\src\entry-point.js */"./resources/assets/src/entry-point.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\InvenAuth\InventarisSanctum\inventaris_appwork\resources\assets\src\entry-point.js */"./resources/assets/src/entry-point.js");
 
 
 /***/ })

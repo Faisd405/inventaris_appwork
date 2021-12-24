@@ -14,13 +14,14 @@
     "devDependencies": {
         "@babel/plugin-syntax-dynamic-import": "~7.2.0",
         "axios": "~0.18.0",
-        "bootstrap": "~4.3.1",
+        "bootstrap": "^4.3.1",
         "bootstrap-vue": "^2.0.0-rc.16",
         "chart.js": "~2.8.0",
         "core-js": "2",
         "cross-env": "~5.2.0",
         "echarts": "^4.2.1",
         "idle-vue": "~2.0.5",
+        "jquery": "^3.6.0",
         "ladda": "~2.0.1",
         "laravel-mix": "~4.0.15",
         "moment": "~2.24.0",
@@ -29,15 +30,16 @@
         "numeral": "~2.0.6",
         "perfect-scrollbar": "~1.4.0",
         "plyr": "~2.0.18",
-        "resolve-url-loader": "2.3.1",
-        "sass": "~1.17.3",
-        "sass-loader": "7.*",
+        "popper.js": "^1.16.1",
+        "resolve-url-loader": "^2.3.1",
+        "sass": "^1.17.4",
+        "sass-loader": "^7.3.1",
         "simplemde": "~1.11.2",
         "spinkit": "~1.2.5",
         "sweet-modal-vue": "~2.0.0",
         "text-mask-addons": "~3.8.0",
         "v-img": "~0.2.0",
-        "vue": "~2.6.6",
+        "vue": "^2.6.14",
         "vue-awesome-swiper": "~3.1.3",
         "vue-blockui": "~1.1.6",
         "vue-chartjs": "~3.4.0",
@@ -51,6 +53,7 @@
         "vue-gallery": "~2.0.0",
         "vue-input-tag": "~2.0.5",
         "vue-jstree": "~2.1.6",
+        "vue-loader": "^15.9.8",
         "vue-masonry": "~0.11.1",
         "vue-meta": "~1.6.0",
         "vue-multiselect": "~2.1.0",
@@ -58,12 +61,12 @@
         "vue-number-input-spinner": "~2.1.0",
         "vue-password-strength-meter": "~1.4.2",
         "vue-quill-editor": "~3.0.5",
-        "vue-router": "~3.0.1",
+        "vue-router": "^3.0.7",
         "vue-simple-calendar": "~4.2.1",
         "vue-simplemde": "~0.5.1",
         "vue-slider-component": "~3.0.16",
         "vue-tables-2": "~1.4.50",
-        "vue-template-compiler": "^2.6.9",
+        "vue-template-compiler": "^2.6.14",
         "vue-text-mask": "~6.1.1",
         "vue-toasted": "~1.1.24",
         "vue-typeahead": "~2.3.2",
@@ -114,5 +117,8 @@
         "plugins": [
             "@babel/plugin-syntax-dynamic-import"
         ]
+    },
+    "dependencies": {
+        "@popperjs/core": "^2.11.0"
     }
 }

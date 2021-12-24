@@ -45,7 +45,7 @@ export default {
                 sortable: true
             },
             {
-                key: 'lokasi',
+                key: 'lokasi.lokasi',
                 label: 'Lokasi',
                 sortable: true
             },

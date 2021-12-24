@@ -1,25 +1,60 @@
 <template>
   <sidenav :orientation="orientation" :class="curClasses">
-
     <!-- Inner -->
-    <div class="sidenav-inner" :class="{ 'py-1': orientation !== 'horizontal' }">
-        <sidenav-router-link icon="ion ion-ios-home" to="/" :exact="true">Home</sidenav-router-link>
-        <sidenav-router-link icon="ion ion-md-desktop" to="/barang" :exact="true">Barang</sidenav-router-link>
-        <sidenav-router-link icon="ion ion-md-desktop" to="/jenis" :exact="true">Jenis Barang</sidenav-router-link>
-        <sidenav-router-link icon="ion ion-md-desktop" to="/lokasi" :exact="true">Lokasi Barang</sidenav-router-link>
-        <sidenav-router-link icon="ion ion-md-desktop" to="/kategori" :exact="true">Kategori Barang</sidenav-router-link>
-        <sidenav-router-link icon="ion ion-md-desktop" to="/sifat" :exact="true">Sifat Kategori</sidenav-router-link>
-        <sidenav-router-link icon="ion ion-md-person" to="/users" :exact="true">Users</sidenav-router-link>
-        <sidenav-router-link icon="ion ion-md-book" to="/buku" :exact="true">Buku</sidenav-router-link>
+    <div
+      class="sidenav-inner"
+      :class="{ 'py-1': orientation !== 'horizontal' }"
+    >
+      <sidenav-router-link icon="ion ion-ios-home" to="/" :exact="true"
+        >Home</sidenav-router-link
+      >
+      <sidenav-router-link icon="ion ion-md-desktop" to="/barang" :exact="true"
+        >Barang</sidenav-router-link
+      >
+      <sidenav-router-link icon="ion ion-md-desktop" to="/jenis" :exact="true"
+        >Jenis Barang</sidenav-router-link
+      >
+      <sidenav-router-link icon="ion ion-md-desktop" to="/lokasi" :exact="true"
+        >Lokasi Barang</sidenav-router-link
+      >
+      <sidenav-router-link
+        icon="ion ion-md-desktop"
+        to="/kategori"
+        :exact="true"
+        >Kategori Barang</sidenav-router-link
+      >
+      <sidenav-router-link icon="ion ion-md-desktop" to="/sifat" :exact="true"
+        >Sifat Kategori</sidenav-router-link
+      >
+      <sidenav-router-link icon="ion ion-md-person" to="/users" :exact="true"
+        >Users</sidenav-router-link
+      >
+      <sidenav-router-link icon="ion ion-md-book" to="/buku" :exact="true"
+        >Buku</sidenav-router-link
+      >
     </div>
   </sidenav>
 </template>
 
 <script>
-import { Sidenav, SidenavLink, SidenavRouterLink, SidenavMenu, SidenavHeader, SidenavBlock, SidenavDivider } from '@/vendor/libs/sidenav'
+import {
+  Sidenav,
+  SidenavLink,
+  SidenavRouterLink,
+  SidenavMenu,
+  SidenavHeader,
+  SidenavBlock,
+  SidenavDivider,
+} from "@/vendor/libs/sidenav";
 
 export default {
-  name: 'app-layout-sidenav',
+  data() {
+    return {
+      user: null,
+      isLoggedIn: false,
+    };
+  },
+  name: "app-layout-sidenav",
   components: {
     Sidenav,
     SidenavLink,
@@ -27,48 +62,55 @@ export default {
     SidenavMenu,
     SidenavHeader,
     SidenavBlock,
-    SidenavDivider
+    SidenavDivider,
   },
 
   props: {
     orientation: {
       type: String,
-      default: 'vertical'
-    }
+      default: "vertical",
+    },
   },
 
   computed: {
-    curClasses () {
-      let bg = this.layoutSidenavBg
+    curClasses() {
+      let bg = this.layoutSidenavBg;
 
-      if (this.orientation === 'horizontal' && (bg.indexOf(' sidenav-dark') !== -1 || bg.indexOf(' sidenav-light') !== -1)) {
+      if (
+        this.orientation === "horizontal" &&
+        (bg.indexOf(" sidenav-dark") !== -1 ||
+          bg.indexOf(" sidenav-light") !== -1)
+      ) {
         bg = bg
-          .replace(' sidenav-dark', '')
-          .replace(' sidenav-light', '')
-          .replace('-darker', '')
-          .replace('-dark', '')
+          .replace(" sidenav-dark", "")
+          .replace(" sidenav-light", "")
+          .replace("-darker", "")
+          .replace("-dark", "");
       }
 
-      return `bg-${bg} ` + (
-        this.orientation !== 'horizontal'
-          ? 'layout-sidenav'
-          : 'layout-sidenav-horizontal container-p-x flex-grow-0'
-      )
-    }
+      return (
+        `bg-${bg} ` +
+        (this.orientation !== "horizontal"
+          ? "layout-sidenav"
+          : "layout-sidenav-horizontal container-p-x flex-grow-0")
+      );
+    },
   },
 
   methods: {
-    isMenuActive (url) {
-      return this.$route.path.indexOf(url) === 0
+    isMenuActive(url) {
+      return this.$route.path.indexOf(url) === 0;
     },
 
-    isMenuOpen (url) {
-      return this.$route.path.indexOf(url) === 0 && this.orientation !== 'horizontal'
+    isMenuOpen(url) {
+      return (
+        this.$route.path.indexOf(url) === 0 && this.orientation !== "horizontal"
+      );
     },
 
-    toggleSidenav () {
-      this.layoutHelpers.toggleCollapsed()
-    }
+    toggleSidenav() {
+      this.layoutHelpers.toggleCollapsed();
+    },
   }
-}
+};
 </script>

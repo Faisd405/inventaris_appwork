@@ -1,9 +1,9 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[22],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[28],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/lokasi/index.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/lokasi/index.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/users/index.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/users/index.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -115,24 +115,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       fields: [{
         key: "id",
-        label: "Id"
+        label: "ID",
+        sortable: true
       }, {
-        key: "lokasi",
-        label: "Lokasi"
+        key: "name",
+        label: "Nama",
+        sortable: true
       }, {
-        key: "kordinat",
-        label: "Kordinat"
+        key: "email",
+        label: "Email",
+        sortable: true
       }, {
         key: "action",
         label: "Action",
-        sortable: false
+        headerClass: "text-center",
+        "class": "text-center",
+        width: "100px"
       }],
+      users: [],
       filter: null,
       filterOn: [],
       currentPage: 1,
@@ -141,7 +151,7 @@ __webpack_require__.r(__webpack_exports__);
         value: 100,
         text: "Show a lot"
       }],
-      lokasi: [],
+      barang: [],
       sortBy: "id",
       user: null,
       isLoggedIn: false
@@ -150,9 +160,9 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    var uri = "/api/lokasi";
+    var uri = "/api/users";
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (response) {
-      _this.lokasi = response.data.lokasi;
+      _this.users = response.data.user;
     });
   },
   computed: {
@@ -172,10 +182,10 @@ __webpack_require__.r(__webpack_exports__);
     destroy: function destroy(id) {
       var _this2 = this;
 
-      var uri = "/api/lokasi/".concat(id);
+      var uri = "/api/users/".concat(id);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"](uri).then(function (response) {
-        _this2.lokasi = _this2.lokasi.filter(function (lokasi) {
-          return lokasi.id != id;
+        _this2.users = _this2.users.filter(function (users) {
+          return users.id != id;
         });
       });
     }
@@ -202,10 +212,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/lokasi/index.vue?vue&type=template&id=4f029968&":
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/lokasi/index.vue?vue&type=template&id=4f029968& ***!
-  \***********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/users/index.vue?vue&type=template&id=4a6ebbbe&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/users/index.vue?vue&type=template&id=4a6ebbbe& ***!
+  \**********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -217,14 +227,14 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container mt-3" }, [
+  return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c(
           "div",
           { staticClass: "card card-default" },
           [
-            _c("div", { staticClass: "card-header" }, [_vm._v("lokasi")]),
+            _c("div", { staticClass: "card-header" }, [_vm._v("users")]),
             _vm._v(" "),
             _vm._l(_vm.user.roles, function (roles) {
               return _c("div", { key: roles.id, staticClass: "card-body" }, [
@@ -236,9 +246,18 @@ var render = function () {
                           "router-link",
                           {
                             staticClass: "btn btn-md btn-primary",
-                            attrs: { to: { name: "create-lokasi" } },
+                            attrs: { to: { name: "create-users" } },
                           },
-                          [_vm._v("TAMBAH Data lokasi")]
+                          [_vm._v("TAMBAH Data users")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "btn btn-md btn-primary",
+                            attrs: { to: { name: "relasiuserbarang" } },
+                          },
+                          [_vm._v("TAMBAH Data Barang ke users")]
                         ),
                       ],
                       1
@@ -361,7 +380,7 @@ var render = function () {
                     _vm._v(" "),
                     _c("b-table", {
                       attrs: {
-                        items: _vm.lokasi,
+                        items: _vm.users,
                         fields: _vm.fields,
                         "sort-by": _vm.sortBy,
                         striped: "",
@@ -387,49 +406,44 @@ var render = function () {
                             key: "action",
                             fn: function (data) {
                               return [
-                                roles.name == "admin"
-                                  ? _c(
-                                      "span",
-                                      [
-                                        _c(
-                                          "router-link",
-                                          {
-                                            staticClass:
-                                              "btn btn-sm btn-primary",
-                                            attrs: {
-                                              to: {
-                                                name: "edit-lokasi",
-                                                params: { id: data.item.id },
-                                              },
-                                            },
-                                          },
-                                          [_vm._v("Edit")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "btn btn-sm btn-danger",
-                                            on: {
-                                              click: function ($event) {
-                                                return _vm.destroy(data.item.id)
-                                              },
-                                            },
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                    Hapus\n                  "
-                                            ),
-                                          ]
-                                        ),
-                                      ],
-                                      1
-                                    )
-                                  : _vm._e(),
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticClass: "btn btn-sm btn-primary",
+                                    attrs: {
+                                      to: {
+                                        name: "detail-users",
+                                        params: { id: data.item.id },
+                                      },
+                                    },
+                                  },
+                                  [_vm._v("Detail")]
+                                ),
                                 _vm._v(" "),
-                                roles.name != "admin"
-                                  ? _c("span", [_vm._v(" Kamu Bukan Admin ")])
+                                roles.name == "admin"
+                                  ? _c("span", [
+                                      data.item.id != 1
+                                        ? _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn btn-sm btn-danger",
+                                              on: {
+                                                click: function ($event) {
+                                                  return _vm.destroy(
+                                                    data.item.id
+                                                  )
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                    Hapus\n                  "
+                                              ),
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                    ])
                                   : _vm._e(),
                               ]
                             },
@@ -458,17 +472,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/assets/src/components/lokasi/index.vue":
-/*!**********************************************************!*\
-  !*** ./resources/assets/src/components/lokasi/index.vue ***!
-  \**********************************************************/
+/***/ "./resources/assets/src/components/users/index.vue":
+/*!*********************************************************!*\
+  !*** ./resources/assets/src/components/users/index.vue ***!
+  \*********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_vue_vue_type_template_id_4f029968___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=4f029968& */ "./resources/assets/src/components/lokasi/index.vue?vue&type=template&id=4f029968&");
-/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/assets/src/components/lokasi/index.vue?vue&type=script&lang=js&");
+/* harmony import */ var _index_vue_vue_type_template_id_4a6ebbbe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=4a6ebbbe& */ "./resources/assets/src/components/users/index.vue?vue&type=template&id=4a6ebbbe&");
+/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/assets/src/components/users/index.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -479,8 +493,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _index_vue_vue_type_template_id_4f029968___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _index_vue_vue_type_template_id_4f029968___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _index_vue_vue_type_template_id_4a6ebbbe___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _index_vue_vue_type_template_id_4a6ebbbe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -490,38 +504,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/src/components/lokasi/index.vue"
+component.options.__file = "resources/assets/src/components/users/index.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/src/components/lokasi/index.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************!*\
-  !*** ./resources/assets/src/components/lokasi/index.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************/
+/***/ "./resources/assets/src/components/users/index.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/assets/src/components/users/index.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/lokasi/index.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/users/index.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/src/components/lokasi/index.vue?vue&type=template&id=4f029968&":
-/*!*****************************************************************************************!*\
-  !*** ./resources/assets/src/components/lokasi/index.vue?vue&type=template&id=4f029968& ***!
-  \*****************************************************************************************/
+/***/ "./resources/assets/src/components/users/index.vue?vue&type=template&id=4a6ebbbe&":
+/*!****************************************************************************************!*\
+  !*** ./resources/assets/src/components/users/index.vue?vue&type=template&id=4a6ebbbe& ***!
+  \****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_4f029968___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=4f029968& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/lokasi/index.vue?vue&type=template&id=4f029968&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_4f029968___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_4a6ebbbe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=4a6ebbbe& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/users/index.vue?vue&type=template&id=4a6ebbbe&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_4a6ebbbe___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_4f029968___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_4a6ebbbe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

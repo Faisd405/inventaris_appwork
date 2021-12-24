@@ -5,12 +5,19 @@
         <div class="card card-default">
           <div class="card-header">Barang</div>
 
-          <div class="card-body">
-            <router-link
-              :to="{ name: 'create-barang' }"
-              class="btn btn-md btn-primary"
-              >TAMBAH Data Barang</router-link
-            >
+          <div class="card-body" v-for="roles in user.roles" :key="roles.id">
+            <span v-if="roles.name == 'admin'">
+              <router-link
+                :to="{ name: 'create-barang' }"
+                class="btn btn-md btn-primary"
+                >TAMBAH Data Barang</router-link
+              >
+              <router-link
+                :to="{ name: 'relasiuserbarang' }"
+                class="btn btn-md btn-primary"
+                >TAMBAH Data Barang ke users</router-link
+              >
+            </span>
             <router-link
               :to="{ name: 'index-kategori' }"
               class="btn btn-md btn-primary"
@@ -95,20 +102,22 @@
                     class="btn btn-sm btn-primary"
                     >Detail</router-link
                   >
-                  <router-link
-                    :to="{
-                      name: 'edit-barang',
-                      params: { id: data.item.id },
-                    }"
-                    class="btn btn-sm btn-primary"
-                    >Edit</router-link
-                  >
-                  <button
-                    class="btn btn-sm btn-danger"
-                    @click="destroy(data.item.id)"
-                  >
-                    Hapus
-                  </button>
+                  <span v-if="roles.name == 'admin'">
+                    <router-link
+                      :to="{
+                        name: 'edit-barang',
+                        params: { id: data.item.id },
+                      }"
+                      class="btn btn-sm btn-primary"
+                      >Edit</router-link
+                    >
+                    <button
+                      class="btn btn-sm btn-danger"
+                      @click="destroy(data.item.id)"
+                    >
+                      Hapus
+                    </button>
+                  </span>
                 </template>
               </b-table>
             </div>
@@ -135,7 +144,7 @@ export default {
         { key: "harga_barang", sortable: true },
         { key: "lokasi.lokasi", sortable: true, label: "Lokasi" },
         { key: "user.name", label: "Pemakai", sortable: true },
-        { key: "year", label: "tahun"},
+        { key: "year", label: "tahun" },
         { key: "action", label: "Action", sortable: true },
       ],
       filter: null,
@@ -145,6 +154,8 @@ export default {
       pageOptions: [5, 15, 25, 50, { value: 100, text: "Show a lot" }],
       barang: [],
       sortBy: "id",
+      user: null,
+      isLoggedIn: false,
     };
   },
 
@@ -176,6 +187,25 @@ export default {
           console.log(error);
         });
     },
+  },
+  mounted() {
+    axios.defaults.headers.common["Content-Type"] = "application/json";
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + localStorage.getItem("token");
+
+    axios
+      .get(`/api/user`)
+      .then((response) => {
+        this.user = response.data;
+        this.loginType = response.data.roles[0].name;
+      })
+      .catch((error) => {
+        if (error.response.status === 401) {
+          localStorage.clear();
+          this.$router.push("/login");
+        }
+        console.error(error);
+      });
   },
 };
 </script>

@@ -6,7 +6,12 @@
           <div class="card-header">Home</div>
 
           <div class="card-body mx-auto">
-            <div class="row">
+            <div class="h-100 p-5 text-white bg-dark rounded-3">
+              <h1>Dashboard</h1>
+              <label>Login sebagai:</label>
+              <h2>{{ loginType }}</h2>
+            </div>
+            <div class="row d-flex justify-content-center">
               <div
                 class="card text-white bg-primary col-md-6"
                 style="max-width: 18rem"
@@ -22,7 +27,7 @@
               >
                 <div class="card-header">Total Users</div>
                 <div class="card-body">
-                  <h1 class="card-title">{{ user.length }}</h1>
+                  <h1 class="card-title">{{ users.length }}</h1>
                 </div>
               </div>
               <div
@@ -65,9 +70,9 @@
               </div>
             </div>
             <div>
-                <label>Chart Kategori :</label>
+              <label>Chart Kategori :</label>
               <KategoriChart></KategoriChart>
-                <label>Chart Total Aset Pertahun :</label>
+              <label>Chart Total Aset Pertahun :</label>
               <TotalChart></TotalChart>
             </div>
           </div>
@@ -95,11 +100,32 @@ export default {
     return {
       barang: [],
       buku: [],
-      user: [],
+      users: [],
       NoUser: [],
       kategori: [],
       total: [],
+      user: "",
+      loginType: "",
     };
+  },
+  mounted() {
+    axios.defaults.headers.common["Content-Type"] = "application/json";
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + localStorage.getItem("token");
+
+    axios
+      .get(`/api/user`)
+      .then((response) => {
+        this.user = response.data;
+        this.loginType = response.data.roles[0].name;
+      })
+      .catch((error) => {
+        if (error.response.status === 401) {
+          localStorage.clear();
+          this.$router.push("/login");
+        }
+        console.error(error);
+      });
   },
   created() {
     axios.get(`/api/barang`).then((response) => {
@@ -115,7 +141,7 @@ export default {
       this.buku = response.data.buku;
     });
     axios.get(`/api/users`).then((response) => {
-      this.user = response.data.user;
+      this.users = response.data.user;
     });
     axios.get(`/api/kategori`).then((response) => {
       this.kategori = response.data.kategori;

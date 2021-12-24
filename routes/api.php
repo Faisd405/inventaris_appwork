@@ -8,6 +8,7 @@ use App\Http\Controllers\BukuController;
 use App\Http\Controllers\SifatController;
 use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\JenisController;
+use App\Http\Controllers\RolesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,12 +25,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//Auth
+Route::post('/register', [UserController::class, 'register']);
+Route::post('/login', [UserController::class, 'login']);
+Route::get('/user',[UserController::class, 'getUser'])->middleware('auth:api');
+
 //Route API User
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']);
 Route::post('/users', [UserController::class, 'store']);
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
+
+//Route API Roles
+Route::get('/roles', [RolesController::class, 'index']);
 
 //Route API Barang
 Route::get('/barang', [BarangController::class, 'index']);

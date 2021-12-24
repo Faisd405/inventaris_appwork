@@ -5,14 +5,16 @@
         <div class="card card-default">
           <div class="card-header">kategori</div>
 
-          <div class="card-body">
-            <router-link
-              :to="{ name: 'create-kategori' }"
-              class="btn btn-md btn-primary"
-              >TAMBAH Data kategori</router-link
-            >
+          <div class="card-body" v-for="roles in user.roles" :key="roles.id">
+            <span v-if="roles.name == 'admin'">
+              <router-link
+                :to="{ name: 'create-kategori' }"
+                class="btn btn-md btn-primary"
+                >TAMBAH Data kategori</router-link
+              >
+            </span>
             <div class="table-responsive mt-2">
-                <b-row>
+              <b-row>
                 <b-col lg="6" class="my-1">
                   <b-form-group
                     label="Filter"
@@ -58,7 +60,9 @@
                   </b-form-group>
                 </b-col>
               </b-row>
-              <b-table :items="kategori" :fields="fields"
+              <b-table
+                :items="kategori"
+                :fields="fields"
                 :sort-by.sync="sortBy"
                 striped
                 responsive="sm"
@@ -67,26 +71,34 @@
                 :filter-included-fields="filterOn"
                 @filtered="onFiltered"
                 :current-page="currentPage"
-                :per-page="perPage">
-                  <template slot="action" slot-scope="data">
-
-                      <router-link
-                        :to="{ name: 'edit-kategori', params: { id: data.item.id } }"
-                        class="btn btn-sm btn-primary"
-                        >Edit</router-link
-                      >
-                      <router-link
-                        :to="{ name: 'detail-kategori', params: { id: data.item.id } }"
-                        class="btn btn-sm btn-primary"
-                        >Detail</router-link
-                      >
-                      <button
-                        class="btn btn-sm btn-danger"
-                        @click="destroy(data.item.id)"
-                      >
-                        Hapus
-                      </button>
-                  </template>
+                :per-page="perPage"
+              >
+                <template slot="action" slot-scope="data">
+                  <router-link
+                    :to="{
+                      name: 'detail-kategori',
+                      params: { id: data.item.id },
+                    }"
+                    class="btn btn-sm btn-primary"
+                    >Detail</router-link
+                  >
+                  <span v-if="roles.name == 'admin'">
+                    <router-link
+                      :to="{
+                        name: 'edit-kategori',
+                        params: { id: data.item.id },
+                      }"
+                      class="btn btn-sm btn-primary"
+                      >Edit</router-link
+                    >
+                    <button
+                      class="btn btn-sm btn-danger"
+                      @click="destroy(data.item.id)"
+                    >
+                      Hapus
+                    </button>
+                  </span>
+                </template>
               </b-table>
             </div>
           </div>
@@ -98,7 +110,7 @@
 
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
   data() {
     return {
@@ -108,17 +120,38 @@ export default {
         { key: "fungsi", label: "Fungsi" },
         { key: "sifat.sifat_kategori", label: "sifat" },
         { key: "jumlah", label: "jumlah" },
-        { key: "action", label: "Action", sortable: false }
+        { key: "action", label: "Action", sortable: false },
       ],
-        filter: null,
-        filterOn: [],
-        currentPage: 1,
-        perPage: 5,
-        pageOptions: [5, 15, 25, 50,{ value: 100, text: "Show a lot" }],
+      filter: null,
+      filterOn: [],
+      currentPage: 1,
+      perPage: 5,
+      pageOptions: [5, 15, 25, 50, { value: 100, text: "Show a lot" }],
       kategori: [],
       sortBy: "id",
       barang: [],
+      user: null,
+      isLoggedIn: false,
     };
+  },
+  mounted() {
+    axios.defaults.headers.common["Content-Type"] = "application/json";
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + localStorage.getItem("token");
+
+    axios
+      .get(`/api/user`)
+      .then((response) => {
+        this.user = response.data;
+        this.loginType = response.data.roles[0].name;
+      })
+      .catch((error) => {
+        if (error.response.status === 401) {
+          localStorage.clear();
+          this.$router.push("/login");
+        }
+        console.error(error);
+      });
   },
   created() {
     let uri = `/api/kategori`;
@@ -135,8 +168,8 @@ export default {
   },
   methods: {
     onFiltered(filteredItems) {
-        this.totalRows = filteredItems.length
-        this.currentPage = 1
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
     },
     destroy(id) {
       let uri = `/api/kategori/${id}`;

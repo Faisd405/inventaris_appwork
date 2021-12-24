@@ -5,14 +5,16 @@
         <div class="card card-default">
           <div class="card-header">sifat</div>
 
-          <div class="card-body">
-            <router-link
-              :to="{ name: 'create-sifat' }"
-              class="btn btn-md btn-primary"
-              >TAMBAH Data sifat</router-link
-            >
+          <div class="card-body" v-for="roles in user.roles" :key="roles.id">
+            <span v-if="roles.name == 'admin'">
+              <router-link
+                :to="{ name: 'create-sifat' }"
+                class="btn btn-md btn-primary"
+                >TAMBAH Data sifat</router-link
+              >
+            </span>
             <div class="table-responsive mt-2">
-                <b-row>
+              <b-row>
                 <b-col lg="6" class="my-1">
                   <b-form-group
                     label="Filter"
@@ -58,7 +60,9 @@
                   </b-form-group>
                 </b-col>
               </b-row>
-              <b-table :items="sifat" :fields="fields"
+              <b-table
+                :items="sifat"
+                :fields="fields"
                 :sort-by.sync="sortBy"
                 striped
                 responsive="sm"
@@ -67,21 +71,24 @@
                 :filter-included-fields="filterOn"
                 @filtered="onFiltered"
                 :current-page="currentPage"
-                :per-page="perPage">
-                  <template slot="action" slot-scope="data">
-
-                      <router-link
-                        :to="{ name: 'edit-sifat', params: { id: data.item.id } }"
-                        class="btn btn-sm btn-primary"
-                        >Edit</router-link
-                      >
-                      <button
-                        class="btn btn-sm btn-danger"
-                        @click="destroy(data.item.id)"
-                      >
-                        Hapus
-                      </button>
-                  </template>
+                :per-page="perPage"
+              >
+                <template slot="action" slot-scope="data">
+                  <span v-if="roles.name == 'admin'">
+                    <router-link
+                      :to="{ name: 'edit-sifat', params: { id: data.item.id } }"
+                      class="btn btn-sm btn-primary"
+                      >Edit</router-link
+                    >
+                    <button
+                      class="btn btn-sm btn-danger"
+                      @click="destroy(data.item.id)"
+                    >
+                      Hapus
+                    </button>
+                  </span>
+                  <span v-if="roles.name != 'admin'"> Kamu Bukan Admin </span>
+                </template>
               </b-table>
             </div>
           </div>
@@ -93,22 +100,24 @@
 
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   data() {
     return {
       fields: [
         { key: "id", label: "Id" },
         { key: "sifat_kategori", label: "Jenis Sifat Barang" },
-        { key: "action", label: "Action", sortable: false }
+        { key: "action", label: "Action", sortable: false },
       ],
-        filter: null,
-        filterOn: [],
-        currentPage: 1,
-        perPage: 5,
-        pageOptions: [5, 15, 25, 50,{ value: 100, text: "Show a lot" }],
+      filter: null,
+      filterOn: [],
+      currentPage: 1,
+      perPage: 5,
+      pageOptions: [5, 15, 25, 50, { value: 100, text: "Show a lot" }],
       sifat: [],
       sortBy: "id",
+      user: null,
+      isLoggedIn: false,
     };
   },
   created() {
@@ -126,8 +135,8 @@ export default {
   },
   methods: {
     onFiltered(filteredItems) {
-        this.totalRows = filteredItems.length
-        this.currentPage = 1
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
     },
     destroy(id) {
       let uri = `/api/sifat/${id}`;
@@ -135,6 +144,25 @@ export default {
         this.sifat = this.sifat.filter((sifat) => sifat.id != id);
       });
     },
+  },
+  mounted() {
+    axios.defaults.headers.common["Content-Type"] = "application/json";
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + localStorage.getItem("token");
+
+    axios
+      .get(`/api/user`)
+      .then((response) => {
+        this.user = response.data;
+        this.loginType = response.data.roles[0].name;
+      })
+      .catch((error) => {
+        if (error.response.status === 401) {
+          localStorage.clear();
+          this.$router.push("/login");
+        }
+        console.error(error);
+      });
   },
 };
 </script>
