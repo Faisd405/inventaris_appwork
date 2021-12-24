@@ -14,9 +14,9 @@ class barang extends Model
         return $this->hasOne('App\Models\kategori', 'id', 'kategori_id');
     }
 
-    public function user()
+    public function User()
     {
-        return $this->hasOne('App\Models\user', 'id', 'user_id');
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
 
     public function lokasi()

@@ -27,7 +27,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //Auth
 Route::post('/register', [UserController::class, 'register']);
-Route::post('/login', [UserController::class, 'login']);
+Route::post('login', [ 'as' => 'login', 'uses' => 'UserController@login']);
 Route::get('/user',[UserController::class, 'getUser'])->middleware('auth:api');
 
 //Route API User
