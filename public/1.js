@@ -619,7 +619,13 @@ var render = function () {
               "div",
               { staticClass: "h-100 p-5 text-white bg-dark rounded-3" },
               [
-                _c("h1", [_vm._v("Dashboard")]),
+                _c("h1", [
+                  _vm._v(
+                    "Halo, " +
+                      _vm._s(_vm.user.name) +
+                      " Di Web Inventaris Barang "
+                  ),
+                ]),
                 _vm._v(" "),
                 _c("label", [_vm._v("Login sebagai:")]),
                 _vm._v(" "),

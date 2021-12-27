@@ -37,7 +37,16 @@ const router = new Router({
         {
             name: 'index-barang',
             path: '/barang',
-            component: () => import('@/components/barang/index')
+            component: () => import('@/components/barang/index'),
+            meta: {
+                requiresAuth: true,
+                if(isAdmin) {
+                    isAdmin: true;
+                },
+                if(isUser) {
+                    isUser: true
+                }
+            }
         },
         {
             name: 'create-barang',
@@ -66,7 +75,16 @@ const router = new Router({
         {
             name: 'index-kategori',
             path: '/kategori',
-            component: () => import('@/components/kategori/index')
+            component: () => import('@/components/kategori/index'),
+            meta: {
+                requiresAuth: true,
+                if(isAdmin) {
+                    isAdmin: true;
+                },
+                if(isUser) {
+                    isUser: true
+                }
+            }
         },
         {
             name: 'create-kategori',
@@ -95,7 +113,16 @@ const router = new Router({
         {
             name: 'index-users',
             path: '/users',
-            component: () => import('@/components/users/index')
+            component: () => import('@/components/users/index'),
+            meta: {
+                requiresAuth: true,
+                if(isAdmin) {
+                    isAdmin: true;
+                },
+                if(isUser) {
+                    isUser: true
+                }
+            }
         },
         {
             name: 'create-users',
@@ -109,7 +136,11 @@ const router = new Router({
         {
             name: 'detail-users',
             path: '/users/detail/:id',
-            component: () => import('@/components/users/detail')
+            component: () => import('@/components/users/detail'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
         },
         {
             name: 'relasiuserbarang',
@@ -124,7 +155,16 @@ const router = new Router({
         {
             name: 'index-buku',
             path: '/buku',
-            component: () => import('@/components/buku/index')
+            component: () => import('@/components/buku/index'),
+            meta: {
+                requiresAuth: true,
+                if(isAdmin) {
+                    isAdmin: true;
+                },
+                if(isUser) {
+                    isUser: true
+                }
+            }
         },
         {
             name: 'create-buku',
@@ -148,7 +188,16 @@ const router = new Router({
         {
             name: 'index-sifat',
             path: '/sifat',
-            component: () => import('@/components/sifat/index')
+            component: () => import('@/components/sifat/index'),
+            meta: {
+                requiresAuth: true,
+                if(isAdmin) {
+                    isAdmin: true;
+                },
+                if(isUser) {
+                    isUser: true
+                }
+            }
         },
         {
             name: 'create-sifat',
@@ -172,7 +221,16 @@ const router = new Router({
         {
             name: 'index-jenis',
             path: '/jenis',
-            component: () => import('@/components/jenis/index')
+            component: () => import('@/components/jenis/index'),
+            meta: {
+                requiresAuth: true,
+                if(isAdmin) {
+                    isAdmin: true;
+                },
+                if(isUser) {
+                    isUser: true
+                }
+            }
         },
         {
             name: 'create-jenis',
@@ -196,7 +254,16 @@ const router = new Router({
         {
             name: 'index-lokasi',
             path: '/lokasi',
-            component: () => import('@/components/lokasi/index')
+            component: () => import('@/components/lokasi/index'),
+            meta: {
+                requiresAuth: true,
+                if(isAdmin) {
+                    isAdmin: true;
+                },
+                if(isUser) {
+                    isUser: true
+                }
+            }
         },
         {
             name: 'create-lokasi',
@@ -248,7 +315,16 @@ router.beforeEach((to, from, next) => {
             let user = JSON.parse(localStorage.getItem('user'))
             let roles = user.roles.map(role => role.name)
             console.log(roles[0]);
-             if (to.matched.some(record => record.meta.isAdmin)) {
+            if (to.matched.some(record => record.meta.isUser)) {
+                if (roles.includes('user')) next()
+                else if (roles[0] === 'admin') {
+                    next({
+                        name: 'admin'
+                    })
+                } else next({
+                    name: 'home'
+                })
+            } else if (to.matched.some(record => record.meta.isAdmin)) {
                 if (roles.includes('admin')) next()
                 else if (roles[0] === 'user') {
                     next({

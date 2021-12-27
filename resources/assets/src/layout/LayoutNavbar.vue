@@ -71,7 +71,8 @@ export default {
       localStorage.removeItem("user");
       this.setUser();
 
-      this.$router.push("/");
+      this.$router.push("/login");
+      window.location.reload();
     },
   },
 

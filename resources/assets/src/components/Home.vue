@@ -7,7 +7,7 @@
 
           <div class="card-body mx-auto">
             <div class="h-100 p-5 text-white bg-dark rounded-3">
-              <h1>Dashboard</h1>
+              <h1>Halo, {{user.name}} Di Web Inventaris Barang </h1>
               <label>Login sebagai:</label>
               <h2>{{ loginType }}</h2>
             </div>
