@@ -153,7 +153,8 @@ __webpack_require__.r(__webpack_exports__);
       buku: [],
       sortBy: "id",
       user: null,
-      isLoggedIn: false
+      isLoggedIn: false,
+      loginType: ""
     };
   },
   created: function created() {
@@ -163,15 +164,6 @@ __webpack_require__.r(__webpack_exports__);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (response) {
       _this.buku = response.data.buku;
     });
-  },
-  computed: {
-    filterOn: function filterOn() {
-      return this.fields.filter(function (field) {
-        return field.filterable;
-      }).map(function (field) {
-        return field.key;
-      });
-    }
   },
   methods: {
     onFiltered: function onFiltered(filteredItems) {
@@ -229,88 +221,81 @@ var render = function () {
   return _c("div", { staticClass: "container mt-3" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-12" }, [
-        _c(
-          "div",
-          { staticClass: "card card-default" },
-          [
-            _c("div", { staticClass: "card-header" }, [_vm._v("buku")]),
-            _vm._v(" "),
-            _vm._l(_vm.user.roles, function (roles) {
-              return _c(
+        _c("div", { staticClass: "card card-default" }, [
+          _c("div", { staticClass: "card-header" }, [_vm._v("buku")]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-body" },
+            [
+              _vm.loginType == "admin"
+                ? _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-md btn-primary",
+                      attrs: { to: { name: "create-buku" } },
+                    },
+                    [_vm._v("TAMBAH Data buku")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
                 "div",
-                { key: roles.id, staticClass: "card-body" },
+                { staticClass: "table-responsive mt-2" },
                 [
-                  _vm.user.roles[0].name == "admin"
-                    ? _c(
-                        "router-link",
-                        {
-                          staticClass: "btn btn-md btn-primary",
-                          attrs: { to: { name: "create-buku" } },
-                        },
-                        [_vm._v("TAMBAH Data buku")]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
                   _c(
-                    "div",
-                    { staticClass: "table-responsive mt-2" },
+                    "b-row",
                     [
                       _c(
-                        "b-row",
+                        "b-col",
+                        { staticClass: "my-1", attrs: { lg: "6" } },
                         [
                           _c(
-                            "b-col",
-                            { staticClass: "my-1", attrs: { lg: "6" } },
+                            "b-form-group",
+                            {
+                              staticClass: "mb-0",
+                              attrs: {
+                                label: "Filter",
+                                "label-for": "filter-input",
+                                "label-cols-sm": "3",
+                                "label-align-sm": "right",
+                                "label-size": "sm",
+                              },
+                            },
                             [
                               _c(
-                                "b-form-group",
-                                {
-                                  staticClass: "mb-0",
-                                  attrs: {
-                                    label: "Filter",
-                                    "label-for": "filter-input",
-                                    "label-cols-sm": "3",
-                                    "label-align-sm": "right",
-                                    "label-size": "sm",
-                                  },
-                                },
+                                "b-input-group",
+                                { attrs: { size: "sm" } },
                                 [
+                                  _c("b-form-input", {
+                                    attrs: {
+                                      id: "filter-input",
+                                      type: "search",
+                                      placeholder: "Type to Search",
+                                    },
+                                    model: {
+                                      value: _vm.filter,
+                                      callback: function ($$v) {
+                                        _vm.filter = $$v
+                                      },
+                                      expression: "filter",
+                                    },
+                                  }),
+                                  _vm._v(" "),
                                   _c(
-                                    "b-input-group",
-                                    { attrs: { size: "sm" } },
+                                    "b-input-group-append",
                                     [
-                                      _c("b-form-input", {
-                                        attrs: {
-                                          id: "filter-input",
-                                          type: "search",
-                                          placeholder: "Type to Search",
-                                        },
-                                        model: {
-                                          value: _vm.filter,
-                                          callback: function ($$v) {
-                                            _vm.filter = $$v
-                                          },
-                                          expression: "filter",
-                                        },
-                                      }),
-                                      _vm._v(" "),
                                       _c(
-                                        "b-input-group-append",
-                                        [
-                                          _c(
-                                            "b-button",
-                                            {
-                                              attrs: { disabled: !_vm.filter },
-                                              on: {
-                                                click: function ($event) {
-                                                  _vm.filter = ""
-                                                },
-                                              },
+                                        "b-button",
+                                        {
+                                          attrs: { disabled: !_vm.filter },
+                                          on: {
+                                            click: function ($event) {
+                                              _vm.filter = ""
                                             },
-                                            [_vm._v("Clear")]
-                                          ),
-                                        ],
-                                        1
+                                          },
+                                        },
+                                        [_vm._v("Clear")]
                                       ),
                                     ],
                                     1
@@ -321,149 +306,138 @@ var render = function () {
                             ],
                             1
                           ),
-                          _vm._v(" "),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-col",
+                        { staticClass: "my-1", attrs: { sm: "5", md: "6" } },
+                        [
                           _c(
-                            "b-col",
+                            "b-form-group",
                             {
-                              staticClass: "my-1",
-                              attrs: { sm: "5", md: "6" },
+                              staticClass: "mb-0",
+                              attrs: {
+                                label: "Per page",
+                                "label-for": "per-page-select",
+                                "label-cols-sm": "6",
+                                "label-cols-md": "4",
+                                "label-cols-lg": "3",
+                                "label-align-sm": "right",
+                                "label-size": "sm",
+                              },
                             },
                             [
-                              _c(
-                                "b-form-group",
-                                {
-                                  staticClass: "mb-0",
-                                  attrs: {
-                                    label: "Per page",
-                                    "label-for": "per-page-select",
-                                    "label-cols-sm": "6",
-                                    "label-cols-md": "4",
-                                    "label-cols-lg": "3",
-                                    "label-align-sm": "right",
-                                    "label-size": "sm",
-                                  },
+                              _c("b-form-select", {
+                                attrs: {
+                                  id: "per-page-select",
+                                  options: _vm.pageOptions,
+                                  size: "sm",
                                 },
-                                [
-                                  _c("b-form-select", {
-                                    attrs: {
-                                      id: "per-page-select",
-                                      options: _vm.pageOptions,
-                                      size: "sm",
-                                    },
-                                    model: {
-                                      value: _vm.perPage,
-                                      callback: function ($$v) {
-                                        _vm.perPage = $$v
-                                      },
-                                      expression: "perPage",
-                                    },
-                                  }),
-                                ],
-                                1
-                              ),
+                                model: {
+                                  value: _vm.perPage,
+                                  callback: function ($$v) {
+                                    _vm.perPage = $$v
+                                  },
+                                  expression: "perPage",
+                                },
+                              }),
                             ],
                             1
                           ),
                         ],
                         1
                       ),
-                      _vm._v(" "),
-                      _c("b-table", {
-                        attrs: {
-                          items: _vm.buku,
-                          fields: _vm.fields,
-                          "sort-by": _vm.sortBy,
-                          striped: "",
-                          responsive: "sm",
-                          "sort-icon-left": "",
-                          filter: _vm.filter,
-                          "filter-included-fields": _vm.filterOn,
-                          "current-page": _vm.currentPage,
-                          "per-page": _vm.perPage,
-                        },
-                        on: {
-                          "update:sortBy": function ($event) {
-                            _vm.sortBy = $event
-                          },
-                          "update:sort-by": function ($event) {
-                            _vm.sortBy = $event
-                          },
-                          filtered: _vm.onFiltered,
-                        },
-                        scopedSlots: _vm._u(
-                          [
-                            {
-                              key: "action",
-                              fn: function (data) {
-                                return [
-                                  _vm.user.roles[0].name == "admin"
-                                    ? _c(
-                                        "span",
-                                        [
-                                          _c(
-                                            "router-link",
-                                            {
-                                              staticClass:
-                                                "btn btn-sm btn-primary",
-                                              attrs: {
-                                                to: {
-                                                  name: "edit-buku",
-                                                  params: { id: data.item.id },
-                                                },
-                                              },
-                                            },
-                                            [_vm._v("Edit")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "button",
-                                            {
-                                              staticClass:
-                                                "btn btn-sm btn-danger",
-                                              on: {
-                                                click: function ($event) {
-                                                  return _vm.destroy(
-                                                    data.item.id
-                                                  )
-                                                },
-                                              },
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                      Hapus\n                    "
-                                              ),
-                                            ]
-                                          ),
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.user.roles[0].name != "admin"
-                                    ? _c("span", [
-                                        _vm._v(
-                                          "\n                        Kamu Bukan Admin\n                    "
-                                        ),
-                                      ])
-                                    : _vm._e(),
-                                ]
-                              },
-                            },
-                          ],
-                          null,
-                          true
-                        ),
-                      }),
                     ],
                     1
                   ),
+                  _vm._v(" "),
+                  _c("b-table", {
+                    attrs: {
+                      items: _vm.buku,
+                      fields: _vm.fields,
+                      "sort-by": _vm.sortBy,
+                      striped: "",
+                      responsive: "sm",
+                      "sort-icon-left": "",
+                      filter: _vm.filter,
+                      "filter-included-fields": _vm.filterOn,
+                      "current-page": _vm.currentPage,
+                      "per-page": _vm.perPage,
+                    },
+                    on: {
+                      "update:sortBy": function ($event) {
+                        _vm.sortBy = $event
+                      },
+                      "update:sort-by": function ($event) {
+                        _vm.sortBy = $event
+                      },
+                      filtered: _vm.onFiltered,
+                    },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "action",
+                        fn: function (data) {
+                          return [
+                            _vm.loginType == "admin"
+                              ? _c(
+                                  "span",
+                                  [
+                                    _c(
+                                      "router-link",
+                                      {
+                                        staticClass: "btn btn-sm btn-primary",
+                                        attrs: {
+                                          to: {
+                                            name: "edit-buku",
+                                            params: { id: data.item.id },
+                                          },
+                                        },
+                                      },
+                                      [_vm._v("Edit")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-sm btn-danger",
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.destroy(data.item.id)
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                      Hapus\n                    "
+                                        ),
+                                      ]
+                                    ),
+                                  ],
+                                  1
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.loginType != "admin"
+                              ? _c("span", [
+                                  _vm._v(
+                                    "\n                        Kamu Bukan Admin\n                    "
+                                  ),
+                                ])
+                              : _vm._e(),
+                          ]
+                        },
+                      },
+                    ]),
+                  }),
                 ],
                 1
-              )
-            }),
-          ],
-          2
-        ),
+              ),
+            ],
+            1
+          ),
+        ]),
       ]),
     ]),
   ])

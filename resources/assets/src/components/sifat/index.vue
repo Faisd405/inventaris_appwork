@@ -5,8 +5,8 @@
         <div class="card card-default">
           <div class="card-header">sifat</div>
 
-          <div class="card-body" v-for="roles in user.roles" :key="roles.id">
-            <span v-if="roles.name == 'admin'">
+          <div class="card-body">
+            <span v-if="loginType == 'admin'">
               <router-link
                 :to="{ name: 'create-sifat' }"
                 class="btn btn-md btn-primary"
@@ -74,7 +74,7 @@
                 :per-page="perPage"
               >
                 <template slot="action" slot-scope="data">
-                  <span v-if="roles.name == 'admin'">
+                  <span v-if="loginType == 'admin'">
                     <router-link
                       :to="{ name: 'edit-sifat', params: { id: data.item.id } }"
                       class="btn btn-sm btn-primary"
@@ -87,7 +87,7 @@
                       Hapus
                     </button>
                   </span>
-                  <span v-if="roles.name != 'admin'"> Kamu Bukan Admin </span>
+                  <span v-if="loginType != 'admin'"> Kamu Bukan Admin </span>
                 </template>
               </b-table>
             </div>
@@ -118,6 +118,7 @@ export default {
       sortBy: "id",
       user: null,
       isLoggedIn: false,
+      loginType: null,
     };
   },
   created() {
@@ -125,13 +126,6 @@ export default {
     axios.get(uri).then((response) => {
       this.sifat = response.data.sifat;
     });
-  },
-  computed: {
-    filterOn() {
-      return this.fields
-        .filter((field) => field.filterable)
-        .map((field) => field.key);
-    },
   },
   methods: {
     onFiltered(filteredItems) {

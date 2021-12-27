@@ -2004,9 +2004,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "app-layout-navbar",
   props: {
@@ -2036,7 +2033,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       user: null,
-      isLoggedIn: false
+      isLoggedIn: false,
+      loginType: ""
     };
   },
   mounted: function mounted() {
@@ -33753,21 +33751,13 @@ var render = function () {
                 "b-navbar-nav",
                 { staticClass: "align-items-lg-center" },
                 [
-                  _c(
-                    "b-nav-item",
-                    { attrs: { to: {} } },
-                    [
-                      _vm._v(_vm._s(_vm.user.name) + ", Seorang\n        "),
-                      _vm._l(_vm.user.roles, function (roles) {
-                        return _c("span", { key: roles.id }, [
-                          _vm._v(
-                            "\n          " + _vm._s(roles.name) + "\n        "
-                          ),
-                        ])
-                      }),
-                    ],
-                    2
-                  ),
+                  _c("b-nav-item", { attrs: { to: {} } }, [
+                    _vm._v(
+                      _vm._s(_vm.user.name) +
+                        ", Seorang " +
+                        _vm._s(_vm.user.roles[0].name)
+                    ),
+                  ]),
                   _vm._v(" "),
                   _c("b-nav-item", { on: { click: _vm.logout } }, [
                     _vm._v("Logout"),
@@ -53049,7 +53039,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\InvenAuth\InventarisSanctum\inventaris_appwork\resources\assets\src\entry-point.js */"./resources/assets/src/entry-point.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\InvenAuth\inventaris_appwork\resources\assets\src\entry-point.js */"./resources/assets/src/entry-point.js");
 
 
 /***/ })

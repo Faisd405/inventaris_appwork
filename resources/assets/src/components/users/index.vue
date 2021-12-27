@@ -5,8 +5,8 @@
         <div class="card card-default">
           <div class="card-header">users</div>
 
-          <div class="card-body" v-for="roles in user.roles" :key="roles.id">
-            <span v-if="roles.name == 'admin'">
+          <div class="card-body">
+            <span v-if="loginType == 'admin'">
               <router-link
                 :to="{ name: 'create-users' }"
                 class="btn btn-md btn-primary"
@@ -88,7 +88,7 @@
                     class="btn btn-sm btn-primary"
                     >Detail</router-link
                   >
-                  <span v-if="roles.name == 'admin'">
+                  <span v-if="loginType == 'admin'">
                     <button
                       v-if="data.item.id != 1"
                       class="btn btn-sm btn-danger"
@@ -146,6 +146,7 @@ export default {
       sortBy: "id",
       user: null,
       isLoggedIn: false,
+      loginType: "",
     };
   },
   created() {
@@ -155,13 +156,6 @@ export default {
     });
   },
 
-  computed: {
-    filterOn() {
-      return this.fields
-        .filter((field) => field.filterable)
-        .map((field) => field.key);
-    },
-  },
   methods: {
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length;

@@ -91,7 +91,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var uri = "/api/barang/" + this.barang.id;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.barang).then(function (response) {
-        _this2.$router.push("/users/" + _this2.barang.user_id);
+        _this2.$router.push("/users/detail/" + _this2.barang.user_id);
       })["catch"](function (error) {
         console.log(error);
       });

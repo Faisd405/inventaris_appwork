@@ -39,13 +39,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       barang: {
         user: {},
-        kategori: {}
+        kategori: {},
+        jenis: {},
+        lokasi: {}
       },
       kategori: []
     };
@@ -95,16 +116,19 @@ var render = function () {
             _vm._v(" "),
             _c("div", [
               _c("label", [_vm._v("Nama Barang : ")]),
+              _vm._v(" "),
               _c("h3", {
                 domProps: { textContent: _vm._s(_vm.barang.nama_barang) },
               }),
               _vm._v(" "),
               _c("label", [_vm._v("Details Barang : ")]),
+              _vm._v(" "),
               _c("h3", {
                 domProps: { textContent: _vm._s(_vm.barang.detail_barang) },
               }),
               _vm._v(" "),
               _c("label", [_vm._v("Kategori : ")]),
+              _vm._v(" "),
               _c("h3", {
                 domProps: {
                   textContent: _vm._s(_vm.barang.kategori.nama_kategori),
@@ -112,11 +136,13 @@ var render = function () {
               }),
               _vm._v(" "),
               _c("label", [_vm._v("Fungsi : ")]),
+              _vm._v(" "),
               _c("h3", {
                 domProps: { textContent: _vm._s(_vm.barang.fungsi) },
               }),
               _vm._v(" "),
               _c("label", [_vm._v("Jenis : ")]),
+              _vm._v(" "),
               _c("h3", {
                 domProps: {
                   textContent: _vm._s(_vm.barang.jenis.jenis_barang),
@@ -124,21 +150,25 @@ var render = function () {
               }),
               _vm._v(" "),
               _c("label", [_vm._v("Harga : ")]),
+              _vm._v(" "),
               _c("h3", {
                 domProps: { textContent: _vm._s(_vm.barang.harga_barang) },
               }),
               _vm._v(" "),
               _c("label", [_vm._v("Lokasi : ")]),
+              _vm._v(" "),
               _c("h3", {
                 domProps: { textContent: _vm._s(_vm.barang.lokasi.lokasi) },
               }),
               _vm._v(" "),
               _c("label", [_vm._v("User : ")]),
+              _vm._v(" "),
               _c("h3", {
                 domProps: { textContent: _vm._s(_vm.barang.user.name) },
               }),
               _vm._v(" "),
               _c("label", [_vm._v("Tahun : ")]),
+              _vm._v(" "),
               _c("h3", { domProps: { textContent: _vm._s(_vm.barang.year) } }),
               _vm._v(" "),
               _c("label", [

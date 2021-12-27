@@ -88,7 +88,8 @@ __webpack_require__.r(__webpack_exports__);
         user_id: 1
       },
       user: null,
-      isLoggedIn: false
+      isLoggedIn: false,
+      loginType: ''
     };
   },
   created: function created() {
@@ -102,28 +103,31 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     update: function update(id) {
+      var _this2 = this;
+
       var uri = "/api/barang/" + id;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.barang).then(function (response) {
-        console.log(response.data);
-        console.log(response.data.barangs.user_id);
+        _this2.barangs = _this2.barangs.filter(function (barangs) {
+          return barangs.id != id;
+        });
       })["catch"](function (error) {
         console.log(error);
       });
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['Content-Type'] = 'application/json';
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user").then(function (response) {
-      _this2.user = response.data;
-      _this2.loginType = response.data.roles[0].name;
+      _this3.user = response.data;
+      _this3.loginType = response.data.roles[0].name;
     })["catch"](function (error) {
       if (error.response.status === 401) {
         localStorage.clear();
 
-        _this2.$router.push('/login');
+        _this3.$router.push('/login');
       }
 
       console.error(error);
@@ -151,94 +155,79 @@ var render = function () {
   return _c("div", { staticClass: "container mt-3" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-12" }, [
-        _c(
-          "div",
-          { staticClass: "card card-default" },
-          [
-            _c("div", { staticClass: "card-header" }, [_vm._v("User")]),
-            _vm._v(" "),
-            _vm._l(_vm.user.roles, function (roles) {
-              return _c("div", { key: roles.id, staticClass: "card-body" }, [
-                _c(
-                  "div",
-                  { staticClass: "table-responsive mt-2" },
-                  [
-                    _c("h2", [
-                      _vm._v(
-                        "Ini adalah barang yang dipakai " +
-                          _vm._s(_vm.users.name)
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("b-table", {
-                      attrs: { items: _vm.barangs, fields: _vm.fields },
-                      scopedSlots: _vm._u(
-                        [
-                          {
-                            key: "action",
-                            fn: function (data) {
-                              return [
-                                roles.name == "admin"
-                                  ? _c(
-                                      "span",
-                                      [
-                                        data.item.user_id != 1
-                                          ? _c(
-                                              "Button",
-                                              {
-                                                staticClass:
-                                                  "btn btn-sm btn-danger",
-                                                on: {
-                                                  click: function ($event) {
-                                                    return _vm.update(
-                                                      data.item.id
-                                                    )
-                                                  },
-                                                },
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                      Hapus Kepemilikan\n                    "
-                                                ),
-                                              ]
-                                            )
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        data.item.user_id == "1"
-                                          ? _c("span", [
-                                              _vm._v(
-                                                "\n                        Barang ini adalah barang milik admin\n                    "
-                                              ),
-                                            ])
-                                          : _vm._e(),
-                                      ],
-                                      1
-                                    )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                roles.name != "admin"
-                                  ? _c("span", [
-                                      _vm._v(
-                                        "\n                      Kamu Bukan Admin\n                  "
-                                      ),
-                                    ])
-                                  : _vm._e(),
-                              ]
-                            },
-                          },
-                        ],
-                        null,
-                        true
-                      ),
-                    }),
-                  ],
-                  1
-                ),
-              ])
-            }),
-          ],
-          2
-        ),
+        _c("div", { staticClass: "card card-default" }, [
+          _c("div", { staticClass: "card-header" }, [_vm._v("User")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "div",
+              { staticClass: "table-responsive mt-2" },
+              [
+                _c("h2", [
+                  _vm._v(
+                    "Ini adalah barang yang dipakai " + _vm._s(_vm.users.name)
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("b-table", {
+                  attrs: { items: _vm.barangs, fields: _vm.fields },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "action",
+                      fn: function (data) {
+                        return [
+                          _vm.loginType == "admin"
+                            ? _c(
+                                "span",
+                                [
+                                  data.item.user_id != 1
+                                    ? _c(
+                                        "Button",
+                                        {
+                                          staticClass: "btn btn-sm btn-danger",
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.update(data.item.id)
+                                            },
+                                          },
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                      Hapus Kepemilikan\n                    "
+                                          ),
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  data.item.user_id == "1"
+                                    ? _c("span", [
+                                        _vm._v(
+                                          "\n                        Barang ini adalah barang milik admin\n                    "
+                                        ),
+                                      ])
+                                    : _vm._e(),
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.loginType != "admin"
+                            ? _c("span", [
+                                _vm._v(
+                                  "\n                      Kamu Bukan Admin\n                  "
+                                ),
+                              ])
+                            : _vm._e(),
+                        ]
+                      },
+                    },
+                  ]),
+                }),
+              ],
+              1
+            ),
+          ]),
+        ]),
       ]),
     ]),
   ])

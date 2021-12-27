@@ -5,13 +5,13 @@
         <div class="card card-default">
           <div class="card-header">User</div>
 
-          <div class="card-body" v-for="roles in user.roles" :key="roles.id">
+          <div class="card-body">
             <div class="table-responsive mt-2">
               <h2>Ini adalah barang yang dipakai {{ users.name }}</h2>
               <b-table :items="barangs" :fields="fields">
 
                 <template slot="action" slot-scope="data">
-                    <span v-if="roles.name == 'admin'">
+                    <span v-if="loginType == 'admin'">
                     <Button v-if="data.item.user_id!=1"
                         class="btn btn-sm btn-danger"
                         @click="update(data.item.id)"
@@ -22,7 +22,7 @@
                           Barang ini adalah barang milik admin
                       </span>
                     </span>
-                    <span v-if="roles.name != 'admin'">
+                    <span v-if="loginType != 'admin'">
                         Kamu Bukan Admin
                     </span>
                 </template>
@@ -85,6 +85,7 @@ export default {
       },
       user: null,
       isLoggedIn: false,
+      loginType: '',
     };
   },
   created() {
@@ -100,8 +101,7 @@ export default {
       axios
         .put(uri, this.barang)
         .then((response) => {
-            console.log(response.data);
-            console.log(response.data.barangs.user_id);
+        this.barangs = this.barangs.filter((barangs) => barangs.id != id);
         })
         .catch((error) => {
           console.log(error);

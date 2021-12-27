@@ -5,8 +5,8 @@
         <div class="card card-default">
           <div class="card-header">kategori</div>
 
-          <div class="card-body" v-for="roles in user.roles" :key="roles.id">
-            <span v-if="roles.name == 'admin'">
+          <div class="card-body">
+            <span v-if="loginType == 'admin'">
               <router-link
                 :to="{ name: 'create-kategori' }"
                 class="btn btn-md btn-primary"
@@ -82,7 +82,7 @@
                     class="btn btn-sm btn-primary"
                     >Detail</router-link
                   >
-                  <span v-if="roles.name == 'admin'">
+                  <span v-if="loginType == 'admin'">
                     <router-link
                       :to="{
                         name: 'edit-kategori',
@@ -132,6 +132,7 @@ export default {
       barang: [],
       user: null,
       isLoggedIn: false,
+      loginType: null,
     };
   },
   mounted() {
@@ -158,13 +159,6 @@ export default {
     axios.get(uri).then((response) => {
       this.kategori = response.data.kategori;
     });
-  },
-  computed: {
-    filterOn() {
-      return this.fields
-        .filter((field) => field.filterable)
-        .map((field) => field.key);
-    },
   },
   methods: {
     onFiltered(filteredItems) {

@@ -27,10 +27,7 @@
     <b-collapse is-nav id="app-layout-navbar" v-if="isLoggedIn">
       <b-navbar-nav class="align-items-lg-center">
         <b-nav-item :to="{}"
-          >{{ user.name }}, Seorang
-          <span v-for="roles in user.roles" :key="roles.id">
-            {{ roles.name }}
-          </span></b-nav-item
+          >{{ user.name }}, Seorang {{ user.roles[0].name }}</b-nav-item
         >
         <b-nav-item @click="logout">Logout</b-nav-item>
       </b-navbar-nav>
@@ -82,6 +79,7 @@ export default {
     return {
       user: null,
       isLoggedIn: false,
+      loginType: "",
     };
   },
   mounted() {
