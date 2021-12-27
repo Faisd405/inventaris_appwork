@@ -20,7 +20,17 @@ const router = new Router({
         component: Layout1,
         children: [{
             path: '',
-            component: () => import('@/components/Home')
+            name: 'home',
+            component: () => import('@/components/Home'),
+            meta: {
+                requiresAuth: true,
+                if(isAdmin) {
+                    isAdmin: true;
+                },
+                if(isUser) {
+                    isUser: true
+                }
+            }
         },
         // Route Auth
         {
@@ -107,7 +117,16 @@ const router = new Router({
         {
             name: 'detail-kategori',
             path: '/kategori/detail/:id',
-            component: () => import('@/components/kategori/detail')
+            component: () => import('@/components/kategori/detail'),
+            meta: {
+                requiresAuth: true,
+                if(isAdmin) {
+                    isAdmin: true;
+                },
+                if(isUser) {
+                    isUser: true
+                }
+            }
         },
         // Route users
         {
@@ -139,7 +158,12 @@ const router = new Router({
             component: () => import('@/components/users/detail'),
             meta: {
                 requiresAuth: true,
-                isAdmin: true
+                if(isAdmin) {
+                    isAdmin: true;
+                },
+                if(isUser) {
+                    isUser: true
+                }
             }
         },
         {
@@ -319,20 +343,16 @@ router.beforeEach((to, from, next) => {
                 if (roles.includes('user')) next()
                 else if (roles[0] === 'admin') {
                     next({
-                        name: 'admin'
+                        name: 'home'
                     })
-                } else next({
-                    name: 'home'
-                })
+                }
             } else if (to.matched.some(record => record.meta.isAdmin)) {
                 if (roles.includes('admin')) next()
                 else if (roles[0] === 'user') {
                     next({
-                        name: 'user'
+                        name: 'home'
                     })
-                } else next({
-                    name: 'home'
-                })
+                }
             } else {
                 next()
             }

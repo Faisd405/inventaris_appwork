@@ -51188,9 +51188,18 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     component: _layout_Layout1__WEBPACK_IMPORTED_MODULE_4__["default"],
     children: [{
       path: '',
+      name: 'home',
       component: function component() {
         return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! @/components/Home */ "./resources/assets/src/components/Home.vue"));
-      }
+      },
+      meta: _defineProperty({
+        requiresAuth: true,
+        "if": function _if(isAdmin) {
+          isAdmin: true;
+        }
+      }, "if", function _if(isUser) {
+        isUser: true;
+      })
     }, // Route Auth
     {
       name: 'login',
@@ -51285,7 +51294,15 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/kategori/detail/:id',
       component: function component() {
         return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! @/components/kategori/detail */ "./resources/assets/src/components/kategori/detail.vue"));
-      }
+      },
+      meta: _defineProperty({
+        requiresAuth: true,
+        "if": function _if(isAdmin) {
+          isAdmin: true;
+        }
+      }, "if", function _if(isUser) {
+        isUser: true;
+      })
     }, // Route users
     {
       name: 'index-users',
@@ -51317,10 +51334,14 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! @/components/users/detail */ "./resources/assets/src/components/users/detail.vue"));
       },
-      meta: {
+      meta: _defineProperty({
         requiresAuth: true,
-        isAdmin: true
-      }
+        "if": function _if(isAdmin) {
+          isAdmin: true;
+        }
+      }, "if", function _if(isUser) {
+        isUser: true;
+      })
     }, {
       name: 'relasiuserbarang',
       path: '/users/relasi',
@@ -51513,21 +51534,17 @@ router.beforeEach(function (to, from, next) {
       })) {
         if (roles.includes('user')) next();else if (roles[0] === 'admin') {
           next({
-            name: 'admin'
+            name: 'home'
           });
-        } else next({
-          name: 'home'
-        });
+        }
       } else if (to.matched.some(function (record) {
         return record.meta.isAdmin;
       })) {
         if (roles.includes('admin')) next();else if (roles[0] === 'user') {
           next({
-            name: 'user'
+            name: 'home'
           });
-        } else next({
-          name: 'home'
-        });
+        }
       } else {
         next();
       }

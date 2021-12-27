@@ -21,7 +21,7 @@ class RolesController extends Controller
     }
 
     public function indexrolesuser($id){
-        $roleusers = role_user::where('user_id', $id)->with('role')->get();
+        $roleusers = role_user::with('role','users')->get();
             return response()->json([
                 'success' => true,
                 'message' => 'Role dan User!',

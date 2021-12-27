@@ -40,41 +40,57 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       error: null,
-      message: ''
+      message: ""
     };
   },
   created: function created() {
     if (this.$route.params.message !== undefined) {
-      this.message = this.$route.params.message + ' Please login!';
+      this.message = this.$route.params.message + " Please login!";
     }
   },
   methods: {
     loginForm: function loginForm() {
       var _this = this;
 
-      axios.post('api/login', {
+      axios.post("api/login", {
         email: this.email,
         password: this.password
       }).then(function (response) {
-        localStorage.setItem('user', JSON.stringify(response.data.user));
-        localStorage.setItem('token', response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        localStorage.setItem("token", response.data.token);
         var loginType = response.data.user.roles[0].name;
 
-        if (loginType === 'user') {
-          _this.$router.push('/');
-        } else if (loginType === 'admin') {
-          _this.$router.push('/');
+        if (loginType === "user") {
+          _this.$router.push("/");
+
+          window.location.reload();
+        } else if (loginType === "admin") {
+          _this.$router.push("/");
+
+          window.location.reload();
         } else {
-          _this.$router.push('login');
+          _this.$router.push("login");
         }
 
-        _this.$emit('IsloggedIn');
+        _this.$emit("IsloggedIn");
       })["catch"](function (error) {
         _this.error = error.response.data.error;
       });
@@ -110,7 +126,7 @@ var render = function () {
                   staticClass: "alert alert-success",
                   attrs: { role: "alert" },
                 },
-                [_vm._v("\n            " + _vm._s(_vm.message) + "\n        ")]
+                [_vm._v("\n          " + _vm._s(_vm.message) + "\n        ")]
               )
             : _vm._e(),
           _vm._v(" "),
@@ -123,7 +139,7 @@ var render = function () {
           _c("hr"),
           _vm._v(" "),
           _vm.error
-            ? _c("div", { staticClass: "alert bg-danger text-white " }, [
+            ? _c("div", { staticClass: "alert bg-danger text-white" }, [
                 _vm._v("\n          " + _vm._s(_vm.error) + "\n        "),
               ])
             : _vm._e(),
