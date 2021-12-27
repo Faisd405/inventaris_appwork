@@ -3,11 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use App\Models\barang;
-use App\Models\kategori;
-use App\Models\sifat;
-use App\Models\jenis;
-use App\Models\buku;
+use App\Models\role_user;
 use App\Models\lokasi;
 
 class DatabaseSeeder extends Seeder
@@ -24,6 +20,11 @@ class DatabaseSeeder extends Seeder
             'name' => '4VM',
             'email' => '4vm@gmail.com',
             'password' => Hash::make('12345678')
+        ]);
+
+        role_user::create([
+            'user_id' => 1,
+            'role_id' => 2
         ]);
 
         lokasi::create([
