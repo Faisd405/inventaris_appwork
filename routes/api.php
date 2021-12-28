@@ -28,13 +28,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Auth
 Route::post('/register', [UserController::class, 'register']);
 Route::post('login', [ 'as' => 'login', 'uses' => 'UserController@login']);
-Route::get('/user',[UserController::class, 'getUser'])->middleware('auth:api');
+Route::get('/user',[UserController::class, 'getUser']);
 
 //Route API User
-Route::get('/users', [UserController::class, 'index'])->middleware('auth:api');
-Route::get('/users/{id}', [UserController::class, 'show'])->middleware('auth:api');
-Route::post('/users', [UserController::class, 'store'])->middleware('auth:api');
-Route::put('/users/{id}', [UserController::class, 'update'])->middleware('auth:api');
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'show']);
+Route::post('/users', [UserController::class, 'store']);
+Route::put('/users/{id}', [UserController::class, 'update']);
 Route::delete('/users/{id}', [UserController::class, 'destroy'])->middleware('auth:api');
 
 //Route API Roles
@@ -42,47 +42,47 @@ Route::get('/roles', [RolesController::class, 'index']);
 Route::get('/rolesuser/{id}', [RolesController::class, 'indexrolesuser']);
 
 //Route API Barang
-Route::get('/barang', [BarangController::class, 'index'])->middleware('auth:api');
-Route::get('/barang/NoUser', [BarangController::class, 'indexUser'])->middleware('auth:api');
-Route::get('/barang/total', [BarangController::class, 'total_harga'])->middleware('auth:api');
-Route::get('/barang/year', [BarangController::class, 'indexHarga'])->middleware('auth:api');
-Route::get('/barang/{id}', [BarangController::class, 'show'])->middleware('auth:api');
-Route::post('/barang', [BarangController::class, 'store'])->middleware('auth:api');
-Route::put('/barang/{id}', [BarangController::class, 'update'])->middleware('auth:api');
-Route::delete('/barang/{id}', [BarangController::class, 'destroy'])->middleware('auth:api');
+Route::get('/barang', [BarangController::class, 'index']);
+Route::get('/barang/NoUser', [BarangController::class, 'indexUser']);
+Route::get('/barang/total', [BarangController::class, 'total_harga']);
+Route::get('/barang/year', [BarangController::class, 'indexHarga']);
+Route::get('/barang/{id}', [BarangController::class, 'show']);
+Route::post('/barang', [BarangController::class, 'store']);
+Route::put('/barang/{id}', [BarangController::class, 'update']);
+Route::delete('/barang/{id}', [BarangController::class, 'destroy']);
 
 //Route API Kategori
-Route::get('/kategori', [KategoriController::class, 'index'])->middleware('auth:api');
-Route::post('/kategori', [KategoriController::class, 'store'])->middleware('auth:api');
-Route::get('/namakategori', [KategoriController::class, 'indexnama'])->middleware('auth:api');
-Route::delete('/kategori/{id}', [KategoriController::class, 'destroy'])->middleware('auth:api');
-Route::put('/kategori/{id}', [KategoriController::class, 'update'])->middleware('auth:api');
-Route::get('/kategori/{id}', [KategoriController::class, 'show'])->middleware('auth:api');
+Route::get('/kategori', [KategoriController::class, 'index']);
+Route::post('/kategori', [KategoriController::class, 'store']);
+Route::get('/namakategori', [KategoriController::class, 'indexnama']);
+Route::delete('/kategori/{id}', [KategoriController::class, 'destroy']);
+Route::put('/kategori/{id}', [KategoriController::class, 'update']);
+Route::get('/kategori/{id}', [KategoriController::class, 'show']);
 
 //Route API Buku
-Route::get('/buku', [BukuController::class, 'index'])->middleware('auth:api');
-Route::get('/buku/{id}', [BukuController::class, 'show'])->middleware('auth:api');
-Route::put('/buku/{id}', [BukuController::class, 'update'])->middleware('auth:api');
-Route::post('/buku', [BukuController::class, 'store'])->middleware('auth:api');
-Route::delete('/buku/{id}', [BukuController::class, 'destroy'])->middleware('auth:api');
+Route::get('/buku', [BukuController::class, 'index']);
+Route::get('/buku/{id}', [BukuController::class, 'show']);
+Route::put('/buku/{id}', [BukuController::class, 'update']);
+Route::post('/buku', [BukuController::class, 'store']);
+Route::delete('/buku/{id}', [BukuController::class, 'destroy']);
 
 //Route API Sifat
-Route::get('/sifat', [SifatController::class, 'index'])->middleware('auth:api');
-Route::get('/sifat/{id}', [SifatController::class, 'show'])->middleware('auth:api');
-Route::post('/sifat', [SifatController::class, 'store'])->middleware('auth:api');
-Route::put('/sifat/{id}', [SifatController::class, 'update'])->middleware('auth:api');
-Route::delete('/sifat/{id}', [SifatController::class, 'destroy'])->middleware('auth:api');
+Route::get('/sifat', [SifatController::class, 'index']);
+Route::get('/sifat/{id}', [SifatController::class, 'show']);
+Route::post('/sifat', [SifatController::class, 'store']);
+Route::put('/sifat/{id}', [SifatController::class, 'update']);
+Route::delete('/sifat/{id}', [SifatController::class, 'destroy']);
 
 //Route API Lokasi
-Route::get('/lokasi', [LokasiController::class, 'index'])->middleware('auth:api');
-Route::get('/lokasi/{id}', [LokasiController::class, 'show'])->middleware('auth:api');
-Route::post('/lokasi', [LokasiController::class, 'store'])->middleware('auth:api');
-Route::put('/lokasi/{id}', [LokasiController::class, 'update'])->middleware('auth:api');
-Route::delete('/lokasi/{id}', [LokasiController::class, 'destroy'])->middleware('auth:api');
+Route::get('/lokasi', [LokasiController::class, 'index']);
+Route::get('/lokasi/{id}', [LokasiController::class, 'show']);
+Route::post('/lokasi', [LokasiController::class, 'store']);
+Route::put('/lokasi/{id}', [LokasiController::class, 'update']);
+Route::delete('/lokasi/{id}', [LokasiController::class, 'destroy']);
 
 //Route API Jenis
-Route::get('/jenis', [JenisController::class, 'index'])->middleware('auth:api');
-Route::get('/jenis/{id}', [JenisController::class, 'show'])->middleware('auth:api');
-Route::post('/jenis', [JenisController::class, 'store'])->middleware('auth:api');
-Route::put('/jenis/{id}', [JenisController::class, 'update'])->middleware('auth:api');
-Route::delete('/jenis/{id}', [JenisController::class, 'destroy'])->middleware('auth:api');
+Route::get('/jenis', [JenisController::class, 'index']);
+Route::get('/jenis/{id}', [JenisController::class, 'show']);
+Route::post('/jenis', [JenisController::class, 'store']);
+Route::put('/jenis/{id}', [JenisController::class, 'update']);
+Route::delete('/jenis/{id}', [JenisController::class, 'destroy']);
