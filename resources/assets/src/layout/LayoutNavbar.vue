@@ -24,19 +24,9 @@
     <!-- Navbar toggle -->
     <b-navbar-toggle target="app-layout-navbar"></b-navbar-toggle>
 
-    <b-collapse is-nav id="app-layout-navbar" v-if="isLoggedIn">
+    <b-collapse is-nav id="app-layout-navbar">
       <b-navbar-nav class="align-items-lg-center">
-        <b-nav-item :to="{}"
-          >{{ user.name }}, Seorang {{ user.roles[0].name }}</b-nav-item
-        >
-        <b-nav-item @click="logout">Logout</b-nav-item>
-      </b-navbar-nav>
-    </b-collapse>
-
-    <b-collapse is-nav id="app-layout-navbar" v-if="!isLoggedIn">
-      <b-navbar-nav class="align-items-lg-center">
-        <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>
-        <b-nav-item :to="{ name: 'register' }">Register</b-nav-item>
+        <b-nav-item></b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -61,30 +51,6 @@ export default {
     getLayoutNavbarBg() {
       return this.layoutNavbarBg;
     },
-
-    setUser() {
-      this.user = JSON.parse(localStorage.getItem("user"));
-      this.isLoggedIn = localStorage.getItem("token") != null;
-    },
-    logout() {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      this.setUser();
-
-      this.$router.push("/login");
-      window.location.reload();
-    },
-  },
-
-  data() {
-    return {
-      user: null,
-      isLoggedIn: false,
-      loginType: "",
-    };
-  },
-  mounted() {
-    this.setUser();
   },
 };
 </script>

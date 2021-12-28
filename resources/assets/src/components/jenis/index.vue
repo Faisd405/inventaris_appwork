@@ -6,13 +6,11 @@
           <div class="card-header">jenis</div>
 
           <div class="card-body">
-            <span v-if="loginType == 'admin'">
               <router-link
                 :to="{ name: 'create-jenis' }"
                 class="btn btn-md btn-primary"
                 >TAMBAH Data jenis</router-link
               >
-            </span>
             <div class="table-responsive mt-2">
               <b-row>
                 <b-col lg="6" class="my-1">
@@ -74,7 +72,6 @@
                 :per-page="perPage"
               >
                 <template slot="action" slot-scope="data">
-                  <span v-if="loginType == 'admin'">
                     <router-link
                       :to="{ name: 'edit-jenis', params: { id: data.item.id } }"
                       class="btn btn-sm btn-primary"
@@ -86,8 +83,6 @@
                     >
                       Hapus
                     </button>
-                  </span>
-                  <span v-if="loginType != 'admin'"> Kamu Bukan Admin </span>
                 </template>
               </b-table>
             </div>
@@ -117,8 +112,6 @@ export default {
       jenis: [],
       sortBy: "id",
       user: null,
-      isLoggedIn: false,
-      loginType: null,
     };
   },
   created() {
@@ -139,24 +132,6 @@ export default {
       });
     },
   },
-  mounted() {
-    axios.defaults.headers.common["Content-Type"] = "application/json";
-    axios.defaults.headers.common["Authorization"] =
-      "Bearer " + localStorage.getItem("token");
 
-    axios
-      .get(`/api/user`)
-      .then((response) => {
-        this.user = response.data;
-        this.loginType = response.data.roles[0].name;
-      })
-      .catch((error) => {
-        if (error.response.status === 401) {
-          localStorage.clear();
-          this.$router.push("/login");
-        }
-        console.error(error);
-      });
-  },
 };
 </script>

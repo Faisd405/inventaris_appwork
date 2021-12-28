@@ -42,9 +42,8 @@ return [
         ],
 
         'api' => [
-            'driver' => 'jwt',
+            'driver' => 'passport', // <-- set dari "token" ke "passport"
             'provider' => 'users',
-            'hash' => false,
         ],
     ],
 

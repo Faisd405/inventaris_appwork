@@ -234,11 +234,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -258,49 +253,29 @@ __webpack_require__.r(__webpack_exports__);
       users: [],
       NoUser: [],
       kategori: [],
-      total: [],
-      user: "",
-      loginType: ""
+      total: []
     };
   },
-  mounted: function mounted() {
+  created: function created() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.defaults.headers.common["Content-Type"] = "application/json";
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("token");
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/user").then(function (response) {
-      _this.user = response.data;
-      _this.loginType = response.data.roles[0].name;
-    })["catch"](function (error) {
-      if (error.response.status === 401) {
-        localStorage.clear();
-
-        _this.$router.push("/login");
-      }
-
-      console.error(error);
-    });
-  },
-  created: function created() {
-    var _this2 = this;
-
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/barang").then(function (response) {
-      _this2.barang = response.data.barang;
+      _this.barang = response.data.barang;
     });
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/barang/NoUser").then(function (response) {
-      _this2.NoUser = response.data.barang;
+      _this.NoUser = response.data.barang;
     });
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/barang/total").then(function (response) {
-      _this2.total = response.data.total;
+      _this.total = response.data.total;
     });
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/buku").then(function (response) {
-      _this2.buku = response.data.buku;
+      _this.buku = response.data.buku;
     });
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/users").then(function (response) {
-      _this2.users = response.data.user;
+      _this.users = response.data.user;
     });
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/kategori").then(function (response) {
-      _this2.kategori = response.data.kategori;
+      _this.kategori = response.data.kategori;
     });
   }
 });
@@ -615,24 +590,6 @@ var render = function () {
           _c("div", { staticClass: "card-header" }, [_vm._v("Home")]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body mx-auto" }, [
-            _c(
-              "div",
-              { staticClass: "h-100 p-5 text-white bg-dark rounded-3" },
-              [
-                _c("h1", [
-                  _vm._v(
-                    "Halo, " +
-                      _vm._s(_vm.user.name) +
-                      " Di Web Inventaris Barang "
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("label", [_vm._v("Login sebagai:")]),
-                _vm._v(" "),
-                _c("h2", [_vm._v(_vm._s(_vm.loginType))]),
-              ]
-            ),
-            _vm._v(" "),
             _c("div", { staticClass: "row d-flex justify-content-center" }, [
               _c(
                 "div",

@@ -6,11 +6,6 @@
           <div class="card-header">Home</div>
 
           <div class="card-body mx-auto">
-            <div class="h-100 p-5 text-white bg-dark rounded-3">
-              <h1>Halo, {{user.name}} Di Web Inventaris Barang </h1>
-              <label>Login sebagai:</label>
-              <h2>{{ loginType }}</h2>
-            </div>
             <div class="row d-flex justify-content-center">
               <div
                 class="card text-white bg-primary col-md-6"
@@ -104,28 +99,7 @@ export default {
       NoUser: [],
       kategori: [],
       total: [],
-      user: "",
-      loginType: "",
     };
-  },
-  mounted() {
-    axios.defaults.headers.common["Content-Type"] = "application/json";
-    axios.defaults.headers.common["Authorization"] =
-      "Bearer " + localStorage.getItem("token");
-
-    axios
-      .get(`/api/user`)
-      .then((response) => {
-        this.user = response.data;
-        this.loginType = response.data.roles[0].name;
-      })
-      .catch((error) => {
-        if (error.response.status === 401) {
-          localStorage.clear();
-          this.$router.push("/login");
-        }
-        console.error(error);
-      });
   },
   created() {
     axios.get(`/api/barang`).then((response) => {

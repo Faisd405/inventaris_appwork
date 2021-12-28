@@ -10,71 +10,31 @@ import Layout1 from '@/layout/Layout1'
 Vue.use(Router)
 Vue.use(Meta)
 
-
 const router = new Router({
     base: '/',
     mode: 'history',
-
     routes: [{
         path: '/',
         component: Layout1,
         children: [{
             path: '',
-            name: 'home',
-            component: () => import('@/components/Home'),
-            meta: {
-                requiresAuth: true,
-                if(isAdmin) {
-                    isAdmin: true;
-                },
-                if(isUser) {
-                    isUser: true
-                }
-            }
-        },
-        // Route Auth
-        {
-            name: 'login',
-            path: '/login',
-            component: () => import('@/components/auth/Login')
-        },
-        {
-            name: 'register',
-            path: '/register',
-            component: () => import('@/components/auth/Register')
+            component: () => import('@/components/Home')
         },
         // Route barang
         {
             name: 'index-barang',
             path: '/barang',
-            component: () => import('@/components/barang/index'),
-            meta: {
-                requiresAuth: true,
-                if(isAdmin) {
-                    isAdmin: true;
-                },
-                if(isUser) {
-                    isUser: true
-                }
-            }
+            component: () => import('@/components/barang/index')
         },
         {
             name: 'create-barang',
             path: '/barang/create',
-            component: () => import('@/components/barang/create'),
-            meta: {
-                requiresAuth: true,
-                isAdmin: true
-            }
+            component: () => import('@/components/barang/create')
         },
         {
             name: 'edit-barang',
             path: '/barang/edit/:id',
-            component: () => import('@/components/barang/edit'),
-            meta: {
-                requiresAuth: true,
-                isAdmin: true
-            }
+            component: () => import('@/components/barang/edit')
         },
         {
             name: 'detail-barang',
@@ -85,227 +45,107 @@ const router = new Router({
         {
             name: 'index-kategori',
             path: '/kategori',
-            component: () => import('@/components/kategori/index'),
-            meta: {
-                requiresAuth: true,
-                if(isAdmin) {
-                    isAdmin: true;
-                },
-                if(isUser) {
-                    isUser: true
-                }
-            }
+            component: () => import('@/components/kategori/index')
         },
         {
             name: 'create-kategori',
             path: '/kategori/create',
-            component: () => import('@/components/kategori/create'),
-            meta: {
-                requiresAuth: true,
-                isAdmin: true
-            }
+            component: () => import('@/components/kategori/create')
         },
         {
             name: 'edit-kategori',
             path: '/kategori/edit/:id',
-            component: () => import('@/components/kategori/edit'),
-            meta: {
-                requiresAuth: true,
-                isAdmin: true
-            }
+            component: () => import('@/components/kategori/edit')
         },
         {
             name: 'detail-kategori',
             path: '/kategori/detail/:id',
-            component: () => import('@/components/kategori/detail'),
-            meta: {
-                requiresAuth: true,
-                if(isAdmin) {
-                    isAdmin: true;
-                },
-                if(isUser) {
-                    isUser: true
-                }
-            }
+            component: () => import('@/components/kategori/detail')
         },
         // Route users
         {
             name: 'index-users',
             path: '/users',
-            component: () => import('@/components/users/index'),
-            meta: {
-                requiresAuth: true,
-                if(isAdmin) {
-                    isAdmin: true;
-                },
-                if(isUser) {
-                    isUser: true
-                }
-            }
+            component: () => import('@/components/users/index')
         },
         {
             name: 'create-users',
             path: '/users/create',
-            component: () => import('@/components/users/create'),
-            meta: {
-                requiresAuth: true,
-                isAdmin: true
-            }
+            component: () => import('@/components/users/create')
         },
         {
             name: 'detail-users',
             path: '/users/detail/:id',
-            component: () => import('@/components/users/detail'),
-            meta: {
-                requiresAuth: true,
-                if(isAdmin) {
-                    isAdmin: true;
-                },
-                if(isUser) {
-                    isUser: true
-                }
-            }
+            component: () => import('@/components/users/detail')
         },
         {
             name: 'relasiuserbarang',
             path: '/users/relasi',
-            component: () => import('@/components/users/relasi-barang'),
-            meta: {
-                requiresAuth: true,
-                isAdmin: true
-            }
+            component: () => import('@/components/users/relasi-barang')
         },
         // Route Buku
         {
             name: 'index-buku',
             path: '/buku',
-            component: () => import('@/components/buku/index'),
-            meta: {
-                requiresAuth: true,
-                if(isAdmin) {
-                    isAdmin: true;
-                },
-                if(isUser) {
-                    isUser: true
-                }
-            }
+            component: () => import('@/components/buku/index')
         },
         {
             name: 'create-buku',
             path: '/buku/create',
-            component: () => import('@/components/buku/create'),
-            meta: {
-                requiresAuth: true,
-                isAdmin: true
-            }
+            component: () => import('@/components/buku/create')
         },
         {
             name: 'edit-buku',
             path: '/buku/edit/:id',
-            component: () => import('@/components/buku/edit'),
-            meta: {
-                requiresAuth: true,
-                isAdmin: true
-            }
+            component: () => import('@/components/buku/edit')
         },
         // Route sifat
         {
             name: 'index-sifat',
             path: '/sifat',
-            component: () => import('@/components/sifat/index'),
-            meta: {
-                requiresAuth: true,
-                if(isAdmin) {
-                    isAdmin: true;
-                },
-                if(isUser) {
-                    isUser: true
-                }
-            }
+            component: () => import('@/components/sifat/index')
         },
         {
             name: 'create-sifat',
             path: '/sifat/create',
-            component: () => import('@/components/sifat/create'),
-            meta: {
-                requiresAuth: true,
-                isAdmin: true
-            }
+            component: () => import('@/components/sifat/create')
         },
         {
             name: 'edit-sifat',
             path: '/sifat/edit/:id',
-            component: () => import('@/components/sifat/edit'),
-            meta: {
-                requiresAuth: true,
-                isAdmin: true
-            }
+            component: () => import('@/components/sifat/edit')
         },
         // Route jenis
         {
             name: 'index-jenis',
             path: '/jenis',
-            component: () => import('@/components/jenis/index'),
-            meta: {
-                requiresAuth: true,
-                if(isAdmin) {
-                    isAdmin: true;
-                },
-                if(isUser) {
-                    isUser: true
-                }
-            }
+            component: () => import('@/components/jenis/index')
         },
         {
             name: 'create-jenis',
             path: '/jenis/create',
-            component: () => import('@/components/jenis/create'),
-            meta: {
-                requiresAuth: true,
-                isAdmin: true
-            }
+            component: () => import('@/components/jenis/create')
         },
         {
             name: 'edit-jenis',
             path: '/jenis/edit/:id',
-            component: () => import('@/components/jenis/edit'),
-            meta: {
-                requiresAuth: true,
-                isAdmin: true
-            }
+            component: () => import('@/components/jenis/edit')
         },
         // Route lokasi
         {
             name: 'index-lokasi',
             path: '/lokasi',
-            component: () => import('@/components/lokasi/index'),
-            meta: {
-                requiresAuth: true,
-                if(isAdmin) {
-                    isAdmin: true;
-                },
-                if(isUser) {
-                    isUser: true
-                }
-            }
+            component: () => import('@/components/lokasi/index')
         },
         {
             name: 'create-lokasi',
             path: '/lokasi/create',
-            component: () => import('@/components/lokasi/create'),
-            meta: {
-                requiresAuth: true,
-                isAdmin: true
-            }
+            component: () => import('@/components/lokasi/create')
         },
         {
             name: 'edit-lokasi',
             path: '/lokasi/edit/:id',
-            component: () => import('@/components/lokasi/edit'),
-            meta: {
-                requiresAuth: true,
-                isAdmin: true
-            }
+            component: () => import('@/components/lokasi/edit')
         },
 
         ]
@@ -326,40 +166,8 @@ router.beforeEach((to, from, next) => {
     // Set loading state
     document.body.classList.add('app-loading')
 
-    if (to.matched.some(record => record.meta.requiresAuth)) {
-        let token = localStorage.getItem('token') != null;
-        if (!token) {
-            next({
-                path: '/login',
-                query: {
-                    redirect: to.fullPath
-                }
-            })
-        } else {
-            let user = JSON.parse(localStorage.getItem('user'))
-            let roles = user.roles.map(role => role.name)
-            console.log(roles[0]);
-            if (to.matched.some(record => record.meta.isUser)) {
-                if (roles.includes('user')) next()
-                else if (roles[0] === 'admin') {
-                    next({
-                        name: 'home'
-                    })
-                }
-            } else if (to.matched.some(record => record.meta.isAdmin)) {
-                if (roles.includes('admin')) next()
-                else if (roles[0] === 'user') {
-                    next({
-                        name: 'home'
-                    })
-                }
-            } else {
-                next()
-            }
-        }
-    } else {
-        next()
-    }
+    // Add tiny timeout to finish page transition
+    setTimeout(() => next(), 10)
 })
 
 export default router

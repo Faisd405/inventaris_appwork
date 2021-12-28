@@ -8,7 +8,8 @@ use App\Http\Controllers\BukuController;
 use App\Http\Controllers\SifatController;
 use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\JenisController;
-use App\Http\Controllers\RolesController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,10 +26,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Auth
-Route::post('/register', [UserController::class, 'register']);
-Route::post('login', [ 'as' => 'login', 'uses' => 'UserController@login']);
-Route::get('/user',[UserController::class, 'getUser']);
+Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:api');
 
 //Route API User
 Route::get('/users', [UserController::class, 'index']);
@@ -36,10 +36,6 @@ Route::get('/users/{id}', [UserController::class, 'show']);
 Route::post('/users', [UserController::class, 'store']);
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::delete('/users/{id}', [UserController::class, 'destroy'])->middleware('auth:api');
-
-//Route API Roles
-Route::get('/roles', [RolesController::class, 'index']);
-Route::get('/rolesuser/{id}', [RolesController::class, 'indexrolesuser']);
 
 //Route API Barang
 Route::get('/barang', [BarangController::class, 'index']);

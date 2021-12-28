@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <router-view @IsloggedIn="setUser"></router-view>
+      <router-view></router-view>
   </div>
 </template>
 
@@ -22,28 +22,5 @@ export default {
     // Remove loading state
     setTimeout(() => document.body.classList.remove("app-loading"), 1);
   },
-  data() {
-      return {
-        user: null,
-        isLoggedIn: false
-      }
-    },
-    mounted() {
-      this.setUser()
-    },
-    methods: {
-      setUser() {
-          this.user = JSON.parse(localStorage.getItem('user'))
-          this.isLoggedIn = localStorage.getItem('token') != null
-
-        },
-        logout() {
-          localStorage.removeItem('token')
-          localStorage.removeItem('user')
-          this.setUser()
-
-          this.$router.push('/')
-        }
-    }
 };
 </script>

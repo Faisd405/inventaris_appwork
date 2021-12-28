@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\barang;
 use Illuminate\Support\Facades\Hash;
-use Auth;
-use JWTAuth;
 
 class UserController extends Controller
 {
@@ -45,22 +43,23 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-            'roles' => 'required',
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+            'roles' => 'required'
         ]);
-
-        $user = User::create([
+        $users = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => bcrypt($request->password),
+            'roles' => $request->roles
         ]);
-
-        $user->roles()->attach($request->roles);
-
-        return response()->json(['message' => 'Registration Successful.'], 201);
+        return response([
+            'success' => true,
+            'message' => 'User Berhasil Ditambahkan!',
+            'user' => $users
+        ], 200);
     }
 
     public function destroy($id)
@@ -73,56 +72,5 @@ class UserController extends Controller
             'message' => 'User Berhasil Dihapus!',
             'data'    => $users
         ], 200);
-    }
-
-    public function register(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|confirmed|min:8',
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        $user->roles()->attach(1);
-
-        return response()->json(['message' => 'Registration Successful.'], 201);
-    }
-
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $status = 200;
-            $user = Auth::user();
-            $response = [
-                'user' => array_merge(
-                    $user->toArray(),
-                    ['roles' => $user->roles()->get()->toArray()]
-                ),
-                'token' => JWTAuth::fromUser($user),
-            ];
-        } else {
-            $status = 422;
-            $response = ['error' => 'The email or password is incorrect.'];
-        }
-
-        return response()->json($response, $status);
-    }
-
-    public function getUser()
-    {
-        $user = auth()->user();
-        $data = array_merge($user->toArray(), ['roles' => $user->roles()->get()->toArray()]);
-        return response()->json($data, 200);
     }
 }

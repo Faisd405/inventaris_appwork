@@ -6,7 +6,6 @@
           <div class="card-header">Barang</div>
 
           <div class="card-body">
-            <span v-if="loginType == 'admin'">
               <router-link
                 :to="{ name: 'create-barang' }"
                 class="btn btn-md btn-primary"
@@ -17,7 +16,6 @@
                 class="btn btn-md btn-primary"
                 >TAMBAH Data Barang ke users</router-link
               >
-            </span>
             <a href="/barang/barang_pdf" class="btn btn-md btn-primary">
               Export PDF
             </a>
@@ -97,7 +95,6 @@
                     class="btn btn-sm btn-primary"
                     >Detail</router-link
                   >
-                  <span v-if="loginType == 'admin'">
                     <router-link
                       :to="{
                         name: 'edit-barang',
@@ -112,7 +109,6 @@
                     >
                       Hapus
                     </button>
-                  </span>
                 </template>
               </b-table>
             </div>
@@ -150,8 +146,6 @@ export default {
       barang: [],
       sortBy: "id",
       user: null,
-      isLoggedIn: false,
-      loginType: "",
     };
   },
 
@@ -176,25 +170,6 @@ export default {
           console.log(error);
         });
     },
-  },
-  mounted() {
-    axios.defaults.headers.common["Content-Type"] = "application/json";
-    axios.defaults.headers.common["Authorization"] =
-      "Bearer " + localStorage.getItem("token");
-
-    axios
-      .get(`/api/user`)
-      .then((response) => {
-        this.user = response.data;
-        this.loginType = response.data.roles[0].name;
-      })
-      .catch((error) => {
-        if (error.response.status === 401) {
-          localStorage.clear();
-          this.$router.push("/login");
-        }
-        console.error(error);
-      });
   },
 };
 </script>

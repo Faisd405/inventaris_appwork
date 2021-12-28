@@ -3,7 +3,6 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use App\Models\role_user;
 use App\Models\lokasi;
 
 class DatabaseSeeder extends Seeder
@@ -18,13 +17,9 @@ class DatabaseSeeder extends Seeder
         // Seeder User
         User::create([
             'name' => '4VM',
+            'roles' => 'admin',
             'email' => '4vm@gmail.com',
-            'password' => Hash::make('12345678')
-        ]);
-
-        role_user::create([
-            'user_id' => 1,
-            'role_id' => 2
+            'password' => Hash::make('12345678'),
         ]);
 
         lokasi::create([
@@ -36,7 +31,5 @@ class DatabaseSeeder extends Seeder
             'lokasi' => 'Four Vision Media - Office 2',
             'kordinat' => '-6.9557103,107.6367724'
         ]);
-
-        $this->call([ RolesTableSeeder::class ]);
     }
 }
