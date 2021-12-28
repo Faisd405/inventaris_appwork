@@ -49,14 +49,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       user: {
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: ''
+        name: "",
+        email: "",
+        password: "",
+        password_confirmation: ""
       },
       errors: null
     };
@@ -65,9 +95,9 @@ __webpack_require__.r(__webpack_exports__);
     submitForm: function submitForm() {
       var _this = this;
 
-      axios.post('api/register', this.user).then(function (response) {
+      axios.post("api/register", this.user).then(function (response) {
         _this.$router.push({
-          name: 'login',
+          name: "login",
           params: {
             message: response.data.message
           }
@@ -111,7 +141,7 @@ var render = function () {
           _vm.errors
             ? _c(
                 "div",
-                { staticClass: "alert bg-danger text-white " },
+                { staticClass: "alert bg-danger text-white" },
                 _vm._l(_vm.errors, function (v, k) {
                   return _c(
                     "div",
@@ -278,6 +308,17 @@ var render = function () {
                 [_vm._v("Register")]
               ),
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            [
+              _vm._v("\n          Sudah Punya akun ?\n        "),
+              _c("router-link", { attrs: { to: "/login" } }, [
+                _vm._v(" Login "),
+              ]),
+            ],
+            1
           ),
         ]),
       ]),

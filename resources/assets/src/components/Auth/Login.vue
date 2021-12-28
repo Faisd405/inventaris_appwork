@@ -35,6 +35,10 @@
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
           </form>
+          <div>
+            Belum Punya akun ?
+            <router-link to="/register"> Register </router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -70,10 +74,8 @@ export default {
           let loginType = response.data.user.roles[0].name;
           if (loginType === "user") {
             this.$router.push("/");
-            window.location.reload();
           } else if (loginType === "admin") {
             this.$router.push("/");
-            window.location.reload();
           } else {
             this.$router.push("login");
           }

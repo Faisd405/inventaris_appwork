@@ -2117,6 +2117,16 @@ __webpack_require__.r(__webpack_exports__);
       "default": "vertical"
     }
   },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.defaults.headers.common["Content-Type"] = "application/json";
+    axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("token");
+    axios.get("/api/user").then(function (response) {
+      _this.user = response.data;
+      _this.loginType = response.data.roles[0].name;
+    });
+  },
   computed: {
     curClasses: function curClasses() {
       var bg = this.layoutSidenavBg;
@@ -33743,7 +33753,7 @@ var render = function () {
       _vm._v(" "),
       _c("b-navbar-toggle", { attrs: { target: "app-layout-navbar" } }),
       _vm._v(" "),
-      _vm.isLoggedIn
+      _vm.user
         ? _c(
             "b-collapse",
             { attrs: { "is-nav": "", id: "app-layout-navbar" } },
@@ -33771,7 +33781,7 @@ var render = function () {
           )
         : _vm._e(),
       _vm._v(" "),
-      !_vm.isLoggedIn
+      !_vm.user
         ? _c(
             "b-collapse",
             { attrs: { "is-nav": "", id: "app-layout-navbar" } },
@@ -53129,7 +53139,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\InvenAuth\inventaris_appwork\resources\assets\src\entry-point.js */"./resources/assets/src/entry-point.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\inventaris_appwork\resources\assets\src\entry-point.js */"./resources/assets/src/entry-point.js");
 
 
 /***/ })

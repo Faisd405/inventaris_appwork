@@ -36,7 +36,7 @@ const router = new Router({
         {
             name: 'login',
             path: '/login',
-            component: () => import('@/components/auth/Login')
+            component: () => import('@/components/auth/Login'),
         },
         {
             name: 'register',

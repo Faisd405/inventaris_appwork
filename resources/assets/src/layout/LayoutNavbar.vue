@@ -24,7 +24,7 @@
     <!-- Navbar toggle -->
     <b-navbar-toggle target="app-layout-navbar"></b-navbar-toggle>
 
-    <b-collapse is-nav id="app-layout-navbar" v-if="isLoggedIn">
+    <b-collapse is-nav id="app-layout-navbar"  v-if="user">
       <b-navbar-nav class="align-items-lg-center">
         <b-nav-item :to="{}"
           >{{ user.name }}, Seorang {{ user.roles[0].name }}</b-nav-item
@@ -33,7 +33,7 @@
       </b-navbar-nav>
     </b-collapse>
 
-    <b-collapse is-nav id="app-layout-navbar" v-if="!isLoggedIn">
+    <b-collapse is-nav id="app-layout-navbar"  v-if="!user">
       <b-navbar-nav class="align-items-lg-center">
         <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>
         <b-nav-item :to="{ name: 'register' }">Register</b-nav-item>
@@ -66,6 +66,7 @@ export default {
       this.user = JSON.parse(localStorage.getItem("user"));
       this.isLoggedIn = localStorage.getItem("token") != null;
     },
+
     logout() {
       localStorage.removeItem("token");
       localStorage.removeItem("user");

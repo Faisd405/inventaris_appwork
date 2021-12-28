@@ -145,13 +145,6 @@ export default {
       .then((response) => {
         this.user = response.data;
         this.loginType = response.data.roles[0].name;
-      })
-      .catch((error) => {
-        if (error.response.status === 401) {
-          localStorage.clear();
-          this.$router.push("/login");
-        }
-        console.error(error);
       });
   },
   created() {

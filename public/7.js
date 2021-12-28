@@ -229,14 +229,6 @@ __webpack_require__.r(__webpack_exports__);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user").then(function (response) {
       _this3.user = response.data;
       _this3.loginType = response.data.roles[0].name;
-    })["catch"](function (error) {
-      if (error.response.status === 401) {
-        localStorage.clear();
-
-        _this3.$router.push("/login");
-      }
-
-      console.error(error);
     });
   }
 });

@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+        $this->call([ RolesTableSeeder::class ]);
         // Seeder User
         User::create([
             'name' => '4VM',
@@ -37,6 +39,5 @@ class DatabaseSeeder extends Seeder
             'kordinat' => '-6.9557103,107.6367724'
         ]);
 
-        $this->call([ RolesTableSeeder::class ]);
     }
 }
