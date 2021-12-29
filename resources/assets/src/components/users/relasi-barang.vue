@@ -1,7 +1,7 @@
 <template>
   <div class="container p-3">
     <div class="row justify-content-center">
-      <div class="col-md-12">
+      <div class="col-xl-12">
         <div class="card card-default">
           <div class="card-header">Relasi Barang Dan User</div>
 
@@ -67,7 +67,7 @@ export default {
     axios.get("/api/users/").then((response) => {
       this.user = response.data.user;
     });
-    axios.get("/api/barang/NoUser").then((response) => {
+    axios.get("/api/barang").then((response) => {
       this.barangs = response.data.barang;
     });
   },

@@ -81,7 +81,7 @@ __webpack_require__.r(__webpack_exports__);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/users/").then(function (response) {
       _this.user = response.data.user;
     });
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/barang/NoUser").then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/barang").then(function (response) {
       _this.barangs = response.data.barang;
     });
   },
@@ -118,7 +118,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container p-3" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "col-xl-12" }, [
         _c("div", { staticClass: "card card-default" }, [
           _c("div", { staticClass: "card-header" }, [
             _vm._v("Relasi Barang Dan User"),

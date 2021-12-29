@@ -1,7 +1,7 @@
 <template>
   <div class="container p-3">
     <div class="row justify-content-center">
-      <div class="col-md-12">
+      <div class="col-xl-12">
         <div class="card card-default">
           <div class="card-header">Create sifat</div>
 
