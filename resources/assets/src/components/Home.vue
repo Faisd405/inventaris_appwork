@@ -7,9 +7,14 @@
 
           <div class="card-body mx-auto">
             <div class="h-100 p-5 text-white bg-dark rounded-3">
-              <h1>Halo, {{user.name}} Di Web Inventaris Barang </h1>
-              <label>Login sebagai:</label>
-              <h2>{{ loginType }}</h2>
+              <h1>Halo {{ user.name }}, Di Web Inventaris Barang</h1>
+              <div v-if="user">
+                <label>Login sebagai:</label>
+                <h2>{{ loginType }}</h2>
+              </div>
+              <div v-if="!user">
+                <h2>Anda Belum Login</h2>
+              </div>
             </div>
             <div class="row d-flex justify-content-center">
               <div
@@ -113,12 +118,10 @@ export default {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + localStorage.getItem("token");
 
-    axios
-      .get(`/api/user`)
-      .then((response) => {
-        this.user = response.data;
-        this.loginType = response.data.roles[0].name;
-      });
+    axios.get(`/api/user`).then((response) => {
+      this.user = response.data;
+      this.loginType = response.data.roles[0].name;
+    });
   },
   created() {
     axios.get(`/api/barang`).then((response) => {

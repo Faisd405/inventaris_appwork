@@ -2004,6 +2004,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "app-layout-navbar",
   props: {
@@ -2028,7 +2030,6 @@ __webpack_require__.r(__webpack_exports__);
       localStorage.removeItem("user");
       this.setUser();
       this.$router.push("/login");
-      window.location.reload();
     }
   },
   data: function data() {
@@ -2040,6 +2041,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.setUser();
+  },
+  watch: {
+    $route: function $route() {
+      this.setUser();
+    }
   }
 });
 
@@ -33753,59 +33759,63 @@ var render = function () {
       _vm._v(" "),
       _c("b-navbar-toggle", { attrs: { target: "app-layout-navbar" } }),
       _vm._v(" "),
-      _vm.user
-        ? _c(
-            "b-collapse",
-            { attrs: { "is-nav": "", id: "app-layout-navbar" } },
-            [
-              _c(
-                "b-navbar-nav",
-                { staticClass: "align-items-lg-center" },
-                [
-                  _c("b-nav-item", { attrs: { to: {} } }, [
-                    _vm._v(
-                      _vm._s(_vm.user.name) +
-                        ", Seorang " +
-                        _vm._s(_vm.user.roles[0].name)
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("b-nav-item", { on: { click: _vm.logout } }, [
-                    _vm._v("Logout"),
-                  ]),
-                ],
-                1
-              ),
-            ],
-            1
-          )
+      _vm.isLoggedIn
+        ? [
+            _c(
+              "b-collapse",
+              { attrs: { "is-nav": "", id: "app-layout-navbar" } },
+              [
+                _c(
+                  "b-navbar-nav",
+                  { staticClass: "align-items-lg-center" },
+                  [
+                    _c("b-nav-item", { attrs: { to: {} } }, [
+                      _vm._v(
+                        _vm._s(_vm.user.name) +
+                          ", Seorang " +
+                          _vm._s(_vm.user.roles[0].name)
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("b-nav-item", { on: { click: _vm.logout } }, [
+                      _vm._v("Logout"),
+                    ]),
+                  ],
+                  1
+                ),
+              ],
+              1
+            ),
+          ]
         : _vm._e(),
       _vm._v(" "),
-      !_vm.user
-        ? _c(
-            "b-collapse",
-            { attrs: { "is-nav": "", id: "app-layout-navbar" } },
-            [
-              _c(
-                "b-navbar-nav",
-                { staticClass: "align-items-lg-center" },
-                [
-                  _c("b-nav-item", { attrs: { to: { name: "login" } } }, [
-                    _vm._v("Login"),
-                  ]),
-                  _vm._v(" "),
-                  _c("b-nav-item", { attrs: { to: { name: "register" } } }, [
-                    _vm._v("Register"),
-                  ]),
-                ],
-                1
-              ),
-            ],
-            1
-          )
+      !_vm.isLoggedIn
+        ? [
+            _c(
+              "b-collapse",
+              { attrs: { "is-nav": "", id: "app-layout-navbar" } },
+              [
+                _c(
+                  "b-navbar-nav",
+                  { staticClass: "align-items-lg-center" },
+                  [
+                    _c("b-nav-item", { attrs: { to: { name: "login" } } }, [
+                      _vm._v("Login"),
+                    ]),
+                    _vm._v(" "),
+                    _c("b-nav-item", { attrs: { to: { name: "register" } } }, [
+                      _vm._v("Register"),
+                    ]),
+                  ],
+                  1
+                ),
+              ],
+              1
+            ),
+          ]
         : _vm._e(),
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
@@ -51201,15 +51211,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'home',
       component: function component() {
         return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! @/components/Home */ "./resources/assets/src/components/Home.vue"));
-      },
-      meta: _defineProperty({
-        requiresAuth: true,
-        "if": function _if(isAdmin) {
-          isAdmin: true;
-        }
-      }, "if", function _if(isUser) {
-        isUser: true;
-      })
+      }
     }, // Route Auth
     {
       name: 'login',

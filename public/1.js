@@ -239,6 +239,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -613,15 +618,23 @@ var render = function () {
               [
                 _c("h1", [
                   _vm._v(
-                    "Halo, " +
+                    "Halo " +
                       _vm._s(_vm.user.name) +
-                      " Di Web Inventaris Barang "
+                      ", Di Web Inventaris Barang"
                   ),
                 ]),
                 _vm._v(" "),
-                _c("label", [_vm._v("Login sebagai:")]),
+                _vm.user
+                  ? _c("div", [
+                      _c("label", [_vm._v("Login sebagai:")]),
+                      _vm._v(" "),
+                      _c("h2", [_vm._v(_vm._s(_vm.loginType))]),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
-                _c("h2", [_vm._v(_vm._s(_vm.loginType))]),
+                !_vm.user
+                  ? _c("div", [_c("h2", [_vm._v("Anda Belum Login")])])
+                  : _vm._e(),
               ]
             ),
             _vm._v(" "),

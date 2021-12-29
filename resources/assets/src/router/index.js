@@ -22,15 +22,6 @@ const router = new Router({
             path: '',
             name: 'home',
             component: () => import('@/components/Home'),
-            meta: {
-                requiresAuth: true,
-                if(isAdmin) {
-                    isAdmin: true;
-                },
-                if(isUser) {
-                    isUser: true
-                }
-            }
         },
         // Route Auth
         {
@@ -357,7 +348,7 @@ router.beforeEach((to, from, next) => {
                 next()
             }
         }
-    } else {
+    }else {
         next()
     }
 })
