@@ -2061,6 +2061,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vendor_libs_sidenav__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/vendor/libs/sidenav */ "./resources/assets/src/vendor/libs/sidenav/index.js");
+var _data$name$components;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2100,7 +2104,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+/* harmony default export */ __webpack_exports__["default"] = (_data$name$components = {
   data: function data() {
     return {
       user: null,
@@ -2122,40 +2126,44 @@ __webpack_require__.r(__webpack_exports__);
       type: String,
       "default": "vertical"
     }
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    axios.defaults.headers.common["Content-Type"] = "application/json";
-    axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("token");
-    axios.get("/api/user").then(function (response) {
-      _this.user = response.data;
-      _this.loginType = response.data.roles[0].name;
-    });
-  },
-  computed: {
-    curClasses: function curClasses() {
-      var bg = this.layoutSidenavBg;
-
-      if (this.orientation === "horizontal" && (bg.indexOf(" sidenav-dark") !== -1 || bg.indexOf(" sidenav-light") !== -1)) {
-        bg = bg.replace(" sidenav-dark", "").replace(" sidenav-light", "").replace("-darker", "").replace("-dark", "");
-      }
-
-      return "bg-".concat(bg, " ") + (this.orientation !== "horizontal" ? "layout-sidenav" : "layout-sidenav-horizontal container-p-x flex-grow-0");
-    }
-  },
-  methods: {
-    isMenuActive: function isMenuActive(url) {
-      return this.$route.path.indexOf(url) === 0;
-    },
-    isMenuOpen: function isMenuOpen(url) {
-      return this.$route.path.indexOf(url) === 0 && this.orientation !== "horizontal";
-    },
-    toggleSidenav: function toggleSidenav() {
-      this.layoutHelpers.toggleCollapsed();
-    }
   }
-});
+}, _defineProperty(_data$name$components, "data", function data() {
+  return {
+    user: null,
+    isLoggedIn: false,
+    loginType: ""
+  };
+}), _defineProperty(_data$name$components, "mounted", function mounted() {
+  this.setUser();
+}), _defineProperty(_data$name$components, "watch", {
+  $route: function $route() {
+    this.setUser();
+  }
+}), _defineProperty(_data$name$components, "computed", {
+  curClasses: function curClasses() {
+    var bg = this.layoutSidenavBg;
+
+    if (this.orientation === "horizontal" && (bg.indexOf(" sidenav-dark") !== -1 || bg.indexOf(" sidenav-light") !== -1)) {
+      bg = bg.replace(" sidenav-dark", "").replace(" sidenav-light", "").replace("-darker", "").replace("-dark", "");
+    }
+
+    return "bg-".concat(bg, " ") + (this.orientation !== "horizontal" ? "layout-sidenav" : "layout-sidenav-horizontal container-p-x flex-grow-0");
+  }
+}), _defineProperty(_data$name$components, "methods", {
+  isMenuActive: function isMenuActive(url) {
+    return this.$route.path.indexOf(url) === 0;
+  },
+  isMenuOpen: function isMenuOpen(url) {
+    return this.$route.path.indexOf(url) === 0 && this.orientation !== "horizontal";
+  },
+  toggleSidenav: function toggleSidenav() {
+    this.layoutHelpers.toggleCollapsed();
+  },
+  setUser: function setUser() {
+    this.user = JSON.parse(localStorage.getItem("user"));
+    this.isLoggedIn = localStorage.getItem("token") != null;
+  }
+}), _data$name$components);
 
 /***/ }),
 
@@ -33840,83 +33848,109 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "sidenav",
-    { class: _vm.curClasses, attrs: { orientation: _vm.orientation } },
-    [
-      _c(
-        "div",
-        {
-          staticClass: "sidenav-inner",
-          class: { "py-1": _vm.orientation !== "horizontal" },
-        },
+  return _vm.isLoggedIn
+    ? _c(
+        "sidenav",
+        { class: _vm.curClasses, attrs: { orientation: _vm.orientation } },
         [
           _c(
-            "sidenav-router-link",
-            { attrs: { icon: "ion ion-ios-home", to: "/", exact: true } },
-            [_vm._v("Home")]
-          ),
-          _vm._v(" "),
-          _c(
-            "sidenav-router-link",
+            "div",
             {
-              attrs: { icon: "ion ion-md-desktop", to: "/barang", exact: true },
+              staticClass: "sidenav-inner",
+              class: { "py-1": _vm.orientation !== "horizontal" },
             },
-            [_vm._v("Barang")]
+            [
+              _c(
+                "sidenav-router-link",
+                { attrs: { icon: "ion ion-ios-home", to: "/", exact: true } },
+                [_vm._v("Home")]
+              ),
+              _vm._v(" "),
+              _c(
+                "sidenav-router-link",
+                {
+                  attrs: {
+                    icon: "ion ion-md-desktop",
+                    to: "/barang",
+                    exact: true,
+                  },
+                },
+                [_vm._v("Barang")]
+              ),
+              _vm._v(" "),
+              _c(
+                "sidenav-router-link",
+                {
+                  attrs: {
+                    icon: "ion ion-md-desktop",
+                    to: "/jenis",
+                    exact: true,
+                  },
+                },
+                [_vm._v("Jenis Barang")]
+              ),
+              _vm._v(" "),
+              _c(
+                "sidenav-router-link",
+                {
+                  attrs: {
+                    icon: "ion ion-md-desktop",
+                    to: "/lokasi",
+                    exact: true,
+                  },
+                },
+                [_vm._v("Lokasi Barang")]
+              ),
+              _vm._v(" "),
+              _c(
+                "sidenav-router-link",
+                {
+                  attrs: {
+                    icon: "ion ion-md-desktop",
+                    to: "/kategori",
+                    exact: true,
+                  },
+                },
+                [_vm._v("Kategori Barang")]
+              ),
+              _vm._v(" "),
+              _c(
+                "sidenav-router-link",
+                {
+                  attrs: {
+                    icon: "ion ion-md-desktop",
+                    to: "/sifat",
+                    exact: true,
+                  },
+                },
+                [_vm._v("Sifat Kategori")]
+              ),
+              _vm._v(" "),
+              _c(
+                "sidenav-router-link",
+                {
+                  attrs: {
+                    icon: "ion ion-md-person",
+                    to: "/users",
+                    exact: true,
+                  },
+                },
+                [_vm._v("Users")]
+              ),
+              _vm._v(" "),
+              _c(
+                "sidenav-router-link",
+                {
+                  attrs: { icon: "ion ion-md-book", to: "/buku", exact: true },
+                },
+                [_vm._v("Buku")]
+              ),
+            ],
+            1
           ),
-          _vm._v(" "),
-          _c(
-            "sidenav-router-link",
-            {
-              attrs: { icon: "ion ion-md-desktop", to: "/jenis", exact: true },
-            },
-            [_vm._v("Jenis Barang")]
-          ),
-          _vm._v(" "),
-          _c(
-            "sidenav-router-link",
-            {
-              attrs: { icon: "ion ion-md-desktop", to: "/lokasi", exact: true },
-            },
-            [_vm._v("Lokasi Barang")]
-          ),
-          _vm._v(" "),
-          _c(
-            "sidenav-router-link",
-            {
-              attrs: {
-                icon: "ion ion-md-desktop",
-                to: "/kategori",
-                exact: true,
-              },
-            },
-            [_vm._v("Kategori Barang")]
-          ),
-          _vm._v(" "),
-          _c(
-            "sidenav-router-link",
-            {
-              attrs: { icon: "ion ion-md-desktop", to: "/sifat", exact: true },
-            },
-            [_vm._v("Sifat Kategori")]
-          ),
-          _vm._v(" "),
-          _c(
-            "sidenav-router-link",
-            { attrs: { icon: "ion ion-md-person", to: "/users", exact: true } },
-            [_vm._v("Users")]
-          ),
-          _vm._v(" "),
-          _c(
-            "sidenav-router-link",
-            { attrs: { icon: "ion ion-md-book", to: "/buku", exact: true } },
-            [_vm._v("Buku")]
-          ),
-        ],
-        1
-      ),
-    ]
-  )
+        ]
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -1,5 +1,5 @@
 <template>
-  <sidenav :orientation="orientation" :class="curClasses">
+  <sidenav :orientation="orientation" :class="curClasses" v-if="isLoggedIn">
     <!-- Inner -->
     <div
       class="sidenav-inner"
@@ -71,18 +71,20 @@ export default {
       default: "vertical",
     },
   },
-
+  data() {
+    return {
+      user: null,
+      isLoggedIn: false,
+      loginType: "",
+    };
+  },
   mounted() {
-    axios.defaults.headers.common["Content-Type"] = "application/json";
-    axios.defaults.headers.common["Authorization"] =
-      "Bearer " + localStorage.getItem("token");
-
-    axios
-      .get(`/api/user`)
-      .then((response) => {
-        this.user = response.data;
-        this.loginType = response.data.roles[0].name;
-      });
+    this.setUser();
+  },
+  watch: {
+    $route() {
+      this.setUser();
+    },
   },
 
   computed: {
@@ -123,6 +125,11 @@ export default {
 
     toggleSidenav() {
       this.layoutHelpers.toggleCollapsed();
+    },
+
+    setUser() {
+      this.user = JSON.parse(localStorage.getItem("user"));
+      this.isLoggedIn = localStorage.getItem("token") != null;
     },
   }
 };
