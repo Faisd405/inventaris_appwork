@@ -8,7 +8,7 @@
           <div class="card-body">
             <form @submit.prevent="SifatStore">
               <div class="form-group">
-                <label>Judul sifat</label>
+                <label>Nama sifat</label>
                 <input
                   type="text"
                   class="form-control"

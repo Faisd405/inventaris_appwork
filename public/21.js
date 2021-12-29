@@ -98,7 +98,7 @@ var render = function () {
               },
               [
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Judul sifat")]),
+                  _c("label", [_vm._v("Nama sifat")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [

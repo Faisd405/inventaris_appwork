@@ -221,7 +221,7 @@ var render = function () {
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "sifat_id" } }, [
-                    _vm._v("roles Kategori"),
+                    _vm._v("Roles"),
                   ]),
                   _vm._v(" "),
                   _c(

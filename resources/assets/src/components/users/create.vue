@@ -35,7 +35,7 @@
                 />
               </div>
               <div class="form-group">
-                <label for="sifat_id">roles Kategori</label>
+                <label for="sifat_id">Roles</label>
                 <select
                   name="sifat_id"
                   class="form-control"
