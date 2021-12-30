@@ -48,7 +48,7 @@
                     <tr>
                         <th><h2>Harga Barang</h2></th>
                         <td><h2>:</h2></td>
-                        <td><h2>{{ $barang->harga_barang }}</h2></td>
+                        <td><h2>@currency($barang->harga_barang)</h2></td>
                     </tr>
                     <tr>
                         <th><h2>Kategori Barang</h2></th>
