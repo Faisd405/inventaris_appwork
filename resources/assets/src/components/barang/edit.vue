@@ -7,7 +7,7 @@
 
           <div class="card-body">
             <form @submit.prevent="BarangUpdate">
-              <!-- 'nama_barang', 'kode_barang', 'detail_barang', 'kategori_id', 'fungsi', 'harga_barang', 'lokasi', 'user_id' -->
+              <!-- 'nama_barang', 'kode_barang', 'detail_barang', 'kategori_id', 'fungsi', 'harga_barang', 'lokasi', 'pengguna_id' -->
               <div class="form-group">
                 <label for="nama_barang">Nama Barang</label>
                 <input
@@ -117,19 +117,19 @@
               </div>
 
               <div class="form-group">
-                <label for="user_id">users</label>
+                <label for="pengguna_id">Pengguna</label>
                 <select
-                  name="user_id"
+                  name="pengguna_id"
                   class="form-control"
-                  v-model="barang.user_id"
+                  v-model="barang.pengguna_id"
                 >
-                  <option value="" disabled>Pilih users</option>
+                  <option value="" disabled>Pilih Pengguna</option>
                   <option
-                    v-for="users in users"
-                    :key="users.id"
-                    :value="users.id"
+                    v-for="pengguna in pengguna"
+                    :key="pengguna.id"
+                    :value="pengguna.id"
                   >
-                    {{ users.name }}
+                    {{ pengguna.name }}
                   </option>
                 </select>
               </div>
@@ -153,11 +153,11 @@ export default {
   data() {
     return {
       barang: {
-        user: {},
+        pengguna: {},
         kategori: {},
       },
       kategori: [],
-      users: [],
+      pengguna: [],
       lokasi: [],
       jenis: [],
       user: "",
@@ -185,8 +185,8 @@ export default {
     axios.get("/api/kategori").then((response) => {
       this.kategori = response.data.kategori;
     });
-    axios.get("/api/users").then((response) => {
-      this.users = response.data.user;
+    axios.get("/api/pengguna").then((response) => {
+      this.pengguna = response.data.pengguna;
     });
     axios.get("/api/jenis").then((response) => {
       this.jenis = response.data.jenis;

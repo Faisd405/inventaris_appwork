@@ -9,6 +9,7 @@ use App\Http\Controllers\SifatController;
 use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\JenisController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\PenggunaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,13 +44,20 @@ Route::get('/rolesuser/{id}', [RolesController::class, 'indexrolesuser']);
 
 //Route API Barang
 Route::get('/barang', [BarangController::class, 'index']);
-Route::get('/barang/NoUser', [BarangController::class, 'indexUser']);
 Route::get('/barang/total', [BarangController::class, 'total_harga']);
 Route::get('/barang/year', [BarangController::class, 'indexHarga']);
 Route::get('/barang/{id}', [BarangController::class, 'show']);
 Route::post('/barang', [BarangController::class, 'store']);
 Route::put('/barang/{id}', [BarangController::class, 'update']);
 Route::delete('/barang/{id}', [BarangController::class, 'destroy']);
+
+//Route API Pengguna
+Route::get('/pengguna/nopengguna', [PenggunaController::class, 'nopengguna']);
+Route::get('/pengguna', [PenggunaController::class, 'index']);
+Route::get('/pengguna/{id}', [PenggunaController::class, 'show']);
+Route::post('/pengguna', [PenggunaController::class, 'store']);
+Route::put('/pengguna/{id}', [PenggunaController::class, 'update']);
+Route::delete('/pengguna/{id}', [PenggunaController::class, 'destroy']);
 
 //Route API Kategori
 Route::get('/kategori', [KategoriController::class, 'index']);

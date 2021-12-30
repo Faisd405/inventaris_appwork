@@ -7,19 +7,19 @@
 
           <div class="card-body">
             <div class="table-responsive mt-2">
-              <h2>Ini adalah barang yang dipakai {{ users.name }}</h2>
+              <h2>Ini adalah barang yang dipakai {{ pengguna.name }}</h2>
               <b-table :items="barangs" :fields="fields">
 
                 <template slot="action" slot-scope="data">
                     <span v-if="loginType == 'admin'">
-                    <Button v-if="data.item.user_id!=1"
+                    <Button v-if="data.item.pengguna_id!=1"
                         class="btn btn-sm btn-danger"
                         @click="update(data.item.id)"
                       >
                         Hapus Kepemilikan
                       </Button>
-                      <span v-if="data.item.user_id == '1'">
-                          Barang ini adalah barang milik admin
+                      <span v-if="data.item.pengguna_id == '1'">
+                          Tidak Bisa
                       </span>
                     </span>
                     <span v-if="loginType != 'admin'">
@@ -79,9 +79,9 @@ export default {
             }
         ],
       barangs: [],
-      users: {},
+      pengguna: {},
       barang: {
-          user_id: 1,
+          pengguna_id: 1,
       },
       user: null,
       isLoggedIn: false,
@@ -89,10 +89,10 @@ export default {
     };
   },
   created() {
-    let uri = `/api/users/${this.$route.params.id}`;
+    let uri = `/api/pengguna/${this.$route.params.id}`;
     axios.get(uri).then((response) => {
       this.barangs = response.data.barang;
-      this.users = response.data.user;
+      this.pengguna = response.data.pengguna;
     });
   },
   methods: {

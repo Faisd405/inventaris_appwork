@@ -50,6 +50,15 @@ const router = new Router({
             }
         },
         {
+            name: 'relasiuserbarang',
+            path: '/barang/relasi',
+            component: () => import('@/components/barang/relasi-barang'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
+        },
+        {
             name: 'create-barang',
             path: '/barang/create',
             component: () => import('@/components/barang/create'),
@@ -70,7 +79,63 @@ const router = new Router({
         {
             name: 'detail-barang',
             path: '/barang/detail/:id',
-            component: () => import('@/components/barang/detail')
+            component: () => import('@/components/barang/detail'),
+            meta: {
+                requiresAuth: true,
+                if(isAdmin) {
+                    isAdmin: true;
+                },
+                if(isUser) {
+                    isUser: true
+                }
+            }
+        },
+        // Router Pengguna
+        {
+            name: 'index-pengguna',
+            path: '/pengguna',
+            component: () => import('@/components/pengguna/index'),
+            meta: {
+                requiresAuth: true,
+                if(isAdmin) {
+                    isAdmin: true;
+                },
+                if(isUser) {
+                    isUser: true
+                }
+            }
+        },
+        {
+            name: 'create-pengguna',
+            path: '/pengguna/create',
+            component: () => import('@/components/pengguna/create'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
+        },
+        {
+            name: 'edit-pengguna',
+            path: '/pengguna/edit/:id',
+            component: () => import('@/components/pengguna/edit'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
+        },
+        {
+            name: 'detail-pengguna',
+            path: '/pengguna/detail/:id',
+            component: () => import('@/components/pengguna/detail'),
+            meta: {
+                requiresAuth: true,
+                if(isAdmin) {
+                    isAdmin: true;
+                },
+                if(isUser) {
+                    isUser: true
+                }
+            }
         },
         // Route kategori
         {
@@ -144,23 +209,9 @@ const router = new Router({
             }
         },
         {
-            name: 'detail-users',
-            path: '/users/detail/:id',
-            component: () => import('@/components/users/detail'),
-            meta: {
-                requiresAuth: true,
-                if(isAdmin) {
-                    isAdmin: true;
-                },
-                if(isUser) {
-                    isUser: true
-                }
-            }
-        },
-        {
-            name: 'relasiuserbarang',
-            path: '/users/relasi',
-            component: () => import('@/components/users/relasi-barang'),
+            name: 'edit-users',
+            path: '/users/edit/:id',
+            component: () => import('@/components/users/edit'),
             meta: {
                 requiresAuth: true,
                 isAdmin: true

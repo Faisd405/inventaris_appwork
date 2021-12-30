@@ -6,6 +6,7 @@
 
 </head>
 <body>
+    <h1 class="text-center">Daftar Barang</h1>
 <table class='table table-bordered'>
     <thead class="thead-dark">
         <tr>
@@ -16,7 +17,7 @@
             <th scope="col">Fungsi</th>
             <th scope="col">Harga</th>
             <th scope="col">Lokasi</th>
-            <th scope="col">User</th>
+            <th scope="col">Pengguna</th>
         </tr>
     </thead>
     <tbody>
@@ -29,7 +30,7 @@
             <td class="mb-3">{{$b->fungsi}}</td>
             <td class="mb-3">{{$b->harga_barang}}</td>
             <td class="mb-3">{{$b->lokasi->lokasi}}</td>
-            <td class="mb-3">{{$b->user->name}}</td>
+            <td class="mb-3">{{$b->pengguna->name}}</td>
         </tr>
         @endforeach
     </tbody>

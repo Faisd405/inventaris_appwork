@@ -63,7 +63,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       barang: {
-        user: {},
+        pengguna: {},
         kategori: {},
         jenis: {},
         lokasi: {}
@@ -161,10 +161,10 @@ var render = function () {
                 domProps: { textContent: _vm._s(_vm.barang.lokasi.lokasi) },
               }),
               _vm._v(" "),
-              _c("label", [_vm._v("User : ")]),
+              _c("label", [_vm._v("Pengguna : ")]),
               _vm._v(" "),
               _c("h3", {
-                domProps: { textContent: _vm._s(_vm.barang.user.name) },
+                domProps: { textContent: _vm._s(_vm.barang.pengguna.name) },
               }),
               _vm._v(" "),
               _c("label", [_vm._v("Tahun : ")]),

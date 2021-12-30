@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\barang;
 use App\Models\kategori;
 use App\Models\User;
+use App\Models\pengguna;
 use PDF;
 use Illuminate\Support\Facades\File;
 use App\Exports\BarangExport;
@@ -18,22 +19,11 @@ class BarangController extends Controller
     //index with json
     public function index()
     {
-        $barang = barang::with('user', 'kategori', 'jenis', 'lokasi')->get();
+        $barang = barang::with('pengguna', 'kategori', 'jenis', 'lokasi')->get();
         return response([
             'success' => true,
             'message' => 'List Semua barang',
             'barang' => $barang,
-        ], 200);
-    }
-
-    //Index barang where user_id = 4VM
-    public function indexUser()
-    {
-        $barang = barang::where('user_id', '1')->get();
-        return response()->json([
-            'success' => true,
-            'message' => 'barang Berhasil Ditampilkan!',
-            'barang'    => $barang
         ], 200);
     }
 
@@ -72,7 +62,7 @@ class BarangController extends Controller
             'harga_barang' => 'required',
             'lokasi_id' => 'required',
             'jenis_id' => 'required',
-            'user_id' => 'required',
+            'pengguna_id' => 'required',
             'year' => 'required',
             'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -90,7 +80,7 @@ class BarangController extends Controller
         $barang->harga_barang = $request->harga_barang;
         $barang->lokasi_id = $request->lokasi_id;
         $barang->jenis_id = $request->jenis_id;
-        $barang->user_id = $request->user_id;
+        $barang->pengguna_id = $request->pengguna_id;
         $barang->year = $request->year;
 
 
@@ -137,15 +127,15 @@ class BarangController extends Controller
 
     public function show($id)
     {
-        $barang = barang::with('user', 'kategori', 'lokasi', 'jenis')->find($id);
+        $barang = barang::with('pengguna', 'kategori', 'lokasi', 'jenis')->find($id);
         $kategori = kategori::all();
-        $user = User::all();
+        $pengguna = Pengguna::all();
         return response()->json([
             'success' => true,
             'message' => 'barang Berhasil Ditampilkan!',
             'barang'    => $barang,
             'kategori' => $kategori,
-            'user' => $user,
+            'pengguna' => $pengguna,
         ], 200);
     }
 
@@ -158,7 +148,7 @@ class BarangController extends Controller
 
     public function qrbarang_pdf()
     {
-        $barang = barang::with('user', 'kategori')->get();
+        $barang = barang::with('pengguna', 'kategori')->get();
         $pdf = PDF::loadView('barang.qrbarang_pdf', compact('barang'));
         return $pdf->stream('barang.pdf');
     }

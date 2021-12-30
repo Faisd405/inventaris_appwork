@@ -73,7 +73,7 @@
                     <tr>
                         <th><h2>Pengguna</h2></th>
                         <td><h2>:</h2></td>
-                        <td><h2>{{ $barang->user->name }}</h2></td>
+                        <td><h2>{{ $barang->pengguna->name }}</h2></td>
                     </tr>
                     <tr>
                         <th><h2>Tahun</h2></th>

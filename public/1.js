@@ -261,11 +261,12 @@ __webpack_require__.r(__webpack_exports__);
       barang: [],
       buku: [],
       users: [],
-      NoUser: [],
+      NoPengguna: [],
       kategori: [],
       total: [],
       user: "",
-      loginType: ""
+      loginType: "",
+      pengguna: []
     };
   },
   mounted: function mounted() {
@@ -298,6 +299,12 @@ __webpack_require__.r(__webpack_exports__);
     });
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/kategori").then(function (response) {
       _this2.kategori = response.data.kategori;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/pengguna").then(function (response) {
+      _this2.pengguna = response.data.pengguna;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/pengguna/nopengguna").then(function (response) {
+      _this2.NoPengguna = response.data.barang;
     });
   }
 });
@@ -666,12 +673,12 @@ var render = function () {
                 },
                 [
                   _c("div", { staticClass: "card-header" }, [
-                    _vm._v("Total Users"),
+                    _vm._v("Total Pengguna"),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
                     _c("h1", { staticClass: "card-title" }, [
-                      _vm._v(_vm._s(_vm.users.length)),
+                      _vm._v(_vm._s(_vm.pengguna.length)),
                     ]),
                   ]),
                 ]
@@ -711,7 +718,7 @@ var render = function () {
                     _c("h1", { staticClass: "card-title" }, [
                       _vm._v(
                         "\n                  " +
-                          _vm._s(_vm.barang.length - _vm.NoUser.length) +
+                          _vm._s(_vm.barang.length - _vm.NoPengguna.length) +
                           "\n                "
                       ),
                     ]),
@@ -732,7 +739,7 @@ var render = function () {
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
                     _c("h1", { staticClass: "card-title" }, [
-                      _vm._v(_vm._s(_vm.NoUser.length)),
+                      _vm._v(_vm._s(_vm.NoPengguna.length)),
                     ]),
                   ]),
                 ]

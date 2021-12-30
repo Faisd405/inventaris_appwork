@@ -2103,6 +2103,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = (_data$name$components = {
   data: function data() {
@@ -33931,6 +33937,18 @@ var render = function () {
                 {
                   attrs: {
                     icon: "ion ion-md-person",
+                    to: "/pengguna",
+                    exact: true,
+                  },
+                },
+                [_vm._v("Pengguna")]
+              ),
+              _vm._v(" "),
+              _c(
+                "sidenav-router-link",
+                {
+                  attrs: {
+                    icon: "ion ion-md-person",
                     to: "/users",
                     exact: true,
                   },
@@ -51275,6 +51293,16 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         isUser: true;
       })
     }, {
+      name: 'relasiuserbarang',
+      path: '/barang/relasi',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 32).then(__webpack_require__.bind(null, /*! @/components/barang/relasi-barang */ "./resources/assets/src/components/barang/relasi-barang.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
+      }
+    }, {
       name: 'create-barang',
       path: '/barang/create',
       component: function component() {
@@ -51299,7 +51327,64 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/barang/detail/:id',
       component: function component() {
         return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! @/components/barang/detail */ "./resources/assets/src/components/barang/detail.vue"));
+      },
+      meta: _defineProperty({
+        requiresAuth: true,
+        "if": function _if(isAdmin) {
+          isAdmin: true;
+        }
+      }, "if", function _if(isUser) {
+        isUser: true;
+      })
+    }, // Router Pengguna
+    {
+      name: 'index-pengguna',
+      path: '/pengguna',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! @/components/pengguna/index */ "./resources/assets/src/components/pengguna/index.vue"));
+      },
+      meta: _defineProperty({
+        requiresAuth: true,
+        "if": function _if(isAdmin) {
+          isAdmin: true;
+        }
+      }, "if", function _if(isUser) {
+        isUser: true;
+      })
+    }, {
+      name: 'create-pengguna',
+      path: '/pengguna/create',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 29).then(__webpack_require__.bind(null, /*! @/components/pengguna/create */ "./resources/assets/src/components/pengguna/create.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
       }
+    }, {
+      name: 'edit-pengguna',
+      path: '/pengguna/edit/:id',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 30).then(__webpack_require__.bind(null, /*! @/components/pengguna/edit */ "./resources/assets/src/components/pengguna/edit.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
+      }
+    }, {
+      name: 'detail-pengguna',
+      path: '/pengguna/detail/:id',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 31).then(__webpack_require__.bind(null, /*! @/components/pengguna/detail */ "./resources/assets/src/components/pengguna/detail.vue"));
+      },
+      meta: _defineProperty({
+        requiresAuth: true,
+        "if": function _if(isAdmin) {
+          isAdmin: true;
+        }
+      }, "if", function _if(isUser) {
+        isUser: true;
+      })
     }, // Route kategori
     {
       name: 'index-kategori',
@@ -51375,24 +51460,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         isAdmin: true
       }
     }, {
-      name: 'detail-users',
-      path: '/users/detail/:id',
+      name: 'edit-users',
+      path: '/users/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! @/components/users/detail */ "./resources/assets/src/components/users/detail.vue"));
-      },
-      meta: _defineProperty({
-        requiresAuth: true,
-        "if": function _if(isAdmin) {
-          isAdmin: true;
-        }
-      }, "if", function _if(isUser) {
-        isUser: true;
-      })
-    }, {
-      name: 'relasiuserbarang',
-      path: '/users/relasi',
-      component: function component() {
-        return __webpack_require__.e(/*! import() */ 27).then(__webpack_require__.bind(null, /*! @/components/users/relasi-barang */ "./resources/assets/src/components/users/relasi-barang.vue"));
+        return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! @/components/users/edit */ "./resources/assets/src/components/users/edit.vue"));
       },
       meta: {
         requiresAuth: true,

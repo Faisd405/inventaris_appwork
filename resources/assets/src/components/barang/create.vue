@@ -127,15 +127,15 @@
               </div>
 
               <div class="form-group">
-                <label for="user_id">User</label>
+                <label for="pengguna_id">pengguna</label>
                 <select
-                  name="user_id"
+                  name="pengguna_id"
                   class="form-control"
-                  v-model="barang.user_id"
+                  v-model="barang.pengguna_id"
                 >
-                  <option value="" disabled>Pilih User</option>
-                  <option v-for="user in user" :key="user.id" :value="user.id">
-                    {{ user.name }}
+                  <option value="" disabled>Pilih Pengguna</option>
+                  <option v-for="pengguna in pengguna" :key="pengguna.id" :value="pengguna.id">
+                    {{ pengguna.name }}
                   </option>
                 </select>
               </div>
@@ -177,7 +177,7 @@ export default {
       kategori: [],
       jenis: [],
       lokasi: [],
-      user: [],
+      pengguna: [],
       preview: null,
     };
   },
@@ -185,8 +185,8 @@ export default {
     axios.get("/api/kategori").then((response) => {
       this.kategori = response.data.kategori;
     });
-    axios.get("/api/users").then((response) => {
-      this.user = response.data.user;
+    axios.get("/api/pengguna").then((response) => {
+      this.pengguna = response.data.pengguna;
     });
     axios.get("/api/jenis").then((response) => {
       this.jenis = response.data.jenis;
@@ -213,7 +213,7 @@ export default {
       formData.append("year", this.barang.year);
       formData.append("jenis_id", this.barang.jenis_id);
       formData.append("lokasi_id", this.barang.lokasi_id);
-      formData.append("user_id", this.barang.user_id);
+      formData.append("pengguna_id", this.barang.pengguna_id);
       formData.append("image", this.barang.image);
 
       axios

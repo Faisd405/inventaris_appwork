@@ -116,10 +116,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -230,15 +226,6 @@ var render = function () {
                         attrs: { to: { name: "create-users" } },
                       },
                       [_vm._v("TAMBAH Data users")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "btn btn-md btn-primary",
-                        attrs: { to: { name: "relasiuserbarang" } },
-                      },
-                      [_vm._v("TAMBAH Data Barang ke users")]
                     ),
                   ],
                   1
@@ -386,22 +373,31 @@ var render = function () {
                       key: "action",
                       fn: function (data) {
                         return [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "btn btn-sm btn-primary",
-                              attrs: {
-                                to: {
-                                  name: "detail-users",
-                                  params: { id: data.item.id },
-                                },
-                              },
-                            },
-                            [_vm._v("Detail")]
-                          ),
-                          _vm._v(" "),
                           _vm.loginType == "admin"
                             ? _c("span", [
+                                _vm.user.id == 1
+                                  ? _c(
+                                      "span",
+                                      [
+                                        _c(
+                                          "router-link",
+                                          {
+                                            staticClass:
+                                              "btn btn-sm btn-primary",
+                                            attrs: {
+                                              to: {
+                                                name: "edit-users",
+                                                params: { id: data.item.id },
+                                              },
+                                            },
+                                          },
+                                          [_vm._v("Edit")]
+                                        ),
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
                                 data.item.id != 1
                                   ? _c(
                                       "button",

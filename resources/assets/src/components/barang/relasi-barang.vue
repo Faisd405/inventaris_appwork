@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-xl-12">
         <div class="card card-default">
-          <div class="card-header">Relasi Barang Dan User</div>
+          <div class="card-header">Relasi Barang Dan Pengguna</div>
 
           <div class="card-body">
             <form @submit.prevent="RelasiUserBarangUpdate">
@@ -13,11 +13,11 @@
                 <select
                   name="user_id"
                   class="form-control"
-                  v-model="barang.user_id"
+                  v-model="barang.pengguna_id"
                 >
-                  <option value="" disabled>Pilih User</option>
-                  <option v-for="user in user" :key="user.id" :value="user.id">
-                    {{ user.name }}
+                  <option value="" disabled>Pilih Pengguna</option>
+                  <option v-for="pengguna in pengguna" :key="pengguna.id" :value="pengguna.id">
+                    {{ pengguna.name }}
                   </option>
                 </select>
               </div>
@@ -58,14 +58,14 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      user: [],
+      pengguna: [],
       barang: {},
       barangs: {},
     };
   },
   created() {
-    axios.get("/api/users/").then((response) => {
-      this.user = response.data.user;
+    axios.get("/api/pengguna/").then((response) => {
+      this.pengguna = response.data.pengguna;
     });
     axios.get("/api/barang").then((response) => {
       this.barangs = response.data.barang;
@@ -77,7 +77,7 @@ export default {
         axios
             .put(uri, this.barang)
             .then((response) => {
-                this.$router.push("/users/detail/"+this.barang.user_id);
+                this.$router.push("/pengguna/detail/"+this.barang.pengguna_id);
             })
             .catch((error) => {
                 console.log(error);

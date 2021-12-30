@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\role_user;
 use App\Models\lokasi;
+use App\Models\pengguna;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,6 +28,10 @@ class DatabaseSeeder extends Seeder
         role_user::create([
             'user_id' => 1,
             'role_id' => 2
+        ]);
+
+        pengguna::create([
+            'name' => '4VM'
         ]);
 
         lokasi::create([

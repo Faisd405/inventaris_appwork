@@ -189,7 +189,7 @@ __webpack_require__.r(__webpack_exports__);
       kategori: [],
       jenis: [],
       lokasi: [],
-      user: [],
+      pengguna: [],
       preview: null
     };
   },
@@ -199,8 +199,8 @@ __webpack_require__.r(__webpack_exports__);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/kategori").then(function (response) {
       _this.kategori = response.data.kategori;
     });
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/users").then(function (response) {
-      _this.user = response.data.user;
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/pengguna").then(function (response) {
+      _this.pengguna = response.data.pengguna;
     });
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/jenis").then(function (response) {
       _this.jenis = response.data.jenis;
@@ -228,7 +228,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("year", this.barang.year);
       formData.append("jenis_id", this.barang.jenis_id);
       formData.append("lokasi_id", this.barang.lokasi_id);
-      formData.append("user_id", this.barang.user_id);
+      formData.append("pengguna_id", this.barang.pengguna_id);
       formData.append("image", this.barang.image);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/barang", formData, config).then(function (response) {
         _this2.$router.push("/barang");
@@ -663,7 +663,9 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "user_id" } }, [_vm._v("User")]),
+                  _c("label", { attrs: { for: "pengguna_id" } }, [
+                    _vm._v("pengguna"),
+                  ]),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -672,12 +674,12 @@ var render = function () {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.barang.user_id,
-                          expression: "barang.user_id",
+                          value: _vm.barang.pengguna_id,
+                          expression: "barang.pengguna_id",
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { name: "user_id" },
+                      attrs: { name: "pengguna_id" },
                       on: {
                         change: function ($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -690,7 +692,7 @@ var render = function () {
                             })
                           _vm.$set(
                             _vm.barang,
-                            "user_id",
+                            "pengguna_id",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -700,17 +702,20 @@ var render = function () {
                     },
                     [
                       _c("option", { attrs: { value: "", disabled: "" } }, [
-                        _vm._v("Pilih User"),
+                        _vm._v("Pilih Pengguna"),
                       ]),
                       _vm._v(" "),
-                      _vm._l(_vm.user, function (user) {
+                      _vm._l(_vm.pengguna, function (pengguna) {
                         return _c(
                           "option",
-                          { key: user.id, domProps: { value: user.id } },
+                          {
+                            key: pengguna.id,
+                            domProps: { value: pengguna.id },
+                          },
                           [
                             _vm._v(
                               "\n                  " +
-                                _vm._s(user.name) +
+                                _vm._s(pengguna.name) +
                                 "\n                "
                             ),
                           ]

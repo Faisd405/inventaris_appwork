@@ -11,7 +11,7 @@
         <tr>
             <th scope="col">Nama Barang</th>
             <th scope="col">Kategori</th>
-            <th scope="col">User</th>
+            <th scope="col">Pengguna</th>
             <th scope="row">Lokasi</th>
             <th scope="col">QR</th>
         </tr>
@@ -21,7 +21,7 @@
         <tr>
             <td class="mb-3">{{$b->nama_barang}}</td>
             <td class="mb-3">{{$b->kategori->nama_kategori}}</td>
-            <td class="mb-3">{{$b->user->name}}</td>
+            <td class="mb-3">{{$b->pengguna->name}}</td>
             <td class="mb-3">{{$b->lokasi->lokasi}}</td>
             <td class="mb-3">{!! DNS2D::getBarcodeHTML("$b->kode_barang", 'QRCODE') !!}</td>
         </tr>

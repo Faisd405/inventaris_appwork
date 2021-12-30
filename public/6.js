@@ -165,11 +165,11 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       barang: {
-        user: {},
+        pengguna: {},
         kategori: {}
       },
       kategori: [],
-      users: [],
+      pengguna: [],
       lokasi: [],
       jenis: [],
       user: "",
@@ -192,8 +192,8 @@ __webpack_require__.r(__webpack_exports__);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/kategori").then(function (response) {
       _this.kategori = response.data.kategori;
     });
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/users").then(function (response) {
-      _this.users = response.data.user;
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/pengguna").then(function (response) {
+      _this.pengguna = response.data.pengguna;
     });
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/jenis").then(function (response) {
       _this.jenis = response.data.jenis;
@@ -619,7 +619,9 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "user_id" } }, [_vm._v("users")]),
+                  _c("label", { attrs: { for: "pengguna_id" } }, [
+                    _vm._v("Pengguna"),
+                  ]),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -628,12 +630,12 @@ var render = function () {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.barang.user_id,
-                          expression: "barang.user_id",
+                          value: _vm.barang.pengguna_id,
+                          expression: "barang.pengguna_id",
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { name: "user_id" },
+                      attrs: { name: "pengguna_id" },
                       on: {
                         change: function ($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -646,7 +648,7 @@ var render = function () {
                             })
                           _vm.$set(
                             _vm.barang,
-                            "user_id",
+                            "pengguna_id",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -656,17 +658,20 @@ var render = function () {
                     },
                     [
                       _c("option", { attrs: { value: "", disabled: "" } }, [
-                        _vm._v("Pilih users"),
+                        _vm._v("Pilih Pengguna"),
                       ]),
                       _vm._v(" "),
-                      _vm._l(_vm.users, function (users) {
+                      _vm._l(_vm.pengguna, function (pengguna) {
                         return _c(
                           "option",
-                          { key: users.id, domProps: { value: users.id } },
+                          {
+                            key: pengguna.id,
+                            domProps: { value: pengguna.id },
+                          },
                           [
                             _vm._v(
                               "\n                  " +
-                                _vm._s(users.name) +
+                                _vm._s(pengguna.name) +
                                 "\n                "
                             ),
                           ]

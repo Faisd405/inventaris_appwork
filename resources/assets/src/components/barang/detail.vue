@@ -28,8 +28,8 @@
               <h3 v-text="barang.harga_barang"></h3>
               <label>Lokasi : </label>
               <h3 v-text="barang.lokasi.lokasi"></h3>
-              <label>User : </label>
-              <h3 v-text="barang.user.name"></h3>
+              <label>Pengguna : </label>
+              <h3 v-text="barang.pengguna.name"></h3>
               <label>Tahun : </label>
               <h3 v-text="barang.year"></h3>
               <label
@@ -51,7 +51,7 @@ export default {
   data() {
     return {
       barang: {
-        user: {},
+        pengguna: {},
         kategori: {},
         jenis: {},
         lokasi: {},

@@ -30,9 +30,9 @@
                 class="card text-white bg-primary col-md-6"
                 style="max-width: 18rem"
               >
-                <div class="card-header">Total Users</div>
+                <div class="card-header">Total Pengguna</div>
                 <div class="card-body">
-                  <h1 class="card-title">{{ users.length }}</h1>
+                  <h1 class="card-title">{{ pengguna.length }}</h1>
                 </div>
               </div>
               <div
@@ -51,7 +51,7 @@
                 <div class="card-header">Total Barang Yang Terpakai</div>
                 <div class="card-body">
                   <h1 class="card-title">
-                    {{ barang.length - NoUser.length }}
+                    {{ barang.length - NoPengguna.length }}
                   </h1>
                 </div>
               </div>
@@ -61,7 +61,7 @@
               >
                 <div class="card-header">Total Barang Yang Tidak Terpakai</div>
                 <div class="card-body">
-                  <h1 class="card-title">{{ NoUser.length }}</h1>
+                  <h1 class="card-title">{{ NoPengguna.length }}</h1>
                 </div>
               </div>
               <div
@@ -106,11 +106,12 @@ export default {
       barang: [],
       buku: [],
       users: [],
-      NoUser: [],
+      NoPengguna: [],
       kategori: [],
       total: [],
       user: "",
       loginType: "",
+      pengguna: [],
     };
   },
   mounted() {
@@ -141,6 +142,12 @@ export default {
     });
     axios.get(`/api/kategori`).then((response) => {
       this.kategori = response.data.kategori;
+    });
+    axios.get(`/api/pengguna`).then((response) => {
+      this.pengguna = response.data.pengguna;
+    });
+    axios.get(`/api/pengguna/nopengguna`).then((response) => {
+      this.NoPengguna = response.data.barang;
     });
   },
 };

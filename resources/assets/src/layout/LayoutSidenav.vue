@@ -26,6 +26,12 @@
       <sidenav-router-link icon="ion ion-md-desktop" to="/sifat" :exact="true"
         >Sifat Kategori</sidenav-router-link
       >
+      <sidenav-router-link
+        icon="ion ion-md-person"
+        to="/pengguna"
+        :exact="true"
+        >Pengguna</sidenav-router-link
+      >
       <sidenav-router-link icon="ion ion-md-person" to="/users" :exact="true"
         >Users</sidenav-router-link
       >
@@ -131,6 +137,6 @@ export default {
       this.user = JSON.parse(localStorage.getItem("user"));
       this.isLoggedIn = localStorage.getItem("token") != null;
     },
-  }
+  },
 };
 </script>

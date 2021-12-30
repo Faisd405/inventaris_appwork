@@ -170,7 +170,7 @@ __webpack_require__.r(__webpack_exports__);
         sortable: true,
         label: "Lokasi"
       }, {
-        key: "user.name",
+        key: "pengguna.name",
         label: "Pemakai",
         sortable: true
       }, {

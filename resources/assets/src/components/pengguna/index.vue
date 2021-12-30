@@ -3,14 +3,19 @@
     <div class="row justify-content-center">
       <div class="col-xl-12">
         <div class="card card-default">
-          <div class="card-header">users</div>
+          <div class="card-header">pengguna</div>
 
           <div class="card-body">
             <span v-if="loginType == 'admin'">
               <router-link
-                :to="{ name: 'create-users' }"
+                :to="{ name: 'create-pengguna' }"
                 class="btn btn-md btn-primary"
-                >TAMBAH Data users</router-link
+                >TAMBAH Data pengguna</router-link
+              >
+              <router-link
+                :to="{ name: 'relasiuserbarang' }"
+                class="btn btn-md btn-primary"
+                >TAMBAH Data Barang ke pengguna</router-link
               >
             </span>
             <div class="table-responsive mt-2">
@@ -61,7 +66,7 @@
                 </b-col>
               </b-row>
               <b-table
-                :items="users"
+                :items="pengguna"
                 :fields="fields"
                 :sort-by.sync="sortBy"
                 striped
@@ -74,17 +79,23 @@
                 :per-page="perPage"
               >
                 <template slot="action" slot-scope="data">
+                  <router-link
+                    :to="{
+                      name: 'detail-pengguna',
+                      params: { id: data.item.id },
+                    }"
+                    class="btn btn-sm btn-primary"
+                    >Detail</router-link
+                  >
+                  <router-link
+                    :to="{
+                      name: 'edit-pengguna',
+                      params: { id: data.item.id },
+                    }"
+                    class="btn btn-sm btn-warning"
+                    >Edit</router-link
+                  >
                   <span v-if="loginType == 'admin'">
-                    <span v-if="user.id == 1">
-                      <router-link
-                        :to="{
-                          name: 'edit-users',
-                          params: { id: data.item.id },
-                        }"
-                        class="btn btn-sm btn-primary"
-                        >Edit</router-link
-                      >
-                    </span>
                     <button
                       v-if="data.item.id != 1"
                       class="btn btn-sm btn-danger"
@@ -120,11 +131,6 @@ export default {
           sortable: true,
         },
         {
-          key: "email",
-          label: "Email",
-          sortable: true,
-        },
-        {
           key: "action",
           label: "Action",
           headerClass: "text-center",
@@ -132,7 +138,7 @@ export default {
           width: "100px",
         },
       ],
-      users: [],
+      pengguna: [],
       filter: null,
       filterOn: [],
       currentPage: 1,
@@ -146,9 +152,9 @@ export default {
     };
   },
   created() {
-    let uri = `/api/users`;
+    let uri = `/api/pengguna`;
     axios.get(uri).then((response) => {
-      this.users = response.data.user;
+      this.pengguna = response.data.pengguna;
     });
   },
 
@@ -158,9 +164,9 @@ export default {
       this.currentPage = 1;
     },
     destroy(id) {
-      let uri = `/api/users/${id}`;
+      let uri = `/api/pengguna/${id}`;
       axios.delete(uri).then((response) => {
-        this.users = this.users.filter((users) => users.id != id);
+        this.pengguna = this.pengguna.filter((pengguna) => pengguna.id != id);
       });
     },
   },

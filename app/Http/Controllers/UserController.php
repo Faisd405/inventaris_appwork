@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\role_user;
 use App\Models\barang;
 use Illuminate\Support\Facades\Hash;
 use Auth;
@@ -25,13 +26,11 @@ class UserController extends Controller
     public function show($id)
     {
         $users = User::find($id);
-        $barangs = barang::where('user_id', $id)->with('lokasi')->get();
 
-        if ($barangs && $users) {
+        if ($users) {
             return response()->json([
                 'success' => true,
                 'message' => 'Barang dan User!',
-                'barang'    => $barangs,
                 'user' => $users
             ], 200);
         } else {
@@ -41,6 +40,26 @@ class UserController extends Controller
                 'data'    => ''
             ], 404);
         }
+    }
+
+    //update json
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:8',
+            'roles' => 'required',
+        ]);
+
+        $users = User::find($id);
+        $users->name = $request->name;
+        $users->email = $request->email;
+        $users->password = Hash::make($request->password);
+
+        $users->roles()->sync($request->roles);
+        $users->save();
+
     }
 
     public function store(Request $request)
@@ -62,6 +81,7 @@ class UserController extends Controller
 
         return response()->json(['message' => 'Registration Successful.'], 201);
     }
+
 
     public function destroy($id)
     {
