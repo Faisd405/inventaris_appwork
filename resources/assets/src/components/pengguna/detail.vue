@@ -8,7 +8,7 @@
           <div class="card-body">
             <div class="table-responsive mt-2">
               <h2>Ini adalah barang yang dipakai {{ pengguna.name }}</h2>
-              <b-table :items="barangs" :fields="fields">
+              <b-table :items="barangs" :fields="fields" responsive>
 
                 <template slot="action" slot-scope="data">
                     <span v-if="loginType == 'admin'">

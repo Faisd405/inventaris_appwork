@@ -65,7 +65,7 @@
                 :fields="fields"
                 :sort-by.sync="sortBy"
                 striped
-                responsive="sm"
+                responsive
                 sort-icon-left
                 :filter="filter"
                 :filter-included-fields="filterOn"

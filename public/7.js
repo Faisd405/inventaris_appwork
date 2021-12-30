@@ -429,7 +429,7 @@ var render = function () {
                     fields: _vm.fields,
                     "sort-by": _vm.sortBy,
                     striped: "",
-                    responsive: "sm",
+                    responsive: "",
                     "sort-icon-left": "",
                     filter: _vm.filter,
                     "filter-included-fields": _vm.filterOn,

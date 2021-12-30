@@ -171,7 +171,11 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("b-table", {
-                  attrs: { items: _vm.barangs, fields: _vm.fields },
+                  attrs: {
+                    items: _vm.barangs,
+                    fields: _vm.fields,
+                    responsive: "",
+                  },
                   scopedSlots: _vm._u([
                     {
                       key: "action",
