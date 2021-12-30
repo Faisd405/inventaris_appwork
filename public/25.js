@@ -73,11 +73,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      users: {},
+      users: {
+        name: "",
+        email: ""
+      },
       roles: []
     };
   },
@@ -85,11 +92,12 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/users/".concat(this.$route.params.id)).then(function (response) {
-      _this.users = response.data.user;
+      _this.users.name = response.data.user.name;
+      _this.users.email = response.data.user.email;
     })["catch"](function (errors) {
       console.log(errors);
     });
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/roles').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/roles").then(function (response) {
       _this.roles = response.data.roles;
     });
   },

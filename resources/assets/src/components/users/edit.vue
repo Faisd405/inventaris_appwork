@@ -42,7 +42,11 @@
                   v-model="users.roles"
                 >
                   <option value="" disabled>Pilih User</option>
-                  <option v-for="roles in roles" :key="roles.id" :value="roles.id">
+                  <option
+                    v-for="roles in roles"
+                    :key="roles.id"
+                    :value="roles.id"
+                  >
                     {{ roles.name }}
                   </option>
                 </select>
@@ -65,28 +69,33 @@ import axios from "axios";
 export default {
   data() {
     return {
-      users: {},
+      users: {
+        name: "",
+        email: "",
+      },
       roles: [],
     };
   },
   created() {
-      axios.get(`/api/users/${this.$route.params.id}`)
+    axios
+      .get(`/api/users/${this.$route.params.id}`)
       .then((response) => {
-        this.users = response.data.user;
+        this.users.name = response.data.user.name;
+        this.users.email = response.data.user.email;
       })
       .catch((errors) => {
         console.log(errors);
       });
-      axios.get('/api/roles').then(response => {
-        this.roles = response.data.roles;
-      });
+    axios.get("/api/roles").then((response) => {
+      this.roles = response.data.roles;
+    });
   },
   methods: {
     usersUpdate() {
       let uri = "/api/users/" + this.$route.params.id;
       axios.put(uri, this.users).then((response) => {
         this.$router.push("/users");
-        });
+      });
     },
   },
 };
