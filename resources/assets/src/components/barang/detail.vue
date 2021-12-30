@@ -25,7 +25,7 @@
               <label>Jenis : </label>
               <h3 v-text="barang.jenis.jenis_barang"></h3>
               <label>Harga : </label>
-              <h3>{{ barang.harga_barang | toCurrency }}</h3>
+              <h3>{{ barang.harga_barang | toCurrency  }}</h3>
               <label>Lokasi : </label>
               <h3 v-text="barang.lokasi.lokasi"></h3>
               <label>Pengguna : </label>
@@ -33,12 +33,9 @@
               <label>Tahun : </label>
               <h3 v-text="barang.year"></h3>
               <label
-                ><button
-                  :href="'/barang/detailbarang_pdf/' + barang.id"
-                  class="btn btn-primary"
-                >
-                  Print
-                </button></label
+                ><a :href="'/barang/detailbarang_pdf/' + barang.id" class="btn btn-primary"
+                  >Print</a
+                ></label
               >
             </div>
           </div>
@@ -83,4 +80,5 @@ Vue.filter("toCurrency", function (value) {
   });
   return formatter.format(value);
 });
+
 </script>
