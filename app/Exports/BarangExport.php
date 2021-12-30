@@ -58,7 +58,9 @@ class BarangExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoSi
 
     public function title(): string
     {
-        return 'Barang';
+
+        $name='Laporan Barang '.date('d-m-Y');
+        return $name;
     }
 
     // afterSheet total harga_barang dan total barang

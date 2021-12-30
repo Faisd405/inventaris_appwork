@@ -24,7 +24,6 @@
 
 <body>
     <h1 class="text-center">Daftar Barang</h1>
-    <div class="table-responsive">
         <table class='table table-bordered '>
             <thead class="thead-dark">
                 <tr>
@@ -53,7 +52,6 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
 </body>
 
 </html>

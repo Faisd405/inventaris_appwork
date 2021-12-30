@@ -25,7 +25,7 @@
               <label>Jenis : </label>
               <h3 v-text="barang.jenis.jenis_barang"></h3>
               <label>Harga : </label>
-              <h3 v-text="barang.harga_barang"></h3>
+              <h3>{{ barang.harga_barang | toCurrency  }}</h3>
               <label>Lokasi : </label>
               <h3 v-text="barang.lokasi.lokasi"></h3>
               <label>Pengguna : </label>
@@ -47,6 +47,7 @@
 
 <script>
 import axios from "axios";
+import Vue from "vue";
 export default {
   data() {
     return {
@@ -68,4 +69,16 @@ export default {
     });
   },
 };
+
+Vue.filter("toCurrency", function (value) {
+  if (typeof value !== "number") {
+    return value;
+  }
+  var formatter = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  });
+  return formatter.format(value);
+});
+
 </script>
