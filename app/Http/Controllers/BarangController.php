@@ -160,7 +160,7 @@ class BarangController extends Controller
         $name='Laporan Detail Barang '.date('d-m-Y').'.pdf';
         $barang = barang::find($id);
 
-    	$pdf = PDF::loadview('barang.detailbarang_pdf', compact('barang'))->setPaper('a4', 'landscape');
+    	$pdf = PDF::loadview('barang.detailbarang_pdf', compact('barang'));
     	return $pdf->stream($name);
     }
 
