@@ -25,7 +25,7 @@
               <label>Jenis : </label>
               <h3 v-text="barang.jenis.jenis_barang"></h3>
               <label>Harga : </label>
-              <h3>{{ barang.harga_barang | toCurrency  }}</h3>
+              <h3>{{ barang.harga_barang | toCurrency }}</h3>
               <label>Lokasi : </label>
               <h3 v-text="barang.lokasi.lokasi"></h3>
               <label>Pengguna : </label>
@@ -33,8 +33,28 @@
               <label>Tahun : </label>
               <h3 v-text="barang.year"></h3>
               <label
-                ><a :href="'/barang/detailbarang_pdf/' + barang.id" class="btn btn-primary"
-                  >Print</a
+                ><a
+                  :href="'/barang/detailbarang_pdf/' + barang.id"
+                  class="btn btn-primary"
+                  >Print Detail Barang</a
+                ></label
+              >
+            </div>
+            <hr>
+            <div>
+              <h2 class="text-center">Daftar Riwayat Pengguna</h2>
+              <b-table
+                :fields="fields"
+                :items="history"
+                :sort-by.sync="sortBy"
+                :sort-desc.sync="sortDesc"
+              >
+              </b-table>
+              <label
+                ><a
+                  :href="'/barang/HistoryPDFDetail/' + barang.id"
+                  class="btn btn-primary"
+                  >Print Riwayat Barang</a
                 ></label
               >
             </div>
@@ -58,6 +78,23 @@ export default {
         lokasi: {},
       },
       kategori: [],
+      history: [],
+      fields: [
+        ,
+        { key: "id", label: "Id" },
+        { key: "pengguna.name", label: "Nama Pengguna" },
+        {
+          key: "tanggal_awal_penggunaan",
+          label: "Tanggal Awal Penggunaan",
+        },
+        {
+          key: "tanggal_akhir_penggunaan",
+          label: "Tanggal Akhir Penggunaan",
+        },
+        { key: "keterangan", label: "Keterangan" },
+      ],
+      sortBy: "id",
+      sortDesc: true,
     };
   },
   created() {
@@ -66,6 +103,9 @@ export default {
     });
     axios.get("/api/barang/" + this.$route.params.id).then((response) => {
       this.barang = response.data.barang;
+    });
+    axios.get("/api/history/" + this.$route.params.id).then((response) => {
+      this.history = response.data.history;
     });
   },
 };
@@ -80,5 +120,4 @@ Vue.filter("toCurrency", function (value) {
   });
   return formatter.format(value);
 });
-
 </script>

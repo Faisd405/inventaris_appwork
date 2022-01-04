@@ -35,9 +35,9 @@
                 />
               </div>
               <div class="form-group">
-                <label for="sifat_id">Roles</label>
+                <label for="roles_id">Roles</label>
                 <select
-                  name="sifat_id"
+                  name="roles_id"
                   class="form-control"
                   v-model="users.roles"
                 >

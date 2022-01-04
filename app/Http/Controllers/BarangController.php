@@ -5,12 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\barang;
 use App\Models\kategori;
-use App\Models\User;
 use App\Models\pengguna;
 use PDF;
 use Illuminate\Support\Facades\File;
 use App\Exports\BarangExport;
-use App\Exports\UserBarangExport;
+use App\Models\history;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 
@@ -90,6 +89,15 @@ class BarangController extends Controller
         $barang->save();
         $kategori->update();
 
+        $history = new history;
+        $history->pengguna_id = $request->pengguna_id;
+        $history->barang_id = $barang->id;
+        $history->tanggal_awal_penggunaan = date('d-m-Y');
+        $history->tanggal_akhir_penggunaan = "Masih Terpakai";
+        $history->keterangan = "Barang " . $barang->nama_barang . " dipakai pada tanggal " . date('d-m-Y');
+        $history->status = "Masih Digunakan";
+        $history->save();
+
         return response()->json([
             'success' => true,
             'message' => 'barang Berhasil Ditambahkan!',
@@ -117,11 +125,36 @@ class BarangController extends Controller
     public function update(Request $request, $id)
     {
         $barang = barang::find($id);
+        $pengguna_barang = barang::find($id);
         $barang->update($request->all());
+
+        if ($request->pengguna_id != $pengguna_barang->pengguna_id) {
+            //take id from barang id in last
+            $history = history::where('barang_id', $id)->orderBy('id', 'desc')->first();
+            $history->tanggal_akhir_penggunaan = date('d-m-Y');
+            if ($request->keterangan){
+                $history->keterangan = $request->keterangan;
+            }
+            if (!$request->keterangan){
+                $history->keterangan = "Pengguna " . $barang->nama_barang . " Diganti pada tanggal " . date('d-m-Y');
+            }
+            $history->status = "Tidak Digunakan";
+            $history->update();
+
+            $history = new history;
+            $history->pengguna_id = $request->pengguna_id;
+            $history->barang_id = $barang->id;
+            $history->tanggal_awal_penggunaan = date('d-m-Y');
+            $history->tanggal_akhir_penggunaan = "Masih Terpakai";
+            $history->keterangan = "Barang " . $barang->nama_barang . " dipakai pada tanggal " . date('d-m-Y');
+            $history->status = "Masih Digunakan";
+            $history->save();
+        }
+
         return response()->json([
             'success' => true,
             'message' => 'barang Berhasil Diupdate!',
-            'barang'    => $barang
+            'barang'    => $barang,
         ], 200);
     }
 
@@ -141,7 +174,7 @@ class BarangController extends Controller
 
     public function barang_pdf()
     {
-        $name='Laporan Barang '.date('d-m-Y').'.pdf';
+        $name = 'Laporan Barang ' . date('d-m-Y') . '.pdf';
         $barang = barang::all();
         $pdf = PDF::loadView('barang.barang_pdf', compact('barang'))->setPaper('a4', 'landscape');
         return $pdf->stream($name);
@@ -149,7 +182,7 @@ class BarangController extends Controller
 
     public function qrbarang_pdf()
     {
-        $name='Laporan QR Barang '.date('d-m-Y').'.pdf';
+        $name = 'Laporan QR Barang ' . date('d-m-Y') . '.pdf';
         $barang = barang::with('pengguna', 'kategori')->get();
         $pdf = PDF::loadView('barang.qrbarang_pdf', compact('barang'))->setPaper('a4', 'landscape');
         return $pdf->stream($name);
@@ -157,17 +190,16 @@ class BarangController extends Controller
 
     public function detailbarang_pdf($id)
     {
-        $name='Laporan Detail Barang '.date('d-m-Y').'.pdf';
+        $name = 'Laporan Detail Barang ' . date('d-m-Y') . '.pdf';
         $barang = barang::find($id);
 
-    	$pdf = PDF::loadview('barang.detailbarang_pdf', compact('barang'));
-    	return $pdf->stream($name);
+        $pdf = PDF::loadview('barang.detailbarang_pdf', compact('barang'));
+        return $pdf->stream($name);
     }
 
     public function barang_excel()
     {
-        $name='Laporan Barang '.date('d-m-Y').'.xlsx';
+        $name = 'Laporan Barang ' . date('d-m-Y') . '.xlsx';
         return Excel::download(new BarangExport, $name);
     }
-
 }

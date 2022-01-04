@@ -349,7 +349,21 @@ const router = new Router({
                 isAdmin: true
             }
         },
-
+        // Route History
+        {
+            name: 'index-history',
+            path: '/history',
+            component: () => import('@/components/history/index'),
+            meta: {
+                requiresAuth: true,
+                if(isAdmin) {
+                    isAdmin: true;
+                },
+                if(isUser) {
+                    isUser: true
+                }
+            }
+        },
         ]
     }]
 })
@@ -399,7 +413,7 @@ router.beforeEach((to, from, next) => {
                 next()
             }
         }
-    }else {
+    } else {
         next()
     }
 })

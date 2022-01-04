@@ -134,6 +134,17 @@
                 </select>
               </div>
 
+              <!-- Keterangan Edit -->
+                <div class="form-group">
+                    <label for="keterangan">Keterangan</label>
+                    <textarea
+                    name="keterangan"
+                    class="form-control"
+                    v-model="barang.keterangan"
+                    placeholder="Masukan Keterangan"
+                    ></textarea>
+                </div>
+
               <div class="form-group">
                 <button class="btn btn-md btn-success" type="submit">
                   SIMPAN

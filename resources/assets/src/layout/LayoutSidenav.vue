@@ -38,6 +38,9 @@
       <sidenav-router-link icon="ion ion-md-book" to="/buku" :exact="true"
         >Buku</sidenav-router-link
       >
+      <sidenav-router-link icon="ion ion-md-desktop" to="/history" :exact="true"
+        >History Penggunaan Barang</sidenav-router-link
+      >
     </div>
   </sidenav>
 </template>

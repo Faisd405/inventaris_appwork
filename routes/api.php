@@ -10,6 +10,7 @@ use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\JenisController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\HistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,12 @@ Route::get('/barang/{id}', [BarangController::class, 'show']);
 Route::post('/barang', [BarangController::class, 'store']);
 Route::put('/barang/{id}', [BarangController::class, 'update']);
 Route::delete('/barang/{id}', [BarangController::class, 'destroy']);
+
+//Route API History
+Route::get('/history', [HistoryController::class, 'index']);
+Route::get('/history/{id}', [HistoryController::class, 'show']);
+Route::put('/history/{id}', [HistoryController::class, 'update']);
+Route::delete('/history/{id}', [HistoryController::class, 'destroy']);
 
 //Route API Pengguna
 Route::get('/pengguna/nopengguna', [PenggunaController::class, 'nopengguna']);

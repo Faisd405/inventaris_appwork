@@ -12,15 +12,26 @@
 
                 <template slot="action" slot-scope="data">
                     <span v-if="loginType == 'admin'">
+                    <router-link
+                      :to="{
+                        name: 'edit-barang',
+                        params: { id: data.item.id },
+                      }"
+                      class="btn btn-sm btn-primary"
+                      >Edit</router-link
+                    >
                     <Button v-if="data.item.pengguna_id!=1"
                         class="btn btn-sm btn-danger"
                         @click="update(data.item.id)"
                       >
                         Hapus Kepemilikan
                       </Button>
-                      <span v-if="data.item.pengguna_id == '1'">
-                          Tidak Bisa
-                      </span>
+                    <button
+                      class="btn btn-sm btn-danger"
+                      @click="destroy(data.item.id)"
+                    >
+                      Hapus Data Barang
+                    </button>
                     </span>
                     <span v-if="loginType != 'admin'">
                         Kamu Bukan Admin
@@ -102,6 +113,16 @@ export default {
         .put(uri, this.barang)
         .then((response) => {
         this.barangs = this.barangs.filter((barangs) => barangs.id != id);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    destroy(id) {
+      axios
+        .delete(`/api/barang/${id}`)
+        .then((response) => {
+          this.barang = this.barang.filter((barang) => barang.id != id);
         })
         .catch((error) => {
           console.log(error);

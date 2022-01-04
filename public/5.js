@@ -60,6 +60,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -71,7 +91,26 @@ __webpack_require__.r(__webpack_exports__);
         jenis: {},
         lokasi: {}
       },
-      kategori: []
+      kategori: [],
+      history: [],
+      fields: [, {
+        key: "id",
+        label: "Id"
+      }, {
+        key: "pengguna.name",
+        label: "Nama Pengguna"
+      }, {
+        key: "tanggal_awal_penggunaan",
+        label: "Tanggal Awal Penggunaan"
+      }, {
+        key: "tanggal_akhir_penggunaan",
+        label: "Tanggal Akhir Penggunaan"
+      }, {
+        key: "keterangan",
+        label: "Keterangan"
+      }],
+      sortBy: "id",
+      sortDesc: true
     };
   },
   created: function created() {
@@ -82,6 +121,9 @@ __webpack_require__.r(__webpack_exports__);
     });
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/barang/" + this.$route.params.id).then(function (response) {
       _this.barang = response.data.barang;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/history/" + this.$route.params.id).then(function (response) {
+      _this.history = response.data.history;
     });
   }
 });
@@ -194,10 +236,58 @@ var render = function () {
                       href: "/barang/detailbarang_pdf/" + _vm.barang.id,
                     },
                   },
-                  [_vm._v("Print")]
+                  [_vm._v("Print Detail Barang")]
                 ),
               ]),
             ]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c(
+              "div",
+              [
+                _c("h2", { staticClass: "text-center" }, [
+                  _vm._v("Daftar Riwayat Pengguna"),
+                ]),
+                _vm._v(" "),
+                _c("b-table", {
+                  attrs: {
+                    fields: _vm.fields,
+                    items: _vm.history,
+                    "sort-by": _vm.sortBy,
+                    "sort-desc": _vm.sortDesc,
+                  },
+                  on: {
+                    "update:sortBy": function ($event) {
+                      _vm.sortBy = $event
+                    },
+                    "update:sort-by": function ($event) {
+                      _vm.sortBy = $event
+                    },
+                    "update:sortDesc": function ($event) {
+                      _vm.sortDesc = $event
+                    },
+                    "update:sort-desc": function ($event) {
+                      _vm.sortDesc = $event
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("label", [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: {
+                        href: "/barang/HistoryPDFDetail/" + _vm.barang.id,
+                      },
+                    },
+                    [_vm._v("Print Riwayat Barang")]
+                  ),
+                ]),
+              ],
+              1
+            ),
           ]),
         ]),
       ]),

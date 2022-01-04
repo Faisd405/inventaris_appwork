@@ -28,4 +28,9 @@ class barang extends Model
     {
         return $this->hasOne('App\Models\jenis', 'id', 'jenis_id');
     }
+
+    public function history()
+    {
+        return $this->belongsTo('App\Models\history', 'barang_id', 'id');
+    }
 }

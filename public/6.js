@@ -160,6 +160,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -680,6 +691,37 @@ var render = function () {
                     ],
                     2
                   ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "keterangan" } }, [
+                    _vm._v("Keterangan"),
+                  ]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.barang.keterangan,
+                        expression: "barang.keterangan",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      name: "keterangan",
+                      placeholder: "Masukan Keterangan",
+                    },
+                    domProps: { value: _vm.barang.keterangan },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.barang, "keterangan", $event.target.value)
+                      },
+                    },
+                  }),
                 ]),
                 _vm._v(" "),
                 _vm._m(0),

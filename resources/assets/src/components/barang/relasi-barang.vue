@@ -11,12 +11,16 @@
               <div class="form-group">
                 <label for="user_id">Pengguna</label>
                 <select
-                  name="user_id"
+                  name="pengguna_id"
                   class="form-control"
                   v-model="barang.pengguna_id"
                 >
                   <option value="" disabled>Pilih Pengguna</option>
-                  <option v-for="pengguna in pengguna" :key="pengguna.id" :value="pengguna.id">
+                  <option
+                    v-for="pengguna in pengguna"
+                    :key="pengguna.id"
+                    :value="pengguna.id"
+                  >
                     {{ pengguna.name }}
                   </option>
                 </select>
@@ -40,6 +44,18 @@
                   <option disabled v-if="!barang">Tidak Ada Barang Baru</option>
                 </select>
               </div>
+
+              <!-- Keterangan Edit -->
+              <div class="form-group">
+                <label for="keterangan">Keterangan</label>
+                <textarea
+                  name="keterangan"
+                  class="form-control"
+                  v-model="barang.keterangan"
+                  placeholder="Masukan Keterangan"
+                ></textarea>
+              </div>
+
               <div class="form-group">
                 <button class="btn btn-md btn-success" type="submit">
                   SIMPAN
@@ -54,7 +70,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
   data() {
     return {
@@ -74,14 +90,14 @@ export default {
   methods: {
     RelasiUserBarangUpdate() {
       let uri = "/api/barang/" + this.barang.id;
-        axios
-            .put(uri, this.barang)
-            .then((response) => {
-                this.$router.push("/pengguna/detail/"+this.barang.pengguna_id);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+      axios
+        .put(uri, this.barang)
+        .then((response) => {
+          this.$router.push("/pengguna/detail/" + this.barang.pengguna_id);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };

@@ -24,34 +24,41 @@
 
 <body>
     <h1 class="text-center">Daftar Barang</h1>
-        <table class='table table-bordered '>
-            <thead class="thead-dark">
+    <table class='table table-bordered '>
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nama Barang</th>
+                <th scope="col">Jenis Barang</th>
+                <th scope="col">Detail Barang</th>
+                <th scope="col">Kategori</th>
+                <th scope="col">Fungsi</th>
+                <th scope="col">Harga</th>
+                <th scope="col">Lokasi</th>
+                <th scope="col">Pengguna</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($barang as $b)
                 <tr>
-                    <th scope="col">Nama Barang</th>
-                    <th scope="col">Jenis Barang</th>
-                    <th scope="col">Detail Barang</th>
-                    <th scope="col">Kategori</th>
-                    <th scope="col">Fungsi</th>
-                    <th scope="col">Harga</th>
-                    <th scope="col">Lokasi</th>
-                    <th scope="col">Pengguna</th>
+                    <td>{{ $b->nama_barang }}</td>
+                    <td>{{ $b->jenis->jenis_barang }}</td>
+                    <td>{{ $b->detail_barang }}</td>
+                    <td>{{ $b->kategori->nama_kategori }}</td>
+                    <td>{{ $b->fungsi }}</td>
+                    <td>@currency($b->harga_barang)</td>
+                    <td>{{ $b->lokasi->lokasi }}</td>
+                    <td>{{ $b->pengguna->name }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach ($barang as $b)
-                    <tr>
-                        <td>{{ $b->nama_barang }}</td>
-                        <td>{{ $b->jenis->jenis_barang }}</td>
-                        <td>{{ $b->detail_barang }}</td>
-                        <td>{{ $b->kategori->nama_kategori }}</td>
-                        <td>{{ $b->fungsi }}</td>
-                        <td>{{ $b->harga_barang }}</td>
-                        <td>{{ $b->lokasi->lokasi }}</td>
-                        <td>{{ $b->pengguna->name }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+            @endforeach
+        </tbody>
+        <tfoot>
+            <tr>
+                {{-- harga_barang sum --}}
+                <th scope="col">Total Harga</th>
+                <th scope="col" colspan="7">@currency($barang->sum('harga_barang'))</th>
+            </tr>
+        </tfoot>
+    </table>
 </body>
 
 </html>
