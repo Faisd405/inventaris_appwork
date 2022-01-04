@@ -38,7 +38,8 @@ class HistoryController extends Controller
         return $pdf->stream($name);
     }
 
-    public function HistoryPDF(){
+    public function HistoryPDF()
+    {
         $history = history::with('pengguna', 'barang')->latest()->get();
         $pdf = PDF::loadView('barang.riwayatbarang_pdf', compact('history'));
         $name = 'Laporan Riwayat Barang ' . date('d-m-Y') . '.pdf';
@@ -51,15 +52,17 @@ class HistoryController extends Controller
         $barang->update($request->all());
 
         $historyupdate = history::find($request->id_history);
-        $historyupdate->tanggal_akhir_penggunaan = date('d-m-Y');
-        if ($request->keterangan){
-            $historyupdate->keterangan = $request->keterangan;
+        if ($historyupdate) {
+            $historyupdate->tanggal_akhir_penggunaan = date('d-m-Y');
+            if ($request->keterangan) {
+                $historyupdate->keterangan = $request->keterangan;
+            }
+            if (!$request->keterangan) {
+                $historyupdate->keterangan = "Pengguna " . $barang->nama_barang . " Diganti pada tanggal " . date('d-m-Y');
+            }
+            $historyupdate->status = "Tidak Digunakan";
+            $historyupdate->update();
         }
-        if (!$request->keterangan){
-            $historyupdate->keterangan = "Pengguna " . $barang->nama_barang . " Diganti pada tanggal " . date('d-m-Y');
-        }
-        $historyupdate->status = "Tidak Digunakan";
-        $historyupdate->update();
 
         $history = new history;
         $history->pengguna_id = $request->pengguna_id;
@@ -89,5 +92,4 @@ class HistoryController extends Controller
             'data'    => $history
         ], 200);
     }
-
 }

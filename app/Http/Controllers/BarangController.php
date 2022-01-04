@@ -131,16 +131,17 @@ class BarangController extends Controller
         if ($request->pengguna_id != $pengguna_barang->pengguna_id) {
             //take id from barang id in last
             $history = history::where('barang_id', $id)->orderBy('id', 'desc')->first();
-            $history->tanggal_akhir_penggunaan = date('d-m-Y');
-            if ($request->keterangan){
-                $history->keterangan = $request->keterangan;
+            if ($history) {
+                $history->tanggal_akhir_penggunaan = date('d-m-Y');
+                if ($request->keterangan) {
+                    $history->keterangan = $request->keterangan;
+                }
+                if (!$request->keterangan) {
+                    $history->keterangan = "Pengguna " . $barang->nama_barang . " Diganti pada tanggal " . date('d-m-Y');
+                }
+                $history->status = "Tidak Digunakan";
+                $history->update();
             }
-            if (!$request->keterangan){
-                $history->keterangan = "Pengguna " . $barang->nama_barang . " Diganti pada tanggal " . date('d-m-Y');
-            }
-            $history->status = "Tidak Digunakan";
-            $history->update();
-
             $history = new history;
             $history->pengguna_id = $request->pengguna_id;
             $history->barang_id = $barang->id;
