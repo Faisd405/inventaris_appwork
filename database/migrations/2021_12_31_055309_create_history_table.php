@@ -16,11 +16,11 @@ class CreateHistoryTable extends Migration
         Schema::create('history', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('barang_id');
-            $table->foreign('barang_id')->references('id')->on('barang');
+            $table->foreign('barang_id')->references('id')->on('barang')->onDelete('cascade');
             $table->string('tanggal_awal_penggunaan');
             $table->string('tanggal_akhir_penggunaan');
             $table->unsignedBigInteger('pengguna_id');
-            $table->foreign('pengguna_id')->references('id')->on('pengguna');
+            $table->foreign('pengguna_id')->references('id')->on('pengguna')->onDelete('cascade');
             $table->string('keterangan');
             $table->string('status');
             $table->timestamps();

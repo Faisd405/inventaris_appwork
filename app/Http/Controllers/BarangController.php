@@ -113,8 +113,8 @@ class BarangController extends Controller
         $kategori->jumlah = $kategori->jumlah - 1;
         $kategori->update();
         File::delete('images/' . $barang->image);
-
         $barang->delete();
+
         return response()->json([
             'success' => true,
             'message' => 'barang Berhasil Dihapus!',
