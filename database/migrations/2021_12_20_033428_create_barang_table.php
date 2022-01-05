@@ -29,7 +29,7 @@ class CreateBarangTable extends Migration
             $table->unsignedBigInteger('pengguna_id');
             $table->foreign('pengguna_id')->references('id')->on('pengguna');
             $table->year('year');
-            $table->string('image')->nullable();
+            $table->string('image');
             $table->timestamps();
         });
     }
