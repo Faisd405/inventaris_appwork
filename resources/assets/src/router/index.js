@@ -59,6 +59,15 @@ const router = new Router({
             }
         },
         {
+            name: 'gantifoto',
+            path: '/barang/gantifoto/:id',
+            component: () => import('@/components/barang/gantifoto'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
+        },
+        {
             name: 'create-barang',
             path: '/barang/create',
             component: () => import('@/components/barang/create'),

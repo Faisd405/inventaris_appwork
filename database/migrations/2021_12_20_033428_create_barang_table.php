@@ -17,7 +17,7 @@ class CreateBarangTable extends Migration
             $table->bigIncrements('id');
             $table->string('kode_barang');
             $table->string('nama_barang');
-            $table->string('detail_barang');
+            $table->longText('detail_barang');
             $table->unsignedBigInteger('kategori_id');
             $table->foreign('kategori_id')->references('id')->on('kategori');
             $table->string('fungsi');
@@ -29,7 +29,7 @@ class CreateBarangTable extends Migration
             $table->unsignedBigInteger('pengguna_id');
             $table->foreign('pengguna_id')->references('id')->on('pengguna');
             $table->year('year');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

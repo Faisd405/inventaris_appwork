@@ -80,6 +80,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -163,12 +172,32 @@ var render = function () {
           _c("div", { staticClass: "card-header" }, [_vm._v("Detail Barang")]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("div", [
-              _c("img", {
-                staticClass: "img-thumbnail rounded mx-auto d-block",
-                attrs: { src: "/images/" + _vm.barang.image, width: "400px" },
-              }),
-            ]),
+            _c(
+              "div",
+              [
+                _c("img", {
+                  staticClass: "img-thumbnail rounded mx-auto d-block",
+                  attrs: { src: "/images/" + _vm.barang.image, width: "400px" },
+                }),
+                _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      "btn btn-primary d-flex justify-content-center",
+                    attrs: {
+                      to: {
+                        name: "gantifoto",
+                        params: {
+                          id: _vm.barang.id,
+                        },
+                      },
+                    },
+                  },
+                  [_vm._v("Edit Foto")]
+                ),
+              ],
+              1
+            ),
             _vm._v(" "),
             _c("div", [
               _c("label", [_vm._v("Nama Barang : ")]),

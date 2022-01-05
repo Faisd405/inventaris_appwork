@@ -63,12 +63,17 @@ class BarangController extends Controller
             'jenis_id' => 'required',
             'pengguna_id' => 'required',
             'year' => 'required',
-            'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('images'), $imageName);
-
+        if ($request->image != "undefined") {
+            $request->validate([
+                'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+        } if ($request->image == "undefined") {
+            $imageName = "default.jpg";
+        }
         $barang = new barang;
         $barang->image = $imageName;
         $barang->nama_barang = $request->nama_barang;
@@ -112,7 +117,9 @@ class BarangController extends Controller
         $kategori = kategori::find($barang->kategori_id);
         $kategori->jumlah = $kategori->jumlah - 1;
         $kategori->update();
-        File::delete('images/' . $barang->image);
+        if ($barang->image != "default.jpg") {
+            File::delete('images/' . $barang->image);
+        }
         $barang->delete();
 
         return response()->json([
@@ -120,6 +127,23 @@ class BarangController extends Controller
             'message' => 'barang Berhasil Dihapus!',
             'data'    => $barang
         ], 200);
+    }
+
+    public function gantifoto (Request $request, $id)
+    {
+        $barang = barang::find($id);
+        $request->validate([
+            'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $imageName = time() . '.' . $request->image->extension();
+
+        if ($barang->image != "default.jpg") {
+            File::delete('images/' . $barang->image);
+        }
+        $request->image->move(public_path('images'), $imageName);
+        $barang->image = $imageName;
+        $barang->update();
     }
 
     public function update(Request $request, $id)
@@ -137,7 +161,8 @@ class BarangController extends Controller
                     $history->keterangan = $request->keterangan;
                 }
                 if (!$request->keterangan) {
-                    $history->keterangan = "Pengguna " . $barang->nama_barang . " Diganti pada tanggal " . date('d-m-Y');
+                    $history->keterangan = "Pengguna " . $barang->nama_barang
+                        . " Diganti pada tanggal " . date('d-m-Y');
                 }
                 $history->status = "Tidak Digunakan";
                 $history->update();
@@ -147,7 +172,8 @@ class BarangController extends Controller
             $history->barang_id = $barang->id;
             $history->tanggal_awal_penggunaan = date('d-m-Y');
             $history->tanggal_akhir_penggunaan = "Masih Terpakai";
-            $history->keterangan = "Barang " . $barang->nama_barang . " dipakai pada tanggal " . date('d-m-Y');
+            $history->keterangan = "Barang " . $barang->nama_barang
+                . " dipakai pada tanggal " . date('d-m-Y');
             $history->status = "Masih Digunakan";
             $history->save();
         }
@@ -177,7 +203,8 @@ class BarangController extends Controller
     {
         $name = 'Laporan Barang ' . date('d-m-Y') . '.pdf';
         $barang = barang::all();
-        $pdf = PDF::loadView('barang.barang_pdf', compact('barang'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('barang.barang_pdf', compact('barang'))
+            ->setPaper('a4', 'landscape');
         return $pdf->stream($name);
     }
 
@@ -185,7 +212,8 @@ class BarangController extends Controller
     {
         $name = 'Laporan QR Barang ' . date('d-m-Y') . '.pdf';
         $barang = barang::with('pengguna', 'kategori')->get();
-        $pdf = PDF::loadView('barang.qrbarang_pdf', compact('barang'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('barang.qrbarang_pdf', compact('barang'))
+            ->setPaper('a4', 'landscape');
         return $pdf->stream($name);
     }
 
