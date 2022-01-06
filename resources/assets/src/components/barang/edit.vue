@@ -116,7 +116,6 @@
                 </select>
               </div>
 
-              <!-- jumlah -->
               <div class="form-group">
                 <label for="jumlah">Jumlah</label>
                 <input
