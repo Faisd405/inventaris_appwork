@@ -14,4 +14,28 @@ class sifat extends Model
     {
         return $this->belongsTo('App\Models\kategori');
     }
+
+    public function getSifat()
+    {
+        return sifat::all();
+    }
+
+    public function getSifatById($id)
+    {
+        return sifat::find($id);
+    }
+
+    public function postSifat($request){
+        return sifat::create($request->all());
+    }
+
+    public function updateSifat($request, $id){
+        $sifat = sifat::find($id);
+        return $sifat->update($request->all());
+    }
+
+    public function deleteSifat($id){
+        $sifat = sifat::find($id);
+        return $sifat->delete();
+    }
 }

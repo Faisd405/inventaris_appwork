@@ -12,8 +12,11 @@
                 <input
                   type="text"
                   class="form-control"
+                  name="sifat"
+                  id="sifat"
                   v-model="sifat.sifat_kategori"
                   placeholder="Masukan judul"
+                  required
                 />
               </div>
               <div class="form-group">
@@ -30,7 +33,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
   data() {
     return {
