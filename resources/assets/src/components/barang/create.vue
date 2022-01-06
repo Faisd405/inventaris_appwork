@@ -132,7 +132,7 @@
                   type="number"
                   name="jumlah"
                   class="form-control"
-                  v-model="barang.jumlah"
+                  v-model="barang.jumlah_barang"
                   placeholder="Masukan Jumlah"
                 />
               </div>
@@ -232,11 +232,8 @@ export default {
       formData.append("jenis_id", this.barang.jenis_id);
       formData.append("lokasi_id", this.barang.lokasi_id);
       formData.append("pengguna_id", this.barang.pengguna_id);
-      for (let i = 0; i < this.jumlah; i++) {
-        formData.append("pengguna_id", this.barang.pengguna_id[i]);
-      }
       formData.append("image", this.barang.image);
-      formData.append("jumlah_barang", this.barang.jumlah);
+      formData.append("jumlah_barang", this.barang.jumlah_barang);
 
       axios
         .post("/api/barang", formData, config)

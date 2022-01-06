@@ -122,7 +122,7 @@
                   type="number"
                   name="jumlah"
                   class="form-control"
-                  v-model="barang.jumlah"
+                  v-model="barang.jumlah_barang"
                   placeholder="Masukan Jumlah"
                 />
               </div>
