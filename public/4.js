@@ -181,6 +181,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -190,7 +207,9 @@ __webpack_require__.r(__webpack_exports__);
       jenis: [],
       lokasi: [],
       pengguna: [],
-      preview: null
+      preview: null,
+      jumlah: 0,
+      i: 0
     };
   },
   created: function created() {
@@ -209,6 +228,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.lokasi = response.data.lokasi;
     });
   },
+  computed: {},
   methods: {
     BarangStore: function BarangStore() {
       var _this2 = this;
@@ -230,6 +250,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("lokasi_id", this.barang.lokasi_id);
       formData.append("pengguna_id", this.barang.pengguna_id);
       formData.append("image", this.barang.image);
+      formData.append("jumlah_barang", this.barang.jumlah);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/barang", formData, config).then(function (response) {
         _this2.$router.push("/barang");
       })["catch"](function (errors) {
@@ -663,6 +684,36 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "jumlah" } }, [_vm._v("Jumlah")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.barang.jumlah,
+                        expression: "barang.jumlah",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "number",
+                      name: "jumlah",
+                      placeholder: "Masukan Jumlah",
+                    },
+                    domProps: { value: _vm.barang.jumlah },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.barang, "jumlah", $event.target.value)
+                      },
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "pengguna_id" } }, [
                     _vm._v("pengguna"),
                   ]),
@@ -714,9 +765,9 @@ var render = function () {
                           },
                           [
                             _vm._v(
-                              "\n                  " +
+                              "\n                    " +
                                 _vm._s(pengguna.name) +
-                                "\n                "
+                                "\n                  "
                             ),
                           ]
                         )

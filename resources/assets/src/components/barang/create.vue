@@ -126,6 +126,18 @@
                 </select>
               </div>
 
+              <!-- jumlah -->
+              <div class="form-group">
+                <label for="jumlah">Jumlah</label>
+                <input
+                  type="number"
+                  name="jumlah"
+                  class="form-control"
+                  v-model="barang.jumlah"
+                  placeholder="Masukan Jumlah"
+                />
+              </div>
+
               <div class="form-group">
                 <label for="pengguna_id">pengguna</label>
                 <select
@@ -134,7 +146,11 @@
                   v-model="barang.pengguna_id"
                 >
                   <option value="" disabled>Pilih Pengguna</option>
-                  <option v-for="pengguna in pengguna" :key="pengguna.id" :value="pengguna.id">
+                  <option
+                    v-for="pengguna in pengguna"
+                    :key="pengguna.id"
+                    :value="pengguna.id"
+                  >
                     {{ pengguna.name }}
                   </option>
                 </select>
@@ -179,6 +195,8 @@ export default {
       lokasi: [],
       pengguna: [],
       preview: null,
+      jumlah: 0,
+      i: 0,
     };
   },
   created() {
@@ -195,6 +213,7 @@ export default {
       this.lokasi = response.data.lokasi;
     });
   },
+  computed: {},
   methods: {
     BarangStore() {
       const config = {
@@ -214,7 +233,11 @@ export default {
       formData.append("jenis_id", this.barang.jenis_id);
       formData.append("lokasi_id", this.barang.lokasi_id);
       formData.append("pengguna_id", this.barang.pengguna_id);
+      for (let i = 0; i < this.jumlah; i++) {
+        formData.append("pengguna_id", this.barang.pengguna_id[i]);
+      }
       formData.append("image", this.barang.image);
+      formData.append("jumlah_barang", this.barang.jumlah);
 
       axios
         .post("/api/barang", formData, config)

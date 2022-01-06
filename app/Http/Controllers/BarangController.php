@@ -63,6 +63,7 @@ class BarangController extends Controller
             'jenis_id' => 'required',
             'pengguna_id' => 'required',
             'year' => 'required',
+            'jumlah_barang' => 'required',
         ]);
 
         if ($request->image != "undefined") {
@@ -85,6 +86,7 @@ class BarangController extends Controller
         $barang->lokasi_id = $request->lokasi_id;
         $barang->jenis_id = $request->jenis_id;
         $barang->pengguna_id = $request->pengguna_id;
+        $barang->jumlah_barang = $request->jumlah_barang;
         $barang->year = $request->year;
 
 

@@ -267,6 +267,8 @@ var render = function () {
                             _vm._v(
                               "\n                  " +
                                 _vm._s(barang.nama_barang) +
+                                ", Pemakai : " +
+                                _vm._s(barang.pengguna.name) +
                                 "\n                "
                             ),
                           ]

@@ -116,6 +116,18 @@
                 </select>
               </div>
 
+              <!-- jumlah -->
+              <div class="form-group">
+                <label for="jumlah">Jumlah</label>
+                <input
+                  type="number"
+                  name="jumlah"
+                  class="form-control"
+                  v-model="barang.jumlah"
+                  placeholder="Masukan Jumlah"
+                />
+              </div>
+
               <div class="form-group">
                 <label for="pengguna_id">Pengguna</label>
                 <select

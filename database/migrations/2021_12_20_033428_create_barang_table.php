@@ -28,6 +28,7 @@ class CreateBarangTable extends Migration
             $table->foreign('jenis_id')->references('id')->on('jenis');
             $table->unsignedBigInteger('pengguna_id');
             $table->foreign('pengguna_id')->references('id')->on('pengguna');
+            $table->integer('jumlah_barang');
             $table->year('year');
             $table->string('image');
             $table->timestamps();

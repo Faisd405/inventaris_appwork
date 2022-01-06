@@ -177,9 +177,11 @@ __webpack_require__.r(__webpack_exports__);
         key: "year",
         label: "tahun"
       }, {
-        key: "action",
-        label: "Action",
+        key: "jumlah_barang",
         sortable: true
+      }, {
+        key: "action",
+        sortable: false
       }],
       filter: null,
       filterOn: [],

@@ -39,7 +39,7 @@
                     :value="barang.id"
                     :key="barang.id"
                   >
-                    {{ barang.nama_barang }}
+                    {{ barang.nama_barang }}, Pemakai : {{ barang.pengguna.name }}
                   </option>
                   <option disabled v-if="!barang">Tidak Ada Barang Baru</option>
                 </select>
