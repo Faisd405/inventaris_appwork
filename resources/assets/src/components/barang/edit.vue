@@ -145,9 +145,24 @@
                 </select>
               </div>
 
+              <div class="form-group">
+                <label for="image">image</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  name="image"
+                  @change="onFileChange"
+                />
+              </div>
+              <br />
+              <div class="preview" v-if="preview">
+                <p>Preview:</p>
+                <img :src="preview" class="img-thumbnail" />
+              </div>
+
               <!-- Keterangan Edit -->
                 <div class="form-group">
-                    <label for="keterangan">Keterangan</label>
+                    <label for="keterangan">Keterangan (Apabila Ganti Pengguna)</label>
                     <textarea
                     name="keterangan"
                     class="form-control"
@@ -184,6 +199,7 @@ export default {
       jenis: [],
       user: "",
       loginType: "",
+      preview: null,
     };
   },
   created() {
@@ -220,9 +236,37 @@ export default {
   methods: {
     BarangUpdate() {
       let uri = "/api/barang/" + this.$route.params.id;
-      axios.put(uri, this.barang).then((response) => {
+
+      let formData = new FormData();
+        formData.append("id", this.$route.params.id);
+        formData.append("nama_barang", this.barang.nama_barang);
+        formData.append("kode_barang", this.barang.kode_barang);
+        formData.append ("detail_barang", this.barang.detail_barang);
+        formData.append("kategori_id", this.barang.kategori_id);
+        formData.append("fungsi", this.barang.fungsi);
+        formData.append("harga_barang", this.barang.harga_barang);
+        formData.append("lokasi_id", this.barang.lokasi_id);
+        formData.append("jenis_id", this.barang.jenis_id);
+        formData.append("jumlah_barang", this.barang.jumlah_barang);
+        formData.append("pengguna_id", this.barang.pengguna_id);
+        formData.append("keterangan", this.barang.keterangan);
+        if (this.barang.image) {
+          formData.append("image", this.barang.image);
+        }
+        formData.append("year", this.barang.year);
+
+      axios.post(uri, formData).then((response) => {
         this.$router.push("/barang");
-      });
+            console.log(this.barang);
+      })
+        .catch((errors) => {
+            console.log(errors);
+            console.log(this.barang);
+        });
+    },
+    onFileChange(e) {
+      this.barang.image = e.target.files[0];
+      this.preview = URL.createObjectURL(e.target.files[0]);
     },
   },
   mounted() {

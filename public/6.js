@@ -171,6 +171,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -184,7 +210,8 @@ __webpack_require__.r(__webpack_exports__);
       lokasi: [],
       jenis: [],
       user: "",
-      loginType: ""
+      loginType: "",
+      preview: null
     };
   },
   created: function created() {
@@ -218,9 +245,37 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var uri = "/api/barang/" + this.$route.params.id;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.barang).then(function (response) {
+      var formData = new FormData();
+      formData.append("id", this.$route.params.id);
+      formData.append("nama_barang", this.barang.nama_barang);
+      formData.append("kode_barang", this.barang.kode_barang);
+      formData.append("detail_barang", this.barang.detail_barang);
+      formData.append("kategori_id", this.barang.kategori_id);
+      formData.append("fungsi", this.barang.fungsi);
+      formData.append("harga_barang", this.barang.harga_barang);
+      formData.append("lokasi_id", this.barang.lokasi_id);
+      formData.append("jenis_id", this.barang.jenis_id);
+      formData.append("jumlah_barang", this.barang.jumlah_barang);
+      formData.append("pengguna_id", this.barang.pengguna_id);
+      formData.append("keterangan", this.barang.keterangan);
+
+      if (this.barang.image) {
+        formData.append("image", this.barang.image);
+      }
+
+      formData.append("year", this.barang.year);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(uri, formData).then(function (response) {
         _this2.$router.push("/barang");
+
+        console.log(_this2.barang);
+      })["catch"](function (errors) {
+        console.log(errors);
+        console.log(_this2.barang);
       });
+    },
+    onFileChange: function onFileChange(e) {
+      this.barang.image = e.target.files[0];
+      this.preview = URL.createObjectURL(e.target.files[0]);
     }
   },
   mounted: function mounted() {
@@ -630,6 +685,40 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "jumlah" } }, [_vm._v("Jumlah")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.barang.jumlah_barang,
+                        expression: "barang.jumlah_barang",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "number",
+                      name: "jumlah",
+                      placeholder: "Masukan Jumlah",
+                    },
+                    domProps: { value: _vm.barang.jumlah_barang },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.barang,
+                          "jumlah_barang",
+                          $event.target.value
+                        )
+                      },
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "pengguna_id" } }, [
                     _vm._v("Pengguna"),
                   ]),
@@ -694,8 +783,31 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "image" } }, [_vm._v("image")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "file", name: "image" },
+                    on: { change: _vm.onFileChange },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _vm.preview
+                  ? _c("div", { staticClass: "preview" }, [
+                      _c("p", [_vm._v("Preview:")]),
+                      _vm._v(" "),
+                      _c("img", {
+                        staticClass: "img-thumbnail",
+                        attrs: { src: _vm.preview },
+                      }),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "keterangan" } }, [
-                    _vm._v("Keterangan"),
+                    _vm._v("Keterangan (Apabila Ganti Pengguna)"),
                   ]),
                   _vm._v(" "),
                   _c("textarea", {

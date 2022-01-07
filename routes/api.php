@@ -50,7 +50,7 @@ Route::get('/barang/year', [BarangController::class, 'indexHarga']);
 Route::post('/barang/gantifoto/{id}', [BarangController::class, 'gantifoto']);
 Route::get('/barang/{id}', [BarangController::class, 'show']);
 Route::post('/barang', [BarangController::class, 'store']);
-Route::put('/barang/{id}', [BarangController::class, 'update']);
+Route::post('/barang/{id}', [BarangController::class, 'update']);
 Route::delete('/barang/{id}', [BarangController::class, 'destroy']);
 
 //Route API History

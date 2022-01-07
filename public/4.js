@@ -196,8 +196,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -233,11 +231,6 @@ __webpack_require__.r(__webpack_exports__);
     BarangStore: function BarangStore() {
       var _this2 = this;
 
-      var config = {
-        headers: {
-          "content-type": "multipart/form-data"
-        }
-      };
       var formData = new FormData();
       formData.append("nama_barang", this.barang.nama_barang);
       formData.append("kode_barang", this.barang.kode_barang);
@@ -250,8 +243,8 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("lokasi_id", this.barang.lokasi_id);
       formData.append("pengguna_id", this.barang.pengguna_id);
       formData.append("image", this.barang.image);
-      formData.append("jumlah_barang", this.barang.jumlah);
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/barang", formData, config).then(function (response) {
+      formData.append("jumlah_barang", this.barang.jumlah_barang);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/barang", formData).then(function (response) {
         _this2.$router.push("/barang");
       })["catch"](function (errors) {
         console.log(errors);
@@ -691,8 +684,8 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.barang.jumlah,
-                        expression: "barang.jumlah",
+                        value: _vm.barang.jumlah_barang,
+                        expression: "barang.jumlah_barang",
                       },
                     ],
                     staticClass: "form-control",
@@ -701,13 +694,17 @@ var render = function () {
                       name: "jumlah",
                       placeholder: "Masukan Jumlah",
                     },
-                    domProps: { value: _vm.barang.jumlah },
+                    domProps: { value: _vm.barang.jumlah_barang },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.barang, "jumlah", $event.target.value)
+                        _vm.$set(
+                          _vm.barang,
+                          "jumlah_barang",
+                          $event.target.value
+                        )
                       },
                     },
                   }),
@@ -765,9 +762,9 @@ var render = function () {
                           },
                           [
                             _vm._v(
-                              "\n                    " +
+                              "\n                  " +
                                 _vm._s(pengguna.name) +
-                                "\n                  "
+                                "\n                "
                             ),
                           ]
                         )

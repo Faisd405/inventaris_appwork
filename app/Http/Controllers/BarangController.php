@@ -66,13 +66,13 @@ class BarangController extends Controller
             'jumlah_barang' => 'required',
         ]);
 
-        if ($request->image != "undefined") {
+        if ($request->hasFile('image')) {
             $request->validate([
                 'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imageName);
-        } if ($request->image == "undefined") {
+        } else {
             $imageName = "default.jpg";
         }
         $barang = new barang;
@@ -152,7 +152,34 @@ class BarangController extends Controller
     {
         $barang = barang::find($id);
         $pengguna_barang = barang::find($id);
-        $barang->update($request->all());
+
+        // if image file
+        if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            if ($barang->image != "default.jpg") {
+                File::delete('images/' . $barang->image);
+            }
+        } else{
+            $imageName = $barang->image;
+        }
+
+        $barang->image = $imageName;
+        $barang->nama_barang = $request->nama_barang;
+        $barang->kode_barang = $request->kode_barang;
+        $barang->detail_barang = $request->detail_barang;
+        $barang->kategori_id = $request->kategori_id;
+        $barang->fungsi = $request->fungsi;
+        $barang->harga_barang = $request->harga_barang;
+        $barang->lokasi_id = $request->lokasi_id;
+        $barang->jenis_id = $request->jenis_id;
+        $barang->pengguna_id = $request->pengguna_id;
+        $barang->jumlah_barang = $request->jumlah_barang;
+        $barang->year = $request->year;
+        $barang->update();
 
         if ($request->pengguna_id != $pengguna_barang->pengguna_id) {
             //take id from barang id in last

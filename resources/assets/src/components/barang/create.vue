@@ -215,12 +215,6 @@ export default {
   computed: {},
   methods: {
     BarangStore() {
-      const config = {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
-      };
-
       let formData = new FormData();
       formData.append("nama_barang", this.barang.nama_barang);
       formData.append("kode_barang", this.barang.kode_barang);
@@ -236,7 +230,7 @@ export default {
       formData.append("jumlah_barang", this.barang.jumlah_barang);
 
       axios
-        .post("/api/barang", formData, config)
+        .post("/api/barang", formData)
         .then((response) => {
           this.$router.push("/barang");
         })
