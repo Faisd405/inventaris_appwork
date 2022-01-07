@@ -80,6 +80,11 @@
                         <td><h2>:</h2></td>
                         <td><h2>{{ $barang->year }}</h2></td>
                     </tr>
+                    <tr>
+                        <th><h2>Jumlah Barang</h2></th>
+                        <td><h2>:</h2></td>
+                        <td><h2>{{ $barang->jumlah_barang }}</h2></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

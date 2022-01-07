@@ -35,6 +35,7 @@
                 <th scope="col">Harga</th>
                 <th scope="col">Lokasi</th>
                 <th scope="col">Pengguna</th>
+                <th scope="col">Jumlah Barang</th>
             </tr>
         </thead>
         <tbody>
@@ -48,6 +49,7 @@
                     <td>@currency($b->harga_barang)</td>
                     <td>{{ $b->lokasi->lokasi }}</td>
                     <td>{{ $b->pengguna->name }}</td>
+                    <td>{{ $b->jumlah_barang}}</td>
                 </tr>
             @endforeach
         </tbody>

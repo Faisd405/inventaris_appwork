@@ -41,6 +41,8 @@
               <h3 v-text="barang.pengguna.name"></h3>
               <label>Tahun : </label>
               <h3 v-text="barang.year"></h3>
+              <label>Jumlah :</label>
+              <h3 v-text="barang.jumlah_barang"></h3>
               <label
                 ><a
                   :href="'/barang/detailbarang_pdf/' + barang.id"
