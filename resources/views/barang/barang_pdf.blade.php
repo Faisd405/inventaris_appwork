@@ -57,7 +57,7 @@
             <tr>
                 {{-- harga_barang sum --}}
                 <th scope="col">Total Harga</th>
-                <th scope="col" colspan="7">@currency($barang->sum('harga_barang'))</th>
+                <th scope="col" colspan="8">@currency($barang->sum('harga_barang'))</th>
             </tr>
         </tfoot>
     </table>
