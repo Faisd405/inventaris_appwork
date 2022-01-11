@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     RelasiUserBarangUpdate() {
-      let uri = "/api/barang/" + this.barang.id;
+      let uri = "/api/barang/relasi/" + this.barang.id
       axios
         .put(uri, this.barang)
         .then((response) => {

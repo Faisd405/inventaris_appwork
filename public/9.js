@@ -105,7 +105,7 @@ __webpack_require__.r(__webpack_exports__);
     RelasiUserBarangUpdate: function RelasiUserBarangUpdate() {
       var _this2 = this;
 
-      var uri = "/api/barang/" + this.barang.id;
+      var uri = "/api/barang/relasi/" + this.barang.id;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.barang).then(function (response) {
         _this2.$router.push("/pengguna/detail/" + _this2.barang.pengguna_id);
       })["catch"](function (error) {

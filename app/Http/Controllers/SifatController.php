@@ -8,8 +8,6 @@ use App\Http\Requests\SifatRequest;
 
 class SifatController extends Controller
 {
-    protected sifat $sifat;
-
     public function __construct(sifat $sifat)
     {
         $this->sifat = $sifat;
@@ -43,7 +41,7 @@ class SifatController extends Controller
     }
 
     //update json
-    public function update(Request $request, $id)
+    public function update(SifatRequest $request, $id)
     {
         $sifat = $this->sifat->updateSifat($request, $id);
         return $this->respons($sifat);

@@ -80,7 +80,7 @@
                   </option>
                 </select>
               </div>
-
+              <br />
               <div class="form-group">
                 <button class="btn btn-md btn-success" type="submit">
                   SIMPAN

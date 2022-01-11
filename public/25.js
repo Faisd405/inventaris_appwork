@@ -129,8 +129,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("/api/barang/".concat(id)).then(function (response) {
-        _this3.barang = _this3.barang.filter(function (barang) {
-          return barang.id != id;
+        _this3.barangs = _this3.barangs.filter(function (barangs) {
+          return barangs.id != id;
         });
       })["catch"](function (error) {
         console.log(error);

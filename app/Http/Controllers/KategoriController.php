@@ -8,78 +8,69 @@ use App\Models\barang;
 
 class KategoriController extends Controller
 {
+    public function __construct(kategori $kategori, barang $barang)
+    {
+        $this->kategori = $kategori;
+        $this->barang = $barang;
+    }
+
     //index json
     public function index()
     {
-        $kategori = kategori::with('sifat')->get();
-        return response([
-            'success' => true,
-            'message' => 'List Semua kategori',
-            'kategori' => $kategori,
+        $kategori = $this->kategori->getKategori();
+        return response()->json([
+            'kategori' => $kategori
         ], 200);
     }
 
     public function store(Request $request)
     {
-        $request->merge([
-            'jumlah' => 0
-        ]);
-        $kategori = kategori::create($request->all());
+        $kategori = $this->kategori->postKategori($request);
 
-        if ($kategori){
+        if ($kategori) {
             return response()->json([
-            'success' => true,
-            'message' => 'kategori Berhasil Ditambahkan!',
-            'kategori'    => $kategori
-        ], 200); }
-        else {
-            return response()->json([
-                'success' => false,
-                'message' => 'kategori Tidak Berhasil Ditambahkan!',
                 'kategori'    => $kategori
-            ], 404);
+            ], 200);
         }
     }
 
-    public function indexnama(){
-        $namakategori = kategori::pluck('nama_kategori');
-        $jumlah = kategori::pluck('jumlah');
-        return response([
-            'success' => true,
-            'message' => 'List Semua kategori',
-            'kategori' => $namakategori,
-            'jumlah' => $jumlah,
+    public function indexnama()
+    {
+        $kategori = $this->kategori->pluck('nama_kategori');
+        $jumlah = $this->kategori->pluck('jumlah');
+        return response()->json([
+            'kategori' => $kategori,
+            'jumlah' => $jumlah
         ], 200);
     }
 
     public function destroy($id)
     {
-        $kategori = kategori::find($id);
-        if ($kategori->delete()) {
+        $kategori = $this->kategori->deleteKategori($id);
+
+        if ($kategori) {
             return response()->json([
-                'success' => true,
-                'message' => 'kategori Berhasil Dihapus!'
+                'kategori'    => $kategori
             ], 200);
         }
     }
 
     public function update(Request $request, $id)
     {
-        $kategori = kategori::find($id);
-        $kategori->update($request->all());
-        return response()->json([
-            'success' => true,
-            'message' => 'kategori Berhasil Diupdate!'
-        ], 200);
+        $kategori = $this->kategori->putKategori($request, $id);
+
+        if ($kategori) {
+            return response()->json([
+                'kategori'    => $kategori
+            ], 200);
+        }
     }
 
     public function show($id)
     {
-        $kategori = kategori::find($id);
-        $barang = barang::with('lokasi')->where('kategori_id', $id)->get();
+        $kategori = $this->kategori->getKategoriById($id);
+        $barang = $this->barang->getBarangByKategoriId($id);
         return response()->json([
-            'success' => true,
-            'message' => 'kategori Berhasil Ditampilkan!',
             'kategori'    => $kategori,
             'barang' => $barang
         ], 200);

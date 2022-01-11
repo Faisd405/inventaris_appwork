@@ -5,86 +5,67 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\barang;
 use App\Models\pengguna;
+use App\Http\Requests\PenggunaRequest;
 
 class PenggunaController extends Controller
 {
-    public function index() {
-        $pengguna = pengguna::with('barang')->get();
-        return response()->json([
-            'success' => true,
-            'message' => 'barang Berhasil Ditampilkan!',
-            'pengguna'    => $pengguna
-        ], 200);
+    public function __construct(pengguna $pengguna, barang $barang)
+    {
+        $this->pengguna = $pengguna;
+        $this->barang = $barang;
     }
 
-    //Index barang where user_id = 4VM
+    public function respons($pengguna){
+        return response()->json([
+            'pengguna' => $pengguna,
+        ]);
+    }
+
+    public function index() {
+        $pengguna = $this->pengguna->getPengguna();
+        return $this->respons($pengguna);
+    }
+
+    //Index barang where pengguna_id = 1
     public function nopengguna()
     {
-        $barang = barang::where('pengguna_id', '1')->get();
+        $barang = $this->pengguna->getBarangbyPengguna(1);
         return response()->json([
             'success' => true,
-            'message' => 'barang Berhasil Ditampilkan!',
-            'barang'    => $barang
+            'message' => 'List Semua barang',
+            'barang' => $barang,
         ], 200);
     }
 
-    // show json with barang
+    // show json
     public function show($id) {
-        $pengguna = pengguna::find($id);
-        $barang = barang::where('pengguna_id', $id)->with('pengguna', 'kategori', 'jenis', 'lokasi')->get();
+        $pengguna = $this->pengguna->getPenggunaById($id);
+        $barang = $this->pengguna->getBarangbyPengguna($id);
 
         if ($barang && $pengguna) {
             return response()->json([
-                'success' => true,
-                'message' => 'Barang dan User!',
                 'barang'    => $barang,
                 'pengguna' => $pengguna
             ], 200);
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'barangs Tidak Ditemukan!',
-                'data'    => ''
-            ], 404);
         }
     }
 
     // create json
-    public function store(Request $request) {
-        $pengguna = new pengguna;
-        $pengguna->name = $request->name;
-        $pengguna->save();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Pengguna Berhasil Ditambahkan!',
-            'pengguna'    => $pengguna
-        ], 200);
+    public function store(PenggunaRequest $request) {
+        $pengguna = $this->pengguna->postPengguna($request);
+        return $this->respons($pengguna);
     }
 
     // update json
-    public function update(Request $request, $id) {
-        $pengguna = pengguna::find($id);
-        $pengguna->name = $request->name;
-        $pengguna->update();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Pengguna Berhasil Diupdate!',
-            'pengguna'    => $pengguna
-        ], 200);
+    public function update(PenggunaRequest $request, $id) {
+        $pengguna = $this->pengguna->putPengguna($request, $id);
+        return $this->respons($pengguna);
     }
 
     // delete json
     public function destroy($id) {
-        $pengguna = pengguna::find($id);
-        $pengguna->delete();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Pengguna Berhasil Dihapus!',
-            'pengguna'    => $pengguna
-        ], 200);
+        $pengguna = $this->pengguna->deletePengguna($id);
+        return $this->respons($pengguna);
     }
 
 }

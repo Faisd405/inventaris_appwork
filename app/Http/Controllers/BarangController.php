@@ -15,13 +15,29 @@ use App\Http\Controllers\Controller;
 
 class BarangController extends Controller
 {
+    protected $barang;
+    protected $kategori;
+    protected $pengguna;
+    protected $history;
+    public function __construct(barang $barang, kategori $kategori, pengguna $pengguna, history $history)
+    {
+        $this->barang = $barang;
+        $this->kategori = $kategori;
+        $this->pengguna = $pengguna;
+        $this->history = $history;
+    }
+
+    public function respons($barang){
+        return response()->json([
+            'barang' => $barang,
+        ]);
+    }
+
     //index with json
     public function index()
     {
-        $barang = barang::with('pengguna', 'kategori', 'jenis', 'lokasi')->get();
+        $barang = $this->barang->getBarang();
         return response([
-            'success' => true,
-            'message' => 'List Semua barang',
             'barang' => $barang,
         ], 200);
     }
@@ -34,7 +50,7 @@ class BarangController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'barang Berhasil Ditampilkan!',
-            'harga_barang'    => $harga_barang,
+            'harga_barang' => $harga_barang,
             'year'    => $year
         ], 200);
     }
@@ -50,22 +66,7 @@ class BarangController extends Controller
         ], 200);
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nama_barang' => 'required',
-            'kode_barang' => 'required',
-            'detail_barang' => 'required',
-            'kategori_id' => 'required',
-            'fungsi' => 'required',
-            'harga_barang' => 'required',
-            'lokasi_id' => 'required',
-            'jenis_id' => 'required',
-            'pengguna_id' => 'required',
-            'year' => 'required',
-            'jumlah_barang' => 'required',
-        ]);
-
+    public function image($request){
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -75,41 +76,20 @@ class BarangController extends Controller
         } else {
             $imageName = "default.jpg";
         }
-        $barang = new barang;
-        $barang->image = $imageName;
-        $barang->nama_barang = $request->nama_barang;
-        $barang->kode_barang = $request->kode_barang;
-        $barang->detail_barang = $request->detail_barang;
-        $barang->kategori_id = $request->kategori_id;
-        $barang->fungsi = $request->fungsi;
-        $barang->harga_barang = $request->harga_barang;
-        $barang->lokasi_id = $request->lokasi_id;
-        $barang->jenis_id = $request->jenis_id;
-        $barang->pengguna_id = $request->pengguna_id;
-        $barang->jumlah_barang = $request->jumlah_barang;
-        $barang->year = $request->year;
+        return $imageName;
+    }
 
+    public function store(Request $request)
+    {
+        $imageName = $this->image($request);
+        $barang = $this->barang->postBarang($request, $imageName);
 
-        $kategori = kategori::find($request->kategori_id);
-        $kategori->jumlah = $kategori->jumlah + 1;
+        $this->kategori->add($barang->kategori_id);
 
-        $barang->save();
-        $kategori->update();
-
-        $history = new history;
-        $history->pengguna_id = $request->pengguna_id;
-        $history->barang_id = $barang->id;
-        $history->tanggal_awal_penggunaan = date('d-m-Y');
-        $history->tanggal_akhir_penggunaan = "Masih Terpakai";
-        $history->keterangan = "Barang " . $barang->nama_barang . " dipakai pada tanggal " . date('d-m-Y');
-        $history->status = "Masih Digunakan";
-        $history->save();
+        $this->history->barangHistory($barang);
 
         return response()->json([
-            'success' => true,
-            'message' => 'barang Berhasil Ditambahkan!',
-            'barang'    => $barang,
-            'kategori'    => $kategori
+            'barang' => $barang
         ], 200);
     }
 
@@ -148,6 +128,38 @@ class BarangController extends Controller
         $barang->update();
     }
 
+    public function relasi(Request $request, $id){
+        $barang = barang::find($id);
+        $pengguna_barang = barang::find($id);
+        $barang->update($request->all());
+
+        if ($request->pengguna_id != $pengguna_barang->pengguna_id) {
+            //take id from barang id in last
+            $history = history::where('barang_id', $id)->orderBy('id', 'desc')->first();
+            if ($history) {
+                $history->tanggal_akhir_penggunaan = date('d-m-Y');
+                if ($request->keterangan) {
+                    $history->keterangan = $request->keterangan;
+                }
+                if (!$request->keterangan) {
+                    $history->keterangan = "Pengguna " . $barang->nama_barang
+                        . " Diganti pada tanggal " . date('d-m-Y');
+                }
+                $history->status = "Tidak Digunakan";
+                $history->update();
+            }
+            $history = new history;
+            $history->pengguna_id = $request->pengguna_id;
+            $history->barang_id = $barang->id;
+            $history->tanggal_awal_penggunaan = date('d-m-Y');
+            $history->tanggal_akhir_penggunaan = "Masih Terpakai";
+            $history->keterangan = "Barang " . $barang->nama_barang
+                . " dipakai pada tanggal " . date('d-m-Y');
+            $history->status = "Masih Digunakan";
+            $history->save();
+        }
+    }
+
     public function update(Request $request, $id)
     {
         $barang = barang::find($id);
@@ -179,6 +191,7 @@ class BarangController extends Controller
         $barang->pengguna_id = $request->pengguna_id;
         $barang->jumlah_barang = $request->jumlah_barang;
         $barang->year = $request->year;
+        $barang->keterangan = $request->keterangan;
         $barang->update();
 
         if ($request->pengguna_id != $pengguna_barang->pengguna_id) {

@@ -231,7 +231,7 @@ var render = function () {
                     },
                     [
                       _c("option", { attrs: { value: "", disabled: "" } }, [
-                        _vm._v("Pilih User"),
+                        _vm._v("Pilih Sifat Kategori"),
                       ]),
                       _vm._v(" "),
                       _vm._l(_vm.sifat, function (sifat) {
@@ -241,7 +241,7 @@ var render = function () {
                           [
                             _vm._v(
                               "\n                  " +
-                                _vm._s(sifat.jenis_sifat) +
+                                _vm._s(sifat.sifat_kategori) +
                                 "\n                "
                             ),
                           ]

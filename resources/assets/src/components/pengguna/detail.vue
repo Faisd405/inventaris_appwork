@@ -122,7 +122,7 @@ export default {
       axios
         .delete(`/api/barang/${id}`)
         .then((response) => {
-          this.barang = this.barang.filter((barang) => barang.id != id);
+        this.barangs = this.barangs.filter((barangs) => barangs.id != id);
         })
         .catch((error) => {
           console.log(error);

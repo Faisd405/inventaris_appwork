@@ -7,65 +7,49 @@ use App\Models\buku;
 
 class BukuController extends Controller
 {
+    public function __construct(buku $buku)
+    {
+        $this->buku = $buku;
+    }
+
     //index with json
     public function index()
     {
-        $buku = buku::with('lokasi')->get();
-        return response([
-            'success' => true,
-            'message' => 'List Semua buku',
-            'buku' => $buku,
+        $buku = $this->buku->getBuku();
+        return response()->json([
+            'buku' => $buku
         ], 200);
     }
 
     public function show($id)
     {
-        $buku = buku::find($id);
-
-        if ($buku) {
-            return response()->json([
-                'success' => true,
-                'message' => 'buku ditemukan!',
-                'buku'    => $buku,
-            ], 200);
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'barangs Tidak Ditemukan!',
-                'data'    => ''
-            ], 404);
-        }
+        $buku = $this->buku->getBukuById($id);
+        return response()->json([
+            'buku' => $buku
+        ], 200);
     }
 
     public function store(Request $request)
     {
-        $buku = buku::create($request->all());
+        $buku = $this->buku->postBuku($request);
         return response()->json([
-            'success' => true,
-            'message' => 'buku Berhasil Ditambahkan!',
-            'buku'    => $buku
+            'buku' => $buku
         ], 200);
     }
 
     public function update(Request $request, $id)
     {
-        $buku = buku::find($id);
-        $buku->update($request->all());
+        $buku = $this->buku->putBuku($request, $id);
         return response()->json([
-            'success' => true,
-            'message' => 'buku Berhasil Diupdate!',
-            'buku'    => $buku
+            'buku' => $buku
         ], 200);
     }
 
     public function destroy($id)
     {
-        $buku = buku::find($id);
-        $buku->delete();
+        $buku = $this->buku->deleteBuku($id);
         return response()->json([
-            'success' => true,
-            'message' => 'buku Berhasil Dihapus!',
-            'buku'    => $buku
+            'buku' => $buku
         ], 200);
     }
 }

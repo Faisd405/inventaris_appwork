@@ -19,4 +19,16 @@ class history extends Model
     {
         return $this->belongsTo('App\Models\pengguna','pengguna_id');
     }
+
+    public function barangHistory($barang)
+    {
+        $history = new history;
+        $history->pengguna_id = $barang->pengguna_id;
+        $history->barang_id = $barang->id;
+        $history->tanggal_awal_penggunaan = date('d-m-Y');
+        $history->tanggal_akhir_penggunaan = "Masih Terpakai";
+        $history->keterangan = "Barang " . $barang->nama_barang . " dipakai pada tanggal " . date('d-m-Y');
+        $history->status = "Masih Digunakan";
+        $history->save();
+    }
 }

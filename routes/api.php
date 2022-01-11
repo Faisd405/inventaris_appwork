@@ -45,6 +45,7 @@ Route::get('/rolesuser/{id}', [RolesController::class, 'indexrolesuser']);
 
 //Route API Barang
 Route::get('/barang', [BarangController::class, 'index']);
+Route::put('/barang/relasi/{id}', [BarangController::class, 'relasi']);
 Route::get('/barang/total', [BarangController::class, 'total_harga']);
 Route::get('/barang/year', [BarangController::class, 'indexHarga']);
 Route::post('/barang/gantifoto/{id}', [BarangController::class, 'gantifoto']);
