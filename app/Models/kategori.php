@@ -66,4 +66,11 @@ class kategori extends Model
         $kategori->jumlah = $kategori->jumlah + 1;
         $kategori->save();
     }
+
+    public function minus($id)
+    {
+        $kategori = kategori::find($id);
+        $kategori->jumlah = $kategori->jumlah - 1;
+        $kategori->save();
+    }
 }

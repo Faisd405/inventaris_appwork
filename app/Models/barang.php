@@ -78,10 +78,50 @@ class barang extends Model
         return $barang;
     }
 
+    public function updateBarang($request, $barang, $imageName)
+    {
+
+        $barang->image = $imageName;
+        $barang->nama_barang = $request->nama_barang;
+        $barang->kode_barang = $request->kode_barang;
+        $barang->detail_barang = $request->detail_barang;
+        $barang->kategori_id = $request->kategori_id;
+        $barang->fungsi = $request->fungsi;
+        $barang->harga_barang = $request->harga_barang;
+        $barang->lokasi_id = $request->lokasi_id;
+        $barang->jenis_id = $request->jenis_id;
+        $barang->pengguna_id = $request->pengguna_id;
+        $barang->jumlah_barang = $request->jumlah_barang;
+        $barang->year = $request->year;
+        $barang->update();
+
+        return $barang;
+    }
+
     public function deleteBarang($id)
     {
         $barang = barang::find($id);
         $barang->delete();
+        return $barang;
+    }
+
+    public function getHarga(){
+        $harga_barang = barang::selectRaw('sum(harga_barang) as total, year(year) as year')
+            ->groupBy('year')->pluck('total');
+
+        return $harga_barang;
+    }
+
+    public function getYear(){
+        $year = barang::selectRaw('sum(harga_barang) as total, year(year) as year')
+            ->groupBy('year')->pluck('year');
+
+        return $year;
+    }
+
+    public function getTotalHarga(){
+        $barang = barang::sum('harga_barang');
+
         return $barang;
     }
 }

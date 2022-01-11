@@ -11,16 +11,7 @@
                 :src="'/images/' + barang.image"
                 class="img-thumbnail rounded mx-auto d-block"
                 width="400px"
-              /><router-link
-                :to="{
-                  name: 'gantifoto',
-                  params: {
-                    id: barang.id,
-                  },
-                }"
-                class="btn btn-primary d-flex justify-content-center"
-                >Edit Foto</router-link
-              >
+              />
             </div>
             <div>
               <label>Nama Barang : </label>

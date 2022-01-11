@@ -48,7 +48,6 @@ Route::get('/barang', [BarangController::class, 'index']);
 Route::put('/barang/relasi/{id}', [BarangController::class, 'relasi']);
 Route::get('/barang/total', [BarangController::class, 'total_harga']);
 Route::get('/barang/year', [BarangController::class, 'indexHarga']);
-Route::post('/barang/gantifoto/{id}', [BarangController::class, 'gantifoto']);
 Route::get('/barang/{id}', [BarangController::class, 'show']);
 Route::post('/barang', [BarangController::class, 'store']);
 Route::post('/barang/{id}', [BarangController::class, 'update']);

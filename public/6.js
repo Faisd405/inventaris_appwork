@@ -197,6 +197,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -780,6 +790,18 @@ var render = function () {
                     ],
                     2
                   ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Foto Lama")]),
+                  _vm._v(" "),
+                  _c("img", {
+                    staticClass: "img-thumbnail rounded",
+                    attrs: {
+                      src: "/images/" + _vm.barang.image,
+                      width: "280px",
+                    },
+                  }),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [

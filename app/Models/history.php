@@ -31,4 +31,40 @@ class history extends Model
         $history->status = "Masih Digunakan";
         $history->save();
     }
+
+    public function getHistory()
+    {
+        return $this->with('pengguna', 'barang')->get();
+    }
+
+    public function getHistoryDetail($id)
+    {
+        return $this->with('pengguna', 'barang')->where('barang_id', $id)->get();
+    }
+
+    public function putHistory($request, $barang)
+    {
+        $historyupdate = history::find($request->id_history);
+        if ($historyupdate) {
+            $historyupdate->tanggal_akhir_penggunaan = date('d-m-Y');
+            if ($request->keterangan) {
+                $historyupdate->keterangan = $request->keterangan;
+            }
+            if (!$request->keterangan) {
+                $historyupdate->keterangan = "Pengguna " . $barang->nama_barang . " Diganti pada tanggal " . date('d-m-Y');
+            }
+            $historyupdate->status = "Tidak Digunakan";
+            $historyupdate->update();
+        }
+
+        $history = new history;
+        $history->pengguna_id = $request->pengguna_id;
+        $history->barang_id = $barang->id;
+        $history->tanggal_awal_penggunaan = date('d-m-Y');
+        $history->tanggal_akhir_penggunaan = "Masih Terpakai";
+        $history->keterangan = "Barang " . $barang->nama_barang . " dipakai pada tanggal " . date('d-m-Y');
+        $history->status = "Masih Digunakan";
+        $history->save();
+    }
+
 }

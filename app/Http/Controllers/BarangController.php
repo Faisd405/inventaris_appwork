@@ -44,8 +44,8 @@ class BarangController extends Controller
 
     public function indexHarga()
     {
-        $harga_barang = barang::selectRaw('sum(harga_barang) as total, year(year) as year')->groupBy('year')->pluck('total');
-        $year = barang::selectRaw('sum(harga_barang) as total, year(year) as year')->groupBy('year')->pluck('year');
+        $harga_barang = $this->barang->getHarga();
+        $year = $this->barang->getYear();
 
         return response()->json([
             'success' => true,
@@ -58,11 +58,11 @@ class BarangController extends Controller
     //total harga barang
     public function total_harga()
     {
-        $barang = barang::sum('harga_barang');
+        $total_harga = $this->barang->getTotalHarga();
         return response()->json([
             'success' => true,
             'message' => 'barang Berhasil Ditampilkan!',
-            'total'    => $barang
+            'total'    => $total_harga
         ], 200);
     }
 
@@ -95,14 +95,12 @@ class BarangController extends Controller
 
     public function destroy($id)
     {
-        $barang = barang::find($id);
-        $kategori = kategori::find($barang->kategori_id);
-        $kategori->jumlah = $kategori->jumlah - 1;
-        $kategori->update();
+        $barang = $this->barang->deleteBarang($id);
+        $this->kategori->minus($barang->kategori_id);
+
         if ($barang->image != "default.jpg") {
             File::delete('images/' . $barang->image);
         }
-        $barang->delete();
 
         return response()->json([
             'success' => true,
@@ -111,61 +109,19 @@ class BarangController extends Controller
         ], 200);
     }
 
-    public function gantifoto (Request $request, $id)
-    {
-        $barang = barang::find($id);
-        $request->validate([
-            'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
-        $imageName = time() . '.' . $request->image->extension();
-
-        if ($barang->image != "default.jpg") {
-            File::delete('images/' . $barang->image);
-        }
-        $request->image->move(public_path('images'), $imageName);
-        $barang->image = $imageName;
-        $barang->update();
-    }
-
     public function relasi(Request $request, $id){
         $barang = barang::find($id);
-        $pengguna_barang = barang::find($id);
         $barang->update($request->all());
 
-        if ($request->pengguna_id != $pengguna_barang->pengguna_id) {
-            //take id from barang id in last
-            $history = history::where('barang_id', $id)->orderBy('id', 'desc')->first();
-            if ($history) {
-                $history->tanggal_akhir_penggunaan = date('d-m-Y');
-                if ($request->keterangan) {
-                    $history->keterangan = $request->keterangan;
-                }
-                if (!$request->keterangan) {
-                    $history->keterangan = "Pengguna " . $barang->nama_barang
-                        . " Diganti pada tanggal " . date('d-m-Y');
-                }
-                $history->status = "Tidak Digunakan";
-                $history->update();
-            }
-            $history = new history;
-            $history->pengguna_id = $request->pengguna_id;
-            $history->barang_id = $barang->id;
-            $history->tanggal_awal_penggunaan = date('d-m-Y');
-            $history->tanggal_akhir_penggunaan = "Masih Terpakai";
-            $history->keterangan = "Barang " . $barang->nama_barang
-                . " dipakai pada tanggal " . date('d-m-Y');
-            $history->status = "Masih Digunakan";
-            $history->save();
-        }
+        $this->history->putHistory($request, $barang);
+
+        return response()->json([
+            'barang' => $barang
+        ], 200);
     }
 
-    public function update(Request $request, $id)
+    public function gantifoto (Request $request, $barang)
     {
-        $barang = barang::find($id);
-        $pengguna_barang = barang::find($id);
-
-        // if image file
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -175,50 +131,21 @@ class BarangController extends Controller
             if ($barang->image != "default.jpg") {
                 File::delete('images/' . $barang->image);
             }
-        } else{
+        }
+        else{
             $imageName = $barang->image;
         }
 
-        $barang->image = $imageName;
-        $barang->nama_barang = $request->nama_barang;
-        $barang->kode_barang = $request->kode_barang;
-        $barang->detail_barang = $request->detail_barang;
-        $barang->kategori_id = $request->kategori_id;
-        $barang->fungsi = $request->fungsi;
-        $barang->harga_barang = $request->harga_barang;
-        $barang->lokasi_id = $request->lokasi_id;
-        $barang->jenis_id = $request->jenis_id;
-        $barang->pengguna_id = $request->pengguna_id;
-        $barang->jumlah_barang = $request->jumlah_barang;
-        $barang->year = $request->year;
-        $barang->keterangan = $request->keterangan;
-        $barang->update();
+        return $imageName;
+    }
 
-        if ($request->pengguna_id != $pengguna_barang->pengguna_id) {
-            //take id from barang id in last
-            $history = history::where('barang_id', $id)->orderBy('id', 'desc')->first();
-            if ($history) {
-                $history->tanggal_akhir_penggunaan = date('d-m-Y');
-                if ($request->keterangan) {
-                    $history->keterangan = $request->keterangan;
-                }
-                if (!$request->keterangan) {
-                    $history->keterangan = "Pengguna " . $barang->nama_barang
-                        . " Diganti pada tanggal " . date('d-m-Y');
-                }
-                $history->status = "Tidak Digunakan";
-                $history->update();
-            }
-            $history = new history;
-            $history->pengguna_id = $request->pengguna_id;
-            $history->barang_id = $barang->id;
-            $history->tanggal_awal_penggunaan = date('d-m-Y');
-            $history->tanggal_akhir_penggunaan = "Masih Terpakai";
-            $history->keterangan = "Barang " . $barang->nama_barang
-                . " dipakai pada tanggal " . date('d-m-Y');
-            $history->status = "Masih Digunakan";
-            $history->save();
-        }
+    public function update(Request $request, $id)
+    {
+        $barang = $this->barang->getBarangById($id);
+        $this->history->putHistory($request, $barang);
+
+        $imageName = $this->gantifoto($request, $barang);
+        $this->barang->updateBarang($request, $barang, $imageName);
 
         return response()->json([
             'success' => true,
@@ -229,15 +156,11 @@ class BarangController extends Controller
 
     public function show($id)
     {
-        $barang = barang::with('pengguna', 'kategori', 'lokasi', 'jenis')->find($id);
-        $kategori = kategori::all();
-        $pengguna = Pengguna::all();
+        $barang = $this->barang->getBarangById($id);
         return response()->json([
             'success' => true,
             'message' => 'barang Berhasil Ditampilkan!',
             'barang'    => $barang,
-            'kategori' => $kategori,
-            'pengguna' => $pengguna,
         ], 200);
     }
 
