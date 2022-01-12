@@ -41,7 +41,6 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->middleware('au
 
 //Route API Roles
 Route::get('/roles', [RolesController::class, 'index']);
-Route::get('/rolesuser/{id}', [RolesController::class, 'indexrolesuser']);
 
 //Route API Barang
 Route::get('/barang', [BarangController::class, 'index']);
