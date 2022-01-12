@@ -85,6 +85,8 @@ class UserController extends Controller
 
     public function destroy($id)
     {
+        $roleuser = role_user::where('user_id', $id)->first();
+        $roleuser->delete();
         $users = User::find($id);
 
         $users->delete();
