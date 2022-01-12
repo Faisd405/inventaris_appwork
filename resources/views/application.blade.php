@@ -11,7 +11,7 @@
     <title>Inventaris Barang</title>
 
     {{-- Icon --}}
-    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('icon/logo.png') }}">
 
     {{-- Fonts --}}
 
