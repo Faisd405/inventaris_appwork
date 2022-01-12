@@ -10,6 +10,11 @@
 
     <title>Inventaris Barang</title>
 
+    {{-- Icon --}}
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+
+    {{-- Fonts --}}
+
     <!-- Main font -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet">
 
