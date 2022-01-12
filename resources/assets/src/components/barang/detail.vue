@@ -71,6 +71,9 @@
 import axios from "axios";
 import Vue from "vue";
 export default {
+  metaInfo: {
+    title: "Detail Barang",
+  },
   data() {
     return {
       barang: {

@@ -33,6 +33,9 @@
 <script>
 import axios from "axios";
 export default {
+  metaInfo: {
+    title: "Create Jenis",
+  },
   data() {
     return {
       jenis: {},

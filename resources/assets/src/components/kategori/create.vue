@@ -54,6 +54,9 @@
 <script>
 import axios from 'axios';
 export default {
+  metaInfo: {
+    title: "Create Kategori",
+  },
   data() {
     return {
       kategori: {},

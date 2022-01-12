@@ -197,6 +197,9 @@
 <script>
 import axios from "axios";
 export default {
+  metaInfo: {
+    title: "Edit Barang",
+  },
   data() {
     return {
       barang: {

@@ -63,6 +63,9 @@
 <script>
 import axios from 'axios';
 export default {
+  metaInfo: {
+    title: "Create User",
+  },
   data() {
     return {
       users: {

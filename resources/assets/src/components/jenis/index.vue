@@ -102,6 +102,9 @@
 <script>
 import axios from "axios";
 export default {
+  metaInfo: {
+    title: "Jenis",
+  },
   data() {
     return {
       fields: [

@@ -32,6 +32,9 @@
 <script>
 import axios from 'axios'
 export default {
+  metaInfo: {
+    title: "Edit Sifat",
+  },
   data() {
     return {
       sifat: {},

@@ -21,6 +21,9 @@
 <script>
 import axios from 'axios';
 export default {
+  metaInfo: {
+    title: "Detail Kategori",
+  },
   data() {
     return {
         fields: [

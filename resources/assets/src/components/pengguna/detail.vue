@@ -50,6 +50,9 @@
 <script>
 import axios from 'axios'
 export default {
+  metaInfo: {
+    title: "Detail Pengguna",
+  },
   data() {
     return {
         fields: [

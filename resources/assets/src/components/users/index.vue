@@ -106,6 +106,9 @@
 <script>
 import axios from "axios";
 export default {
+  metaInfo: {
+    title: "Users",
+  },
   data() {
     return {
       fields: [

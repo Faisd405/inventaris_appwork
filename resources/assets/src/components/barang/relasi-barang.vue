@@ -72,6 +72,9 @@
 <script>
 import axios from "axios";
 export default {
+  metaInfo: {
+    title: "Relasi Barang Dan Pengguna",
+  },
   data() {
     return {
       pengguna: [],

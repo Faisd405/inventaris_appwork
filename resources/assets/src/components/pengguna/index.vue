@@ -117,6 +117,9 @@
 <script>
 import axios from "axios";
 export default {
+  metaInfo: {
+    title: "Pengguna",
+  },
   data() {
     return {
       fields: [

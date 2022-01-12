@@ -42,6 +42,9 @@
 <script>
 import axios from "axios";
 export default {
+  metaInfo: {
+    title: "Edit Lokasi",
+  },
   data() {
     return {
       lokasi: {},

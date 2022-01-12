@@ -47,6 +47,9 @@
 
 <script>
 export default {
+  metaInfo: {
+    title: "Login",
+  },
   data() {
     return {
       email: "",

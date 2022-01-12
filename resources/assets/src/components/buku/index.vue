@@ -99,6 +99,9 @@
 <script>
 import axios from 'axios'
 export default {
+  metaInfo: {
+    title: "buku",
+  },
   data() {
     return {
       fields: [

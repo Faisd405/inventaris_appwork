@@ -148,6 +148,9 @@
 <script>
 import axios from "axios";
 export default {
+  metaInfo: {
+    title: "history",
+  },
   data() {
     return {
       historys: {},

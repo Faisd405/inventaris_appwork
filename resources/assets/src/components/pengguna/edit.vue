@@ -33,6 +33,9 @@
 <script>
 import axios from "axios";
 export default {
+  metaInfo: {
+    title: "Edit Pengguna",
+  },
   data() {
     return {
       pengguna: {},

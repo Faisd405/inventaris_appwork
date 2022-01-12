@@ -105,6 +105,9 @@
 <script>
 import axios from "axios";
 export default {
+  metaInfo: {
+    title: "Lokasi",
+  },
   data() {
     return {
       fields: [

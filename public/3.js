@@ -80,6 +80,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  metaInfo: {
+    title: "Register"
+  },
   data: function data() {
     return {
       user: {
