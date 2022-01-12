@@ -5,17 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\role_user;
-use App\Models\barang;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use JWTAuth;
 
 class UserController extends Controller
 {
+    public function __construct(User $user, role_user $role_user)
+    {
+        $this->user = $user;
+        $this->role_user = $role_user;
+    }
+
     //crud api
     public function index()
     {
-        $users = User::latest()->get();
+        $users = $this->user->getUser();
         return response([
             'success' => true,
             'message' => 'List Semua User',
@@ -25,7 +30,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $users = User::find($id);
+        $users = $this->user->getUserById($id);
 
         if ($users) {
             return response()->json([
@@ -45,51 +50,27 @@ class UserController extends Controller
     //update json
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:8',
-            'roles' => 'required',
-        ]);
-
-        $users = User::find($id);
-        $users->name = $request->name;
-        $users->email = $request->email;
-        $users->password = Hash::make($request->password);
+        $users = $this->user->putUser($request, $id);
 
         $users->roles()->sync($request->roles);
         $users->save();
-
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-            'roles' => 'required',
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $user = $this->user->postUser($request);
 
         $user->roles()->attach($request->roles);
 
         return response()->json(['message' => 'Registration Successful.'], 201);
     }
 
-
     public function destroy($id)
     {
-        $roleuser = role_user::where('user_id', $id)->first();
-        $roleuser->delete();
-        $users = User::find($id);
+        $this->role_user->deleteRoleUserByUserId($id);
 
-        $users->delete();
+        $users = $this->user->deleteUser($id);
+
         return response()->json([
             'success' => true,
             'message' => 'User Berhasil Dihapus!',
@@ -99,38 +80,23 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|confirmed|min:8',
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $user = $this->user->postUser($request);
 
         $user->roles()->attach(1);
 
         return response()->json(['message' => 'Registration Successful.'], 201);
     }
 
+
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        $credentials = $this->credentials($request);
 
         if (Auth::attempt($credentials)) {
             $status = 200;
             $user = Auth::user();
             $response = [
-                'user' => array_merge(
-                    $user->toArray(),
-                    ['roles' => $user->roles()->get()->toArray()]
-                ),
+                'user' => $this->user->arrayMerge($user),
                 'token' => JWTAuth::fromUser($user),
             ];
         } else {
@@ -143,8 +109,20 @@ class UserController extends Controller
 
     public function getUser()
     {
-        $user = auth()->user();
-        $data = array_merge($user->toArray(), ['roles' => $user->roles()->get()->toArray()]);
+        $user = Auth::user();
+        $data = $this->user->arrayMerge($user);
         return response()->json($data, 200);
     }
+
+    public function credentials($request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        return $credentials;
+    }
+
+
 }

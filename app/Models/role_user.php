@@ -20,4 +20,9 @@ class role_user extends Model
         return $this->belongsTo('App\Models\Role');
     }
 
+    public function deleteRoleUserByUserId($id)
+    {
+        return $this->where('user_id', $id)->delete();
+    }
+
 }

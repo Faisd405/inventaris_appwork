@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -44,4 +45,43 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function getUser(){
+        return $this->all();
+    }
+
+    public function getUserById($id){
+        return $this->find($id);
+    }
+
+    public function postUser($request){
+        $user = $this->create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return $user;
+    }
+
+    public function putUser($request, $id){
+        $user = $this->find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return $user;
+    }
+
+    public function deleteUser($id){
+        $user = $this->find($id);
+        $user->delete();
+    }
+
+    public function arrayMerge($user)
+    {
+        return array_merge($user->toArray(), ['roles' => $user->roles()->get()->toArray()]);
+    }
+
 }
