@@ -74,17 +74,15 @@
                 :per-page="perPage"
               >
                 <template slot="action" slot-scope="data">
-                  <span v-if="loginType == 'admin'">
-                    <span v-if="user.id == 1">
-                      <router-link
-                        :to="{
-                          name: 'edit-users',
-                          params: { id: data.item.id },
-                        }"
-                        class="btn btn-sm btn-primary"
-                        >Edit</router-link
-                      >
-                    </span>
+                  <span v-if="user.id == 1 && loginType == 'admin'">
+                    <router-link
+                      :to="{
+                        name: 'edit-users',
+                        params: { id: data.item.id },
+                      }"
+                      class="btn btn-sm btn-primary"
+                      >Edit</router-link
+                    >
                     <button
                       v-if="data.item.id != 1"
                       class="btn btn-sm btn-danger"
@@ -92,6 +90,9 @@
                     >
                       Hapus
                     </button>
+                  </span>
+                  <span v-else>
+                      Kamu tidak punya akses
                   </span>
                 </template>
               </b-table>

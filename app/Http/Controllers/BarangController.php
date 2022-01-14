@@ -79,10 +79,21 @@ class BarangController extends Controller
         return $imageName;
     }
 
+    public function lampiran($request){
+        $request->validate([
+            'lampiran' => 'required|mimes:pdf|max:2048'
+        ]);
+
+        $lampiranName = time() . '.' . $request->lampiran->extension();
+        $request->lampiran->move(public_path('lampiran'), $lampiranName);
+        return $lampiranName;
+    }
+
     public function store(Request $request)
     {
         $imageName = $this->image($request);
-        $barang = $this->barang->postBarang($request, $imageName);
+        $lampiranName = $this->lampiran($request);
+        $barang = $this->barang->postBarang($request, $imageName, $lampiranName);
 
         $this->kategori->add($barang->kategori_id);
 
@@ -120,7 +131,7 @@ class BarangController extends Controller
         ], 200);
     }
 
-    public function gantifoto (Request $request, $barang)
+    public function gantifoto ($request, $barang)
     {
         if ($request->hasFile('image')) {
             $request->validate([
@@ -139,13 +150,33 @@ class BarangController extends Controller
         return $imageName;
     }
 
+    public function updateLampiran($request, $barang){
+
+        if ($request->hasFile('lampiran')) {
+            $request->validate([
+                'lampiran' => 'required|file|mimes:pdf|max:2048'
+            ]);
+            $lampiranName = time() . '.' . $request->lampiran->extension();
+            $request->lampiran->move(public_path('lampiran'), $lampiranName);
+            if ($barang->lampiran != "default.pdf") {
+                File::delete('lampiran/' . $barang->lampiran);
+            }
+        }
+        else{
+            $lampiranName = $barang->lampiran;
+        }
+
+        return $lampiranName;
+    }
+
     public function update(Request $request, $id)
     {
         $barang = $this->barang->getBarangById($id);
         $this->history->putHistory($request, $barang);
 
         $imageName = $this->gantifoto($request, $barang);
-        $this->barang->updateBarang($request, $barang, $imageName);
+        $updateLampiran = $this->updateLampiran($request, $barang);
+        $this->barang->updateBarang($request, $barang, $imageName, $updateLampiran);
 
         return response()->json([
             'success' => true,

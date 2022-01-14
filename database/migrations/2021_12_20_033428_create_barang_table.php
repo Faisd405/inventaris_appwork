@@ -31,6 +31,7 @@ class CreateBarangTable extends Migration
             $table->integer('jumlah_barang');
             $table->year('year');
             $table->string('image');
+            $table->string('lampiran');
             $table->timestamps();
         });
     }

@@ -82,6 +82,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -175,82 +195,124 @@ var render = function () {
               }),
             ]),
             _vm._v(" "),
-            _c("div", [
-              _c("label", [_vm._v("Nama Barang : ")]),
-              _vm._v(" "),
-              _c("h3", {
-                domProps: { textContent: _vm._s(_vm.barang.nama_barang) },
-              }),
-              _vm._v(" "),
-              _c("label", [_vm._v("Details Barang : ")]),
-              _vm._v(" "),
-              _c("h3", {
-                domProps: { textContent: _vm._s(_vm.barang.detail_barang) },
-              }),
-              _vm._v(" "),
-              _c("label", [_vm._v("Kategori : ")]),
-              _vm._v(" "),
-              _c("h3", {
-                domProps: {
-                  textContent: _vm._s(_vm.barang.kategori.nama_kategori),
-                },
-              }),
-              _vm._v(" "),
-              _c("label", [_vm._v("Fungsi : ")]),
-              _vm._v(" "),
-              _c("h3", {
-                domProps: { textContent: _vm._s(_vm.barang.fungsi) },
-              }),
-              _vm._v(" "),
-              _c("label", [_vm._v("Jenis : ")]),
-              _vm._v(" "),
-              _c("h3", {
-                domProps: {
-                  textContent: _vm._s(_vm.barang.jenis.jenis_barang),
-                },
-              }),
-              _vm._v(" "),
-              _c("label", [_vm._v("Harga : ")]),
-              _vm._v(" "),
-              _c("h3", [
-                _vm._v(_vm._s(_vm._f("toCurrency")(_vm.barang.harga_barang))),
-              ]),
-              _vm._v(" "),
-              _c("label", [_vm._v("Lokasi : ")]),
-              _vm._v(" "),
-              _c("h3", {
-                domProps: { textContent: _vm._s(_vm.barang.lokasi.lokasi) },
-              }),
-              _vm._v(" "),
-              _c("label", [_vm._v("Pengguna : ")]),
-              _vm._v(" "),
-              _c("h3", {
-                domProps: { textContent: _vm._s(_vm.barang.pengguna.name) },
-              }),
-              _vm._v(" "),
-              _c("label", [_vm._v("Tahun : ")]),
-              _vm._v(" "),
-              _c("h3", { domProps: { textContent: _vm._s(_vm.barang.year) } }),
-              _vm._v(" "),
-              _c("label", [_vm._v("Jumlah :")]),
-              _vm._v(" "),
-              _c("h3", {
-                domProps: { textContent: _vm._s(_vm.barang.jumlah_barang) },
-              }),
-              _vm._v(" "),
-              _c("label", [
+            _c(
+              "div",
+              [
+                _c("label", [_vm._v("Nama Barang : ")]),
+                _vm._v(" "),
+                _c("h3", {
+                  domProps: { textContent: _vm._s(_vm.barang.nama_barang) },
+                }),
+                _vm._v(" "),
+                _c("label", [_vm._v("Details Barang : ")]),
+                _vm._v(" "),
+                _c("h3", {
+                  domProps: { textContent: _vm._s(_vm.barang.detail_barang) },
+                }),
+                _vm._v(" "),
+                _c("label", [_vm._v("Kategori : ")]),
+                _vm._v(" "),
+                _c("h3", {
+                  domProps: {
+                    textContent: _vm._s(_vm.barang.kategori.nama_kategori),
+                  },
+                }),
+                _vm._v(" "),
+                _c("label", [_vm._v("Fungsi : ")]),
+                _vm._v(" "),
+                _c("h3", {
+                  domProps: { textContent: _vm._s(_vm.barang.fungsi) },
+                }),
+                _vm._v(" "),
+                _c("label", [_vm._v("Jenis : ")]),
+                _vm._v(" "),
+                _c("h3", {
+                  domProps: {
+                    textContent: _vm._s(_vm.barang.jenis.jenis_barang),
+                  },
+                }),
+                _vm._v(" "),
+                _c("label", [_vm._v("Harga : ")]),
+                _vm._v(" "),
+                _c("h3", [
+                  _vm._v(_vm._s(_vm._f("toCurrency")(_vm.barang.harga_barang))),
+                ]),
+                _vm._v(" "),
+                _c("label", [_vm._v("Lokasi : ")]),
+                _vm._v(" "),
+                _c("h3", {
+                  domProps: { textContent: _vm._s(_vm.barang.lokasi.lokasi) },
+                }),
+                _vm._v(" "),
+                _c("label", [_vm._v("Pengguna : ")]),
+                _vm._v(" "),
                 _c(
-                  "a",
+                  "router-link",
                   {
-                    staticClass: "btn btn-primary",
                     attrs: {
-                      href: "/barang/detailbarang_pdf/" + _vm.barang.id,
+                      to: {
+                        name: "detail-pengguna",
+                        params: { id: _vm.barang.pengguna.id },
+                      },
                     },
                   },
-                  [_vm._v("Print Detail Barang")]
+                  [
+                    _c("h3", {
+                      domProps: {
+                        textContent: _vm._s(_vm.barang.pengguna.name),
+                      },
+                    }),
+                  ]
                 ),
-              ]),
-            ]),
+                _vm._v(" "),
+                _c("label", [_vm._v("Tahun : ")]),
+                _vm._v(" "),
+                _c("h3", {
+                  domProps: { textContent: _vm._s(_vm.barang.year) },
+                }),
+                _vm._v(" "),
+                _c("label", [_vm._v("Jumlah :")]),
+                _vm._v(" "),
+                _c("h3", {
+                  domProps: { textContent: _vm._s(_vm.barang.jumlah_barang) },
+                }),
+                _vm._v(" "),
+                _c("label", [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: {
+                        href: "/barang/detailbarang_pdf/" + _vm.barang.id,
+                      },
+                    },
+                    [_vm._v("Print Detail Barang")]
+                  ),
+                ]),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm.barang.lampiran
+              ? _c("div", [
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c("h2", { staticClass: "text-center" }, [
+                    _vm._v(
+                      "\n              Lampiran Surat Komitmen Peggunaan Barang Inventaris Kantor\n            "
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("iframe", {
+                    attrs: {
+                      src: "/lampiran/" + _vm.barang.lampiran,
+                      type: "document.pdf",
+                      width: "100%",
+                      height: "500px",
+                    },
+                  }),
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c("hr"),
             _vm._v(" "),

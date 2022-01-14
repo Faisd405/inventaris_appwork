@@ -116,6 +116,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -376,51 +377,50 @@ var render = function () {
                       key: "action",
                       fn: function (data) {
                         return [
-                          _vm.loginType == "admin"
-                            ? _c("span", [
-                                _vm.user.id == 1
-                                  ? _c(
-                                      "span",
-                                      [
-                                        _c(
-                                          "router-link",
-                                          {
-                                            staticClass:
-                                              "btn btn-sm btn-primary",
-                                            attrs: {
-                                              to: {
-                                                name: "edit-users",
-                                                params: { id: data.item.id },
-                                              },
-                                            },
-                                          },
-                                          [_vm._v("Edit")]
-                                        ),
-                                      ],
-                                      1
-                                    )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                data.item.id != 1
-                                  ? _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-sm btn-danger",
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.destroy(data.item.id)
-                                          },
+                          _vm.user.id == 1 && _vm.loginType == "admin"
+                            ? _c(
+                                "span",
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "btn btn-sm btn-primary",
+                                      attrs: {
+                                        to: {
+                                          name: "edit-users",
+                                          params: { id: data.item.id },
                                         },
                                       },
-                                      [
-                                        _vm._v(
-                                          "\n                    Hapus\n                  "
-                                        ),
-                                      ]
-                                    )
-                                  : _vm._e(),
-                              ])
-                            : _vm._e(),
+                                    },
+                                    [_vm._v("Edit")]
+                                  ),
+                                  _vm._v(" "),
+                                  data.item.id != 1
+                                    ? _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-sm btn-danger",
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.destroy(data.item.id)
+                                            },
+                                          },
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                    Hapus\n                  "
+                                          ),
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                ],
+                                1
+                              )
+                            : _c("span", [
+                                _vm._v(
+                                  "\n                    Kamu tidak punya akses\n                "
+                                ),
+                              ]),
                         ]
                       },
                     },

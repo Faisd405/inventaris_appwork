@@ -168,8 +168,17 @@
               <div class="preview" v-if="preview">
                 <p>Preview:</p>
                 <img :src="preview" class="img-thumbnail" />
+                <br/>
               </div>
-              <br />
+              <div class="form-group">
+                <label for="lampiran">Lampiran (PDF)</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  name="lampiran"
+                  @change="onFileChangePDF"
+                />
+              </div>
               <div class="form-group">
                 <button class="btn btn-md btn-success" type="submit">
                   SIMPAN
@@ -231,6 +240,7 @@ export default {
       formData.append("pengguna_id", this.barang.pengguna_id);
       formData.append("image", this.barang.image);
       formData.append("jumlah_barang", this.barang.jumlah_barang);
+      formData.append("lampiran", this.barang.lampiran);
 
       axios
         .post("/api/barang", formData)
@@ -246,6 +256,9 @@ export default {
     onFileChange(e) {
       this.barang.image = e.target.files[0];
       this.preview = URL.createObjectURL(e.target.files[0]);
+    },
+    onFileChangePDF(e) {
+      this.barang.lampiran = e.target.files[0];
     },
   },
 };

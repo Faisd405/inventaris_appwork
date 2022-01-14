@@ -168,6 +168,16 @@
                 <img :src="preview" class="img-thumbnail" />
               </div>
 
+              <div class="form-group">
+                <label for="lampiran">Lampiran (PDF)</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  name="lampiran"
+                  @change="onFileChangePDF"
+                />
+              </div>
+
               <!-- Keterangan Edit -->
               <div class="form-group">
                 <label for="keterangan"
@@ -266,6 +276,9 @@ export default {
       if (this.barang.image) {
         formData.append("image", this.barang.image);
       }
+      if (this.barang.lampiran) {
+        formData.append("lampiran", this.barang.lampiran);
+      }
       formData.append("year", this.barang.year);
 
       axios
@@ -282,6 +295,9 @@ export default {
     onFileChange(e) {
       this.barang.image = e.target.files[0];
       this.preview = URL.createObjectURL(e.target.files[0]);
+    },
+    onFileChangePDF(e) {
+      this.barang.lampiran = e.target.files[0];
     },
   },
   mounted() {

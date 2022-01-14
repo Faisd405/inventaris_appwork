@@ -29,7 +29,15 @@
               <label>Lokasi : </label>
               <h3 v-text="barang.lokasi.lokasi"></h3>
               <label>Pengguna : </label>
-              <h3 v-text="barang.pengguna.name"></h3>
+              <router-link
+                :to="{
+                  name: 'detail-pengguna',
+                  params: { id: barang.pengguna.id },
+                }"
+              >
+                <h3 v-text="barang.pengguna.name"></h3
+              ></router-link>
+
               <label>Tahun : </label>
               <h3 v-text="barang.year"></h3>
               <label>Jumlah :</label>
@@ -41,6 +49,18 @@
                   >Print Detail Barang</a
                 ></label
               >
+            </div>
+            <div v-if="barang.lampiran">
+              <hr />
+              <h2 class="text-center">
+                Lampiran Surat Komitmen Peggunaan Barang Inventaris Kantor
+              </h2>
+              <iframe
+                :src="'/lampiran/' + barang.lampiran"
+                type="document.pdf"
+                width="100%"
+                height="500px"
+              ></iframe>
             </div>
             <hr />
             <div>

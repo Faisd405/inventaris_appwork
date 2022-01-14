@@ -196,6 +196,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -247,6 +256,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("pengguna_id", this.barang.pengguna_id);
       formData.append("image", this.barang.image);
       formData.append("jumlah_barang", this.barang.jumlah_barang);
+      formData.append("lampiran", this.barang.lampiran);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/barang", formData).then(function (response) {
         _this2.$router.push("/barang");
       })["catch"](function (errors) {
@@ -258,6 +268,9 @@ __webpack_require__.r(__webpack_exports__);
     onFileChange: function onFileChange(e) {
       this.barang.image = e.target.files[0];
       this.preview = URL.createObjectURL(e.target.files[0]);
+    },
+    onFileChangePDF: function onFileChangePDF(e) {
+      this.barang.lampiran = e.target.files[0];
     }
   }
 });
@@ -797,10 +810,22 @@ var render = function () {
                         staticClass: "img-thumbnail",
                         attrs: { src: _vm.preview },
                       }),
+                      _vm._v(" "),
+                      _c("br"),
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _c("br"),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "lampiran" } }, [
+                    _vm._v("Lampiran (PDF)"),
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "file", name: "lampiran" },
+                    on: { change: _vm.onFileChangePDF },
+                  }),
+                ]),
                 _vm._v(" "),
                 _vm._m(0),
               ]
