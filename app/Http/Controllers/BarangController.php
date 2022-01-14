@@ -113,6 +113,10 @@ class BarangController extends Controller
             File::delete('images/' . $barang->image);
         }
 
+        if ($barang->lampiran != "default.pdf") {
+            File::delete('lampiran/' . $barang->lampiran);
+        }
+
         return response()->json([
             'success' => true,
             'message' => 'barang Berhasil Dihapus!',
