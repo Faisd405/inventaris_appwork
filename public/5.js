@@ -100,8 +100,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -293,26 +291,22 @@ var render = function () {
               1
             ),
             _vm._v(" "),
-            _vm.barang.lampiran
-              ? _c("div", [
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("h2", { staticClass: "text-center" }, [
-                    _vm._v(
-                      "\n              Lampiran Surat Komitmen Peggunaan Barang Inventaris Kantor\n            "
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("iframe", {
-                    attrs: {
-                      src: "/lampiran/" + _vm.barang.lampiran,
-                      type: "document.pdf",
-                      width: "100%",
-                      height: "500px",
-                    },
-                  }),
-                ])
-              : _vm._e(),
+            _c("hr"),
+            _vm._v(" "),
+            _c("h2", { staticClass: "text-center" }, [
+              _vm._v(
+                "\n            Lampiran Surat Komitmen Peggunaan Barang Inventaris Kantor\n          "
+              ),
+            ]),
+            _vm._v(" "),
+            _c("iframe", {
+              attrs: {
+                src: "/lampiran/" + _vm.barang.lampiran,
+                type: "document.pdf",
+                width: "100%",
+                height: "500px",
+              },
+            }),
             _vm._v(" "),
             _c("hr"),
             _vm._v(" "),

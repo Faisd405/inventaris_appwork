@@ -50,18 +50,16 @@
                 ></label
               >
             </div>
-            <div v-if="barang.lampiran">
-              <hr />
-              <h2 class="text-center">
-                Lampiran Surat Komitmen Peggunaan Barang Inventaris Kantor
-              </h2>
-              <iframe
-                :src="'/lampiran/' + barang.lampiran"
-                type="document.pdf"
-                width="100%"
-                height="500px"
-              ></iframe>
-            </div>
+            <hr />
+            <h2 class="text-center">
+              Lampiran Surat Komitmen Peggunaan Barang Inventaris Kantor
+            </h2>
+            <iframe
+              :src="'/lampiran/' + barang.lampiran"
+              type="document.pdf"
+              width="100%"
+              height="500px"
+            ></iframe>
             <hr />
             <div>
               <h2 class="text-center">Daftar Riwayat Pengguna</h2>
