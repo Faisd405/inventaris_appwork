@@ -5,8 +5,9 @@
         <div class="card mb-3">
           <div class="card-body bg-dark text-white">
             Ini adalah halaman DataMaster Kategori Barang. Kategori Barang
-            merupakan turunan dari Sifat Barang. Contoh Kategori Barang seperti bawahan elektronik yaitu PC,
-            dan furniture yaitu meja. Isi Sifat Barang terlebih dahulu.
+            merupakan turunan dari Sifat Barang. Contoh Kategori Barang seperti
+            bawahan elektronik yaitu PC, dan furniture yaitu meja. Isi Sifat
+            Barang terlebih dahulu.
           </div>
         </div>
         <div class="card card-default">

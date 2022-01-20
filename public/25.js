@@ -134,6 +134,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -476,7 +477,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card mb-3" }, [
       _c("div", { staticClass: "card-body bg-dark text-white" }, [
         _vm._v(
-          "\n          Ini adalah halaman DataMaster Kategori Barang. Kategori Barang\n          merupakan turunan dari Sifat Barang. Contoh Kategori Barang seperti bawahan elektronik yaitu PC,\n          dan furniture yaitu meja. Isi Sifat Barang terlebih dahulu.\n        "
+          "\n          Ini adalah halaman DataMaster Kategori Barang. Kategori Barang\n          merupakan turunan dari Sifat Barang. Contoh Kategori Barang seperti\n          bawahan elektronik yaitu PC, dan furniture yaitu meja. Isi Sifat\n          Barang terlebih dahulu.\n        "
         ),
       ]),
     ])
