@@ -56,6 +56,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
     title: "Login"
@@ -118,128 +120,167 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row justify-content-md-center" }, [
-    _c("div", { staticClass: "col-5" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-body" }, [
-          _vm.message
-            ? _c(
-                "div",
-                {
-                  staticClass: "alert alert-success",
-                  attrs: { role: "alert" },
-                },
-                [_vm._v("\n          " + _vm._s(_vm.message) + "\n        ")]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _c("h4", { staticClass: "card-title" }, [_vm._v("Login")]),
-          _vm._v(" "),
-          _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
-            _vm._v("Login to your account"),
-          ]),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _vm.error
-            ? _c("div", { staticClass: "alert bg-danger text-white" }, [
-                _vm._v("\n          " + _vm._s(_vm.error) + "\n        "),
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "form",
-            {
-              on: {
-                submit: function ($event) {
-                  $event.preventDefault()
-                  return _vm.loginForm.apply(null, arguments)
-                },
-              },
-            },
-            [
-              _c("div", { staticClass: "mb-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "form-label", attrs: { for: "email" } },
-                  [_vm._v("Email address")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.email,
-                      expression: "email",
-                    },
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "email", id: "email", required: "" },
-                  domProps: { value: _vm.email },
-                  on: {
-                    input: function ($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.email = $event.target.value
-                    },
-                  },
-                }),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "mb-3" }, [
-                _c(
-                  "label",
-                  { staticClass: "form-label", attrs: { for: "password" } },
-                  [_vm._v("Password")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.password,
-                      expression: "password",
-                    },
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "password", id: "password", required: "" },
-                  domProps: { value: _vm.password },
-                  on: {
-                    input: function ($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.password = $event.target.value
-                    },
-                  },
-                }),
-              ]),
-              _vm._v(" "),
-              _c(
-                "button",
-                { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                [_vm._v("Login")]
-              ),
-            ]
-          ),
-          _vm._v(" "),
+  return _c(
+    "div",
+    {
+      staticClass: "container-fluid d-flex align-items-stretch flex-grow-1 p-0",
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "flex-shrink-1 flex-grow-1 container-p-x container-p-y",
+        },
+        [
           _c(
             "div",
+            { staticClass: "layout-example-block layout-example-block-1" },
             [
-              _vm._v("\n          Belum Punya akun ?\n          "),
-              _c("router-link", { attrs: { to: "/register" } }, [
-                _vm._v(" Register "),
+              _c("div", { staticClass: "card card-default" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _vm.message
+                    ? _c(
+                        "div",
+                        {
+                          staticClass: "alert alert-success",
+                          attrs: { role: "alert" },
+                        },
+                        [
+                          _vm._v(
+                            "\n            " +
+                              _vm._s(_vm.message) +
+                              "\n          "
+                          ),
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("h4", { staticClass: "card-title" }, [_vm._v("Login")]),
+                  _vm._v(" "),
+                  _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
+                    _vm._v("Login to your account"),
+                  ]),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _vm.error
+                    ? _c("div", { staticClass: "alert bg-danger text-white" }, [
+                        _vm._v(
+                          "\n            " + _vm._s(_vm.error) + "\n          "
+                        ),
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function ($event) {
+                          $event.preventDefault()
+                          return _vm.loginForm.apply(null, arguments)
+                        },
+                      },
+                    },
+                    [
+                      _c("div", { staticClass: "mb-3" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "email" },
+                          },
+                          [_vm._v("Email address")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.email,
+                              expression: "email",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "email", id: "email", required: "" },
+                          domProps: { value: _vm.email },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.email = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "mb-3" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "password" },
+                          },
+                          [_vm._v("Password")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.password,
+                              expression: "password",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            id: "password",
+                            required: "",
+                          },
+                          domProps: { value: _vm.password },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.password = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "submit" },
+                        },
+                        [_vm._v("Login")]
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    [
+                      _vm._v("\n            Belum Punya akun ?\n            "),
+                      _c("router-link", { attrs: { to: "/register" } }, [
+                        _vm._v(" Register "),
+                      ]),
+                    ],
+                    1
+                  ),
+                ]),
               ]),
-            ],
-            1
+            ]
           ),
-        ]),
-      ]),
-    ]),
-  ])
+        ]
+      ),
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
