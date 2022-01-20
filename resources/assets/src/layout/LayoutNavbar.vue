@@ -25,11 +25,13 @@
     <b-navbar-toggle target="app-layout-navbar"></b-navbar-toggle>
     <template v-if="isLoggedIn">
       <b-collapse is-nav id="app-layout-navbar">
-        <b-navbar-nav class="align-items-lg-center">
-          <b-nav-item :to="{}"
-            >{{ user.name }}, Seorang {{ user.roles[0].name }}</b-nav-item
-          >
-          <b-nav-item @click="logout">Logout</b-nav-item>
+        <b-navbar-nav class="align-items-lg-center collapse navbar-collapse">
+          <div class="navbar-nav ml-auto">
+            <b-nav-item :to="{}"
+              >{{ user.name }}, Seorang {{ user.roles[0].name }}</b-nav-item
+            >
+            <b-nav-item @click="logout">Logout</b-nav-item>
+          </div>
         </b-navbar-nav>
       </b-collapse></template
     >

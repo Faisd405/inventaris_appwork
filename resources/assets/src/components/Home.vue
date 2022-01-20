@@ -18,37 +18,53 @@
             </div>
             <div class="row d-flex justify-content-center">
               <div
-                class="card text-white bg-primary col-md-6"
+                class="card text-white bg-primary col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
               >
-                <div class="card-header">Total Barang</div>
+                <div class="card-header">
+                  <router-link to="/laporan/barang">
+                    <strong> Total Barang </strong>
+                  </router-link>
+                </div>
                 <div class="card-body">
                   <h1 class="card-title">{{ barang.length }}</h1>
                 </div>
               </div>
               <div
-                class="card text-white bg-primary col-md-6"
+                class="card text-white bg-primary col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
               >
-                <div class="card-header">Total Pengguna</div>
+                <div class="card-header">
+                  <router-link to="/laporan/pengguna"
+                    ><strong> Total Pengguna</strong></router-link
+                  >
+                </div>
                 <div class="card-body">
                   <h1 class="card-title">{{ pengguna.length }}</h1>
                 </div>
               </div>
               <div
-                class="card text-white bg-primary col-md-6"
+                class="card text-white bg-primary col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
               >
-                <div class="card-header">Total Buku</div>
+                <div class="card-header">
+                  <router-link to="/laporan/buku"
+                    ><strong> Total Buku</strong></router-link
+                  >
+                </div>
                 <div class="card-body">
                   <h1 class="card-title">{{ buku.length }}</h1>
                 </div>
               </div>
               <div
-                class="card text-white bg-primary col-md-6"
+                class="card text-white bg-primary col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
               >
-                <div class="card-header">Total Barang Yang Terpakai</div>
+                <div class="card-header">
+                  <router-link to="/laporan/LaporanTBarangTerpakai"
+                    ><strong>Total Barang Yang Terpakai</strong></router-link
+                  >
+                </div>
                 <div class="card-body">
                   <h1 class="card-title">
                     {{ barang.length - NoPengguna.length }}
@@ -56,29 +72,33 @@
                 </div>
               </div>
               <div
-                class="card text-white bg-primary col-md-6"
+                class="card text-white bg-primary col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
               >
-                <div class="card-header">Total Barang Yang Tidak Terpakai</div>
+                <div class="card-header">
+                  <router-link to="/laporan/LaporanTBarangTidakTerpakai"
+                    ><strong
+                      >Total Barang Yang Tidak Terpakai</strong
+                    ></router-link
+                  >
+                </div>
                 <div class="card-body">
                   <h1 class="card-title">{{ NoPengguna.length }}</h1>
                 </div>
               </div>
               <div
-                class="card text-white bg-primary col-md-6"
+                class="card text-white bg-primary col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
               >
-                <div class="card-header">Total Harga Barang</div>
+                <div class="card-header">
+                  <router-link to="/laporan/LaporanTHargaBarang"
+                    ><strong>Total Harga Barang</strong></router-link
+                  >
+                </div>
                 <div class="card-body">
                   <h1 class="card-title">{{ total }}</h1>
                 </div>
               </div>
-            </div>
-            <div>
-              <label>Chart Kategori :</label>
-              <KategoriChart></KategoriChart>
-              <label>Chart Total Aset Pertahun :</label>
-              <TotalChart></TotalChart>
             </div>
           </div>
         </div>
@@ -88,18 +108,12 @@
 </template>
 
 <script>
-import KategoriChart from "./Chart/KategoriChart.vue";
-import TotalChart from "./Chart/TotalChart.vue";
 import axios from "axios";
 
 export default {
   name: "home",
   metaInfo: {
     title: "Home",
-  },
-  components: {
-    KategoriChart,
-    TotalChart,
   },
   data() {
     return {

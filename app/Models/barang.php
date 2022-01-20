@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class barang extends Model
 {
     protected $table = 'barang';
-    protected $fillable = ['nama_barang', 'kode_barang', 'detail_barang', 'kategori_id', 'fungsi', 'harga_barang', 'lokasi_id', 'jenis_id', 'pengguna_id', 'year', 'image', 'jumlah_barang','lampiran'];
+    protected $fillable = ['nama_barang', 'kode_barang', 'detail_barang', 'kategori_id', 'fungsi', 'harga_barang', 'lokasi_id', 'pengguna_id', 'year', 'image', 'jumlah_barang','lampiran'];
 
     public function kategori()
     {
@@ -24,11 +24,6 @@ class barang extends Model
         return $this->hasOne('App\Models\lokasi', 'id', 'lokasi_id');
     }
 
-    public function jenis()
-    {
-        return $this->hasOne('App\Models\jenis', 'id', 'jenis_id');
-    }
-
     public function history()
     {
         return $this->belongsTo('App\Models\history', 'barang_id', 'id');
@@ -36,38 +31,36 @@ class barang extends Model
 
     public function getBarang()
     {
-        return barang::with('pengguna', 'kategori', 'lokasi', 'jenis')->get();
+        return barang::with('pengguna', 'kategori', 'lokasi')->get();
     }
 
     public function getBarangByKategoriId($id)
     {
-        return barang::with('pengguna', 'kategori', 'lokasi', 'jenis')->where('kategori_id', $id)->get();
+        return barang::with('pengguna', 'kategori', 'lokasi')->where('kategori_id', $id)->get();
     }
 
     public function getBarangById($id)
     {
-        return barang::with('pengguna', 'kategori', 'lokasi', 'jenis')->find($id);
+        return barang::with('pengguna', 'kategori', 'lokasi')->find($id);
     }
 
     public function postBarang($request, $imageName, $lampiranName)
     {
-
-        $barang = new barang;
-        $barang->image = $imageName;
-        $barang->lampiran = $lampiranName;
-        $barang->nama_barang = $request->nama_barang;
-        $barang->kode_barang = $request->kode_barang;
-        $barang->detail_barang = $request->detail_barang;
-        $barang->kategori_id = $request->kategori_id;
-        $barang->fungsi = $request->fungsi;
-        $barang->harga_barang = $request->harga_barang;
-        $barang->lokasi_id = $request->lokasi_id;
-        $barang->jenis_id = $request->jenis_id;
-        $barang->pengguna_id = $request->pengguna_id;
-        $barang->jumlah_barang = $request->jumlah_barang;
-        $barang->year = $request->year;
-
-        $barang->save();
+        //mass asignment
+        $barang = $this->create([
+            'nama_barang' => $request->nama_barang,
+            'kode_barang' => $request->kode_barang,
+            'detail_barang' => $request->detail_barang,
+            'kategori_id' => $request->kategori_id,
+            'fungsi' => $request->fungsi,
+            'harga_barang' => $request->harga_barang,
+            'lokasi_id' => $request->lokasi_id,
+            'pengguna_id' => $request->pengguna_id,
+            'year' => $request->year,
+            'image' => $imageName,
+            'lampiran' => $lampiranName,
+            'jumlah_barang' => $request->jumlah_barang,
+        ]);
 
         return $barang;
     }

@@ -1,19 +1,11 @@
 <template>
-  <div class="container">
+  <div class="container mt-3">
     <div class="row justify-content-center">
       <div class="col-xl-12">
         <div class="card card-default">
-          <div class="card-header">Management Users</div>
+          <div class="card-header">Buku</div>
 
           <div class="card-body">
-            <span v-if="loginType == 'admin'"
-              class="d-flex flex-row-reverse mx-3">
-              <router-link
-                :to="{ name: 'create-users' }"
-                class="btn btn-md btn-primary"
-                >Tambah Data Management Users</router-link
-              >
-            </span>
             <div class="table-responsive mt-2">
               <b-row>
                 <b-col lg="6" class="my-1">
@@ -62,7 +54,7 @@
                 </b-col>
               </b-row>
               <b-table
-                :items="users"
+                :items="buku"
                 :fields="fields"
                 :sort-by.sync="sortBy"
                 striped
@@ -74,30 +66,6 @@
                 :current-page="currentPage"
                 :per-page="perPage"
               >
-                <template slot="action" slot-scope="data">
-                  <span v-if="user.id == 1 && loginType == 'admin'">
-                    <router-link
-                      :to="{
-                        name: 'edit-users',
-                        params: { id: data.item.id },
-                      }"
-                      class="btn btn-sm btn-primary"
-                      >
-                    <i class="ion ion-md-create"></i></router-link
-                    >
-                    <button
-                      v-if="data.item.id != 1"
-                      class="btn btn-sm btn-danger"
-                      @click="destroy(data.item.id)"
-                    >
-
-                    <i class="ion ion-ios-trash"></i>
-                    </button>
-                  </span>
-                  <span v-else>
-                      Tidak ada Akses
-                  </span>
-                </template>
               </b-table>
             </div>
           </div>
@@ -107,45 +75,33 @@
   </div>
 </template>
 
+
 <script>
 import axios from "axios";
 export default {
   metaInfo: {
-    title: "Users",
+    title: "buku",
   },
   data() {
     return {
       fields: [
-        {
-          key: "id",
-          label: "ID",
-          sortable: true,
-        },
-        {
-          key: "name",
-          label: "Nama",
-          sortable: true,
-        },
-        {
-          key: "email",
-          label: "Email",
-          sortable: true,
-        },
-        {
-          key: "action",
-          label: "Action",
-          headerClass: "text-center",
-          class: "text-center",
-          width: "100px",
-        },
+        { key: "id", label: "Id" },
+        { key: "judul", label: "Judul" },
+        { key: "penulis", label: "Penulis" },
+        { key: "penerbit", label: "Penerbit" },
+        { key: "tanggal", label: "Tanggal" },
+        { key: "kondisi", label: "Kondisi" },
+        { key: "jumlah", label: "Jumlah" },
+        { key: "jenis.jenis_buku", label: "Jenis" },
+        { key: "pengguna.name", label: "Pengguna" },
+        { key: "lokasi.lokasi", label: "Lokasi" },
       ],
-      users: [],
       filter: null,
       filterOn: [],
       currentPage: 1,
       perPage: 5,
       pageOptions: [5, 15, 25, 50, { value: 100, text: "Show a lot" }],
-      barang: [],
+      buku: [],
       sortBy: "id",
       user: null,
       isLoggedIn: false,
@@ -153,21 +109,20 @@ export default {
     };
   },
   created() {
-    let uri = `/api/users`;
+    let uri = `/api/buku`;
     axios.get(uri).then((response) => {
-      this.users = response.data.user;
+      this.buku = response.data.buku;
     });
   },
-
   methods: {
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
     destroy(id) {
-      let uri = `/api/users/${id}`;
+      let uri = `/api/buku/${id}`;
       axios.delete(uri).then((response) => {
-        this.users = this.users.filter((users) => users.id != id);
+        this.buku = this.buku.filter((buku) => buku.id != id);
       });
     },
   },

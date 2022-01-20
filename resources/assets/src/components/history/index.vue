@@ -130,10 +130,10 @@
                       class="btn btn-sm btn-danger"
                       @click="destroy(data.item.id)"
                     >
-                      Hapus
+                    <i class="ion ion-ios-trash"></i>
                     </button>
                   </span>
-                  <span v-if="loginType != 'admin'"> Kamu Bukan Admin </span>
+                  <span v-if="loginType != 'admin'"> Tidak ada Akses </span>
                 </template>
               </b-table>
             </div>

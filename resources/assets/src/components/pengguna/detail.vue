@@ -17,8 +17,9 @@
                         name: 'edit-barang',
                         params: { id: data.item.id },
                       }"
-                      class="btn btn-sm btn-primary"
-                      >Edit</router-link
+                      class="btn btn-sm btn-warning"
+                      >
+                    <i class="ion ion-md-create"></i></router-link
                     >
                     <Button v-if="data.item.pengguna_id!=1"
                         class="btn btn-sm btn-danger"
@@ -34,11 +35,46 @@
                     </button>
                     </span>
                     <span v-if="loginType != 'admin'">
-                        Kamu Bukan Admin
+                        Tidak ada Akses
                     </span>
                 </template>
               </b-table>
             </div>
+            <div class="table-responsive mt-2">
+                <h2>Ini adalah buku yang dipakai {{ pengguna.name }}</h2>
+                <b-table :items="buku" :fields="fieldsbuku" responsive>
+
+                    <template slot="action" slot-scope="data">
+                        <span v-if="loginType == 'admin'">
+                        <router-link
+                          :to="{
+                            name: 'edit-buku',
+                            params: { id: data.item.id },
+                          }"
+                          class="btn btn-sm btn-warning"
+                          >
+                        <i class="ion ion-md-create"></i></router-link
+                        >
+                        <Button v-if="data.item.pengguna_id!=1"
+                            class="btn btn-sm btn-danger"
+                            @click="update(data.item.id)"
+                          >
+                            Hapus Kepemilikan
+                          </Button>
+                        <button
+                          class="btn btn-sm btn-danger"
+                          @click="destroy(data.item.id)"
+                        >
+                          Hapus Data Buku
+                        </button>
+                        </span>
+                        <span v-if="loginType != 'admin'">
+                            Tidak ada Akses
+                        </span>
+                    </template>
+                </b-table>
+            </div>
+
           </div>
         </div>
       </div>
@@ -59,7 +95,6 @@ export default {
             {
                 key: 'id',
                 label: 'ID',
-                sortable: true
             },
             {
                 key: 'kode_barang',
@@ -69,31 +104,69 @@ export default {
             {
                 key: 'nama_barang',
                 label: 'Nama Barang',
-                sortable: true
             },
             {
                 key: 'fungsi',
                 label: 'Fungsi',
-                sortable: true
             },
             {
                 key: 'lokasi.lokasi',
                 label: 'Lokasi',
-                sortable: true
             },
             {
                 key: 'harga_barang',
                 label: 'Harga Barang',
-                sortable: true
             },
             {
                 key: 'action',
                 label: 'Action',
-                sortable: false
+            }
+        ],
+        fieldsbuku: [
+            {
+                key: 'id',
+                label: 'ID',
+            },
+            {
+                key: 'judul',
+                label: 'Judul Buku',
+            },
+            {
+                key: 'penulis',
+                label: 'Penulis',
+            },
+            {
+                key: 'penerbit',
+                label: 'Penerbit',
+            },
+            {
+                key: 'tanggal',
+                label: 'tanggal',
+            },
+            {
+                key: 'kondisi',
+                label: 'Kondisi',
+            },
+            {
+                key: 'jumlah',
+                label: 'Jumlah',
+            },
+            {
+                key: 'jenis.jenis_buku',
+                label: 'Jenis Buku',
+            },
+            {
+                key: 'lokasi.lokasi',
+                label: 'Lokasi',
+            },
+            {
+                key: 'action',
+                label: 'Action',
             }
         ],
       barangs: [],
       pengguna: {},
+      buku: [],
       barang: {
           pengguna_id: 1,
       },
@@ -107,6 +180,7 @@ export default {
     axios.get(uri).then((response) => {
       this.barangs = response.data.barang;
       this.pengguna = response.data.pengguna;
+        this.buku = response.data.buku;
     });
   },
   methods: {

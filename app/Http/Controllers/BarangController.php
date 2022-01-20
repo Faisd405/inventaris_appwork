@@ -125,13 +125,13 @@ class BarangController extends Controller
     }
 
     public function relasi(Request $request, $id){
-        $barang = barang::find($id);
-        $barang->update($request->all());
+        $barang = $this->barang->putBarang($request, $id);
 
-        $this->history->putHistory($request, $barang);
+        $history = $this->history->updateHistory($request, $barang);
 
         return response()->json([
-            'barang' => $barang
+            'barang' => $barang,
+            'history' => $history
         ], 200);
     }
 
@@ -176,7 +176,7 @@ class BarangController extends Controller
     public function update(Request $request, $id)
     {
         $barang = $this->barang->getBarangById($id);
-        $this->history->putHistory($request, $barang);
+        $this->history->updateHistory($request, $barang);
 
         $imageName = $this->gantifoto($request, $barang);
         $updateLampiran = $this->updateLampiran($request, $barang);

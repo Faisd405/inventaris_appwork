@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[14],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/jenis/edit.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/jenis/edit.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/barang/relasi-barang.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/barang/relasi-barang.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -44,30 +44,75 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
-    title: "Edit Jenis"
+    title: "Relasi Barang Dan Pengguna"
   },
   data: function data() {
     return {
-      jenis: {}
+      pengguna: [],
+      barang: {},
+      barangs: {}
     };
   },
   created: function created() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/jenis/".concat(this.$route.params.id)).then(function (response) {
-      _this.jenis = response.data.jenis;
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/pengguna/").then(function (response) {
+      _this.pengguna = response.data.pengguna;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/barang").then(function (response) {
+      _this.barangs = response.data.barang;
     });
   },
   methods: {
-    JenisUpdate: function JenisUpdate() {
+    RelasiUserBarangUpdate: function RelasiUserBarangUpdate() {
       var _this2 = this;
 
-      var uri = "/api/jenis/" + this.$route.params.id;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.jenis).then(function (response) {
-        _this2.$router.push("/jenis");
+      var uri = "/api/barang/relasi/" + this.barang.id;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.barang).then(function (response) {
+        _this2.$router.push("/pengguna/detail/" + _this2.barang.pengguna_id);
+      })["catch"](function (error) {
+        console.log(error);
       });
     }
   }
@@ -75,10 +120,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/jenis/edit.vue?vue&type=template&id=6738bbb6&":
-/*!*********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/jenis/edit.vue?vue&type=template&id=6738bbb6& ***!
-  \*********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/barang/relasi-barang.vue?vue&type=template&id=71ac9188&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/barang/relasi-barang.vue?vue&type=template&id=71ac9188& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -94,7 +139,9 @@ var render = function () {
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-xl-12" }, [
         _c("div", { staticClass: "card card-default" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("Edit jenis")]),
+          _c("div", { staticClass: "card-header" }, [
+            _vm._v("Relasi Barang Dan Pengguna"),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c(
@@ -103,32 +150,170 @@ var render = function () {
                 on: {
                   submit: function ($event) {
                     $event.preventDefault()
-                    return _vm.JenisUpdate.apply(null, arguments)
+                    return _vm.RelasiUserBarangUpdate.apply(null, arguments)
                   },
                 },
               },
               [
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Nama jenis")]),
+                  _c("label", { attrs: { for: "user_id" } }, [
+                    _vm._v("Pengguna"),
+                  ]),
                   _vm._v(" "),
-                  _c("input", {
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.barang.pengguna_id,
+                          expression: "barang.pengguna_id",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { name: "pengguna_id" },
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.barang,
+                            "pengguna_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                      },
+                    },
+                    [
+                      _c("option", { attrs: { value: "", disabled: "" } }, [
+                        _vm._v("Pilih Pengguna"),
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.pengguna, function (pengguna) {
+                        return _c(
+                          "option",
+                          {
+                            key: pengguna.id,
+                            domProps: { value: pengguna.id },
+                          },
+                          [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(pengguna.name) +
+                                "\n                "
+                            ),
+                          ]
+                        )
+                      }),
+                    ],
+                    2
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "barang_id" } }, [
+                    _vm._v("Barang"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.barang.id,
+                          expression: "barang.id",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { name: "barang_id" },
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.barang,
+                            "id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                      },
+                    },
+                    [
+                      _c("option", { attrs: { value: "", disabled: "" } }, [
+                        _vm._v("Pilih Barang"),
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.barangs, function (barang) {
+                        return _c(
+                          "option",
+                          { key: barang.id, domProps: { value: barang.id } },
+                          [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(barang.nama_barang) +
+                                ", Pemakai : " +
+                                _vm._s(barang.pengguna.name) +
+                                "\n                "
+                            ),
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      !_vm.barang
+                        ? _c("option", { attrs: { disabled: "" } }, [
+                            _vm._v("Tidak Ada Barang Baru"),
+                          ])
+                        : _vm._e(),
+                    ],
+                    2
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "keterangan" } }, [
+                    _vm._v("Keterangan"),
+                  ]),
+                  _vm._v(" "),
+                  _c("textarea", {
                     directives: [
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.jenis.jenis_barang,
-                        expression: "jenis.jenis_barang",
+                        value: _vm.barang.keterangan,
+                        expression: "barang.keterangan",
                       },
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "text", placeholder: "Masukan Jenis" },
-                    domProps: { value: _vm.jenis.jenis_barang },
+                    attrs: {
+                      name: "keterangan",
+                      placeholder: "Masukan Keterangan",
+                    },
+                    domProps: { value: _vm.barang.keterangan },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.jenis, "jenis_barang", $event.target.value)
+                        _vm.$set(_vm.barang, "keterangan", $event.target.value)
                       },
                     },
                   }),
@@ -163,17 +348,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/assets/src/components/jenis/edit.vue":
-/*!********************************************************!*\
-  !*** ./resources/assets/src/components/jenis/edit.vue ***!
-  \********************************************************/
+/***/ "./resources/assets/src/components/barang/relasi-barang.vue":
+/*!******************************************************************!*\
+  !*** ./resources/assets/src/components/barang/relasi-barang.vue ***!
+  \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _edit_vue_vue_type_template_id_6738bbb6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./edit.vue?vue&type=template&id=6738bbb6& */ "./resources/assets/src/components/jenis/edit.vue?vue&type=template&id=6738bbb6&");
-/* harmony import */ var _edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit.vue?vue&type=script&lang=js& */ "./resources/assets/src/components/jenis/edit.vue?vue&type=script&lang=js&");
+/* harmony import */ var _relasi_barang_vue_vue_type_template_id_71ac9188___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./relasi-barang.vue?vue&type=template&id=71ac9188& */ "./resources/assets/src/components/barang/relasi-barang.vue?vue&type=template&id=71ac9188&");
+/* harmony import */ var _relasi_barang_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./relasi-barang.vue?vue&type=script&lang=js& */ "./resources/assets/src/components/barang/relasi-barang.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -183,9 +368,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _edit_vue_vue_type_template_id_6738bbb6___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _edit_vue_vue_type_template_id_6738bbb6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _relasi_barang_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _relasi_barang_vue_vue_type_template_id_71ac9188___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _relasi_barang_vue_vue_type_template_id_71ac9188___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -195,38 +380,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/src/components/jenis/edit.vue"
+component.options.__file = "resources/assets/src/components/barang/relasi-barang.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/src/components/jenis/edit.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************!*\
-  !*** ./resources/assets/src/components/jenis/edit.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************/
+/***/ "./resources/assets/src/components/barang/relasi-barang.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/assets/src/components/barang/relasi-barang.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/jenis/edit.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_relasi_barang_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./relasi-barang.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/barang/relasi-barang.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_relasi_barang_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/src/components/jenis/edit.vue?vue&type=template&id=6738bbb6&":
-/*!***************************************************************************************!*\
-  !*** ./resources/assets/src/components/jenis/edit.vue?vue&type=template&id=6738bbb6& ***!
-  \***************************************************************************************/
+/***/ "./resources/assets/src/components/barang/relasi-barang.vue?vue&type=template&id=71ac9188&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/assets/src/components/barang/relasi-barang.vue?vue&type=template&id=71ac9188& ***!
+  \*************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_vue_vue_type_template_id_6738bbb6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./edit.vue?vue&type=template&id=6738bbb6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/jenis/edit.vue?vue&type=template&id=6738bbb6&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_vue_vue_type_template_id_6738bbb6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_relasi_barang_vue_vue_type_template_id_71ac9188___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./relasi-barang.vue?vue&type=template&id=71ac9188& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/barang/relasi-barang.vue?vue&type=template&id=71ac9188&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_relasi_barang_vue_vue_type_template_id_71ac9188___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_vue_vue_type_template_id_6738bbb6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_relasi_barang_vue_vue_type_template_id_71ac9188___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -24,8 +24,6 @@ class CreateBarangTable extends Migration
             $table->integer('harga_barang');
             $table->unsignedBigInteger('lokasi_id');
             $table->foreign('lokasi_id')->references('id')->on('lokasi');
-            $table->unsignedBigInteger('jenis_id');
-            $table->foreign('jenis_id')->references('id')->on('jenis');
             $table->unsignedBigInteger('pengguna_id');
             $table->foreign('pengguna_id')->references('id')->on('pengguna');
             $table->integer('jumlah_barang');

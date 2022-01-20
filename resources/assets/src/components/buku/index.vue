@@ -6,13 +6,18 @@
           <div class="card-header">buku</div>
 
           <div class="card-body">
-            <router-link v-if="loginType == 'admin'"
-              :to="{ name: 'create-buku' }"
-              class="btn btn-md btn-primary"
-              >TAMBAH Data buku</router-link
+            <div
+              class="d-flex flex-row-reverse mx-3"
+              v-if="loginType == 'admin'"
             >
+              <router-link
+                :to="{ name: 'create-buku' }"
+                class="btn btn-md btn-primary"
+                >Tambah Data buku</router-link
+              >
+            </div>
             <div class="table-responsive mt-2">
-                <b-row>
+              <b-row>
                 <b-col lg="6" class="my-1">
                   <b-form-group
                     label="Filter"
@@ -58,7 +63,9 @@
                   </b-form-group>
                 </b-col>
               </b-row>
-              <b-table :items="buku" :fields="fields"
+              <b-table
+                :items="buku"
+                :fields="fields"
                 :sort-by.sync="sortBy"
                 striped
                 responsive
@@ -67,25 +74,25 @@
                 :filter-included-fields="filterOn"
                 @filtered="onFiltered"
                 :current-page="currentPage"
-                :per-page="perPage">
-                  <template slot="action" slot-scope="data">
-                      <span v-if="loginType == 'admin'">
-                      <router-link
-                        :to="{ name: 'edit-buku', params: { id: data.item.id } }"
-                        class="btn btn-sm btn-primary"
-                        >Edit</router-link
-                      >
-                      <button
-                        class="btn btn-sm btn-danger"
-                        @click="destroy(data.item.id)"
-                      >
-                        Hapus
-                      </button>
-                      </span>
-                      <span v-if="loginType != 'admin'">
-                          Kamu Bukan Admin
-                      </span>
-                  </template>
+                :per-page="perPage"
+              >
+                <template slot="action" slot-scope="data">
+                  <span v-if="loginType == 'admin'">
+                    <router-link
+                      :to="{ name: 'edit-buku', params: { id: data.item.id } }"
+                      class="btn btn-sm btn-warning"
+                    >
+                      <i class="ion ion-md-create"></i
+                    ></router-link>
+                    <button
+                      class="btn btn-sm btn-danger"
+                      @click="destroy(data.item.id)"
+                    >
+                      <i class="ion ion-ios-trash"></i>
+                    </button>
+                  </span>
+                  <span v-if="loginType != 'admin'"> Tidak ada Akses </span>
+                </template>
               </b-table>
             </div>
           </div>
@@ -97,7 +104,7 @@
 
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
   metaInfo: {
     title: "buku",
@@ -112,14 +119,16 @@ export default {
         { key: "tanggal", label: "Tanggal" },
         { key: "kondisi", label: "Kondisi" },
         { key: "jumlah", label: "Jumlah" },
+        { key: "jenis.jenis_buku", label: "Jenis" },
+        { key: "pengguna.name", label: "Pengguna" },
         { key: "lokasi.lokasi", label: "Lokasi" },
-        { key: "action", label: "Action", sortable: false }
+        { key: "action", label: "Action", sortable: false },
       ],
-        filter: null,
-        filterOn: [],
-        currentPage: 1,
-        perPage: 5,
-        pageOptions: [5, 15, 25, 50,{ value: 100, text: "Show a lot" }],
+      filter: null,
+      filterOn: [],
+      currentPage: 1,
+      perPage: 5,
+      pageOptions: [5, 15, 25, 50, { value: 100, text: "Show a lot" }],
       buku: [],
       sortBy: "id",
       user: null,
@@ -135,8 +144,8 @@ export default {
   },
   methods: {
     onFiltered(filteredItems) {
-        this.totalRows = filteredItems.length
-        this.currentPage = 1
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
     },
     destroy(id) {
       let uri = `/api/buku/${id}`;
@@ -146,14 +155,14 @@ export default {
     },
   },
   mounted() {
-      axios.defaults.headers.common['Content-Type'] = 'application/json'
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token')
+    axios.defaults.headers.common["Content-Type"] = "application/json";
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + localStorage.getItem("token");
 
-      axios.get(`/api/user`)
-        .then(response => {
-          this.user = response.data
-          this.loginType = response.data.roles[0].name
-        });
+    axios.get(`/api/user`).then((response) => {
+      this.user = response.data;
+      this.loginType = response.data.roles[0].name;
+    });
   },
 };
 </script>

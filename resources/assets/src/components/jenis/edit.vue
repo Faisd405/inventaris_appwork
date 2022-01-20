@@ -12,7 +12,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  v-model="jenis.jenis_barang"
+                  v-model="jenis.jenis_buku"
                   placeholder="Masukan Jenis"
                 />
               </div>

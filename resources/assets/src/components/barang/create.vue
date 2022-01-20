@@ -11,7 +11,6 @@
                 <label for="nama_barang">Nama Barang</label>
                 <input
                   type="text"
-                  name="nama_barang"
                   class="form-control"
                   v-model="barang.nama_barang"
                   placeholder="Masukan Nama Barang"
@@ -80,13 +79,13 @@
               </div>
 
               <div class="form-group">
-                <label for="year">year</label>
+                <label for="year">Tahun</label>
                 <input
                   type="year"
                   name="year"
                   class="form-control"
                   v-model="barang.year"
-                  placeholder="Masukan year"
+                  placeholder="Masukan Tahun"
                 />
               </div>
 
@@ -104,24 +103,6 @@
                     :key="lokasi.id"
                   >
                     {{ lokasi.lokasi }}
-                  </option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="jenis_id">Jenis</label>
-                <select
-                  name="jenis_id"
-                  class="form-control"
-                  v-model="barang.jenis_id"
-                >
-                  <option value="" disabled>Pilih Jenis</option>
-                  <option
-                    v-for="jenis in jenis"
-                    :value="jenis.id"
-                    :key="jenis.id"
-                  >
-                    {{ jenis.jenis_barang }}
                   </option>
                 </select>
               </div>
@@ -156,11 +137,12 @@
               </div>
 
               <div class="form-group">
-                <label for="image">image</label>
+                <label for="image">Gambar</label>
                 <input
                   type="file"
                   class="form-control"
                   name="image"
+                  accept="image/png, image/jpeg"
                   @change="onFileChange"
                 />
               </div>
@@ -176,11 +158,12 @@
                   type="file"
                   class="form-control"
                   name="lampiran"
+                  accept="application/pdf"
                   @change="onFileChangePDF"
                 />
               </div>
               <div class="form-group">
-                <button class="btn btn-md btn-success" type="submit">
+                <button class="btn btn-md btn-success" type="submit" title="submit">
                   SIMPAN
                 </button>
               </div>
@@ -202,7 +185,6 @@ export default {
     return {
       barang: {},
       kategori: [],
-      jenis: [],
       lokasi: [],
       pengguna: [],
       preview: null,
@@ -216,9 +198,6 @@ export default {
     });
     axios.get("/api/pengguna").then((response) => {
       this.pengguna = response.data.pengguna;
-    });
-    axios.get("/api/jenis").then((response) => {
-      this.jenis = response.data.jenis;
     });
     axios.get("/api/lokasi").then((response) => {
       this.lokasi = response.data.lokasi;
@@ -235,7 +214,6 @@ export default {
       formData.append("fungsi", this.barang.fungsi);
       formData.append("harga_barang", this.barang.harga_barang);
       formData.append("year", this.barang.year);
-      formData.append("jenis_id", this.barang.jenis_id);
       formData.append("lokasi_id", this.barang.lokasi_id);
       formData.append("pengguna_id", this.barang.pengguna_id);
       formData.append("image", this.barang.image);

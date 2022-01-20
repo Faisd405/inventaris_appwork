@@ -5,41 +5,93 @@
       class="sidenav-inner"
       :class="{ 'py-1': orientation !== 'horizontal' }"
     >
+      <sidenav-header> <strong>Dashboard</strong> </sidenav-header>
       <sidenav-router-link icon="ion ion-ios-home" to="/" :exact="true"
         >Home</sidenav-router-link
       >
-      <sidenav-router-link icon="ion ion-md-desktop" to="/barang" :exact="true"
-        >Barang</sidenav-router-link
+
+      <sidenav-divider />
+      <sidenav-header> <strong>DataMaster</strong> </sidenav-header>
+
+      <sidenav-router-link icon="ion ion-md-person" to="/users" :exact="true"
+        >Management User</sidenav-router-link
       >
+      <sidenav-menu icon="ion ion-md-cube">
+        <template slot="link-text">
+          <strong>Kategori Barang</strong>
+        </template>
+        <sidenav-router-link icon="ion ion-md-desktop" to="/sifat" :exact="true"
+          >Sifat Barang</sidenav-router-link
+        >
+        <sidenav-router-link
+          icon="ion ion-md-desktop"
+          to="/kategori"
+          :exact="true"
+          >Kategori Barang</sidenav-router-link
+        >
+      </sidenav-menu>
       <sidenav-router-link icon="ion ion-md-desktop" to="/jenis" :exact="true"
-        >Jenis Barang</sidenav-router-link
+        >Kategori Buku</sidenav-router-link
       >
-      <sidenav-router-link icon="ion ion-md-desktop" to="/lokasi" :exact="true"
+      <sidenav-divider />
+      <sidenav-header> <strong>Modul Inventaris</strong> </sidenav-header>
+      <sidenav-menu icon="ion ion-md-cube">
+        <template slot="link-text">
+          <strong>Inventaris Barang</strong>
+        </template>
+        <sidenav-router-link
+          icon="ion ion-md-list-box"
+          to="/barang"
+          :exact="true"
+          >Daftar Barang</sidenav-router-link
+        >
+        <sidenav-router-link
+          icon="ion ion-md-person"
+          to="/pengguna"
+          :exact="true"
+          >PIC Barang</sidenav-router-link
+        >
+      </sidenav-menu>
+      <sidenav-menu icon="ion ion-md-cube">
+        <template slot="link-text">
+          <strong>Inventaris Buku</strong>
+        </template>
+        <sidenav-router-link icon="ion ion-md-book" to="/buku" :exact="true"
+          >Daftar Buku</sidenav-router-link
+        >
+        <sidenav-router-link
+          icon="ion ion-md-person"
+          to="/pengguna"
+          :exact="true"
+          >PIC Buku</sidenav-router-link
+        >
+      </sidenav-menu>
+
+      <sidenav-router-link icon="ion ion-md-compass" to="/lokasi" :exact="true"
         >Lokasi Barang</sidenav-router-link
       >
-      <sidenav-router-link
-        icon="ion ion-md-desktop"
-        to="/kategori"
-        :exact="true"
-        >Kategori Barang</sidenav-router-link
-      >
-      <sidenav-router-link icon="ion ion-md-desktop" to="/sifat" :exact="true"
-        >Sifat Kategori</sidenav-router-link
-      >
-      <sidenav-router-link
-        icon="ion ion-md-person"
-        to="/pengguna"
-        :exact="true"
-        >Pengguna</sidenav-router-link
-      >
-      <sidenav-router-link icon="ion ion-md-person" to="/users" :exact="true"
-        >Users</sidenav-router-link
-      >
-      <sidenav-router-link icon="ion ion-md-book" to="/buku" :exact="true"
-        >Buku</sidenav-router-link
-      >
       <sidenav-router-link icon="ion ion-md-desktop" to="/history" :exact="true"
-        >History Penggunaan Barang</sidenav-router-link
+        >Riwayat Penggunaan Barang</sidenav-router-link
+      >
+      <sidenav-divider />
+      <sidenav-header> <strong>Laporan</strong> </sidenav-header>
+      <sidenav-router-link icon="ion ion-md-dekstop" to="/laporan/barang" :exact="true"
+        >Laporan Total Barang</sidenav-router-link
+      >
+      <sidenav-router-link icon="ion ion-md-dekstop" to="/laporan/pengguna" :exact="true"
+        >Laporan Total Pengguna</sidenav-router-link
+      >
+      <sidenav-router-link icon="ion ion-md-dekstop" to="/laporan/buku" :exact="true"
+        >Laporan Total Buku</sidenav-router-link
+      >
+      <sidenav-router-link icon="ion ion-md-dekstop" to="/laporan/LaporanTBarangTerpakai" :exact="true"
+        >Laporan Total Barang yang terpakai</sidenav-router-link
+      >
+      <sidenav-router-link icon="ion ion-md-dekstop" to="/laporan/LaporanTBarangTidakTerpakai" :exact="true"
+        >Laporan Total Barang yang tidak terpakai</sidenav-router-link
+      >
+      <sidenav-router-link icon="ion ion-md-dekstop" to="/laporan/LaporanTHargaBarang" :exact="true"
+        >Laporan Harga Barang</sidenav-router-link
       >
     </div>
   </sidenav>
@@ -71,7 +123,7 @@ export default {
     SidenavMenu,
     SidenavHeader,
     SidenavBlock,
-    SidenavDivider,
+    SidenavDivider
   },
 
   props: {

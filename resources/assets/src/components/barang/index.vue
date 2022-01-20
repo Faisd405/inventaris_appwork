@@ -1,32 +1,49 @@
 <template>
-  <div class="container mt-3">
-    <div class="row justify-content-center">
-      <div class="col-xl-12">
+  <div class="container mt-3 d-flex align-items-stretch flex-grow-1 p-0">
+    <div
+      class="
+        flex-shrink-1 flex-grow-0
+        w-25
+        bg-light
+        container-p-x container-p-y
+        card card-default
+      "
+    >
+      <div>Export Barang</div>
+      <hr />
+      <a href="/barang/barang_pdf" class="btn btn-md btn-primary mt-3 flex">
+        Export PDF
+      </a>
+      <a href="/barang/qrbarang_pdf" class="btn btn-md btn-warning mt-3 flex">
+        Export PDF With Qr
+      </a>
+      <a href="/barang/barang_excel" class="btn btn-md btn-secondary mt-3 flex">
+        Export Excel
+      </a>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 justify-content-center">
         <div class="card card-default">
           <div class="card-header">Barang</div>
 
           <div class="card-body">
-            <span v-if="loginType == 'admin'">
+            <span v-if="loginType == 'admin'" class="d-flex flex-row-reverse">
               <router-link
                 :to="{ name: 'create-barang' }"
-                class="btn btn-md btn-primary"
-                >TAMBAH Data Barang</router-link
+                class="btn btn-md btn-primary mx-3" v-b-tooltip.hover title="Tambah Data Barang Baru"
+                >Tambah Data Barang</router-link
               >
               <router-link
                 :to="{ name: 'relasiuserbarang' }"
-                class="btn btn-md btn-primary"
-                >TAMBAH Data Barang ke users</router-link
+                class="btn btn-md btn-warning"
+                >Tambah Data Barang ke users</router-link
               >
+
+
+
+              <hr />
             </span>
-            <a href="/barang/barang_pdf" class="btn btn-md btn-primary">
-              Export PDF
-            </a>
-            <a href="/barang/qrbarang_pdf" class="btn btn-md btn-primary">
-              Export PDF With Qr
-            </a>
-            <a href="/barang/barang_excel" class="btn btn-md btn-primary">
-              Export Excel
-            </a>
+              <br />
             <div>
               <b-row>
                 <b-col lg="6" class="my-1">
@@ -94,23 +111,25 @@
                       name: 'detail-barang',
                       params: { id: data.item.id },
                     }"
-                    class="btn btn-sm btn-primary"
-                    >Detail</router-link
+                    class="btn btn-sm btn-info"
                   >
+                    <i class="ion ion-ios-eye"></i>
+                  </router-link>
                   <span v-if="loginType == 'admin'">
                     <router-link
                       :to="{
                         name: 'edit-barang',
                         params: { id: data.item.id },
                       }"
-                      class="btn btn-sm btn-primary"
-                      >Edit</router-link
+                      class="btn btn-sm btn-warning"
                     >
+                      <i class="ion ion-md-create"></i>
+                    </router-link>
                     <button
                       class="btn btn-sm btn-danger"
                       @click="destroy(data.item.id)"
                     >
-                      Hapus
+                      <i class="ion ion-ios-trash"></i>
                     </button>
                   </span>
                 </template>
@@ -137,7 +156,6 @@ export default {
         { key: "nama_barang", sortable: true, filterByFormatted: true },
         { key: "detail_barang", sortable: true },
         { key: "kategori.nama_kategori", sortable: true, label: "Kategori" },
-        { key: "jenis.jenis_barang", sortable: true, label: "Jenis" },
         { key: "fungsi", sortable: true },
         { key: "harga_barang", sortable: true },
         { key: "lokasi.lokasi", sortable: true, label: "Lokasi" },
@@ -186,12 +204,10 @@ export default {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + localStorage.getItem("token");
 
-    axios
-      .get(`/api/user`)
-      .then((response) => {
-        this.user = response.data;
-        this.loginType = response.data.roles[0].name;
-      });
+    axios.get(`/api/user`).then((response) => {
+      this.user = response.data;
+      this.loginType = response.data.roles[0].name;
+    });
   },
 };
 </script>

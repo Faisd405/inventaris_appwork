@@ -6,16 +6,17 @@
           <div class="card-header">pengguna</div>
 
           <div class="card-body">
-            <span v-if="loginType == 'admin'">
+            <span v-if="loginType == 'admin'"
+              class="d-flex flex-row-reverse mx-3">
               <router-link
                 :to="{ name: 'create-pengguna' }"
-                class="btn btn-md btn-primary"
-                >TAMBAH Data pengguna</router-link
+                class="btn btn-md btn-primary mx-3"
+                >Tambah Data pengguna</router-link
               >
               <router-link
                 :to="{ name: 'relasiuserbarang' }"
                 class="btn btn-md btn-primary"
-                >TAMBAH Data Barang ke pengguna</router-link
+                >Tambah Data Barang ke pengguna</router-link
               >
             </span>
             <div class="table-responsive mt-2">
@@ -85,7 +86,8 @@
                       params: { id: data.item.id },
                     }"
                     class="btn btn-sm btn-primary"
-                    >Detail</router-link
+                    >
+                    <i class="ion ion-ios-eye"></i></router-link
                   >
                   <router-link
                     :to="{
@@ -93,7 +95,8 @@
                       params: { id: data.item.id },
                     }"
                     class="btn btn-sm btn-warning"
-                    >Edit</router-link
+                    >
+                    <i class="ion ion-md-create"></i></router-link
                   >
                   <span v-if="loginType == 'admin'">
                     <button
@@ -101,7 +104,8 @@
                       class="btn btn-sm btn-danger"
                       @click="destroy(data.item.id)"
                     >
-                      Hapus
+
+                    <i class="ion ion-ios-trash"></i>
                     </button>
                   </span>
                 </template>

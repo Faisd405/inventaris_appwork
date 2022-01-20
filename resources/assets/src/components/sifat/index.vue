@@ -2,15 +2,22 @@
   <div class="container mt-3">
     <div class="row justify-content-center">
       <div class="col-xl-12">
+        <div class="card mb-3">
+          <div class="card-body bg-dark text-white">
+            Ini adalah halaman DataMaster Sifat Barang. Contoh Sifat Barang
+            seperti Elektronik, dan Furniture
+          </div>
+        </div>
         <div class="card card-default">
-          <div class="card-header">sifat</div>
+          <div class="card-header">Sifat Barang</div>
 
           <div class="card-body">
-            <span v-if="loginType == 'admin'">
+            <span v-if="loginType == 'admin'"
+              class="d-flex flex-row-reverse mx-3">
               <router-link
                 :to="{ name: 'create-sifat' }"
                 class="btn btn-md btn-primary"
-                >TAMBAH Data sifat</router-link
+                >Tambah Data sifat</router-link
               >
             </span>
             <div class="table-responsive mt-2">
@@ -77,17 +84,18 @@
                   <span v-if="loginType == 'admin'">
                     <router-link
                       :to="{ name: 'edit-sifat', params: { id: data.item.id } }"
-                      class="btn btn-sm btn-primary"
-                      >Edit</router-link
+                      class="btn btn-sm btn-warning"
                     >
+                      <i class="ion ion-md-create"></i
+                    ></router-link>
                     <button
                       class="btn btn-sm btn-danger"
                       @click="destroy(data.item.id)"
                     >
-                      Hapus
+                      <i class="ion ion-ios-trash"></i>
                     </button>
                   </span>
-                  <span v-if="loginType != 'admin'"> Kamu Bukan Admin </span>
+                  <span v-if="loginType != 'admin'"> Tidak ada Akses </span>
                 </template>
               </b-table>
             </div>
@@ -147,12 +155,10 @@ export default {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + localStorage.getItem("token");
 
-    axios
-      .get(`/api/user`)
-      .then((response) => {
-        this.user = response.data;
-        this.loginType = response.data.roles[0].name;
-      });
+    axios.get(`/api/user`).then((response) => {
+      this.user = response.data;
+      this.loginType = response.data.roles[0].name;
+    });
   },
 };
 </script>

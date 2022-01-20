@@ -61,6 +61,42 @@
                   placeholder="Masukan Jumlah"
                 />
               </div>
+              <!-- jenis -->
+                <div class="form-group">
+                    <label>Jenis</label>
+                    <select
+                    name="jenis"
+                    class="form-control"
+                    v-model="buku.jenis_id"
+                    >
+                    <option value="" disabled>Pilih Jenis</option>
+                    <option
+                        v-for="jenis in jenis"
+                        :value="jenis.id"
+                        :key="jenis.id"
+                    >
+                        {{ jenis.jenis_buku }}
+                    </option>
+                    </select>
+                </div>
+                <!-- pengguna -->
+                <div class="form-group">
+                    <label>Pengguna</label>
+                    <select
+                    name="pengguna"
+                    class="form-control"
+                    v-model="buku.pengguna_id"
+                    >
+                    <option value="" disabled>Pilih Pengguna</option>
+                    <option
+                        v-for="pengguna in pengguna"
+                        :value="pengguna.id"
+                        :key="pengguna.id"
+                    >
+                        {{ pengguna.name }}
+                    </option>
+                    </select>
+                </div>
 
               <!-- Lokasi -->
               <div class="form=group">
@@ -80,6 +116,7 @@
                   </option>
                 </select>
               </div>
+
               <br />
               <div class="form-group">
                 <button class="btn btn-md btn-success" type="submit">
@@ -104,11 +141,19 @@ export default {
     return {
       buku: {},
       lokasi: [],
+      jenis: [],
+      pengguna: [],
     };
   },
   created() {
     axios.get("/api/lokasi").then((response) => {
       this.lokasi = response.data.lokasi;
+    });
+    axios.get("/api/jenis").then((response) => {
+      this.jenis = response.data.jenis;
+    });
+    axios.get("/api/pengguna").then((response) => {
+      this.pengguna = response.data.pengguna;
     });
   },
   methods: {

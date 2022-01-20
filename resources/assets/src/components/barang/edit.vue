@@ -99,24 +99,6 @@
               </div>
 
               <div class="form-group">
-                <label for="jenis_id">Jenis</label>
-                <select
-                  name="jenis_id"
-                  class="form-control"
-                  v-model="barang.jenis_id"
-                >
-                  <option value="" disabled>Pilih Jenis</option>
-                  <option
-                    v-for="jenis in jenis"
-                    :value="jenis.id"
-                    :key="jenis.id"
-                  >
-                    {{ jenis.jenis_barang }}
-                  </option>
-                </select>
-              </div>
-
-              <div class="form-group">
                 <label for="jumlah">Jumlah</label>
                 <input
                   type="number"
@@ -219,7 +201,6 @@ export default {
       kategori: [],
       pengguna: [],
       lokasi: [],
-      jenis: [],
       user: "",
       loginType: "",
       preview: null,
@@ -249,9 +230,6 @@ export default {
     axios.get("/api/pengguna").then((response) => {
       this.pengguna = response.data.pengguna;
     });
-    axios.get("/api/jenis").then((response) => {
-      this.jenis = response.data.jenis;
-    });
     axios.get("/api/lokasi").then((response) => {
       this.lokasi = response.data.lokasi;
     });
@@ -269,7 +247,6 @@ export default {
       formData.append("fungsi", this.barang.fungsi);
       formData.append("harga_barang", this.barang.harga_barang);
       formData.append("lokasi_id", this.barang.lokasi_id);
-      formData.append("jenis_id", this.barang.jenis_id);
       formData.append("jumlah_barang", this.barang.jumlah_barang);
       formData.append("pengguna_id", this.barang.pengguna_id);
       formData.append("keterangan", this.barang.keterangan);

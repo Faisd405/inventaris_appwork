@@ -1,20 +1,12 @@
 <template>
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-xl-12">
+    <div class="row">
+      <div class="col-xl-12 justify-content-center">
         <div class="card card-default">
-          <div class="card-header">Management Users</div>
+          <div class="card-header">Harga Barang</div>
 
           <div class="card-body">
-            <span v-if="loginType == 'admin'"
-              class="d-flex flex-row-reverse mx-3">
-              <router-link
-                :to="{ name: 'create-users' }"
-                class="btn btn-md btn-primary"
-                >Tambah Data Management Users</router-link
-              >
-            </span>
-            <div class="table-responsive mt-2">
+            <div>
               <b-row>
                 <b-col lg="6" class="my-1">
                   <b-form-group
@@ -61,45 +53,38 @@
                   </b-form-group>
                 </b-col>
               </b-row>
+
               <b-table
-                :items="users"
+                :items="barang"
                 :fields="fields"
-                :sort-by.sync="sortBy"
                 striped
                 responsive
-                sort-icon-left
                 :filter="filter"
                 :filter-included-fields="filterOn"
                 @filtered="onFiltered"
                 :current-page="currentPage"
                 :per-page="perPage"
+                foot-clone
               >
-                <template slot="action" slot-scope="data">
-                  <span v-if="user.id == 1 && loginType == 'admin'">
-                    <router-link
-                      :to="{
-                        name: 'edit-users',
-                        params: { id: data.item.id },
-                      }"
-                      class="btn btn-sm btn-primary"
-                      >
-                    <i class="ion ion-md-create"></i></router-link
-                    >
-                    <button
-                      v-if="data.item.id != 1"
-                      class="btn btn-sm btn-danger"
-                      @click="destroy(data.item.id)"
-                    >
+                <template slot="FOOT_id"> Total Barang : </template>
+                <template slot="FOOT_nama_barang">
+                  {{ barang.length }}
+                </template>
+                <template slot="FOOT_harga_barang">
+                  Total Harga Barang :
+                </template>
 
-                    <i class="ion ion-ios-trash"></i>
-                    </button>
-                  </span>
-                  <span v-else>
-                      Tidak ada Akses
-                  </span>
+                <template slot="FOOT_pengguna.name">
+                  {{ total }}
                 </template>
               </b-table>
             </div>
+          </div>
+        </div>
+        <div class="card mt-3">
+          <div class="card-body">
+            <label>Chart Total :</label>
+            <TotalChart></TotalChart>
           </div>
         </div>
       </div>
@@ -107,68 +92,51 @@
   </div>
 </template>
 
+
 <script>
 import axios from "axios";
+import TotalChart from "../Chart/TotalChart.vue";
 export default {
   metaInfo: {
-    title: "Users",
+    title: "Barang",
   },
+    components: {
+        TotalChart,
+    },
   data() {
     return {
       fields: [
-        {
-          key: "id",
-          label: "ID",
-          sortable: true,
-        },
-        {
-          key: "name",
-          label: "Nama",
-          sortable: true,
-        },
-        {
-          key: "email",
-          label: "Email",
-          sortable: true,
-        },
-        {
-          key: "action",
-          label: "Action",
-          headerClass: "text-center",
-          class: "text-center",
-          width: "100px",
-        },
+        { key: "id" },
+        { key: "nama_barang", filterByFormatted: true },
+        { key: "harga_barang" },
+        { key: "pengguna.name", label: "Pemakai" },
       ],
-      users: [],
       filter: null,
       filterOn: [],
       currentPage: 1,
       perPage: 5,
       pageOptions: [5, 15, 25, 50, { value: 100, text: "Show a lot" }],
       barang: [],
-      sortBy: "id",
       user: null,
       isLoggedIn: false,
       loginType: "",
+      total: 0,
     };
   },
+
   created() {
-    let uri = `/api/users`;
+    let uri = `/api/barang`;
     axios.get(uri).then((response) => {
-      this.users = response.data.user;
+      this.barang = response.data.barang;
+    });
+    axios.get(`/api/barang/total`).then((response) => {
+      this.total = response.data.total;
     });
   },
-
   methods: {
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
-    },
-    destroy(id) {
-      let uri = `/api/users/${id}`;
-      axios.delete(uri).then((response) => {
-        this.users = this.users.filter((users) => users.id != id);
-      });
     },
   },
   mounted() {

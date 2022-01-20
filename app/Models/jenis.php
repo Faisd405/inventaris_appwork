@@ -8,20 +8,20 @@ class jenis extends Model
 {
     //
     protected $table = 'jenis';
-    protected $fillable = ['jenis_barang'];
+    protected $fillable = ['jenis_buku'];
 
-    public function barang()
+    public function buku()
     {
-        return $this->hasMany('App\Models\barang', 'jenis_id', 'id');
+        return $this->hasMany('App\Models\buku', 'jenis_id', 'id');
     }
 
     public function getJenis() {
-        $jenis = jenis::with('barang')->get();
+        $jenis = jenis::with('buku')->get();
         return $jenis;
     }
 
     public function getJenisById($id) {
-        $jenis = jenis::with('barang')->find($id);
+        $jenis = jenis::with('buku')->find($id);
         return $jenis;
     }
 

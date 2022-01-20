@@ -2006,6 +2006,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "app-layout-navbar",
   props: {
@@ -2065,6 +2067,58 @@ var _data$name$components;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -33784,21 +33838,30 @@ var render = function () {
               [
                 _c(
                   "b-navbar-nav",
-                  { staticClass: "align-items-lg-center" },
+                  {
+                    staticClass:
+                      "align-items-lg-center collapse navbar-collapse",
+                  },
                   [
-                    _c("b-nav-item", { attrs: { to: {} } }, [
-                      _vm._v(
-                        _vm._s(_vm.user.name) +
-                          ", Seorang " +
-                          _vm._s(_vm.user.roles[0].name)
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("b-nav-item", { on: { click: _vm.logout } }, [
-                      _vm._v("Logout"),
-                    ]),
-                  ],
-                  1
+                    _c(
+                      "div",
+                      { staticClass: "navbar-nav ml-auto" },
+                      [
+                        _c("b-nav-item", { attrs: { to: {} } }, [
+                          _vm._v(
+                            _vm._s(_vm.user.name) +
+                              ", Seorang " +
+                              _vm._s(_vm.user.roles[0].name)
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("b-nav-item", { on: { click: _vm.logout } }, [
+                          _vm._v("Logout"),
+                        ]),
+                      ],
+                      1
+                    ),
+                  ]
                 ),
               ],
               1
@@ -33869,22 +33932,63 @@ var render = function () {
               class: { "py-1": _vm.orientation !== "horizontal" },
             },
             [
+              _c("sidenav-header", [_c("strong", [_vm._v("Dashboard")])]),
+              _vm._v(" "),
               _c(
                 "sidenav-router-link",
                 { attrs: { icon: "ion ion-ios-home", to: "/", exact: true } },
                 [_vm._v("Home")]
               ),
               _vm._v(" "),
+              _c("sidenav-divider"),
+              _vm._v(" "),
+              _c("sidenav-header", [_c("strong", [_vm._v("DataMaster")])]),
+              _vm._v(" "),
               _c(
                 "sidenav-router-link",
                 {
                   attrs: {
-                    icon: "ion ion-md-desktop",
-                    to: "/barang",
+                    icon: "ion ion-md-person",
+                    to: "/users",
                     exact: true,
                   },
                 },
-                [_vm._v("Barang")]
+                [_vm._v("Management User")]
+              ),
+              _vm._v(" "),
+              _c(
+                "sidenav-menu",
+                { attrs: { icon: "ion ion-md-cube" } },
+                [
+                  _c("template", { slot: "link-text" }, [
+                    _c("strong", [_vm._v("Kategori Barang")]),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "sidenav-router-link",
+                    {
+                      attrs: {
+                        icon: "ion ion-md-desktop",
+                        to: "/sifat",
+                        exact: true,
+                      },
+                    },
+                    [_vm._v("Sifat Barang")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "sidenav-router-link",
+                    {
+                      attrs: {
+                        icon: "ion ion-md-desktop",
+                        to: "/kategori",
+                        exact: true,
+                      },
+                    },
+                    [_vm._v("Kategori Barang")]
+                  ),
+                ],
+                2
               ),
               _vm._v(" "),
               _c(
@@ -33896,14 +34000,90 @@ var render = function () {
                     exact: true,
                   },
                 },
-                [_vm._v("Jenis Barang")]
+                [_vm._v("Kategori Buku")]
+              ),
+              _vm._v(" "),
+              _c("sidenav-divider"),
+              _vm._v(" "),
+              _c("sidenav-header", [
+                _c("strong", [_vm._v("Modul Inventaris")]),
+              ]),
+              _vm._v(" "),
+              _c(
+                "sidenav-menu",
+                { attrs: { icon: "ion ion-md-cube" } },
+                [
+                  _c("template", { slot: "link-text" }, [
+                    _c("strong", [_vm._v("Inventaris Barang")]),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "sidenav-router-link",
+                    {
+                      attrs: {
+                        icon: "ion ion-md-list-box",
+                        to: "/barang",
+                        exact: true,
+                      },
+                    },
+                    [_vm._v("Daftar Barang")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "sidenav-router-link",
+                    {
+                      attrs: {
+                        icon: "ion ion-md-person",
+                        to: "/pengguna",
+                        exact: true,
+                      },
+                    },
+                    [_vm._v("PIC Barang")]
+                  ),
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "sidenav-menu",
+                { attrs: { icon: "ion ion-md-cube" } },
+                [
+                  _c("template", { slot: "link-text" }, [
+                    _c("strong", [_vm._v("Inventaris Buku")]),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "sidenav-router-link",
+                    {
+                      attrs: {
+                        icon: "ion ion-md-book",
+                        to: "/buku",
+                        exact: true,
+                      },
+                    },
+                    [_vm._v("Daftar Buku")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "sidenav-router-link",
+                    {
+                      attrs: {
+                        icon: "ion ion-md-person",
+                        to: "/pengguna",
+                        exact: true,
+                      },
+                    },
+                    [_vm._v("PIC Buku")]
+                  ),
+                ],
+                2
               ),
               _vm._v(" "),
               _c(
                 "sidenav-router-link",
                 {
                   attrs: {
-                    icon: "ion ion-md-desktop",
+                    icon: "ion ion-md-compass",
                     to: "/lokasi",
                     exact: true,
                   },
@@ -33916,67 +34096,87 @@ var render = function () {
                 {
                   attrs: {
                     icon: "ion ion-md-desktop",
-                    to: "/kategori",
-                    exact: true,
-                  },
-                },
-                [_vm._v("Kategori Barang")]
-              ),
-              _vm._v(" "),
-              _c(
-                "sidenav-router-link",
-                {
-                  attrs: {
-                    icon: "ion ion-md-desktop",
-                    to: "/sifat",
-                    exact: true,
-                  },
-                },
-                [_vm._v("Sifat Kategori")]
-              ),
-              _vm._v(" "),
-              _c(
-                "sidenav-router-link",
-                {
-                  attrs: {
-                    icon: "ion ion-md-person",
-                    to: "/pengguna",
-                    exact: true,
-                  },
-                },
-                [_vm._v("Pengguna")]
-              ),
-              _vm._v(" "),
-              _c(
-                "sidenav-router-link",
-                {
-                  attrs: {
-                    icon: "ion ion-md-person",
-                    to: "/users",
-                    exact: true,
-                  },
-                },
-                [_vm._v("Users")]
-              ),
-              _vm._v(" "),
-              _c(
-                "sidenav-router-link",
-                {
-                  attrs: { icon: "ion ion-md-book", to: "/buku", exact: true },
-                },
-                [_vm._v("Buku")]
-              ),
-              _vm._v(" "),
-              _c(
-                "sidenav-router-link",
-                {
-                  attrs: {
-                    icon: "ion ion-md-desktop",
                     to: "/history",
                     exact: true,
                   },
                 },
-                [_vm._v("History Penggunaan Barang")]
+                [_vm._v("Riwayat Penggunaan Barang")]
+              ),
+              _vm._v(" "),
+              _c("sidenav-divider"),
+              _vm._v(" "),
+              _c("sidenav-header", [_c("strong", [_vm._v("Laporan")])]),
+              _vm._v(" "),
+              _c(
+                "sidenav-router-link",
+                {
+                  attrs: {
+                    icon: "ion ion-md-dekstop",
+                    to: "/laporan/barang",
+                    exact: true,
+                  },
+                },
+                [_vm._v("Laporan Total Barang")]
+              ),
+              _vm._v(" "),
+              _c(
+                "sidenav-router-link",
+                {
+                  attrs: {
+                    icon: "ion ion-md-dekstop",
+                    to: "/laporan/pengguna",
+                    exact: true,
+                  },
+                },
+                [_vm._v("Laporan Total Pengguna")]
+              ),
+              _vm._v(" "),
+              _c(
+                "sidenav-router-link",
+                {
+                  attrs: {
+                    icon: "ion ion-md-dekstop",
+                    to: "/laporan/buku",
+                    exact: true,
+                  },
+                },
+                [_vm._v("Laporan Total Buku")]
+              ),
+              _vm._v(" "),
+              _c(
+                "sidenav-router-link",
+                {
+                  attrs: {
+                    icon: "ion ion-md-dekstop",
+                    to: "/laporan/LaporanTBarangTerpakai",
+                    exact: true,
+                  },
+                },
+                [_vm._v("Laporan Total Barang yang terpakai")]
+              ),
+              _vm._v(" "),
+              _c(
+                "sidenav-router-link",
+                {
+                  attrs: {
+                    icon: "ion ion-md-dekstop",
+                    to: "/laporan/LaporanTBarangTidakTerpakai",
+                    exact: true,
+                  },
+                },
+                [_vm._v("Laporan Total Barang yang tidak terpakai")]
+              ),
+              _vm._v(" "),
+              _c(
+                "sidenav-router-link",
+                {
+                  attrs: {
+                    icon: "ion ion-md-dekstop",
+                    to: "/laporan/LaporanTHargaBarang",
+                    exact: true,
+                  },
+                },
+                [_vm._v("Laporan Harga Barang")]
               ),
             ],
             1
@@ -51277,27 +51477,27 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '',
       name: 'home',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! @/components/Home */ "./resources/assets/src/components/Home.vue"));
+        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! @/components/Home */ "./resources/assets/src/components/Home.vue"));
       }
     }, // Route Auth
     {
       name: 'login',
       path: '/login',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! @/components/auth/Login */ "./resources/assets/src/components/auth/Login.vue"));
+        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! @/components/auth/Login */ "./resources/assets/src/components/auth/Login.vue"));
       }
     }, {
       name: 'register',
       path: '/register',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! @/components/auth/Register */ "./resources/assets/src/components/auth/Register.vue"));
+        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! @/components/auth/Register */ "./resources/assets/src/components/auth/Register.vue"));
       }
     }, // Route barang
     {
       name: 'index-barang',
       path: '/barang',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! @/components/barang/index */ "./resources/assets/src/components/barang/index.vue"));
+        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! @/components/barang/index */ "./resources/assets/src/components/barang/index.vue"));
       },
       meta: _defineProperty({
         requiresAuth: true,
@@ -51311,7 +51511,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'relasiuserbarang',
       path: '/barang/relasi',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! @/components/barang/relasi-barang */ "./resources/assets/src/components/barang/relasi-barang.vue"));
+        return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! @/components/barang/relasi-barang */ "./resources/assets/src/components/barang/relasi-barang.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -51321,7 +51521,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-barang',
       path: '/barang/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! @/components/barang/create */ "./resources/assets/src/components/barang/create.vue"));
+        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! @/components/barang/create */ "./resources/assets/src/components/barang/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -51331,7 +51531,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'edit-barang',
       path: '/barang/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! @/components/barang/edit */ "./resources/assets/src/components/barang/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! @/components/barang/edit */ "./resources/assets/src/components/barang/edit.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -51341,7 +51541,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'detail-barang',
       path: '/barang/detail/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! @/components/barang/detail */ "./resources/assets/src/components/barang/detail.vue"));
+        return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! @/components/barang/detail */ "./resources/assets/src/components/barang/detail.vue"));
       },
       meta: _defineProperty({
         requiresAuth: true,
@@ -51356,7 +51556,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-pengguna',
       path: '/pengguna',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! @/components/pengguna/index */ "./resources/assets/src/components/pengguna/index.vue"));
+        return __webpack_require__.e(/*! import() */ 32).then(__webpack_require__.bind(null, /*! @/components/pengguna/index */ "./resources/assets/src/components/pengguna/index.vue"));
       },
       meta: _defineProperty({
         requiresAuth: true,
@@ -51370,7 +51570,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-pengguna',
       path: '/pengguna/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 23).then(__webpack_require__.bind(null, /*! @/components/pengguna/create */ "./resources/assets/src/components/pengguna/create.vue"));
+        return __webpack_require__.e(/*! import() */ 29).then(__webpack_require__.bind(null, /*! @/components/pengguna/create */ "./resources/assets/src/components/pengguna/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -51380,7 +51580,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'edit-pengguna',
       path: '/pengguna/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! @/components/pengguna/edit */ "./resources/assets/src/components/pengguna/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 31).then(__webpack_require__.bind(null, /*! @/components/pengguna/edit */ "./resources/assets/src/components/pengguna/edit.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -51390,7 +51590,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'detail-pengguna',
       path: '/pengguna/detail/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 24).then(__webpack_require__.bind(null, /*! @/components/pengguna/detail */ "./resources/assets/src/components/pengguna/detail.vue"));
+        return __webpack_require__.e(/*! import() */ 30).then(__webpack_require__.bind(null, /*! @/components/pengguna/detail */ "./resources/assets/src/components/pengguna/detail.vue"));
       },
       meta: _defineProperty({
         requiresAuth: true,
@@ -51405,7 +51605,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-kategori',
       path: '/kategori',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! @/components/kategori/index */ "./resources/assets/src/components/kategori/index.vue"));
+        return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! @/components/kategori/index */ "./resources/assets/src/components/kategori/index.vue"));
       },
       meta: _defineProperty({
         requiresAuth: true,
@@ -51419,7 +51619,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-kategori',
       path: '/kategori/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! @/components/kategori/create */ "./resources/assets/src/components/kategori/create.vue"));
+        return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! @/components/kategori/create */ "./resources/assets/src/components/kategori/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -51429,7 +51629,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'edit-kategori',
       path: '/kategori/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.bind(null, /*! @/components/kategori/edit */ "./resources/assets/src/components/kategori/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 24).then(__webpack_require__.bind(null, /*! @/components/kategori/edit */ "./resources/assets/src/components/kategori/edit.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -51439,7 +51639,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'detail-kategori',
       path: '/kategori/detail/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! @/components/kategori/detail */ "./resources/assets/src/components/kategori/detail.vue"));
+        return __webpack_require__.e(/*! import() */ 23).then(__webpack_require__.bind(null, /*! @/components/kategori/detail */ "./resources/assets/src/components/kategori/detail.vue"));
       },
       meta: _defineProperty({
         requiresAuth: true,
@@ -51454,7 +51654,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-users',
       path: '/users',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 32).then(__webpack_require__.bind(null, /*! @/components/users/index */ "./resources/assets/src/components/users/index.vue"));
+        return __webpack_require__.e(/*! import() */ 38).then(__webpack_require__.bind(null, /*! @/components/users/index */ "./resources/assets/src/components/users/index.vue"));
       },
       meta: _defineProperty({
         requiresAuth: true,
@@ -51468,7 +51668,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-users',
       path: '/users/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 30).then(__webpack_require__.bind(null, /*! @/components/users/create */ "./resources/assets/src/components/users/create.vue"));
+        return __webpack_require__.e(/*! import() */ 36).then(__webpack_require__.bind(null, /*! @/components/users/create */ "./resources/assets/src/components/users/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -51478,7 +51678,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'edit-users',
       path: '/users/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 31).then(__webpack_require__.bind(null, /*! @/components/users/edit */ "./resources/assets/src/components/users/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 37).then(__webpack_require__.bind(null, /*! @/components/users/edit */ "./resources/assets/src/components/users/edit.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -51489,7 +51689,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-buku',
       path: '/buku',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! @/components/buku/index */ "./resources/assets/src/components/buku/index.vue"));
+        return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! @/components/buku/index */ "./resources/assets/src/components/buku/index.vue"));
       },
       meta: _defineProperty({
         requiresAuth: true,
@@ -51503,7 +51703,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-buku',
       path: '/buku/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! @/components/buku/create */ "./resources/assets/src/components/buku/create.vue"));
+        return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! @/components/buku/create */ "./resources/assets/src/components/buku/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -51513,7 +51713,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'edit-buku',
       path: '/buku/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! @/components/buku/edit */ "./resources/assets/src/components/buku/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! @/components/buku/edit */ "./resources/assets/src/components/buku/edit.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -51524,7 +51724,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-sifat',
       path: '/sifat',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 29).then(__webpack_require__.bind(null, /*! @/components/sifat/index */ "./resources/assets/src/components/sifat/index.vue"));
+        return __webpack_require__.e(/*! import() */ 35).then(__webpack_require__.bind(null, /*! @/components/sifat/index */ "./resources/assets/src/components/sifat/index.vue"));
       },
       meta: _defineProperty({
         requiresAuth: true,
@@ -51538,7 +51738,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-sifat',
       path: '/sifat/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 27).then(__webpack_require__.bind(null, /*! @/components/sifat/create */ "./resources/assets/src/components/sifat/create.vue"));
+        return __webpack_require__.e(/*! import() */ 33).then(__webpack_require__.bind(null, /*! @/components/sifat/create */ "./resources/assets/src/components/sifat/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -51548,7 +51748,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'edit-sifat',
       path: '/sifat/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! @/components/sifat/edit */ "./resources/assets/src/components/sifat/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 34).then(__webpack_require__.bind(null, /*! @/components/sifat/edit */ "./resources/assets/src/components/sifat/edit.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -51559,7 +51759,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-jenis',
       path: '/jenis',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! @/components/jenis/index */ "./resources/assets/src/components/jenis/index.vue"));
+        return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! @/components/jenis/index */ "./resources/assets/src/components/jenis/index.vue"));
       },
       meta: _defineProperty({
         requiresAuth: true,
@@ -51573,7 +51773,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-jenis',
       path: '/jenis/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! @/components/jenis/create */ "./resources/assets/src/components/jenis/create.vue"));
+        return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! @/components/jenis/create */ "./resources/assets/src/components/jenis/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -51583,7 +51783,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'edit-jenis',
       path: '/jenis/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! @/components/jenis/edit */ "./resources/assets/src/components/jenis/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.bind(null, /*! @/components/jenis/edit */ "./resources/assets/src/components/jenis/edit.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -51594,7 +51794,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-lokasi',
       path: '/lokasi',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! @/components/lokasi/index */ "./resources/assets/src/components/lokasi/index.vue"));
+        return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! @/components/lokasi/index */ "./resources/assets/src/components/lokasi/index.vue"));
       },
       meta: _defineProperty({
         requiresAuth: true,
@@ -51608,7 +51808,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-lokasi',
       path: '/lokasi/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.bind(null, /*! @/components/lokasi/create */ "./resources/assets/src/components/lokasi/create.vue"));
+        return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! @/components/lokasi/create */ "./resources/assets/src/components/lokasi/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -51618,7 +51818,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'edit-lokasi',
       path: '/lokasi/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! @/components/lokasi/edit */ "./resources/assets/src/components/lokasi/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 27).then(__webpack_require__.bind(null, /*! @/components/lokasi/edit */ "./resources/assets/src/components/lokasi/edit.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -51629,7 +51829,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-history',
       path: '/history',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! @/components/history/index */ "./resources/assets/src/components/history/index.vue"));
+        return __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.bind(null, /*! @/components/history/index */ "./resources/assets/src/components/history/index.vue"));
       },
       meta: _defineProperty({
         requiresAuth: true,
@@ -51639,6 +51839,43 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       }, "if", function _if(isUser) {
         isUser: true;
       })
+    }, // Route Laporan
+    {
+      name: 'laporan-barang',
+      path: '/laporan/barang',
+      component: function component() {
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! @/components/Laporan/LaporanTBarang */ "./resources/assets/src/components/Laporan/LaporanTBarang.vue"));
+      }
+    }, {
+      name: 'laporan-buku',
+      path: '/laporan/buku',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! @/components/Laporan/LaporanTBuku */ "./resources/assets/src/components/Laporan/LaporanTBuku.vue"));
+      }
+    }, {
+      name: 'laporan-pengguna',
+      path: '/laporan/pengguna',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! @/components/Laporan/LaporanTpengguna */ "./resources/assets/src/components/Laporan/LaporanTpengguna.vue"));
+      }
+    }, {
+      name: 'laporan-barang-terpakai',
+      path: '/laporan/LaporanTBarangTerpakai',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! @/components/Laporan/LaporanTBarangTerpakai */ "./resources/assets/src/components/Laporan/LaporanTBarangTerpakai.vue"));
+      }
+    }, {
+      name: 'laporan-barang-tidak-terpakai',
+      path: '/laporan/LaporanTBarangTidakTerpakai',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! @/components/Laporan/LaporanTBarangTidakTerpakai */ "./resources/assets/src/components/Laporan/LaporanTBarangTidakTerpakai.vue"));
+      }
+    }, {
+      name: 'laporan-harga-barang',
+      path: '/laporan/LaporanTHargaBarang',
+      component: function component() {
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! @/components/Laporan/LaporanTHargaBarang */ "./resources/assets/src/components/Laporan/LaporanTHargaBarang.vue"));
+      }
     }]
   }]
 });

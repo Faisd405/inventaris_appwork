@@ -6,11 +6,12 @@
           <div class="card-header">lokasi</div>
 
           <div class="card-body">
-            <span v-if="loginType == 'admin'">
+            <span v-if="loginType == 'admin'"
+              class="d-flex flex-row-reverse mx-3">
               <router-link
                 :to="{ name: 'create-lokasi' }"
                 class="btn btn-md btn-primary"
-                >TAMBAH Data lokasi</router-link
+                >Tambah Data lokasi</router-link
               >
             </span>
             <div class="table-responsive mt-2">
@@ -80,17 +81,19 @@
                         name: 'edit-lokasi',
                         params: { id: data.item.id },
                       }"
-                      class="btn btn-sm btn-primary"
-                      >Edit</router-link
+                      class="btn btn-sm btn-warning"
+                      >
+                    <i class="ion ion-md-create"></i></router-link
                     >
                     <button
                       class="btn btn-sm btn-danger"
                       @click="destroy(data.item.id)"
                     >
-                      Hapus
+
+                    <i class="ion ion-ios-trash"></i>
                     </button>
                   </span>
-                  <span v-if="loginType != 'admin'"> Kamu Bukan Admin </span>
+                  <span v-if="loginType != 'admin'"> Tidak ada Akses </span>
                 </template>
               </b-table>
             </div>

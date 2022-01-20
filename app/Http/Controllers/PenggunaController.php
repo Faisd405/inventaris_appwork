@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\barang;
 use App\Models\pengguna;
+use App\Models\buku;
 use App\Http\Requests\PenggunaRequest;
 
 class PenggunaController extends Controller
@@ -37,15 +38,28 @@ class PenggunaController extends Controller
         ], 200);
     }
 
+    public function pengguna()
+    {
+        $barang = $this->pengguna->getBarangbyNoPengguna(1);
+        return response()->json([
+            'success' => true,
+            'message' => 'List Semua barang',
+            'barang' => $barang,
+        ], 200);
+    }
+
     // show json
     public function show($id) {
         $pengguna = $this->pengguna->getPenggunaById($id);
         $barang = $this->pengguna->getBarangbyPengguna($id);
+        $buku = $this->pengguna->getBukuByPengguna($id);
 
         if ($barang && $pengguna) {
             return response()->json([
                 'barang'    => $barang,
-                'pengguna' => $pengguna
+                'pengguna' => $pengguna,
+                'buku' => $buku,
+
             ], 200);
         }
     }

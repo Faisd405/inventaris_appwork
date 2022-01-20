@@ -21,6 +21,10 @@ class CreateBukuTable extends Migration
             $table->string('tanggal');
             $table->string('kondisi');
             $table->integer('jumlah');
+            $table->unsignedBigInteger('jenis_id');
+            $table->foreign('jenis_id')->references('id')->on('jenis');
+            $table->unsignedBigInteger('pengguna_id');
+            $table->foreign('pengguna_id')->references('id')->on('pengguna');
             $table->unsignedBigInteger('lokasi_id');
             $table->foreign('lokasi_id')->references('id')->on('lokasi');
             $table->timestamps();

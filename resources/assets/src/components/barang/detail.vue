@@ -22,8 +22,6 @@
               <h3 v-text="barang.kategori.nama_kategori"></h3>
               <label>Fungsi : </label>
               <h3 v-text="barang.fungsi"></h3>
-              <label>Jenis : </label>
-              <h3 v-text="barang.jenis.jenis_barang"></h3>
               <label>Harga : </label>
               <h3>{{ barang.harga_barang | toCurrency }}</h3>
               <label>Lokasi : </label>
@@ -99,7 +97,6 @@ export default {
       barang: {
         pengguna: {},
         kategori: {},
-        jenis: {},
         lokasi: {},
       },
       kategori: [],

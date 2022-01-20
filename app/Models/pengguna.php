@@ -19,6 +19,11 @@ class pengguna extends Model
         return $this->belongsTo('App\Models\barang');
     }
 
+    public function buku()
+    {
+        return $this->belongsTo('App\Models\buku');
+    }
+
     public function getPengguna()
     {
         return pengguna::all();
@@ -43,8 +48,18 @@ class pengguna extends Model
         return $pengguna->delete();
     }
 
-    public function getBarangByPengguna($id)
+    public function getBarangbyPengguna($id)
     {
-        return barang::where('pengguna_id', $id)->with('pengguna', 'kategori', 'lokasi', 'jenis')->get();
+        return barang::where('pengguna_id', $id)->with('pengguna', 'kategori', 'lokasi')->get();
+    }
+
+    public function getBukuByPengguna($id)
+    {
+        return buku::where('pengguna_id', $id)->with('pengguna', 'jenis', 'lokasi')->get();
+    }
+
+    public function getBarangByNoPengguna($id)
+    {
+        return barang::where('pengguna_id','!=' , $id)->with('pengguna', 'kategori', 'lokasi')->get();
     }
 }

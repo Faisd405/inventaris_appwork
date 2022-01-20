@@ -2,15 +2,25 @@
   <div class="container mt-3">
     <div class="row justify-content-center">
       <div class="col-xl-12">
+        <div class="card mb-3">
+          <div class="card-body bg-dark text-white">
+            Ini adalah halaman DataMaster Kategori Barang. Kategori Barang
+            merupakan turunan dari Sifat Barang. Contoh Kategori Barang seperti bawahan elektronik yaitu PC,
+            dan furniture yaitu meja. Isi Sifat Barang terlebih dahulu.
+          </div>
+        </div>
         <div class="card card-default">
-          <div class="card-header">kategori</div>
+          <div class="card-header">Kategori</div>
 
           <div class="card-body">
-            <span v-if="loginType == 'admin'">
+            <span
+              v-if="loginType == 'admin'"
+              class="d-flex flex-row-reverse mx-3"
+            >
               <router-link
                 :to="{ name: 'create-kategori' }"
                 class="btn btn-md btn-primary"
-                >TAMBAH Data kategori</router-link
+                >Tambah Data kategori</router-link
               >
             </span>
             <div class="table-responsive mt-2">
@@ -80,22 +90,24 @@
                       params: { id: data.item.id },
                     }"
                     class="btn btn-sm btn-primary"
-                    >Detail</router-link
                   >
+                    <i class="ion ion-ios-eye"></i
+                  ></router-link>
                   <span v-if="loginType == 'admin'">
                     <router-link
                       :to="{
                         name: 'edit-kategori',
                         params: { id: data.item.id },
                       }"
-                      class="btn btn-sm btn-primary"
-                      >Edit</router-link
+                      class="btn btn-sm btn-warning"
                     >
+                      <i class="ion ion-md-create"></i
+                    ></router-link>
                     <button
                       class="btn btn-sm btn-danger"
                       @click="destroy(data.item.id)"
                     >
-                      Hapus
+                      <i class="ion ion-ios-trash"></i>
                     </button>
                   </span>
                 </template>
@@ -143,12 +155,10 @@ export default {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + localStorage.getItem("token");
 
-    axios
-      .get(`/api/user`)
-      .then((response) => {
-        this.user = response.data;
-        this.loginType = response.data.roles[0].name;
-      });
+    axios.get(`/api/user`).then((response) => {
+      this.user = response.data;
+      this.loginType = response.data.roles[0].name;
+    });
   },
   created() {
     let uri = `/api/kategori`;

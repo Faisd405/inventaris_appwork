@@ -59,6 +59,7 @@ Route::put('/history/{id}', [HistoryController::class, 'update']);
 Route::delete('/history/{id}', [HistoryController::class, 'destroy']);
 
 //Route API Pengguna
+Route::get('/pengguna/pengguna', [PenggunaController::class, 'pengguna']);
 Route::get('/pengguna/nopengguna', [PenggunaController::class, 'nopengguna']);
 Route::get('/pengguna', [PenggunaController::class, 'index']);
 Route::get('/pengguna/{id}', [PenggunaController::class, 'show']);

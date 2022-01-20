@@ -364,6 +364,37 @@ const router = new Router({
                 }
             }
         },
+        // Route Laporan
+        {
+            name: 'laporan-barang',
+            path: '/laporan/barang',
+            component: () => import('@/components/Laporan/LaporanTBarang'),
+        },
+        {
+            name: 'laporan-buku',
+            path: '/laporan/buku',
+            component: () => import('@/components/Laporan/LaporanTBuku'),
+        },
+        {
+            name: 'laporan-pengguna',
+            path: '/laporan/pengguna',
+            component: () => import('@/components/Laporan/LaporanTpengguna'),
+        },
+        {
+            name: 'laporan-barang-terpakai',
+            path: '/laporan/LaporanTBarangTerpakai',
+            component: () => import('@/components/Laporan/LaporanTBarangTerpakai'),
+        },
+        {
+            name: 'laporan-barang-tidak-terpakai',
+            path: '/laporan/LaporanTBarangTidakTerpakai',
+            component: () => import('@/components/Laporan/LaporanTBarangTidakTerpakai'),
+        },
+        {
+            name: 'laporan-harga-barang',
+            path: '/laporan/LaporanTHargaBarang',
+            component: () => import('@/components/Laporan/LaporanTHargaBarang'),
+        },
         ]
     }]
 })

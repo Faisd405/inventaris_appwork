@@ -7,20 +7,30 @@ use Illuminate\Database\Eloquent\Model;
 class buku extends Model
 {
     protected $table = 'buku';
-    protected $fillable = ['judul', 'penulis', 'penerbit', 'tanggal', 'jumlah','kondisi','lokasi_id'];
+    protected $fillable = ['judul', 'penulis', 'penerbit', 'tanggal', 'jumlah','kondisi','jenis_id','pengguna_id','lokasi_id'];
 
     public function lokasi()
     {
         return $this->hasOne('App\Models\lokasi', 'id', 'lokasi_id');
     }
 
+    public function jenis()
+    {
+        return $this->hasOne('App\Models\jenis', 'id', 'jenis_id');
+    }
+
+    public function pengguna()
+    {
+        return $this->hasOne('App\Models\pengguna', 'id', 'pengguna_id');
+    }
+
     public function getBuku() {
-        $buku = buku::with('lokasi')->get();
+        $buku = buku::with('lokasi','jenis','pengguna')->get();
         return $buku;
     }
 
     public function getBukuById($id) {
-        $buku = buku::with('lokasi')->find($id);
+        $buku = buku::with('lokasi','jenis','pengguna')->find($id);
         return $buku;
     }
 

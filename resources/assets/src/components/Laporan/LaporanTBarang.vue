@@ -1,20 +1,33 @@
 <template>
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-xl-12">
+    <div class="row">
+      <div class="card text-white bg-primary m-3" style="width: 14rem; height: 10rem">
+        <div class="card-header">
+            <strong> Total Barang </strong>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title">{{ barang.length }}</h1>
+        </div>
+      </div>
+
+      <div class="card m-3 col">
+        <div class="card-body">
+          <label>Chart Kategori :</label>
+          <KategoriChart></KategoriChart>
+        </div>
+      </div>
+      <div class="card m-3 col">
+        <div class="card-body">
+          <label>Chart Total Aset Pertahun :</label>
+          <TotalChart></TotalChart>
+        </div>
+      </div>
+      <div class="col-xl-12 justify-content-center m-3">
         <div class="card card-default">
-          <div class="card-header">Management Users</div>
+          <div class="card-header">Total Barang</div>
 
           <div class="card-body">
-            <span v-if="loginType == 'admin'"
-              class="d-flex flex-row-reverse mx-3">
-              <router-link
-                :to="{ name: 'create-users' }"
-                class="btn btn-md btn-primary"
-                >Tambah Data Management Users</router-link
-              >
-            </span>
-            <div class="table-responsive mt-2">
+            <div>
               <b-row>
                 <b-col lg="6" class="my-1">
                   <b-form-group
@@ -61,8 +74,9 @@
                   </b-form-group>
                 </b-col>
               </b-row>
+
               <b-table
-                :items="users"
+                :items="barang"
                 :fields="fields"
                 :sort-by.sync="sortBy"
                 striped
@@ -73,31 +87,8 @@
                 @filtered="onFiltered"
                 :current-page="currentPage"
                 :per-page="perPage"
+                foot-clone
               >
-                <template slot="action" slot-scope="data">
-                  <span v-if="user.id == 1 && loginType == 'admin'">
-                    <router-link
-                      :to="{
-                        name: 'edit-users',
-                        params: { id: data.item.id },
-                      }"
-                      class="btn btn-sm btn-primary"
-                      >
-                    <i class="ion ion-md-create"></i></router-link
-                    >
-                    <button
-                      v-if="data.item.id != 1"
-                      class="btn btn-sm btn-danger"
-                      @click="destroy(data.item.id)"
-                    >
-
-                    <i class="ion ion-ios-trash"></i>
-                    </button>
-                  </span>
-                  <span v-else>
-                      Tidak ada Akses
-                  </span>
-                </template>
               </b-table>
             </div>
           </div>
@@ -107,39 +98,33 @@
   </div>
 </template>
 
+
 <script>
+import KategoriChart from "../Chart/KategoriChart.vue";
+import TotalChart from "../Chart/TotalChart.vue";
 import axios from "axios";
 export default {
   metaInfo: {
-    title: "Users",
+    title: "Barang",
+  },
+  components: {
+    KategoriChart,
+    TotalChart,
   },
   data() {
     return {
       fields: [
-        {
-          key: "id",
-          label: "ID",
-          sortable: true,
-        },
-        {
-          key: "name",
-          label: "Nama",
-          sortable: true,
-        },
-        {
-          key: "email",
-          label: "Email",
-          sortable: true,
-        },
-        {
-          key: "action",
-          label: "Action",
-          headerClass: "text-center",
-          class: "text-center",
-          width: "100px",
-        },
+        { key: "id", sortable: true },
+        { key: "nama_barang", sortable: true, filterByFormatted: true },
+        { key: "detail_barang", sortable: true },
+        { key: "kategori.nama_kategori", sortable: true, label: "Kategori" },
+        { key: "fungsi", sortable: true },
+        { key: "harga_barang", sortable: true },
+        { key: "lokasi.lokasi", sortable: true, label: "Lokasi" },
+        { key: "pengguna.name", label: "Pemakai", sortable: true },
+        { key: "year", label: "tahun" },
+        { key: "jumlah_barang", sortable: true },
       ],
-      users: [],
       filter: null,
       filterOn: [],
       currentPage: 1,
@@ -152,23 +137,27 @@ export default {
       loginType: "",
     };
   },
+
   created() {
-    let uri = `/api/users`;
+    let uri = `/api/barang`;
     axios.get(uri).then((response) => {
-      this.users = response.data.user;
+      this.barang = response.data.barang;
     });
   },
-
   methods: {
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
     destroy(id) {
-      let uri = `/api/users/${id}`;
-      axios.delete(uri).then((response) => {
-        this.users = this.users.filter((users) => users.id != id);
-      });
+      axios
+        .delete(`/api/barang/${id}`)
+        .then((response) => {
+          this.barang = this.barang.filter((barang) => barang.id != id);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
   mounted() {
