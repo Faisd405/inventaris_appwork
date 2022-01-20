@@ -5,7 +5,7 @@ import Meta from 'vue-meta'
 import globals from '@/globals'
 
 // Layouts
-import Layout1 from '@/layout/Layout1'
+import Layout1 from '@/layout/Layout1Flex'
 
 Vue.use(Router)
 Vue.use(Meta)
