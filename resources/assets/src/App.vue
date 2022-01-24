@@ -24,7 +24,7 @@ export default {
   },
   data() {
       return {
-        user: null,
+        user: "",
         isLoggedIn: false
       }
     },

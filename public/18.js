@@ -212,7 +212,7 @@ __webpack_require__.r(__webpack_exports__);
       history: [],
       barang: [],
       sortBy: "id",
-      user: null,
+      user: "",
       isLoggedIn: false,
       loginType: null
     };
@@ -269,6 +269,14 @@ __webpack_require__.r(__webpack_exports__);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user").then(function (response) {
       _this4.user = response.data;
       _this4.loginType = response.data.roles[0].name;
+    })["catch"](function (error) {
+      if (error.response.status === 401 || error.response.status === 500) {
+        localStorage.clear();
+
+        _this4.$router.push("/login");
+      }
+
+      console.error(error);
     });
   }
 });

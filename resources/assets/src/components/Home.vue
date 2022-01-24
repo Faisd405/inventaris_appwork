@@ -134,9 +134,25 @@ export default {
       "Bearer " + localStorage.getItem("token");
 
     axios.get(`/api/user`).then((response) => {
-      this.user = response.data;
-      this.loginType = response.data.roles[0].name;
-    });
+        this.user = response.data;
+        this.loginType = response.data.roles[0].name;
+      })
+      .catch((error) => {
+        if (error.response.status === 401 || error.response.status === 500) {
+          localStorage.clear();
+          this.$router.push("/login");
+        }
+        console.error(error);
+      });
+  },
+  methods: {
+        logout() {
+          localStorage.removeItem('token')
+          localStorage.removeItem('user')
+          this.setUser()
+
+          this.$router.push('/')
+        }
   },
   created() {
     axios.get(`/api/barang`).then((response) => {

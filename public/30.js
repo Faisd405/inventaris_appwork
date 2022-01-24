@@ -96,6 +96,67 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -103,67 +164,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      fields: [{
-        key: 'id',
-        label: 'ID'
-      }, {
-        key: 'kode_barang',
-        label: 'Kode Barang',
-        sortable: true
-      }, {
-        key: 'nama_barang',
-        label: 'Nama Barang'
-      }, {
-        key: 'fungsi',
-        label: 'Fungsi'
-      }, {
-        key: 'lokasi.lokasi',
-        label: 'Lokasi'
-      }, {
-        key: 'harga_barang',
-        label: 'Harga Barang'
-      }, {
-        key: 'action',
-        label: 'Action'
-      }],
-      fieldsbuku: [{
-        key: 'id',
-        label: 'ID'
-      }, {
-        key: 'judul',
-        label: 'Judul Buku'
-      }, {
-        key: 'penulis',
-        label: 'Penulis'
-      }, {
-        key: 'penerbit',
-        label: 'Penerbit'
-      }, {
-        key: 'tanggal',
-        label: 'tanggal'
-      }, {
-        key: 'kondisi',
-        label: 'Kondisi'
-      }, {
-        key: 'jumlah',
-        label: 'Jumlah'
-      }, {
-        key: 'jenis.jenis_buku',
-        label: 'Jenis Buku'
-      }, {
-        key: 'lokasi.lokasi',
-        label: 'Lokasi'
-      }, {
-        key: 'action',
-        label: 'Action'
-      }],
-      barangs: [],
+      barang: [],
       pengguna: {},
       buku: [],
-      barang: {
-        pengguna_id: 1
-      },
-      user: null,
+      user: "",
       isLoggedIn: false,
       loginType: ''
     };
@@ -173,29 +177,17 @@ __webpack_require__.r(__webpack_exports__);
 
     var uri = "/api/pengguna/".concat(this.$route.params.id);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (response) {
-      _this.barangs = response.data.barang;
+      _this.barang = response.data.barang;
       _this.pengguna = response.data.pengguna;
       _this.buku = response.data.buku;
     });
   },
   methods: {
-    update: function update(id) {
+    destroy: function destroy(id) {
       var _this2 = this;
 
-      var uri = "/api/barang/" + id;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.barang).then(function (response) {
-        _this2.barangs = _this2.barangs.filter(function (barangs) {
-          return barangs.id != id;
-        });
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    destroy: function destroy(id) {
-      var _this3 = this;
-
       axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("/api/barang/".concat(id)).then(function (response) {
-        _this3.barangs = _this3.barangs.filter(function (barangs) {
+        _this2.barangs = _this2.barangs.filter(function (barangs) {
           return barangs.id != id;
         });
       })["catch"](function (error) {
@@ -204,18 +196,18 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    var _this4 = this;
+    var _this3 = this;
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['Content-Type'] = 'application/json';
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user").then(function (response) {
-      _this4.user = response.data;
-      _this4.loginType = response.data.roles[0].name;
+      _this3.user = response.data;
+      _this3.loginType = response.data.roles[0].name;
     })["catch"](function (error) {
       if (error.response.status === 401) {
         localStorage.clear();
 
-        _this4.$router.push('/login');
+        _this3.$router.push('/login');
       }
 
       console.error(error);
@@ -258,91 +250,121 @@ var render = function () {
                   ),
                 ]),
                 _vm._v(" "),
-                _c("b-table", {
-                  attrs: {
-                    items: _vm.barangs,
-                    fields: _vm.fields,
-                    responsive: "",
-                  },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "action",
-                      fn: function (data) {
-                        return [
-                          _vm.loginType == "admin"
-                            ? _c(
-                                "span",
-                                [
-                                  _c(
-                                    "router-link",
-                                    {
-                                      staticClass: "btn btn-sm btn-warning",
-                                      attrs: {
-                                        to: {
-                                          name: "edit-barang",
-                                          params: { id: data.item.id },
-                                        },
-                                      },
-                                    },
-                                    [
-                                      _c("i", {
-                                        staticClass: "ion ion-md-create",
-                                      }),
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  data.item.pengguna_id != 1
+                _c(
+                  "v-table",
+                  {
+                    staticClass: "table table-striped table-bordered",
+                    attrs: { data: _vm.barang },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "body",
+                        fn: function (ref) {
+                          var displayData = ref.displayData
+                          return _c(
+                            "tbody",
+                            {},
+                            _vm._l(displayData, function (data) {
+                              return _c("tr", { key: data.guid }, [
+                                _c("td", [_vm._v(_vm._s(data.id))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(data.nama_barang))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(data.fungsi))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(data.lokasi.lokasi))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(data.harga_barang))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm.loginType == "admin"
                                     ? _c(
-                                        "Button",
-                                        {
-                                          staticClass: "btn btn-sm btn-danger",
-                                          on: {
-                                            click: function ($event) {
-                                              return _vm.update(data.item.id)
-                                            },
-                                          },
-                                        },
+                                        "span",
                                         [
-                                          _vm._v(
-                                            "\n                      Hapus Kepemilikan\n                    "
+                                          _c(
+                                            "router-link",
+                                            {
+                                              staticClass:
+                                                "btn btn-sm btn-warning",
+                                              attrs: {
+                                                to: {
+                                                  name: "edit-barang",
+                                                  params: { id: data.id },
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "ion ion-md-create",
+                                              }),
+                                            ]
                                           ),
-                                        ]
+                                          _vm._v(" "),
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn btn-sm btn-danger",
+                                              on: {
+                                                click: function ($event) {
+                                                  return _vm.destroy(data.id)
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "ion ion-ios-trash",
+                                              }),
+                                            ]
+                                          ),
+                                        ],
+                                        1
                                       )
                                     : _vm._e(),
                                   _vm._v(" "),
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "btn btn-sm btn-danger",
-                                      on: {
-                                        click: function ($event) {
-                                          return _vm.destroy(data.item.id)
-                                        },
-                                      },
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                    Hapus Data Barang\n                  "
-                                      ),
-                                    ]
-                                  ),
-                                ],
-                                1
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.loginType != "admin"
-                            ? _c("span", [
-                                _vm._v(
-                                  "\n                      Tidak ada Akses\n                  "
-                                ),
+                                  _vm.loginType != "admin"
+                                    ? _c("span", [
+                                        _vm._v(
+                                          "\n                      Tidak ada Akses\n                  "
+                                        ),
+                                      ])
+                                    : _vm._e(),
+                                ]),
                               ])
-                            : _vm._e(),
-                        ]
+                            }),
+                            0
+                          )
+                        },
                       },
-                    },
-                  ]),
-                }),
+                    ]),
+                  },
+                  [
+                    _c("thead", { attrs: { slot: "head" }, slot: "head" }, [
+                      _c("tr", [
+                        _c("th", { attrs: { scope: "col" } }, [_vm._v("No")]),
+                        _vm._v(" "),
+                        _c("th", { attrs: { scope: "col" } }, [
+                          _vm._v("Nama Barang"),
+                        ]),
+                        _vm._v(" "),
+                        _c("th", { attrs: { scope: "col" } }, [
+                          _vm._v("Fungsi"),
+                        ]),
+                        _vm._v(" "),
+                        _c("th", { attrs: { scope: "col" } }, [
+                          _vm._v("Lokasi"),
+                        ]),
+                        _vm._v(" "),
+                        _c("th", { attrs: { scope: "col" } }, [
+                          _vm._v("Harga Barang"),
+                        ]),
+                        _vm._v(" "),
+                        _c("th", { attrs: { scope: "col" } }, [_vm._v("Aksi")]),
+                      ]),
+                    ]),
+                  ]
+                ),
               ],
               1
             ),
@@ -357,91 +379,236 @@ var render = function () {
                   ),
                 ]),
                 _vm._v(" "),
-                _c("b-table", {
-                  attrs: {
-                    items: _vm.buku,
-                    fields: _vm.fieldsbuku,
-                    responsive: "",
-                  },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "action",
-                      fn: function (data) {
-                        return [
-                          _vm.loginType == "admin"
-                            ? _c(
-                                "span",
-                                [
-                                  _c(
-                                    "router-link",
-                                    {
-                                      staticClass: "btn btn-sm btn-warning",
-                                      attrs: {
-                                        to: {
-                                          name: "edit-buku",
-                                          params: { id: data.item.id },
-                                        },
-                                      },
-                                    },
-                                    [
-                                      _c("i", {
-                                        staticClass: "ion ion-md-create",
-                                      }),
-                                    ]
+                _c(
+                  "v-table",
+                  {
+                    staticClass: "table table-striped table-bordered",
+                    attrs: { data: _vm.buku },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "body",
+                        fn: function (ref) {
+                          var displayData = ref.displayData
+                          return _c(
+                            "tbody",
+                            {},
+                            _vm._l(displayData, function (data) {
+                              return _c("tr", { key: data.guid }, [
+                                _c("td", { attrs: { scope: "data" } }, [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(data.id) +
+                                      "\n                  "
                                   ),
-                                  _vm._v(" "),
-                                  data.item.pengguna_id != 1
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(data.judul) +
+                                      "\n                  "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(data.penulis) +
+                                      "\n                  "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(data.penerbit) +
+                                      "\n                  "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(data.tanggal) +
+                                      "\n                  "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(data.kondisi) +
+                                      "\n                  "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(data.jumlah) +
+                                      "\n                  "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(data.jenis.jenis_buku) +
+                                      "\n                  "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(data.pengguna.name) +
+                                      "\n                  "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(data.lokasi.lokasi) +
+                                      "\n                  "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm.loginType == "admin"
                                     ? _c(
-                                        "Button",
-                                        {
-                                          staticClass: "btn btn-sm btn-danger",
-                                          on: {
-                                            click: function ($event) {
-                                              return _vm.update(data.item.id)
-                                            },
-                                          },
-                                        },
+                                        "span",
                                         [
-                                          _vm._v(
-                                            "\n                          Hapus Kepemilikan\n                        "
+                                          _c(
+                                            "router-link",
+                                            {
+                                              staticClass:
+                                                "btn btn-sm btn-warning",
+                                              attrs: {
+                                                to: {
+                                                  name: "edit-buku",
+                                                  params: { id: data.id },
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "ion ion-md-create",
+                                              }),
+                                            ]
                                           ),
-                                        ]
+                                          _vm._v(" "),
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn btn-sm btn-danger",
+                                              on: {
+                                                click: function ($event) {
+                                                  return _vm.destroy(data.id)
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "ion ion-ios-trash",
+                                              }),
+                                            ]
+                                          ),
+                                        ],
+                                        1
                                       )
                                     : _vm._e(),
                                   _vm._v(" "),
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass: "btn btn-sm btn-danger",
-                                      on: {
-                                        click: function ($event) {
-                                          return _vm.destroy(data.item.id)
-                                        },
-                                      },
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                        Hapus Data Buku\n                      "
-                                      ),
-                                    ]
-                                  ),
-                                ],
-                                1
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.loginType != "admin"
-                            ? _c("span", [
-                                _vm._v(
-                                  "\n                          Tidak ada Akses\n                      "
-                                ),
+                                  _vm.loginType != "admin"
+                                    ? _c("span", [_vm._v(" Tidak ada Akses ")])
+                                    : _vm._e(),
+                                ]),
                               ])
-                            : _vm._e(),
-                        ]
+                            }),
+                            0
+                          )
+                        },
                       },
-                    },
-                  ]),
-                }),
+                    ]),
+                  },
+                  [
+                    _c("thead", { attrs: { slot: "head" }, slot: "head" }, [
+                      _c(
+                        "tr",
+                        [
+                          _c("th", { attrs: { scope: "col" } }, [_vm._v("No")]),
+                          _vm._v(" "),
+                          _c(
+                            "v-th",
+                            { attrs: { sortKey: "judul", scope: "col" } },
+                            [_vm._v("Judul")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            { attrs: { sortKey: "penulis", scope: "col" } },
+                            [_vm._v("Penulis")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            { attrs: { sortKey: "penerbit", scope: "col" } },
+                            [_vm._v("Penerbit")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-th",
+                            {
+                              attrs: {
+                                sortKey: "tanggal_terbit",
+                                scope: "col",
+                              },
+                            },
+                            [_vm._v("Tanggal Terbit")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            { attrs: { sortKey: "kondisi", scope: "col" } },
+                            [_vm._v("Kondisi")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-th",
+                            { attrs: { sortKey: "jumlah", scope: "col" } },
+                            [_vm._v("Jumlah")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            { attrs: { sortKey: "jenis", scope: "col" } },
+                            [_vm._v("Jenis")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            { attrs: { sortKey: "pengguna", scope: "col" } },
+                            [_vm._v("Pengguna")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            { attrs: { sortKey: "lokasi", scope: "col" } },
+                            [_vm._v("Lokasi")]
+                          ),
+                          _vm._v(" "),
+                          _c("th", { attrs: { scope: "col" } }, [
+                            _vm._v("Aksi"),
+                          ]),
+                        ],
+                        1
+                      ),
+                    ]),
+                  ]
+                ),
               ],
               1
             ),

@@ -8,71 +8,132 @@
           <div class="card-body">
             <div class="table-responsive mt-2">
               <h2>Ini adalah barang yang dipakai {{ pengguna.name }}</h2>
-              <b-table :items="barangs" :fields="fields" responsive>
 
-                <template slot="action" slot-scope="data">
-                    <span v-if="loginType == 'admin'">
+              <v-table
+                :data="barang"
+                class="table table-striped table-bordered"
+              >
+                <thead slot="head">
+                  <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Nama Barang</th>
+                    <th scope="col">Fungsi</th>
+                    <th scope="col">Lokasi</th>
+                    <th scope="col">Harga Barang</th>
+                    <th scope="col">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody slot="body" slot-scope="{ displayData }">
+                  <tr v-for="data in displayData" :key="data.guid">
+                    <td>{{ data.id }}</td>
+                    <td>{{ data.nama_barang }}</td>
+                    <td>{{ data.fungsi }}</td>
+                    <td>{{ data.lokasi.lokasi }}</td>
+                    <td>{{ data.harga_barang }}</td>
+                    <td>
+                        <span v-if="loginType == 'admin'">
                     <router-link
                       :to="{
                         name: 'edit-barang',
-                        params: { id: data.item.id },
+                        params: { id: data.id },
                       }"
                       class="btn btn-sm btn-warning"
                       >
                     <i class="ion ion-md-create"></i></router-link
                     >
-                    <Button v-if="data.item.pengguna_id!=1"
-                        class="btn btn-sm btn-danger"
-                        @click="update(data.item.id)"
-                      >
-                        Hapus Kepemilikan
-                      </Button>
                     <button
                       class="btn btn-sm btn-danger"
-                      @click="destroy(data.item.id)"
+                      @click="destroy(data.id)"
                     >
-                      Hapus Data Barang
+                          <i class="ion ion-ios-trash"></i>
                     </button>
                     </span>
                     <span v-if="loginType != 'admin'">
                         Tidak ada Akses
                     </span>
-                </template>
-              </b-table>
+                    </td>
+                  </tr>
+                </tbody>
+              </v-table>
             </div>
             <div class="table-responsive mt-2">
                 <h2>Ini adalah buku yang dipakai {{ pengguna.name }}</h2>
-                <b-table :items="buku" :fields="fieldsbuku" responsive>
 
-                    <template slot="action" slot-scope="data">
-                        <span v-if="loginType == 'admin'">
+              <v-table
+                :data="buku"
+                class="table table-striped table-bordered"
+              >
+                <!-- Id	judul	Penulis	Penerbit	Tanggal	Kondisi	Jumlah	Jenis	Pengguna	Lokasi	Action -->
+                <thead slot="head">
+                  <tr>
+                    <th scope="col">No</th>
+                    <v-th sortKey="judul" scope="col">Judul</v-th>
+                    <th sortKey="penulis" scope="col">Penulis</th>
+                    <th sortKey="penerbit" scope="col">Penerbit</th>
+                    <v-th sortKey="tanggal_terbit" scope="col"
+                      >Tanggal Terbit</v-th
+                    >
+                    <th sortKey="kondisi" scope="col">Kondisi</th>
+                    <v-th sortKey="jumlah" scope="col">Jumlah</v-th>
+                    <th sortKey="jenis" scope="col">Jenis</th>
+                    <th sortKey="pengguna" scope="col">Pengguna</th>
+                    <th sortKey="lokasi" scope="col">Lokasi</th>
+                    <th scope="col">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody slot="body" slot-scope="{ displayData }">
+                  <tr v-for="data in displayData" :key="data.guid">
+                    <!-- index number -->
+                    <td scope="data">
+                      {{ data.id }}
+                    </td>
+                    <td>
+                      {{ data.judul }}
+                    </td>
+                    <td>
+                      {{ data.penulis }}
+                    </td>
+                    <td>
+                      {{ data.penerbit }}
+                    </td>
+                    <td>
+                      {{ data.tanggal }}
+                    </td>
+                    <td>
+                      {{ data.kondisi }}
+                    </td>
+                    <td>
+                      {{ data.jumlah }}
+                    </td>
+                    <td>
+                      {{ data.jenis.jenis_buku }}
+                    </td>
+                    <td>
+                      {{ data.pengguna.name }}
+                    </td>
+                    <td>
+                      {{ data.lokasi.lokasi }}
+                    </td>
+                    <td>
+                      <span v-if="loginType == 'admin'">
                         <router-link
-                          :to="{
-                            name: 'edit-buku',
-                            params: { id: data.item.id },
-                          }"
+                          :to="{ name: 'edit-buku', params: { id: data.id } }"
                           class="btn btn-sm btn-warning"
-                          >
-                        <i class="ion ion-md-create"></i></router-link
                         >
-                        <Button v-if="data.item.pengguna_id!=1"
-                            class="btn btn-sm btn-danger"
-                            @click="update(data.item.id)"
-                          >
-                            Hapus Kepemilikan
-                          </Button>
+                          <i class="ion ion-md-create"></i
+                        ></router-link>
                         <button
                           class="btn btn-sm btn-danger"
-                          @click="destroy(data.item.id)"
+                          @click="destroy(data.id)"
                         >
-                          Hapus Data Buku
+                          <i class="ion ion-ios-trash"></i>
                         </button>
-                        </span>
-                        <span v-if="loginType != 'admin'">
-                            Tidak ada Akses
-                        </span>
-                    </template>
-                </b-table>
+                      </span>
+                      <span v-if="loginType != 'admin'"> Tidak ada Akses </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </v-table>
             </div>
 
           </div>
@@ -91,86 +152,10 @@ export default {
   },
   data() {
     return {
-        fields: [
-            {
-                key: 'id',
-                label: 'ID',
-            },
-            {
-                key: 'kode_barang',
-                label: 'Kode Barang',
-                sortable: true
-            },
-            {
-                key: 'nama_barang',
-                label: 'Nama Barang',
-            },
-            {
-                key: 'fungsi',
-                label: 'Fungsi',
-            },
-            {
-                key: 'lokasi.lokasi',
-                label: 'Lokasi',
-            },
-            {
-                key: 'harga_barang',
-                label: 'Harga Barang',
-            },
-            {
-                key: 'action',
-                label: 'Action',
-            }
-        ],
-        fieldsbuku: [
-            {
-                key: 'id',
-                label: 'ID',
-            },
-            {
-                key: 'judul',
-                label: 'Judul Buku',
-            },
-            {
-                key: 'penulis',
-                label: 'Penulis',
-            },
-            {
-                key: 'penerbit',
-                label: 'Penerbit',
-            },
-            {
-                key: 'tanggal',
-                label: 'tanggal',
-            },
-            {
-                key: 'kondisi',
-                label: 'Kondisi',
-            },
-            {
-                key: 'jumlah',
-                label: 'Jumlah',
-            },
-            {
-                key: 'jenis.jenis_buku',
-                label: 'Jenis Buku',
-            },
-            {
-                key: 'lokasi.lokasi',
-                label: 'Lokasi',
-            },
-            {
-                key: 'action',
-                label: 'Action',
-            }
-        ],
-      barangs: [],
+      barang: [],
       pengguna: {},
       buku: [],
-      barang: {
-          pengguna_id: 1,
-      },
-      user: null,
+      user: "",
       isLoggedIn: false,
       loginType: '',
     };
@@ -178,23 +163,12 @@ export default {
   created() {
     let uri = `/api/pengguna/${this.$route.params.id}`;
     axios.get(uri).then((response) => {
-      this.barangs = response.data.barang;
+      this.barang = response.data.barang;
       this.pengguna = response.data.pengguna;
         this.buku = response.data.buku;
     });
   },
   methods: {
-    update(id) {
-      let uri = "/api/barang/" + id;
-      axios
-        .put(uri, this.barang)
-        .then((response) => {
-        this.barangs = this.barangs.filter((barangs) => barangs.id != id);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
     destroy(id) {
       axios
         .delete(`/api/barang/${id}`)

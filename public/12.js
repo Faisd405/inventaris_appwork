@@ -294,7 +294,7 @@ __webpack_require__.r(__webpack_exports__);
       _this3.user = response.data;
       _this3.loginType = response.data.roles[0].name;
     })["catch"](function (error) {
-      if (error.response.status === 401) {
+      if (error.response.status === 401 || error.response.status === 500) {
         localStorage.clear();
 
         _this3.$router.push("/login");

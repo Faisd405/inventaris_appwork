@@ -47,9 +47,15 @@
 </template>
 
 <script>
+import Axios from 'axios';
 export default {
   name: "app-layout-navbar",
-
+  data() {
+    return {
+      user: "",
+      isLoggedIn: false,
+    };
+  },
   props: {
     sidenavToggle: {
       type: Boolean,
@@ -82,7 +88,7 @@ export default {
 
   data() {
     return {
-      user: null,
+      user: "",
       isLoggedIn: false,
       loginType: "",
     };

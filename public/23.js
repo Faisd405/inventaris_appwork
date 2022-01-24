@@ -31,6 +31,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -38,31 +61,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      fields: [{
-        key: 'id',
-        label: 'ID',
-        sortable: true
-      }, {
-        key: 'kode_barang',
-        label: 'Kode Barang',
-        sortable: true
-      }, {
-        key: 'nama_barang',
-        label: 'Nama Barang',
-        sortable: true
-      }, {
-        key: 'fungsi',
-        label: 'Fungsi',
-        sortable: true
-      }, {
-        key: 'lokasi.lokasi',
-        label: 'Lokasi',
-        sortable: true
-      }, {
-        key: 'harga_barang',
-        label: 'Harga Barang',
-        sortable: true
-      }],
       barang: [],
       kategori: {}
     };
@@ -113,9 +111,72 @@ var render = function () {
                   ),
                 ]),
                 _vm._v(" "),
-                _c("b-table", {
-                  attrs: { items: _vm.barang, fields: _vm.fields },
-                }),
+                _c(
+                  "v-table",
+                  {
+                    staticClass: "table table-striped table-bordered",
+                    attrs: { data: _vm.barang },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "body",
+                        fn: function (ref) {
+                          var displayData = ref.displayData
+                          return _c(
+                            "tbody",
+                            {},
+                            _vm._l(displayData, function (data) {
+                              return _c("tr", { key: data.guid }, [
+                                _c("td", [_vm._v(_vm._s(data.id))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(data.nama_barang))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(data.fungsi))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(data.lokasi.lokasi))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(data.harga_barang))]),
+                              ])
+                            }),
+                            0
+                          )
+                        },
+                      },
+                    ]),
+                  },
+                  [
+                    _c("thead", { attrs: { slot: "head" }, slot: "head" }, [
+                      _c(
+                        "tr",
+                        [
+                          _c("th", { attrs: { scope: "col" } }, [_vm._v("No")]),
+                          _vm._v(" "),
+                          _c(
+                            "v-th",
+                            { attrs: { sortKey: "nama_barang", scope: "col" } },
+                            [_vm._v("Nama Barang")]
+                          ),
+                          _vm._v(" "),
+                          _c("th", { attrs: { scope: "col" } }, [
+                            _vm._v("Fungsi"),
+                          ]),
+                          _vm._v(" "),
+                          _c("th", { attrs: { scope: "col" } }, [
+                            _vm._v("Lokasi"),
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-th",
+                            {
+                              attrs: { sortKey: "harga_barang", scope: "col" },
+                            },
+                            [_vm._v("Harga Barang")]
+                          ),
+                        ],
+                        1
+                      ),
+                    ]),
+                  ]
+                ),
               ],
               1
             ),

@@ -17,83 +17,86 @@
               >
             </div>
             <div class="table-responsive mt-2">
-              <b-row>
-                <b-col lg="6" class="my-1">
-                  <b-form-group
-                    label="Filter"
-                    label-for="filter-input"
-                    label-cols-sm="3"
-                    label-align-sm="right"
-                    label-size="sm"
-                    class="mb-0"
-                  >
-                    <b-input-group size="sm">
-                      <b-form-input
-                        id="filter-input"
-                        v-model="filter"
-                        type="search"
-                        placeholder="Type to Search"
-                      ></b-form-input>
+              <label>Filter berdasarkan Judul Buku:</label>
+              <input class="form-control" v-model="filters.judul.value" />
 
-                      <b-input-group-append>
-                        <b-button :disabled="!filter" @click="filter = ''"
-                          >Clear</b-button
-                        >
-                      </b-input-group-append>
-                    </b-input-group>
-                  </b-form-group>
-                </b-col>
-                <b-col sm="5" md="6" class="my-1">
-                  <b-form-group
-                    label="Per page"
-                    label-for="per-page-select"
-                    label-cols-sm="6"
-                    label-cols-md="4"
-                    label-cols-lg="3"
-                    label-align-sm="right"
-                    label-size="sm"
-                    class="mb-0"
-                  >
-                    <b-form-select
-                      id="per-page-select"
-                      v-model="perPage"
-                      :options="pageOptions"
-                      size="sm"
-                    ></b-form-select>
-                  </b-form-group>
-                </b-col>
-              </b-row>
-              <b-table
-                :items="buku"
-                :fields="fields"
-                :sort-by.sync="sortBy"
-                striped
-                responsive
-                sort-icon-left
-                :filter="filter"
-                :filter-included-fields="filterOn"
-                @filtered="onFiltered"
-                :current-page="currentPage"
-                :per-page="perPage"
+              <br />
+              <v-table
+                :data="buku"
+                :filters="filters"
+                class="table table-striped table-bordered"
               >
-                <template slot="action" slot-scope="data">
-                  <span v-if="loginType == 'admin'">
-                    <router-link
-                      :to="{ name: 'edit-buku', params: { id: data.item.id } }"
-                      class="btn btn-sm btn-warning"
+                <!-- Id	judul	Penulis	Penerbit	Tanggal	Kondisi	Jumlah	Jenis	Pengguna	Lokasi	Action -->
+                <thead slot="head">
+                  <tr>
+                    <th scope="col">No</th>
+                    <v-th sortKey="judul" scope="col">Judul</v-th>
+                    <th sortKey="penulis" scope="col">Penulis</th>
+                    <th sortKey="penerbit" scope="col">Penerbit</th>
+                    <v-th sortKey="tanggal_terbit" scope="col"
+                      >Tanggal Terbit</v-th
                     >
-                      <i class="ion ion-md-create"></i
-                    ></router-link>
-                    <button
-                      class="btn btn-sm btn-danger"
-                      @click="destroy(data.item.id)"
-                    >
-                      <i class="ion ion-ios-trash"></i>
-                    </button>
-                  </span>
-                  <span v-if="loginType != 'admin'"> Tidak ada Akses </span>
-                </template>
-              </b-table>
+                    <th sortKey="kondisi" scope="col">Kondisi</th>
+                    <v-th sortKey="jumlah" scope="col">Jumlah</v-th>
+                    <th sortKey="jenis" scope="col">Jenis</th>
+                    <th sortKey="pengguna" scope="col">Pengguna</th>
+                    <th sortKey="lokasi" scope="col">Lokasi</th>
+                    <th scope="col">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody slot="body" slot-scope="{ displayData }">
+                  <tr v-for="data in displayData" :key="data.guid">
+                    <!-- index number -->
+                    <td scope="data">
+                      {{ data.id }}
+                    </td>
+                    <td>
+                      {{ data.judul }}
+                    </td>
+                    <td>
+                      {{ data.penulis }}
+                    </td>
+                    <td>
+                      {{ data.penerbit }}
+                    </td>
+                    <td>
+                      {{ data.tanggal }}
+                    </td>
+                    <td>
+                      {{ data.kondisi }}
+                    </td>
+                    <td>
+                      {{ data.jumlah }}
+                    </td>
+                    <td>
+                      {{ data.jenis.jenis_buku }}
+                    </td>
+                    <td>
+                      {{ data.pengguna.name }}
+                    </td>
+                    <td>
+                      {{ data.lokasi.lokasi }}
+                    </td>
+                    <td>
+                      <span v-if="loginType == 'admin'">
+                        <router-link
+                          :to="{ name: 'edit-buku', params: { id: data.id } }"
+                          class="btn btn-sm btn-warning"
+                        >
+                          <i class="ion ion-md-create"></i
+                        ></router-link>
+                        <button
+                          class="btn btn-sm btn-danger"
+                          @click="destroy(data.id)"
+                        >
+                          <i class="ion ion-ios-trash"></i>
+                        </button>
+                      </span>
+                      <span v-if="loginType != 'admin'"> Tidak ada Akses </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </v-table>
             </div>
           </div>
         </div>
@@ -111,26 +114,10 @@ export default {
   },
   data() {
     return {
-      fields: [
-        { key: "id", label: "Id" },
-        { key: "judul", label: "Judul" },
-        { key: "penulis", label: "Penulis" },
-        { key: "penerbit", label: "Penerbit" },
-        { key: "tanggal", label: "Tanggal" },
-        { key: "kondisi", label: "Kondisi" },
-        { key: "jumlah", label: "Jumlah" },
-        { key: "jenis.jenis_buku", label: "Jenis" },
-        { key: "pengguna.name", label: "Pengguna" },
-        { key: "lokasi.lokasi", label: "Lokasi" },
-        { key: "action", label: "Action", sortable: false },
-      ],
-      filter: null,
-      filterOn: [],
-      currentPage: 1,
-      perPage: 5,
-      pageOptions: [5, 15, 25, 50, { value: 100, text: "Show a lot" }],
+      filters: {
+        judul: { value: "", keys: ["judul"] },
+      },
       buku: [],
-      sortBy: "id",
       user: null,
       isLoggedIn: false,
       loginType: "",
@@ -159,10 +146,19 @@ export default {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + localStorage.getItem("token");
 
-    axios.get(`/api/user`).then((response) => {
-      this.user = response.data;
-      this.loginType = response.data.roles[0].name;
-    });
+    axios
+      .get(`/api/user`)
+      .then((response) => {
+        this.user = response.data;
+        this.loginType = response.data.roles[0].name;
+      })
+      .catch((error) => {
+        if (error.response.status === 401 || error.response.status === 500) {
+          localStorage.clear();
+          this.$router.push("/login");
+        }
+        console.error(error);
+      });
   },
 };
 </script>

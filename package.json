@@ -120,6 +120,7 @@
     },
     "dependencies": {
         "@popperjs/core": "^2.11.0",
+        "@vue/composition-api": "^1.4.4",
         "vuejs-smart-table": "0.0.8"
     }
 }

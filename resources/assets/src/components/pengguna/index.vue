@@ -2,12 +2,14 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-xl-12">
-        <div class="card card-default">
+        <div class="card card-default mt-3">
           <div class="card-header">pengguna</div>
 
           <div class="card-body">
-            <span v-if="loginType == 'admin'"
-              class="d-flex flex-row-reverse mx-3">
+            <span
+              v-if="loginType == 'admin'"
+              class="d-flex flex-row-reverse mx-3"
+            >
               <router-link
                 :to="{ name: 'create-pengguna' }"
                 class="btn btn-md btn-primary mx-3"
@@ -20,96 +22,63 @@
               >
             </span>
             <div class="table-responsive mt-2">
-              <b-row>
-                <b-col lg="6" class="my-1">
-                  <b-form-group
-                    label="Filter"
-                    label-for="filter-input"
-                    label-cols-sm="3"
-                    label-align-sm="right"
-                    label-size="sm"
-                    class="mb-0"
-                  >
-                    <b-input-group size="sm">
-                      <b-form-input
-                        id="filter-input"
-                        v-model="filter"
-                        type="search"
-                        placeholder="Type to Search"
-                      ></b-form-input>
+              <label>Filter berdasarkan Nama Pengguna:</label>
+              <input type="text" class="form-control" v-model="filters.name.value" />
 
-                      <b-input-group-append>
-                        <b-button :disabled="!filter" @click="filter = ''"
-                          >Clear</b-button
-                        >
-                      </b-input-group-append>
-                    </b-input-group>
-                  </b-form-group>
-                </b-col>
-                <b-col sm="5" md="6" class="my-1">
-                  <b-form-group
-                    label="Per page"
-                    label-for="per-page-select"
-                    label-cols-sm="6"
-                    label-cols-md="4"
-                    label-cols-lg="3"
-                    label-align-sm="right"
-                    label-size="sm"
-                    class="mb-0"
-                  >
-                    <b-form-select
-                      id="per-page-select"
-                      v-model="perPage"
-                      :options="pageOptions"
-                      size="sm"
-                    ></b-form-select>
-                  </b-form-group>
-                </b-col>
-              </b-row>
-              <b-table
-                :items="pengguna"
-                :fields="fields"
-                :sort-by.sync="sortBy"
-                striped
-                responsive
-                sort-icon-left
-                :filter="filter"
-                :filter-included-fields="filterOn"
-                @filtered="onFiltered"
-                :current-page="currentPage"
-                :per-page="perPage"
+              <br />
+              <v-table
+                :data="pengguna"
+                :filters="filters"
+                class="table table-striped table-bordered"
               >
-                <template slot="action" slot-scope="data">
-                  <router-link
-                    :to="{
-                      name: 'detail-pengguna',
-                      params: { id: data.item.id },
-                    }"
-                    class="btn btn-sm btn-primary"
-                    >
-                    <i class="ion ion-ios-eye"></i></router-link
-                  >
-                  <router-link
-                    :to="{
-                      name: 'edit-pengguna',
-                      params: { id: data.item.id },
-                    }"
-                    class="btn btn-sm btn-warning"
-                    >
-                    <i class="ion ion-md-create"></i></router-link
-                  >
-                  <span v-if="loginType == 'admin'">
-                    <button
-                      v-if="data.item.id != 1"
-                      class="btn btn-sm btn-danger"
-                      @click="destroy(data.item.id)"
-                    >
+                <thead slot="head">
+                  <tr>
+                    <th scope="col">No</th>
+                    <v-th sortKey="name" scope="col">Nama Pengguna</v-th>
+                    <th scope="col">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody slot="body" slot-scope="{ displayData }">
+                  <tr v-for="data in displayData" :key="data.guid">
+                    <!-- index number -->
+                    <td scope="data">
+                      {{ data.id }}
+                    </td>
+                    <td>
+                      {{ data.name }}
+                    </td>
+                    <td>
+                      <router-link
+                        :to="{
+                          name: 'detail-pengguna',
+                          params: { id: data.id },
+                        }"
+                      >
+                        <button class="btn btn-sm btn-primary p-y">
+                          <i class="ion ion-ios-eye"></i>
+                        </button>
+                      </router-link>
+                      <span v-if="loginType == 'admin'">
+                        <router-link
+                          :to="{
+                            name: 'edit-pengguna',
+                            params: { id: data.id },
+                          }"
+                          class="btn btn-sm btn-warning"
+                        >
+                          <i class="ion ion-md-create"></i
+                        ></router-link>
 
-                    <i class="ion ion-ios-trash"></i>
-                    </button>
-                  </span>
-                </template>
-              </b-table>
+                        <button
+                          @click="deletePengguna(data.id)"
+                          class="btn btn-sm btn-danger"
+                        >
+                          <i class="ion ion-ios-trash"></i></button
+                      ></span>
+                    </td>
+                  </tr>
+                </tbody>
+              </v-table>
             </div>
           </div>
         </div>
@@ -126,34 +95,12 @@ export default {
   },
   data() {
     return {
-      fields: [
-        {
-          key: "id",
-          label: "ID",
-          sortable: true,
-        },
-        {
-          key: "name",
-          label: "Nama",
-          sortable: true,
-        },
-        {
-          key: "action",
-          label: "Action",
-          headerClass: "text-center",
-          class: "text-center",
-          width: "100px",
-        },
-      ],
+      filters: {
+        name: { value: "", keys: ["name"] },
+      },
       pengguna: [],
-      filter: null,
-      filterOn: [],
-      currentPage: 1,
-      perPage: 5,
-      pageOptions: [5, 15, 25, 50, { value: 100, text: "Show a lot" }],
       barang: [],
-      sortBy: "id",
-      user: null,
+      user: "",
       isLoggedIn: false,
       loginType: "",
     };
@@ -166,10 +113,6 @@ export default {
   },
 
   methods: {
-    onFiltered(filteredItems) {
-      this.totalRows = filteredItems.length;
-      this.currentPage = 1;
-    },
     destroy(id) {
       let uri = `/api/pengguna/${id}`;
       axios.delete(uri).then((response) => {
@@ -183,9 +126,16 @@ export default {
       "Bearer " + localStorage.getItem("token");
 
     axios.get(`/api/user`).then((response) => {
-      this.user = response.data;
-      this.loginType = response.data.roles[0].name;
-    });
+        this.user = response.data;
+        this.loginType = response.data.roles[0].name;
+      })
+      .catch((error) => {
+        if (error.response.status === 401 || error.response.status === 500) {
+          localStorage.clear();
+          this.$router.push("/login");
+        }
+        console.error(error);
+      })
   },
 };
 </script>

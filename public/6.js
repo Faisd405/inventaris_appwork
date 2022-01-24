@@ -96,48 +96,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      fields: [{
-        key: "id",
-        label: "Id"
-      }, {
-        key: "judul",
-        label: "Judul"
-      }, {
-        key: "penulis",
-        label: "Penulis"
-      }, {
-        key: "penerbit",
-        label: "Penerbit"
-      }, {
-        key: "tanggal",
-        label: "Tanggal"
-      }, {
-        key: "kondisi",
-        label: "Kondisi"
-      }, {
-        key: "jumlah",
-        label: "Jumlah"
-      }, {
-        key: "jenis.jenis_buku",
-        label: "Jenis"
-      }, {
-        key: "pengguna.name",
-        label: "Pengguna"
-      }, {
-        key: "lokasi.lokasi",
-        label: "Lokasi"
-      }],
-      filter: null,
-      filterOn: [],
-      currentPage: 1,
-      perPage: 5,
-      pageOptions: [5, 15, 25, 50, {
-        value: 100,
-        text: "Show a lot"
-      }],
+      filters: {
+        judul: {
+          value: "",
+          keys: ["judul"]
+        }
+      },
       buku: [],
       sortBy: "id",
-      user: null,
+      user: "",
       isLoggedIn: false,
       loginType: ""
     };
@@ -174,6 +141,14 @@ __webpack_require__.r(__webpack_exports__);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user").then(function (response) {
       _this3.user = response.data;
       _this3.loginType = response.data.roles[0].name;
+    })["catch"](function (error) {
+      if (error.response.status === 401 || error.response.status === 500) {
+        localStorage.clear();
+
+        _this3.$router.push("/login");
+      }
+
+      console.error(error);
     });
   }
 });
@@ -206,139 +181,204 @@ var render = function () {
               "div",
               { staticClass: "table-responsive mt-2" },
               [
-                _c(
-                  "b-row",
-                  [
-                    _c(
-                      "b-col",
-                      { staticClass: "my-1", attrs: { lg: "6" } },
-                      [
-                        _c(
-                          "b-form-group",
-                          {
-                            staticClass: "mb-0",
-                            attrs: {
-                              label: "Filter",
-                              "label-for": "filter-input",
-                              "label-cols-sm": "3",
-                              "label-align-sm": "right",
-                              "label-size": "sm",
-                            },
-                          },
-                          [
-                            _c(
-                              "b-input-group",
-                              { attrs: { size: "sm" } },
-                              [
-                                _c("b-form-input", {
-                                  attrs: {
-                                    id: "filter-input",
-                                    type: "search",
-                                    placeholder: "Type to Search",
-                                  },
-                                  model: {
-                                    value: _vm.filter,
-                                    callback: function ($$v) {
-                                      _vm.filter = $$v
-                                    },
-                                    expression: "filter",
-                                  },
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "b-input-group-append",
-                                  [
-                                    _c(
-                                      "b-button",
-                                      {
-                                        attrs: { disabled: !_vm.filter },
-                                        on: {
-                                          click: function ($event) {
-                                            _vm.filter = ""
-                                          },
-                                        },
-                                      },
-                                      [_vm._v("Clear")]
-                                    ),
-                                  ],
-                                  1
-                                ),
-                              ],
-                              1
-                            ),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-col",
-                      { staticClass: "my-1", attrs: { sm: "5", md: "6" } },
-                      [
-                        _c(
-                          "b-form-group",
-                          {
-                            staticClass: "mb-0",
-                            attrs: {
-                              label: "Per page",
-                              "label-for": "per-page-select",
-                              "label-cols-sm": "6",
-                              "label-cols-md": "4",
-                              "label-cols-lg": "3",
-                              "label-align-sm": "right",
-                              "label-size": "sm",
-                            },
-                          },
-                          [
-                            _c("b-form-select", {
-                              attrs: {
-                                id: "per-page-select",
-                                options: _vm.pageOptions,
-                                size: "sm",
-                              },
-                              model: {
-                                value: _vm.perPage,
-                                callback: function ($$v) {
-                                  _vm.perPage = $$v
-                                },
-                                expression: "perPage",
-                              },
-                            }),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
-                  ],
-                  1
-                ),
+                _c("label", [_vm._v("Filter berdasarkan Judul Buku:")]),
                 _vm._v(" "),
-                _c("b-table", {
-                  attrs: {
-                    items: _vm.buku,
-                    fields: _vm.fields,
-                    "sort-by": _vm.sortBy,
-                    striped: "",
-                    responsive: "",
-                    "sort-icon-left": "",
-                    filter: _vm.filter,
-                    "filter-included-fields": _vm.filterOn,
-                    "current-page": _vm.currentPage,
-                    "per-page": _vm.perPage,
-                  },
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.filters.judul.value,
+                      expression: "filters.judul.value",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  domProps: { value: _vm.filters.judul.value },
                   on: {
-                    "update:sortBy": function ($event) {
-                      _vm.sortBy = $event
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.filters.judul, "value", $event.target.value)
                     },
-                    "update:sort-by": function ($event) {
-                      _vm.sortBy = $event
-                    },
-                    filtered: _vm.onFiltered,
                   },
                 }),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c(
+                  "v-table",
+                  {
+                    staticClass: "table table-striped table-bordered",
+                    attrs: { data: _vm.buku, filters: _vm.filters },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "body",
+                        fn: function (ref) {
+                          var displayData = ref.displayData
+                          return _c(
+                            "tbody",
+                            {},
+                            _vm._l(displayData, function (data) {
+                              return _c("tr", { key: data.guid }, [
+                                _c("td", { attrs: { scope: "data" } }, [
+                                  _vm._v(
+                                    "\n                              " +
+                                      _vm._s(data.id) +
+                                      "\n                          "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                              " +
+                                      _vm._s(data.judul) +
+                                      "\n                          "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                              " +
+                                      _vm._s(data.penulis) +
+                                      "\n                          "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                              " +
+                                      _vm._s(data.penerbit) +
+                                      "\n                          "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                              " +
+                                      _vm._s(data.tanggal) +
+                                      "\n                          "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                              " +
+                                      _vm._s(data.kondisi) +
+                                      "\n                          "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                              " +
+                                      _vm._s(data.jumlah) +
+                                      "\n                          "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                              " +
+                                      _vm._s(data.jenis.jenis_buku) +
+                                      "\n                          "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                              " +
+                                      _vm._s(data.pengguna.name) +
+                                      "\n                          "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                              " +
+                                      _vm._s(data.lokasi.lokasi) +
+                                      "\n                          "
+                                  ),
+                                ]),
+                              ])
+                            }),
+                            0
+                          )
+                        },
+                      },
+                    ]),
+                  },
+                  [
+                    _c("thead", { attrs: { slot: "head" }, slot: "head" }, [
+                      _c(
+                        "tr",
+                        [
+                          _c("th", { attrs: { scope: "col" } }, [_vm._v("No")]),
+                          _vm._v(" "),
+                          _c(
+                            "v-th",
+                            { attrs: { sortKey: "judul", scope: "col" } },
+                            [_vm._v("Judul")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            { attrs: { sortKey: "penulis", scope: "col" } },
+                            [_vm._v("Penulis")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            { attrs: { sortKey: "penerbit", scope: "col" } },
+                            [_vm._v("Penerbit")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-th",
+                            {
+                              attrs: {
+                                sortKey: "tanggal_terbit",
+                                scope: "col",
+                              },
+                            },
+                            [_vm._v("Tanggal Terbit")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            { attrs: { sortKey: "kondisi", scope: "col" } },
+                            [_vm._v("Kondisi")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-th",
+                            { attrs: { sortKey: "jumlah", scope: "col" } },
+                            [_vm._v("Jumlah")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            { attrs: { sortKey: "jenis", scope: "col" } },
+                            [_vm._v("Jenis")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            { attrs: { sortKey: "pengguna", scope: "col" } },
+                            [_vm._v("Pengguna")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            { attrs: { sortKey: "lokasi", scope: "col" } },
+                            [_vm._v("Lokasi")]
+                          ),
+                        ],
+                        1
+                      ),
+                    ]),
+                  ]
+                ),
               ],
               1
             ),

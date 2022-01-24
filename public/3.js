@@ -147,7 +147,23 @@ __webpack_require__.r(__webpack_exports__);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user").then(function (response) {
       _this.user = response.data;
       _this.loginType = response.data.roles[0].name;
+    })["catch"](function (error) {
+      if (error.response.status === 401 || error.response.status === 500) {
+        localStorage.clear();
+
+        _this.$router.push("/login");
+      }
+
+      console.error(error);
     });
+  },
+  methods: {
+    logout: function logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      this.setUser();
+      this.$router.push('/');
+    }
   },
   created: function created() {
     var _this2 = this;

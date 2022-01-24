@@ -277,24 +277,21 @@ export default {
       this.barang.lampiran = e.target.files[0];
     },
   },
-  mounted() {
-    axios.defaults.headers.common["Content-Type"] = "application/json";
+  mounted() {axios.defaults.headers.common["Content-Type"] = "application/json";
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + localStorage.getItem("token");
 
-    axios
-      .get(`/api/user`)
-      .then((response) => {
+    axios.get(`/api/user`).then((response) => {
         this.user = response.data;
         this.loginType = response.data.roles[0].name;
       })
       .catch((error) => {
-        if (error.response.status === 401) {
+        if (error.response.status === 401 || error.response.status === 500) {
           localStorage.clear();
           this.$router.push("/login");
         }
         console.error(error);
-      });
+      })
   },
 };
 </script>

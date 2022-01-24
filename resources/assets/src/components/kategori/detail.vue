@@ -8,7 +8,30 @@
           <div class="card-body">
             <div class="table-responsive mt-2">
               <h2>Ini adalah isi dari kategori {{kategori.nama_kategori}}</h2>
-              <b-table :items="barang" :fields="fields"></b-table>
+
+              <v-table
+                :data="barang"
+                class="table table-striped table-bordered"
+              >
+                <thead slot="head">
+                  <tr>
+                    <th scope="col">No</th>
+                    <v-th sortKey="nama_barang" scope="col">Nama Barang</v-th>
+                    <th scope="col">Fungsi</th>
+                    <th scope="col">Lokasi</th>
+                    <v-th sortKey="harga_barang" scope="col">Harga Barang</v-th>
+                  </tr>
+                </thead>
+                <tbody slot="body" slot-scope="{ displayData }">
+                  <tr v-for="data in displayData" :key="data.guid">
+                    <td>{{ data.id }}</td>
+                    <td>{{ data.nama_barang }}</td>
+                    <td>{{ data.fungsi }}</td>
+                    <td>{{ data.lokasi.lokasi }}</td>
+                    <td>{{ data.harga_barang }}</td>
+                  </tr>
+                </tbody>
+              </v-table>
             </div>
           </div>
         </div>
@@ -26,38 +49,6 @@ export default {
   },
   data() {
     return {
-        fields: [
-            {
-                key: 'id',
-                label: 'ID',
-                sortable: true
-            },
-            {
-                key: 'kode_barang',
-                label: 'Kode Barang',
-                sortable: true
-            },
-            {
-                key: 'nama_barang',
-                label: 'Nama Barang',
-                sortable: true
-            },
-            {
-                key: 'fungsi',
-                label: 'Fungsi',
-                sortable: true
-            },
-            {
-                key: 'lokasi.lokasi',
-                label: 'Lokasi',
-                sortable: true
-            },
-            {
-                key: 'harga_barang',
-                label: 'Harga Barang',
-                sortable: true
-            },
-        ],
       barang: [],
       kategori: {},
     };

@@ -6,7 +6,9 @@ import BootstrapVue from 'bootstrap-vue'
 
 import globals from './globals'
 import Popper from 'popper.js'
+import SmartTable from 'vuejs-smart-table'
 
+Vue.use(SmartTable)
 // Required to enable animations on dropdowns/tooltips/popovers
 Popper.Defaults.modifiers.computeStyle.gpuAcceleration = false
 

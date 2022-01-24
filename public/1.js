@@ -238,24 +238,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -269,52 +251,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      fields: [{
-        key: "id",
-        sortable: true
-      }, {
-        key: "nama_barang",
-        sortable: true,
-        filterByFormatted: true
-      }, {
-        key: "detail_barang",
-        sortable: true
-      }, {
-        key: "kategori.nama_kategori",
-        sortable: true,
-        label: "Kategori"
-      }, {
-        key: "fungsi",
-        sortable: true
-      }, {
-        key: "harga_barang",
-        sortable: true
-      }, {
-        key: "lokasi.lokasi",
-        sortable: true,
-        label: "Lokasi"
-      }, {
-        key: "pengguna.name",
-        label: "Pemakai",
-        sortable: true
-      }, {
-        key: "year",
-        label: "tahun"
-      }, {
-        key: "jumlah_barang",
-        sortable: true
-      }],
-      filter: null,
-      filterOn: [],
-      currentPage: 1,
-      perPage: 5,
-      pageOptions: [5, 15, 25, 50, {
-        value: 100,
-        text: "Show a lot"
-      }],
+      filters: {
+        nama_barang: {
+          value: "",
+          keys: ["nama_barang"]
+        }
+      },
       barang: [],
-      sortBy: "id",
-      user: null,
+      user: "",
       isLoggedIn: false,
       loginType: ""
     };
@@ -352,6 +296,14 @@ __webpack_require__.r(__webpack_exports__);
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/user").then(function (response) {
       _this3.user = response.data;
       _this3.loginType = response.data.roles[0].name;
+    })["catch"](function (error) {
+      if (error.response.status === 401 || error.response.status === 500) {
+        localStorage.clear();
+
+        _this3.$router.push("/login");
+      }
+
+      console.error(error);
     });
   }
 });
@@ -712,140 +664,139 @@ var render = function () {
             _c(
               "div",
               [
-                _c(
-                  "b-row",
-                  [
-                    _c(
-                      "b-col",
-                      { staticClass: "my-1", attrs: { lg: "6" } },
-                      [
-                        _c(
-                          "b-form-group",
-                          {
-                            staticClass: "mb-0",
-                            attrs: {
-                              label: "Filter",
-                              "label-for": "filter-input",
-                              "label-cols-sm": "3",
-                              "label-align-sm": "right",
-                              "label-size": "sm",
-                            },
-                          },
-                          [
-                            _c(
-                              "b-input-group",
-                              { attrs: { size: "sm" } },
-                              [
-                                _c("b-form-input", {
-                                  attrs: {
-                                    id: "filter-input",
-                                    type: "search",
-                                    placeholder: "Type to Search",
-                                  },
-                                  model: {
-                                    value: _vm.filter,
-                                    callback: function ($$v) {
-                                      _vm.filter = $$v
-                                    },
-                                    expression: "filter",
-                                  },
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "b-input-group-append",
-                                  [
-                                    _c(
-                                      "b-button",
-                                      {
-                                        attrs: { disabled: !_vm.filter },
-                                        on: {
-                                          click: function ($event) {
-                                            _vm.filter = ""
-                                          },
-                                        },
-                                      },
-                                      [_vm._v("Clear")]
-                                    ),
-                                  ],
-                                  1
-                                ),
-                              ],
-                              1
-                            ),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-col",
-                      { staticClass: "my-1", attrs: { sm: "5", md: "6" } },
-                      [
-                        _c(
-                          "b-form-group",
-                          {
-                            staticClass: "mb-0",
-                            attrs: {
-                              label: "Per page",
-                              "label-for": "per-page-select",
-                              "label-cols-sm": "6",
-                              "label-cols-md": "4",
-                              "label-cols-lg": "3",
-                              "label-align-sm": "right",
-                              "label-size": "sm",
-                            },
-                          },
-                          [
-                            _c("b-form-select", {
-                              attrs: {
-                                id: "per-page-select",
-                                options: _vm.pageOptions,
-                                size: "sm",
-                              },
-                              model: {
-                                value: _vm.perPage,
-                                callback: function ($$v) {
-                                  _vm.perPage = $$v
-                                },
-                                expression: "perPage",
-                              },
-                            }),
-                          ],
-                          1
-                        ),
-                      ],
-                      1
-                    ),
-                  ],
-                  1
-                ),
+                _c("label", [_vm._v("Filter berdasarkan Nama Barang:")]),
                 _vm._v(" "),
-                _c("b-table", {
-                  attrs: {
-                    items: _vm.barang,
-                    fields: _vm.fields,
-                    "sort-by": _vm.sortBy,
-                    striped: "",
-                    responsive: "",
-                    "sort-icon-left": "",
-                    filter: _vm.filter,
-                    "filter-included-fields": _vm.filterOn,
-                    "current-page": _vm.currentPage,
-                    "per-page": _vm.perPage,
-                    "foot-clone": "",
-                  },
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.filters.nama_barang.value,
+                      expression: "filters.nama_barang.value",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  domProps: { value: _vm.filters.nama_barang.value },
                   on: {
-                    "update:sortBy": function ($event) {
-                      _vm.sortBy = $event
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.filters.nama_barang,
+                        "value",
+                        $event.target.value
+                      )
                     },
-                    "update:sort-by": function ($event) {
-                      _vm.sortBy = $event
-                    },
-                    filtered: _vm.onFiltered,
                   },
                 }),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c(
+                  "v-table",
+                  {
+                    staticClass: "table table-striped table-bordered",
+                    attrs: { data: _vm.barang, filters: _vm.filters },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "body",
+                        fn: function (ref) {
+                          var displayData = ref.displayData
+                          return _c(
+                            "tbody",
+                            {},
+                            _vm._l(displayData, function (data) {
+                              return _c("tr", { key: data.guid }, [
+                                _c("td", [_vm._v(_vm._s(data.id))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(data.nama_barang))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(data.detail_barang))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(data.kategori.nama_kategori)),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(data.fungsi))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(data.harga_barang))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(data.lokasi.lokasi))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(data.pengguna.name))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(data.year))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(data.jumlah_barang))]),
+                              ])
+                            }),
+                            0
+                          )
+                        },
+                      },
+                    ]),
+                  },
+                  [
+                    _c("thead", { attrs: { slot: "head" }, slot: "head" }, [
+                      _c(
+                        "tr",
+                        [
+                          _c("th", { attrs: { scope: "col" } }, [_vm._v("No")]),
+                          _vm._v(" "),
+                          _c(
+                            "v-th",
+                            { attrs: { sortKey: "nama_barang", scope: "col" } },
+                            [_vm._v("Nama Barang")]
+                          ),
+                          _vm._v(" "),
+                          _c("th", { attrs: { scope: "col" } }, [
+                            _vm._v("Detail Barang"),
+                          ]),
+                          _vm._v(" "),
+                          _c("th", { attrs: { scope: "col" } }, [
+                            _vm._v("Kategori"),
+                          ]),
+                          _vm._v(" "),
+                          _c("th", { attrs: { scope: "col" } }, [
+                            _vm._v("Fungsi"),
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-th",
+                            {
+                              attrs: { sortKey: "harga_barang", scope: "col" },
+                            },
+                            [_vm._v("Harga Barang")]
+                          ),
+                          _vm._v(" "),
+                          _c("th", { attrs: { scope: "col" } }, [
+                            _vm._v("Lokasi"),
+                          ]),
+                          _vm._v(" "),
+                          _c("th", { attrs: { scope: "col" } }, [
+                            _vm._v("Pemakai"),
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-th",
+                            { attrs: { sortKey: "year", scope: "col" } },
+                            [_vm._v("Tahun")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-th",
+                            {
+                              attrs: { sortKey: "jumlah_barang", scope: "col" },
+                            },
+                            [_vm._v("Jumlah Barang")]
+                          ),
+                        ],
+                        1
+                      ),
+                    ]),
+                  ]
+                ),
               ],
               1
             ),

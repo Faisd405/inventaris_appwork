@@ -12,8 +12,10 @@
           <div class="card-header">Sifat Barang</div>
 
           <div class="card-body">
-            <span v-if="loginType == 'admin'"
-              class="d-flex flex-row-reverse mx-3">
+            <span
+              v-if="loginType == 'admin'"
+              class="d-flex flex-row-reverse mx-3"
+            >
               <router-link
                 :to="{ name: 'create-sifat' }"
                 class="btn btn-md btn-primary"
@@ -21,83 +23,57 @@
               >
             </span>
             <div class="table-responsive mt-2">
-              <b-row>
-                <b-col lg="6" class="my-1">
-                  <b-form-group
-                    label="Filter"
-                    label-for="filter-input"
-                    label-cols-sm="3"
-                    label-align-sm="right"
-                    label-size="sm"
-                    class="mb-0"
-                  >
-                    <b-input-group size="sm">
-                      <b-form-input
-                        id="filter-input"
-                        v-model="filter"
-                        type="search"
-                        placeholder="Type to Search"
-                      ></b-form-input>
+              <label>Filter berdasarkan Nama Sifat:</label>
+              <input
+                class="form-control"
+                v-model="filters.sifat_kategori.value"
+              />
+              <br />
 
-                      <b-input-group-append>
-                        <b-button :disabled="!filter" @click="filter = ''"
-                          >Clear</b-button
-                        >
-                      </b-input-group-append>
-                    </b-input-group>
-                  </b-form-group>
-                </b-col>
-                <b-col sm="5" md="6" class="my-1">
-                  <b-form-group
-                    label="Per page"
-                    label-for="per-page-select"
-                    label-cols-sm="6"
-                    label-cols-md="4"
-                    label-cols-lg="3"
-                    label-align-sm="right"
-                    label-size="sm"
-                    class="mb-0"
-                  >
-                    <b-form-select
-                      id="per-page-select"
-                      v-model="perPage"
-                      :options="pageOptions"
-                      size="sm"
-                    ></b-form-select>
-                  </b-form-group>
-                </b-col>
-              </b-row>
-              <b-table
-                :items="sifat"
-                :fields="fields"
-                :sort-by.sync="sortBy"
-                striped
-                responsive
-                sort-icon-left
-                :filter="filter"
-                :filter-included-fields="filterOn"
-                @filtered="onFiltered"
-                :current-page="currentPage"
-                :per-page="perPage"
+              <v-table
+                :data="sifat"
+                :filters="filters"
+                class="table table-striped table-bordered"
               >
-                <template slot="action" slot-scope="data">
-                  <span v-if="loginType == 'admin'">
-                    <router-link
-                      :to="{ name: 'edit-sifat', params: { id: data.item.id } }"
-                      class="btn btn-sm btn-warning"
-                    >
-                      <i class="ion ion-md-create"></i
-                    ></router-link>
-                    <button
-                      class="btn btn-sm btn-danger"
-                      @click="destroy(data.item.id)"
-                    >
-                      <i class="ion ion-ios-trash"></i>
-                    </button>
-                  </span>
-                  <span v-if="loginType != 'admin'"> Tidak ada Akses </span>
-                </template>
-              </b-table>
+                <thead slot="head">
+                  <tr>
+                    <th scope="col">No</th>
+                    <v-th sortKey="sifat_kategori" scope="col">Nama Sifat</v-th>
+                    <th scope="col">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody slot="body" slot-scope="{ displayData }">
+                  <tr v-for="data in displayData" :key="data.guid">
+                    <!-- index number -->
+                    <td scope="data">
+                      {{ data.id }}
+                    </td>
+                    <td>
+                      {{ data.sifat_kategori }}
+                    </td>
+                    <td>
+                      <span v-if="loginType == 'admin'">
+                        <router-link
+                          :to="{
+                            name: 'edit-sifat',
+                            params: { id: data.id },
+                          }"
+                          class="btn btn-sm btn-warning"
+                        >
+                          <i class="ion ion-md-create"></i
+                        ></router-link>
+
+                        <button
+                          @click="destroy(data.id)"
+                          class="btn btn-sm btn-danger"
+                        >
+                          <i class="ion ion-ios-trash"></i></button
+                      ></span>
+                      <span v-if="loginType != 'admin'"> Tidak ada Akses </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </v-table>
             </div>
           </div>
         </div>
@@ -115,19 +91,11 @@ export default {
   },
   data() {
     return {
-      fields: [
-        { key: "id", label: "Id" },
-        { key: "sifat_kategori", label: "Jenis Sifat Barang" },
-        { key: "action", label: "Action", sortable: false },
-      ],
-      filter: null,
-      filterOn: [],
-      currentPage: 1,
-      perPage: 5,
-      pageOptions: [5, 15, 25, 50, { value: 100, text: "Show a lot" }],
+      filters: {
+        sifat_kategori: { value: "", keys: ["sifat_kategori"] },
+      },
       sifat: [],
-      sortBy: "id",
-      user: null,
+      user: "",
       isLoggedIn: false,
       loginType: null,
     };
@@ -156,9 +124,16 @@ export default {
       "Bearer " + localStorage.getItem("token");
 
     axios.get(`/api/user`).then((response) => {
-      this.user = response.data;
-      this.loginType = response.data.roles[0].name;
-    });
+        this.user = response.data;
+        this.loginType = response.data.roles[0].name;
+      })
+      .catch((error) => {
+        if (error.response.status === 401 || error.response.status === 500) {
+          localStorage.clear();
+          this.$router.push("/login");
+        }
+        console.error(error);
+      })
   },
 };
 </script>

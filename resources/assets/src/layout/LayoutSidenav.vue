@@ -76,19 +76,19 @@
       <sidenav-divider />
       <sidenav-header> <strong>Laporan</strong> </sidenav-header>
       <sidenav-router-link icon="ion ion-md-dekstop" to="/laporan/barang" :exact="true"
-        >Laporan Total Barang</sidenav-router-link
+        >Laporan Barang</sidenav-router-link
       >
       <sidenav-router-link icon="ion ion-md-dekstop" to="/laporan/pengguna" :exact="true"
-        >Laporan Total Pengguna</sidenav-router-link
+        >Laporan Pengguna</sidenav-router-link
       >
       <sidenav-router-link icon="ion ion-md-dekstop" to="/laporan/buku" :exact="true"
-        >Laporan Total Buku</sidenav-router-link
+        >Laporan Buku</sidenav-router-link
       >
       <sidenav-router-link icon="ion ion-md-dekstop" to="/laporan/LaporanTBarangTerpakai" :exact="true"
-        >Laporan Total Barang yang terpakai</sidenav-router-link
+        >Laporan Barang yang terpakai</sidenav-router-link
       >
       <sidenav-router-link icon="ion ion-md-dekstop" to="/laporan/LaporanTBarangTidakTerpakai" :exact="true"
-        >Laporan Total Barang yang tidak terpakai</sidenav-router-link
+        >Laporan Barang yang tidak terpakai</sidenav-router-link
       >
       <sidenav-router-link icon="ion ion-md-dekstop" to="/laporan/LaporanTHargaBarang" :exact="true"
         >Laporan Harga Barang</sidenav-router-link
@@ -111,7 +111,7 @@ import {
 export default {
   data() {
     return {
-      user: null,
+      user: "",
       isLoggedIn: false,
     };
   },
@@ -134,7 +134,7 @@ export default {
   },
   data() {
     return {
-      user: null,
+      user: "",
       isLoggedIn: false,
       loginType: "",
     };
