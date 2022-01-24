@@ -46,6 +46,9 @@
                       scope="col"
                       >Nama Kategori</v-th
                     >
+                    <th scope="col">Fungsi</th>
+                    <th scope="col">Sifat Kategori</th>
+                    <th scope="col">Jumlah</th>
                     <th scope="col">Aksi</th>
                   </tr>
                 </thead>
@@ -57,6 +60,15 @@
                     </td>
                     <td>
                       {{ data.nama_kategori }}
+                    </td>
+                    <td>
+                      {{ data.fungsi }}
+                    </td>
+                    <td>
+                        {{ data.sifat.sifat_kategori }}
+                    </td>
+                    <td>
+                      {{ data.jumlah }}
                     </td>
                     <td>
                       <router-link
@@ -110,7 +122,13 @@ export default {
         nama_kategori: { value: "", keys: ["nama_kategori"] },
       },
       kategori: [],
-      barang: [],
+      barang: [
+          {
+              sifat: {
+                  sifat_kategori: ""
+              },
+          }
+      ],
       user: "",
       isLoggedIn: false,
       loginType: null,

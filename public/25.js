@@ -111,6 +111,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -125,7 +137,11 @@ __webpack_require__.r(__webpack_exports__);
         }
       },
       kategori: [],
-      barang: [],
+      barang: [{
+        sifat: {
+          sifat_kategori: ""
+        }
+      }],
       user: "",
       isLoggedIn: false,
       loginType: null
@@ -283,6 +299,30 @@ var render = function () {
                                   ),
                                 ]),
                                 _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(data.fungsi) +
+                                      "\n                  "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                      " +
+                                      _vm._s(data.sifat.sifat_kategori) +
+                                      "\n                  "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(data.jumlah) +
+                                      "\n                  "
+                                  ),
+                                ]),
+                                _vm._v(" "),
                                 _c(
                                   "td",
                                   [
@@ -379,6 +419,18 @@ var render = function () {
                             },
                             [_vm._v("Nama Kategori")]
                           ),
+                          _vm._v(" "),
+                          _c("th", { attrs: { scope: "col" } }, [
+                            _vm._v("Fungsi"),
+                          ]),
+                          _vm._v(" "),
+                          _c("th", { attrs: { scope: "col" } }, [
+                            _vm._v("Sifat Kategori"),
+                          ]),
+                          _vm._v(" "),
+                          _c("th", { attrs: { scope: "col" } }, [
+                            _vm._v("Jumlah"),
+                          ]),
                           _vm._v(" "),
                           _c("th", { attrs: { scope: "col" } }, [
                             _vm._v("Aksi"),
