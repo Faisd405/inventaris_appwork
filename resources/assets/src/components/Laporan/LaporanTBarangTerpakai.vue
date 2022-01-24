@@ -21,6 +21,7 @@
                     <th scope="col">Fungsi</th>
                     <v-th sortKey="harga_barang" scope="col">Harga Barang</v-th>
                     <th scope="col">Lokasi</th>
+                    <th scope="col">Detail Lokasi</th>
                     <th scope="col">Pemakai</th>
                     <v-th sortKey="year" scope="col">Tahun</v-th>
                     <v-th sortKey="jumlah_barang" scope="col"
@@ -37,6 +38,7 @@
                     <td>{{ data.fungsi }}</td>
                     <td>{{ data.harga_barang }}</td>
                     <td>{{ data.lokasi.lokasi }}</td>
+                    <td>{{ data.detail_lokasi }}</td>
                     <td>{{ data.pengguna.name }}</td>
                     <td>{{ data.year }}</td>
                     <td>{{ data.jumlah_barang }}</td>
