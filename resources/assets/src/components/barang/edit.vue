@@ -99,6 +99,17 @@
               </div>
 
               <div class="form-group">
+                <label for="detail_lokasi">Detail Lokasi</label>
+                <input
+                  type="text"
+                  name="detail_lokasi"
+                  class="form-control"
+                  v-model="barang.detail_lokasi"
+                  placeholder="Masukan Detail Lokasi"
+                />
+              </div>
+
+              <div class="form-group">
                 <label for="jumlah">Jumlah</label>
                 <input
                   type="number"
@@ -247,6 +258,7 @@ export default {
       formData.append("fungsi", this.barang.fungsi);
       formData.append("harga_barang", this.barang.harga_barang);
       formData.append("lokasi_id", this.barang.lokasi_id);
+      formData.append("detail_lokasi", this.barang.detail_lokasi);
       formData.append("jumlah_barang", this.barang.jumlah_barang);
       formData.append("pengguna_id", this.barang.pengguna_id);
       formData.append("keterangan", this.barang.keterangan);
@@ -277,11 +289,14 @@ export default {
       this.barang.lampiran = e.target.files[0];
     },
   },
-  mounted() {axios.defaults.headers.common["Content-Type"] = "application/json";
+  mounted() {
+    axios.defaults.headers.common["Content-Type"] = "application/json";
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + localStorage.getItem("token");
 
-    axios.get(`/api/user`).then((response) => {
+    axios
+      .get(`/api/user`)
+      .then((response) => {
         this.user = response.data;
         this.loginType = response.data.roles[0].name;
       })
@@ -291,7 +306,7 @@ export default {
           this.$router.push("/login");
         }
         console.error(error);
-      })
+      });
   },
 };
 </script>

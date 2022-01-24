@@ -188,6 +188,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -231,6 +246,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("harga_barang", this.barang.harga_barang);
       formData.append("year", this.barang.year);
       formData.append("lokasi_id", this.barang.lokasi_id);
+      formData.append("detail_lokasi", this.barang.detail_lokasi);
       formData.append("pengguna_id", this.barang.pengguna_id);
       formData.append("image", this.barang.image);
       formData.append("jumlah_barang", this.barang.jumlah_barang);
@@ -603,6 +619,42 @@ var render = function () {
                     ],
                     2
                   ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "detail_lokasi" } }, [
+                    _vm._v("Detail Lokasi"),
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.barang.detail_lokasi,
+                        expression: "barang.detail_lokasi",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      name: "detail_lokasi",
+                      placeholder: "Masukan Detail Lokasi",
+                    },
+                    domProps: { value: _vm.barang.detail_lokasi },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.barang,
+                          "detail_lokasi",
+                          $event.target.value
+                        )
+                      },
+                    },
+                  }),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [

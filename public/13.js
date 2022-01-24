@@ -141,6 +141,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -355,6 +357,10 @@ var render = function () {
                                       ]),
                                       _vm._v(" "),
                                       _c("td", [
+                                        _vm._v(_vm._s(data.detail_lokasi)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
                                         _vm._v(_vm._s(data.pengguna.name)),
                                       ]),
                                       _vm._v(" "),
@@ -497,6 +503,10 @@ var render = function () {
                                   _vm._v(" "),
                                   _c("th", { attrs: { scope: "col" } }, [
                                     _vm._v("Lokasi"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", { attrs: { scope: "col" } }, [
+                                    _vm._v("Detail Lokasi"),
                                   ]),
                                   _vm._v(" "),
                                   _c("th", { attrs: { scope: "col" } }, [

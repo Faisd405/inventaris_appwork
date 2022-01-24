@@ -31,8 +31,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/register', [UserController::class, 'register']);
 Route::post('login', [ 'as' => 'login', 'uses' => 'UserController@login']);
 Route::get('/user',[UserController::class, 'getUser']);
-//logout
-Route::post('/logout', [ UserController::class, 'logout']);
 
 //Route API User
 Route::get('/users', [UserController::class, 'index']);

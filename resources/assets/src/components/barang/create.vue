@@ -108,6 +108,17 @@
               </div>
 
               <div class="form-group">
+                <label for="detail_lokasi">Detail Lokasi</label>
+                <input
+                  type="text"
+                  name="detail_lokasi"
+                  class="form-control"
+                  v-model="barang.detail_lokasi"
+                  placeholder="Masukan Detail Lokasi"
+                />
+              </div>
+
+              <div class="form-group">
                 <label for="jumlah">Jumlah</label>
                 <input
                   type="number"
@@ -150,7 +161,7 @@
               <div class="preview" v-if="preview">
                 <p>Preview:</p>
                 <img :src="preview" class="img-thumbnail" />
-                <br/>
+                <br />
               </div>
               <div class="form-group">
                 <label for="lampiran">Lampiran (PDF)</label>
@@ -163,7 +174,11 @@
                 />
               </div>
               <div class="form-group">
-                <button class="btn btn-md btn-success" type="submit" title="submit">
+                <button
+                  class="btn btn-md btn-success"
+                  type="submit"
+                  title="submit"
+                >
                   SIMPAN
                 </button>
               </div>
@@ -215,6 +230,7 @@ export default {
       formData.append("harga_barang", this.barang.harga_barang);
       formData.append("year", this.barang.year);
       formData.append("lokasi_id", this.barang.lokasi_id);
+      formData.append("detail_lokasi", this.barang.detail_lokasi);
       formData.append("pengguna_id", this.barang.pengguna_id);
       formData.append("image", this.barang.image);
       formData.append("jumlah_barang", this.barang.jumlah_barang);
