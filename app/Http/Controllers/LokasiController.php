@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\lokasi;
+use App\Models\barang;
 
 class LokasiController extends Controller
 {
-    public function __construct(lokasi $lokasi)
+    public function __construct(lokasi $lokasi, barang $barang)
     {
         $this->lokasi = $lokasi;
+        $this->barang = $barang;
     }
 
     //index json
@@ -25,8 +27,10 @@ class LokasiController extends Controller
     public function show($id)
     {
         $lokasi = $this->lokasi->getLokasiById($id);
+        $barang = $this->barang->getBarangByLokasiId($id);
         return response()->json([
-            'lokasi' => $lokasi
+            'lokasi' => $lokasi,
+            'barang' => $barang
         ], 200);
     }
 

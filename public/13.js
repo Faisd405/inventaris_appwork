@@ -272,7 +272,7 @@ var render = function () {
                               staticClass: "btn btn-md btn-warning",
                               attrs: { to: { name: "relasiuserbarang" } },
                             },
-                            [_vm._v("Tambah Data Barang ke users")]
+                            [_vm._v("Ganti Pengguna Barang")]
                           ),
                           _vm._v(" "),
                           _c("hr"),

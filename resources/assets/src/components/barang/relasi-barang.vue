@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-xl-12">
         <div class="card card-default">
-          <div class="card-header">Relasi Barang Dan Pengguna</div>
+          <div class="card-header">Ganti Pengguna Barang</div>
 
           <div class="card-body">
             <form @submit.prevent="RelasiUserBarangUpdate">

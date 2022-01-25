@@ -17,8 +17,8 @@
               >
               <router-link
                 :to="{ name: 'relasiuserbarang' }"
-                class="btn btn-md btn-primary"
-                >Tambah Data Barang ke pengguna</router-link
+                class="btn btn-md btn-warning"
+                >Ganti Pengguna Barang</router-link
               >
             </span>
             <div class="table-responsive mt-2">

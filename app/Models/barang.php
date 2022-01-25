@@ -38,6 +38,10 @@ class barang extends Model
     {
         return barang::with('pengguna', 'kategori', 'lokasi')->where('kategori_id', $id)->get();
     }
+    public function getBarangByLokasiId($id)
+    {
+        return barang::with('pengguna', 'kategori', 'lokasi')->where('lokasi_id', $id)->get();
+    }
 
     public function getBarangById($id)
     {

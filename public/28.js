@@ -86,6 +86,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -247,60 +255,78 @@ var render = function () {
                                   ),
                                 ]),
                                 _vm._v(" "),
-                                _c("td", [
-                                  _vm.loginType == "admin"
-                                    ? _c(
-                                        "span",
-                                        [
-                                          _c(
-                                            "router-link",
-                                            {
-                                              staticClass:
-                                                "btn btn-sm btn-warning",
-                                              attrs: {
-                                                to: {
-                                                  name: "edit-lokasi",
-                                                  params: { id: data.id },
+                                _c(
+                                  "td",
+                                  [
+                                    _c(
+                                      "router-link",
+                                      {
+                                        staticClass: "btn btn-sm btn-primary",
+                                        attrs: {
+                                          to: {
+                                            name: "detail-lokasi",
+                                            params: { id: data.id },
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "ion ion-ios-eye",
+                                        }),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _vm.loginType == "admin"
+                                      ? _c(
+                                          "span",
+                                          [
+                                            _c(
+                                              "router-link",
+                                              {
+                                                staticClass:
+                                                  "btn btn-sm btn-warning",
+                                                attrs: {
+                                                  to: {
+                                                    name: "edit-lokasi",
+                                                    params: { id: data.id },
+                                                  },
                                                 },
                                               },
-                                            },
-                                            [
-                                              _c("i", {
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "ion ion-md-create",
+                                                }),
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "button",
+                                              {
                                                 staticClass:
-                                                  "ion ion-md-create",
-                                              }),
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "button",
-                                            {
-                                              staticClass:
-                                                "btn btn-sm btn-danger",
-                                              on: {
-                                                click: function ($event) {
-                                                  return _vm.deletePengguna(
-                                                    data.id
-                                                  )
+                                                  "btn btn-sm btn-danger",
+                                                on: {
+                                                  click: function ($event) {
+                                                    return _vm.deletePengguna(
+                                                      data.id
+                                                    )
+                                                  },
                                                 },
                                               },
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass:
-                                                  "ion ion-ios-trash",
-                                              }),
-                                            ]
-                                          ),
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.loginType != "admin"
-                                    ? _c("span", [_vm._v(" Tidak ada Akses ")])
-                                    : _vm._e(),
-                                ]),
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "ion ion-ios-trash",
+                                                }),
+                                              ]
+                                            ),
+                                          ],
+                                          1
+                                        )
+                                      : _vm._e(),
+                                  ],
+                                  1
+                                ),
                               ])
                             }),
                             0

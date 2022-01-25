@@ -65,38 +65,38 @@
                       {{ data.fungsi }}
                     </td>
                     <td>
-                        {{ data.sifat.sifat_kategori }}
+                      {{ data.sifat.sifat_kategori }}
                     </td>
                     <td>
                       {{ data.jumlah }}
                     </td>
                     <td>
                       <router-link
-                    :to="{
-                      name: 'detail-kategori',
-                      params: { id: data.id },
-                    }"
-                    class="btn btn-sm btn-primary"
-                  >
-                    <i class="ion ion-ios-eye"></i
-                  ></router-link>
-                  <span v-if="loginType == 'admin'">
-                    <router-link
-                      :to="{
-                        name: 'edit-kategori',
-                        params: { id: data.id },
-                      }"
-                      class="btn btn-sm btn-warning"
-                    >
-                      <i class="ion ion-md-create"></i
-                    ></router-link>
-                    <button
-                      class="btn btn-sm btn-danger"
-                      @click="destroy(data.id)"
-                    >
-                      <i class="ion ion-ios-trash"></i>
-                    </button>
-                  </span>
+                        :to="{
+                          name: 'detail-kategori',
+                          params: { id: data.id },
+                        }"
+                        class="btn btn-sm btn-primary"
+                      >
+                        <i class="ion ion-ios-eye"></i
+                      ></router-link>
+                      <span v-if="loginType == 'admin'">
+                        <router-link
+                          :to="{
+                            name: 'edit-kategori',
+                            params: { id: data.id },
+                          }"
+                          class="btn btn-sm btn-warning"
+                        >
+                          <i class="ion ion-md-create"></i
+                        ></router-link>
+                        <button
+                          class="btn btn-sm btn-danger"
+                          @click="destroy(data.id)"
+                        >
+                          <i class="ion ion-ios-trash"></i>
+                        </button>
+                      </span>
                     </td>
                   </tr>
                 </tbody>
@@ -123,11 +123,11 @@ export default {
       },
       kategori: [],
       barang: [
-          {
-              sifat: {
-                  sifat_kategori: ""
-              },
-          }
+        {
+          sifat: {
+            sifat_kategori: "",
+          },
+        },
       ],
       user: "",
       isLoggedIn: false,
@@ -139,7 +139,9 @@ export default {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + localStorage.getItem("token");
 
-    axios.get(`/api/user`).then((response) => {
+    axios
+      .get(`/api/user`)
+      .then((response) => {
         this.user = response.data;
         this.loginType = response.data.roles[0].name;
       })
@@ -149,7 +151,7 @@ export default {
           this.$router.push("/login");
         }
         console.error(error);
-      })
+      });
   },
   created() {
     let uri = `/api/kategori`;

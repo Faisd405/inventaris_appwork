@@ -344,6 +344,20 @@ const router = new Router({
                 isAdmin: true
             }
         },
+        {
+            name: 'detail-lokasi',
+            path: '/lokasi/detail/:id',
+            component: () => import('@/components/lokasi/detail'),
+            meta: {
+                requiresAuth: true,
+                if(isAdmin) {
+                    isAdmin: true;
+                },
+                if(isUser) {
+                    isUser: true
+                }
+            }
+        },
         // Route History
         {
             name: 'index-history',

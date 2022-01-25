@@ -42,6 +42,15 @@
                       {{ data.lokasi }}
                     </td>
                     <td>
+                      <router-link
+                        :to="{
+                          name: 'detail-lokasi',
+                          params: { id: data.id },
+                        }"
+                        class="btn btn-sm btn-primary"
+                      >
+                        <i class="ion ion-ios-eye"></i
+                      ></router-link>
                       <span v-if="loginType == 'admin'">
                         <router-link
                           :to="{
@@ -59,7 +68,6 @@
                         >
                           <i class="ion ion-ios-trash"></i></button
                       ></span>
-                      <span v-if="loginType != 'admin'"> Tidak ada Akses </span>
                     </td>
                   </tr>
                 </tbody>
@@ -109,7 +117,9 @@ export default {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + localStorage.getItem("token");
 
-    axios.get(`/api/user`).then((response) => {
+    axios
+      .get(`/api/user`)
+      .then((response) => {
         this.user = response.data;
         this.loginType = response.data.roles[0].name;
       })
@@ -119,7 +129,7 @@ export default {
           this.$router.push("/login");
         }
         console.error(error);
-      })
+      });
   },
 };
 </script>

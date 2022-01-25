@@ -201,10 +201,10 @@ var render = function () {
                     _c(
                       "router-link",
                       {
-                        staticClass: "btn btn-md btn-primary",
+                        staticClass: "btn btn-md btn-warning",
                         attrs: { to: { name: "relasiuserbarang" } },
                       },
-                      [_vm._v("Tambah Data Barang ke pengguna")]
+                      [_vm._v("Ganti Pengguna Barang")]
                     ),
                   ],
                   1

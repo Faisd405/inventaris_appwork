@@ -41,7 +41,7 @@
               <router-link
                 :to="{ name: 'relasiuserbarang' }"
                 class="btn btn-md btn-warning"
-                >Tambah Data Barang ke users</router-link
+                >Ganti Pengguna Barang</router-link
               >
 
               <hr />

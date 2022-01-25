@@ -309,7 +309,7 @@ var render = function () {
                                 _vm._v(" "),
                                 _c("td", [
                                   _vm._v(
-                                    "\n                      " +
+                                    "\n                    " +
                                       _vm._s(data.sifat.sifat_kategori) +
                                       "\n                  "
                                   ),

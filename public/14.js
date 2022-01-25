@@ -140,7 +140,7 @@ var render = function () {
       _c("div", { staticClass: "col-xl-12" }, [
         _c("div", { staticClass: "card card-default" }, [
           _c("div", { staticClass: "card-header" }, [
-            _vm._v("Relasi Barang Dan Pengguna"),
+            _vm._v("Ganti Pengguna Barang"),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
