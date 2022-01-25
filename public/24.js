@@ -68,6 +68,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -253,6 +262,35 @@ var render = function () {
                     ],
                     2
                   ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Jumlah")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.kategori.jumlah,
+                        expression: "kategori.jumlah",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Masukan Jumlah Barang",
+                    },
+                    domProps: { value: _vm.kategori.jumlah },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.kategori, "jumlah", $event.target.value)
+                      },
+                    },
+                  }),
                 ]),
                 _vm._v(" "),
                 _vm._m(0),

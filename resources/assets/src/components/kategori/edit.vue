@@ -43,6 +43,15 @@
                 </select>
               </div>
               <div class="form-group">
+                <label>Jumlah</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  v-model="kategori.jumlah"
+                  placeholder="Masukan Jumlah Barang"
+                />
+              </div>
+              <div class="form-group">
                 <button class="btn btn-md btn-success" type="submit">
                   SIMPAN
                 </button>

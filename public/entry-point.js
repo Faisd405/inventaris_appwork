@@ -35158,7 +35158,7 @@ var render = function () {
                     exact: true,
                   },
                 },
-                [_vm._v("Kategori Buku")]
+                [_vm._v("Jenis Buku")]
               ),
               _vm._v(" "),
               _c("sidenav-divider"),
@@ -35269,7 +35269,7 @@ var render = function () {
                 "sidenav-router-link",
                 {
                   attrs: {
-                    icon: "ion ion-md-dekstop",
+                    icon: "ion ion-md-folder",
                     to: "/laporan/barang",
                     exact: true,
                   },
@@ -35281,7 +35281,7 @@ var render = function () {
                 "sidenav-router-link",
                 {
                   attrs: {
-                    icon: "ion ion-md-dekstop",
+                    icon: "ion ion-md-folder",
                     to: "/laporan/pengguna",
                     exact: true,
                   },
@@ -35293,7 +35293,7 @@ var render = function () {
                 "sidenav-router-link",
                 {
                   attrs: {
-                    icon: "ion ion-md-dekstop",
+                    icon: "ion ion-md-folder",
                     to: "/laporan/buku",
                     exact: true,
                   },
@@ -35305,7 +35305,7 @@ var render = function () {
                 "sidenav-router-link",
                 {
                   attrs: {
-                    icon: "ion ion-md-dekstop",
+                    icon: "ion ion-md-folder",
                     to: "/laporan/LaporanTBarangTerpakai",
                     exact: true,
                   },
@@ -35317,7 +35317,7 @@ var render = function () {
                 "sidenav-router-link",
                 {
                   attrs: {
-                    icon: "ion ion-md-dekstop",
+                    icon: "ion ion-md-folder",
                     to: "/laporan/LaporanTBarangTidakTerpakai",
                     exact: true,
                   },
@@ -35329,7 +35329,7 @@ var render = function () {
                 "sidenav-router-link",
                 {
                   attrs: {
-                    icon: "ion ion-md-dekstop",
+                    icon: "ion ion-md-folder",
                     to: "/laporan/LaporanTHargaBarang",
                     exact: true,
                   },

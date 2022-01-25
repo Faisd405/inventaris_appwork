@@ -32,7 +32,6 @@ class BarangExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoSi
             $barang->kode_barang,
             $barang->detail_barang,
             $barang->kategori->nama_kategori,
-            $barang->jenis->jenis_barang,
             $barang->fungsi,
             $barang->harga_barang,
             $barang->lokasi->lokasi,
@@ -48,7 +47,6 @@ class BarangExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoSi
             'Kode Barang',
             'Detail Barang',
             'Kategori',
-            'Jenis',
             'Fungsi',
             'Harga Barang',
             'Lokasi',
@@ -75,8 +73,8 @@ class BarangExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoSi
                 $event->sheet->getDelegate()->setCellValue('A'. $total_barang, 'Total Barang');
                 $event->sheet->mergeCells('B'. $total_harga_barang.':J'. $total_harga_barang);
                 $event->sheet->mergeCells('B'. $total_barang.':J'. $total_barang);
-                $event->sheet->getDelegate()->setCellValue('B'. $total_harga_barang, '=SUM(H2:H'.$this->rows.')');
-                $event->sheet->getDelegate()->setCellValue('B'. $total_barang, '=COUNT(H2:H'.$this->rows.')');
+                $event->sheet->getDelegate()->setCellValue('B'. $total_harga_barang, '=SUM(G2:G'.$this->rows.')');
+                $event->sheet->getDelegate()->setCellValue('B'. $total_barang, '=COUNT(G2:G'.$this->rows.')');
             },
         ];
     }
