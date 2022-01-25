@@ -36,10 +36,6 @@
               </div>
               <button type="submit" class="btn btn-primary">Login</button>
             </form>
-            <div>
-              Belum Punya akun ?
-              <router-link to="/register"> Register </router-link>
-            </div>
           </div>
         </div>
       </div>

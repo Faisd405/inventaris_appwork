@@ -33,6 +33,9 @@
       <sidenav-router-link icon="ion ion-md-desktop" to="/jenis" :exact="true"
         >Jenis Buku</sidenav-router-link
       >
+      <sidenav-router-link icon="ion ion-md-compass" to="/lokasi" :exact="true"
+        >Lokasi Barang dan Buku</sidenav-router-link
+      >
       <sidenav-divider />
       <sidenav-header> <strong>Modul Inventaris</strong> </sidenav-header>
       <sidenav-menu icon="ion ion-md-cube">
@@ -67,9 +70,6 @@
         >
       </sidenav-menu>
 
-      <sidenav-router-link icon="ion ion-md-compass" to="/lokasi" :exact="true"
-        >Lokasi Barang</sidenav-router-link
-      >
       <sidenav-router-link icon="ion ion-md-desktop" to="/history" :exact="true"
         >Riwayat Penggunaan Barang</sidenav-router-link
       >

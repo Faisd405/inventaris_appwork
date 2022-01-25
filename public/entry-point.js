@@ -2013,7 +2013,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = (_name$data$props$meth = {
   name: "app-layout-navbar",
@@ -35040,10 +35039,6 @@ var render = function () {
                     _c("b-nav-item", { attrs: { to: { name: "login" } } }, [
                       _vm._v("Login"),
                     ]),
-                    _vm._v(" "),
-                    _c("b-nav-item", { attrs: { to: { name: "register" } } }, [
-                      _vm._v("Register"),
-                    ]),
                   ],
                   1
                 ),
@@ -35161,6 +35156,18 @@ var render = function () {
                 [_vm._v("Jenis Buku")]
               ),
               _vm._v(" "),
+              _c(
+                "sidenav-router-link",
+                {
+                  attrs: {
+                    icon: "ion ion-md-compass",
+                    to: "/lokasi",
+                    exact: true,
+                  },
+                },
+                [_vm._v("Lokasi Barang dan Buku")]
+              ),
+              _vm._v(" "),
               _c("sidenav-divider"),
               _vm._v(" "),
               _c("sidenav-header", [
@@ -35235,18 +35242,6 @@ var render = function () {
                   ),
                 ],
                 2
-              ),
-              _vm._v(" "),
-              _c(
-                "sidenav-router-link",
-                {
-                  attrs: {
-                    icon: "ion ion-md-compass",
-                    to: "/lokasi",
-                    exact: true,
-                  },
-                },
-                [_vm._v("Lokasi Barang")]
               ),
               _vm._v(" "),
               _c(
@@ -53215,12 +53210,6 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/login',
       component: function component() {
         return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! @/components/auth/Login */ "./resources/assets/src/components/auth/Login.vue"));
-      }
-    }, {
-      name: 'register',
-      path: '/register',
-      component: function component() {
-        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! @/components/auth/Register */ "./resources/assets/src/components/auth/Register.vue"));
       }
     }, // Route barang
     {

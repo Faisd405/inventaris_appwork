@@ -39,7 +39,6 @@
       <b-collapse is-nav id="app-layout-navbar">
         <b-navbar-nav class="align-items-lg-center">
           <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>
-          <b-nav-item :to="{ name: 'register' }">Register</b-nav-item>
         </b-navbar-nav>
       </b-collapse></template
     >

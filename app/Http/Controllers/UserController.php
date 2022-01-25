@@ -78,16 +78,6 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function register(Request $request)
-    {
-        $user = $this->user->postUser($request);
-
-        $user->roles()->attach(1);
-
-        return response()->json(['message' => 'Registration Successful.'], 201);
-    }
-
-
     public function login(Request $request)
     {
         $credentials = $this->credentials($request);

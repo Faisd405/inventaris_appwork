@@ -29,11 +29,6 @@ const router = new Router({
             path: '/login',
             component: () => import('@/components/auth/Login'),
         },
-        {
-            name: 'register',
-            path: '/register',
-            component: () => import('@/components/auth/Register')
-        },
         // Route barang
         {
             name: 'index-barang',
