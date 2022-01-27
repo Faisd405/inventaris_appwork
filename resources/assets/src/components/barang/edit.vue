@@ -192,7 +192,7 @@
 
               <div v-if="errors.length">
                 <div class="alert alert-danger">
-                  <b>Tolong Isi Kolom Tersebut :</b>
+                  <b>Perhatikan hal berikut :</b>
                   <ul>
                     <li v-for="error in errors" :key="error">{{ error }}</li>
                   </ul>
@@ -334,9 +334,21 @@ export default {
       if (this.barang.jumlah_barang == "") {
         this.errors.push("Jumlah tidak boleh kosong");
       }
+      if (this.barang.image != "") {
+        // size 2048
+        if (this.barang.image.size > 2048000) {
+          this.errors.push("Ukuran gambar tidak boleh lebih dari 2MB");
+        }
+      }
       if (this.barang.lampiran == "") {
         this.errors.push("Lampiran tidak boleh kosong");
       }
+        if (this.barang.lampiran != "") {
+            // size 2048
+            if (this.barang.lampiran.size > 2048000) {
+            this.errors.push("Ukuran lampiran tidak boleh lebih dari 2MB");
+            }
+        }
       e.preventDefault();
     },
   },

@@ -672,7 +672,7 @@ var render = function () {
                                           [
                                             _c("b", [
                                               _vm._v(
-                                                "Tolong Isi Kolom Tersebut :"
+                                                "Perhatikan hal berikut :"
                                               ),
                                             ]),
                                             _vm._v(" "),

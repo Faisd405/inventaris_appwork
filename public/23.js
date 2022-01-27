@@ -334,7 +334,7 @@ var render = function () {
                 _vm.errors.length
                   ? _c("div", [
                       _c("div", { staticClass: "alert alert-danger" }, [
-                        _c("b", [_vm._v("Tolong Isi Kolom Tersebut :")]),
+                        _c("b", [_vm._v("Perhatikan hal berikut :")]),
                         _vm._v(" "),
                         _c(
                           "ul",

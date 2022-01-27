@@ -349,8 +349,22 @@ __webpack_require__.r(__webpack_exports__);
         this.errors.push("Pengguna tidak boleh kosong");
       }
 
+      if (this.barang.image != "") {
+        // size 2048
+        if (this.barang.image.size > 2048000) {
+          this.errors.push("Ukuran gambar tidak boleh lebih dari 2MB");
+        }
+      }
+
       if (this.barang.lampiran == "") {
         this.errors.push("Lampiran tidak boleh kosong");
+      }
+
+      if (this.barang.lampiran != "") {
+        // size 2048
+        if (this.barang.lampiran.size > 2048000) {
+          this.errors.push("Ukuran lampiran tidak boleh lebih dari 2MB");
+        }
       }
 
       e.preventDefault();
@@ -897,7 +911,7 @@ var render = function () {
                 _vm.errors.length
                   ? _c("div", [
                       _c("div", { staticClass: "alert alert-danger" }, [
-                        _c("b", [_vm._v("Tolong Isi Kolom Tersebut :")]),
+                        _c("b", [_vm._v("Perhatikan hal berikut :")]),
                         _vm._v(" "),
                         _c(
                           "ul",

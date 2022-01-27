@@ -123,7 +123,7 @@
               </div>
               <div v-if="errors.length">
                 <div class="alert alert-danger">
-                  <b>Tolong Isi Kolom Tersebut :</b>
+                  <b>Perhatikan hal berikut :</b>
                   <ul>
                     <li v-for="error in errors" :key="error">{{ error }}</li>
                   </ul>
