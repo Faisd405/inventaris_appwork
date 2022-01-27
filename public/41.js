@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.users.email != "") {
         if (!this.validEmail(this.users.email)) {
-          this.errors.push("Valid email required.");
+          this.errors.push("Diperlukan email yang valid.");
         } // validation email duplicate
 
 

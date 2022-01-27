@@ -142,7 +142,7 @@ export default {
       }
       if (this.users.email != "") {
         if (!this.validEmail(this.users.email)) {
-          this.errors.push("Valid email required.");
+          this.errors.push("Diperlukan email yang valid.");
         }
         // validation email duplicate
         if (this.validUser.length > 0) {
