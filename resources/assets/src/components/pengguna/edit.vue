@@ -6,7 +6,7 @@
           <div class="card-header">Edit pengguna</div>
 
           <div class="card-body">
-            <form @submit.prevent="penggunaUpdate">
+            <form @submit.prevent="penggunaUpdate" @submit="checkForm">
               <div class="form-group">
                 <label>Nama pengguna</label>
                 <input
@@ -21,6 +21,15 @@
                 <button class="btn btn-md btn-success" type="submit">
                   SIMPAN
                 </button>
+              </div>
+
+              <div v-if="errors.length">
+                <div class="alert alert-danger">
+                  <b>Tolong Isi Kolom Tersebut :</b>
+                  <ul>
+                    <li v-for="error in errors" :key="error">{{ error }}</li>
+                  </ul>
+                </div>
               </div>
             </form>
           </div>
@@ -39,6 +48,7 @@ export default {
   data() {
     return {
       pengguna: {},
+        errors: [],
     };
   },
   created() {
@@ -53,6 +63,14 @@ export default {
         this.$router.push("/pengguna");
       });
     },
+    checkForm: function(e){
+        if(this.pengguna.name == ""){
+            this.errors.push("Nama pengguna tidak boleh kosong");
+        }
+        if(this.errors.length > 0){
+            e.preventDefault();
+        }
+    }
   },
 };
 </script>

@@ -6,9 +6,9 @@
           <div class="card-header">Edit jenis</div>
 
           <div class="card-body">
-            <form @submit.prevent="JenisUpdate">
+            <form @submit.prevent="JenisUpdate" @submit="checkForm">
               <div class="form-group">
-                <label>Nama jenis</label>
+                <label>Jenis Buku</label>
                 <input
                   type="text"
                   class="form-control"
@@ -22,6 +22,15 @@
                 <button class="btn btn-md btn-success" type="submit">
                   SIMPAN
                 </button>
+              </div>
+
+              <div v-if="errors.length">
+                <div class="alert alert-danger">
+                  <b>Tolong Isi Kolom Tersebut :</b>
+                  <ul>
+                    <li v-for="error in errors" :key="error">{{ error }}</li>
+                  </ul>
+                </div>
               </div>
             </form>
           </div>
@@ -39,7 +48,10 @@ export default {
   },
   data() {
     return {
-      jenis: {},
+      jenis: {
+        jenis_buku: "",
+      },
+      errors: [],
     };
   },
   created() {
@@ -54,6 +66,15 @@ export default {
         this.$router.push("/jenis");
       });
     },
+    checkForm: function(e){
+        this.errors = [];
+        if(this.jenis.jenis_buku == ""){
+            this.errors.push("Jenis Buku Tidak Boleh Kosong");
+        }
+        if(this.errors.length > 0){
+            e.preventDefault();
+        }
+    }
   },
 };
 </script>

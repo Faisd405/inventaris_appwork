@@ -10,7 +10,7 @@ class lokasi extends Model
     protected $table = 'lokasi';
 
     protected $fillable = [
-        'lokasi', 'kordinat'
+        'lokasi',
     ];
 
     public function barang()
@@ -32,7 +32,9 @@ class lokasi extends Model
     }
 
     public function postLokasi($request){
-        return lokasi::create($request->all());
+        $lokasi = new lokasi;
+        $lokasi->lokasi = $request->lokasi;
+        $lokasi->save();
     }
 
     public function putLokasi($request, $id){

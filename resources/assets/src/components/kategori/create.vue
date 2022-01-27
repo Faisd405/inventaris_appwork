@@ -6,7 +6,7 @@
           <div class="card-header">Create kategori</div>
 
           <div class="card-body">
-            <form @submit.prevent="KategoriStore">
+            <form @submit.prevent="KategoriStore" @submit="checkForm">
               <div class="form-group">
                 <label>Nama kategori</label>
                 <input
@@ -43,6 +43,15 @@
                   SIMPAN
                 </button>
               </div>
+
+              <div v-if="errors.length">
+                <div class="alert alert-danger">
+                  <b>Tolong Isi Kolom Tersebut :</b>
+                  <ul>
+                    <li v-for="error in errors" :key="error">{{ error }}</li>
+                  </ul>
+                </div>
+              </div>
             </form>
           </div>
         </div>
@@ -59,8 +68,13 @@ export default {
   },
   data() {
     return {
-      kategori: {},
+      kategori: {
+        nama_kategori: "",
+        fungsi: "",
+        sifat_id: "",
+      },
       sifat: [],
+      errors: [],
     };
   },
   created() {
@@ -79,6 +93,21 @@ export default {
           console.log(error.response.data.errors);
         });
     },
+    checkForm: function(e){
+        this.errors = [];
+        if(this.kategori.nama_kategori == ""){
+            this.errors.push("Nama Kategori tidak boleh kosong");
+        }
+        if(this.kategori.fungsi == ""){
+            this.errors.push("Fungsi tidak boleh kosong");
+        }
+        if(this.kategori.sifat_id == ""){
+            this.errors.push("Sifat tidak boleh kosong");
+        }
+        if(this.errors.length){
+            e.preventDefault();
+        }
+    }
   },
 };
 </script>

@@ -11,6 +11,7 @@ use App\Http\Controllers\JenisController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\PengajuanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,3 +103,11 @@ Route::get('/jenis/{id}', [JenisController::class, 'show']);
 Route::post('/jenis', [JenisController::class, 'store']);
 Route::put('/jenis/{id}', [JenisController::class, 'update']);
 Route::delete('/jenis/{id}', [JenisController::class, 'destroy']);
+
+//Route API Pengajuan
+Route::get('/pengajuan', [PengajuanController::class, 'index']);
+Route::get('/pengajuan/{id}', [PengajuanController::class, 'show']);
+Route::post('/pengajuan', [PengajuanController::class, 'store']);
+Route::put('/pengajuan/{id}', [PengajuanController::class, 'update']);
+Route::delete('/pengajuan/{id}', [PengajuanController::class, 'destroy']);
+Route::get('/pengajuan/user/{id_user}', [PengajuanController::class, 'showByUserId']);

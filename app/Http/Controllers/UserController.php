@@ -100,8 +100,8 @@ class UserController extends Controller
     public function getUser()
     {
         $user = Auth::user();
-            $data = $this->user->arrayMerge($user);
-            return response()->json($data, 200);
+        $data = $this->user->arrayMerge($user);
+        return response()->json($data, 200);
     }
 
     public function credentials($request)

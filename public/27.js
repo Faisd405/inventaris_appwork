@@ -59,7 +59,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      lokasi: {}
+      lokasi: {},
+      errors: []
     };
   },
   created: function created() {
@@ -77,6 +78,15 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.lokasi).then(function (response) {
         _this2.$router.push("/lokasi");
       });
+    },
+    checkForm: function checkForm(e) {
+      this.errors = [];
+
+      if (this.lokasi.lokasi == "") {
+        this.errors.push("Nama lokasi tidak boleh kosong");
+      }
+
+      e.preventDefault();
     }
   }
 });
@@ -109,10 +119,13 @@ var render = function () {
               "form",
               {
                 on: {
-                  submit: function ($event) {
-                    $event.preventDefault()
-                    return _vm.LokasiUpdate.apply(null, arguments)
-                  },
+                  submit: [
+                    function ($event) {
+                      $event.preventDefault()
+                      return _vm.LokasiUpdate.apply(null, arguments)
+                    },
+                    _vm.checkForm,
+                  ],
                 },
               },
               [
@@ -142,33 +155,25 @@ var render = function () {
                   }),
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Kordinat")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.lokasi.kordinat,
-                        expression: "lokasi.kordinat",
-                      },
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "text", placeholder: "Masukan Kordinat" },
-                    domProps: { value: _vm.lokasi.kordinat },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.lokasi, "kordinat", $event.target.value)
-                      },
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
                 _vm._m(0),
+                _vm._v(" "),
+                _vm.errors.length
+                  ? _c("div", [
+                      _c("div", { staticClass: "alert alert-danger" }, [
+                        _c("b", [_vm._v("Tolong Isi Kolom Tersebut :")]),
+                        _vm._v(" "),
+                        _c(
+                          "ul",
+                          _vm._l(_vm.errors, function (error) {
+                            return _c("li", { key: error }, [
+                              _vm._v(_vm._s(error)),
+                            ])
+                          }),
+                          0
+                        ),
+                      ]),
+                    ])
+                  : _vm._e(),
               ]
             ),
           ]),

@@ -41,8 +41,7 @@
                   <tr>
                     <th scope="col">No</th>
                     <v-th
-                      sortKey="nama_kategori
-                        "
+                      sortKey="nama_kategori"
                       scope="col"
                       >Nama Kategori</v-th
                     >

@@ -34,6 +34,11 @@ class buku extends Model
         return $buku;
     }
 
+    public function getBukuByLokasiId($id)
+    {
+        return buku::with('lokasi','jenis','pengguna')->where('lokasi_id', $id)->get();
+    }
+
     public function postBuku($request) {
         $buku = buku::create($request->all());
         return $buku;

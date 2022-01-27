@@ -6,7 +6,7 @@
           <div class="card-header">Ganti Pengguna Barang</div>
 
           <div class="card-body">
-            <form @submit.prevent="RelasiUserBarangUpdate">
+            <form @submit.prevent="RelasiUserBarangUpdate" @submit="checkForm">
               <!-- select user -->
               <div class="form-group">
                 <label for="user_id">Pengguna</label>
@@ -39,7 +39,8 @@
                     :value="barang.id"
                     :key="barang.id"
                   >
-                    {{ barang.nama_barang }}, Pemakai : {{ barang.pengguna.name }}
+                    {{ barang.nama_barang }}, Pemakai :
+                    {{ barang.pengguna.name }}
                   </option>
                   <option disabled v-if="!barang">Tidak Ada Barang Baru</option>
                 </select>
@@ -61,6 +62,14 @@
                   SIMPAN
                 </button>
               </div>
+              <div v-if="errors.length">
+                <div class="alert alert-danger">
+                  <b>Tolong Isi Kolom Tersebut :</b>
+                  <ul>
+                    <li v-for="error in errors" :key="error">{{ error }}</li>
+                  </ul>
+                </div>
+              </div>
             </form>
           </div>
         </div>
@@ -78,8 +87,13 @@ export default {
   data() {
     return {
       pengguna: [],
-      barang: {},
+      barang: {
+        pengguna_id: "",
+        id: "",
+        keterangan: "",
+      },
       barangs: {},
+      errors: [],
     };
   },
   created() {
@@ -92,7 +106,7 @@ export default {
   },
   methods: {
     RelasiUserBarangUpdate() {
-      let uri = "/api/barang/relasi/" + this.barang.id
+      let uri = "/api/barang/relasi/" + this.barang.id;
       axios
         .put(uri, this.barang)
         .then((response) => {
@@ -101,6 +115,16 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    checkForm: function (e) {
+      this.errors = [];
+      if (this.barang.pengguna_id == "") {
+        this.errors.push("Pengguna Harus Diisi");
+      }
+      if (this.barang.id == "") {
+        this.errors.push("Barang Harus Diisi");
+      }
+      e.preventDefault();
     },
   },
 };

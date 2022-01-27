@@ -307,9 +307,7 @@ var render = function () {
                                                   "btn btn-sm btn-danger",
                                                 on: {
                                                   click: function ($event) {
-                                                    return _vm.deletePengguna(
-                                                      data.id
-                                                    )
+                                                    return _vm.destroy(data.id)
                                                   },
                                                 },
                                               },

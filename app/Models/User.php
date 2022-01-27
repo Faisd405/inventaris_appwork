@@ -46,15 +46,18 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function getUser(){
+    public function getUser()
+    {
         return $this->all();
     }
 
-    public function getUserById($id){
+    public function getUserById($id)
+    {
         return $this->find($id);
     }
 
-    public function postUser($request){
+    public function postUser($request)
+    {
         $user = $this->create([
             'name' => $request->name,
             'email' => $request->email,
@@ -64,17 +67,21 @@ class User extends Authenticatable implements JWTSubject
         return $user;
     }
 
-    public function putUser($request, $id){
+    public function putUser($request, $id)
+    {
         $user = $this->find($id);
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+        }
         $user->save();
 
         return $user;
     }
 
-    public function deleteUser($id){
+    public function deleteUser($id)
+    {
         $user = $this->find($id);
         $user->delete();
     }
@@ -83,5 +90,4 @@ class User extends Authenticatable implements JWTSubject
     {
         return array_merge($user->toArray(), ['roles' => $user->roles()->get()->toArray()]);
     }
-
 }

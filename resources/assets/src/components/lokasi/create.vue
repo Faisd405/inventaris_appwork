@@ -6,7 +6,7 @@
           <div class="card-header">Create lokasi</div>
 
           <div class="card-body">
-            <form @submit.prevent="LokasiStore">
+            <form @submit.prevent="LokasiStore" @submit="checkForm">
               <div class="form-group">
                 <label>Nama lokasi</label>
                 <input
@@ -16,20 +16,20 @@
                   placeholder="Masukan lokasi"
                 />
               </div>
-              <div class="form-group">
-                <label>Kordinat</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  v-model="lokasi.kordinat"
-                  placeholder="Masukan Kordinat"
-                />
-              </div>
 
               <div class="form-group">
                 <button class="btn btn-md btn-success" type="submit">
                   SIMPAN
                 </button>
+              </div>
+
+              <div v-if="errors.length">
+                <div class="alert alert-danger">
+                  <b>Tolong Isi Kolom Tersebut :</b>
+                  <ul>
+                    <li v-for="error in errors" :key="error">{{ error }}</li>
+                  </ul>
+                </div>
               </div>
             </form>
           </div>
@@ -48,6 +48,7 @@ export default {
   data() {
     return {
       lokasi: {},
+      errors: [],
     };
   },
   methods: {
@@ -60,6 +61,15 @@ export default {
         .catch((error) => {
           console.log(error.response.data.errors);
         });
+    },
+    checkForm: function () {
+      this.errors = [];
+      if (!this.lokasi.lokasi) {
+        this.errors.push("Nama Lokasi Harus Diisi");
+      }
+      if (this.errors.length) {
+        return false;
+      }
     },
   },
 };

@@ -6,7 +6,7 @@
           <div class="card-header">Edit kategori</div>
 
           <div class="card-body">
-            <form @submit.prevent="KategoriUpdate">
+            <form @submit.prevent="KategoriUpdate" @submit="checkForm">
               <div class="form-group">
                 <label>Nama kategori</label>
                 <input
@@ -56,6 +56,15 @@
                   SIMPAN
                 </button>
               </div>
+
+              <div v-if="errors.length">
+                <div class="alert alert-danger">
+                  <b>Tolong Isi Kolom Tersebut :</b>
+                  <ul>
+                    <li v-for="error in errors" :key="error">{{ error }}</li>
+                  </ul>
+                </div>
+              </div>
             </form>
           </div>
         </div>
@@ -65,7 +74,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   metaInfo: {
     title: "Edit Kategori",
@@ -74,6 +83,7 @@ export default {
     return {
       kategori: {},
       sifat: [],
+      errors: [],
     };
   },
   created() {
@@ -95,6 +105,24 @@ export default {
       axios.put(uri, this.kategori).then((response) => {
         this.$router.push("/kategori");
       });
+    },
+    checkForm: function (e) {
+      this.errors = [];
+      if (this.kategori.nama_kategori == "") {
+        this.errors.push("Nama Kategori tidak boleh kosong");
+      }
+      if (this.kategori.fungsi == "") {
+        this.errors.push("Fungsi tidak boleh kosong");
+      }
+      if (this.kategori.sifat_id == "") {
+        this.errors.push("Sifat tidak boleh kosong");
+      }
+      if (this.kategori.jumlah == "") {
+        this.errors.push("Jumlah tidak boleh kosong");
+      }
+      if (this.errors.length) {
+        e.preventDefault();
+      }
     },
   },
 };

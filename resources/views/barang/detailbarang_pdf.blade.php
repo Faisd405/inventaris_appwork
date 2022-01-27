@@ -13,9 +13,16 @@
             margin: 0 auto;
             padding: 3px;
         }
-        h2 {
+
+        td,
+        th {
+            vertical-align: baseline;
+        }
+
+        h3 {
             text-align: left;
         }
+
     </style>
 </head>
 
@@ -36,54 +43,103 @@
             <table>
                 <tbody>
                     <tr>
-                        <th><h2>Nama Barang</h2></th>
-                        <td><h2>:</h2></td>
-                        <td><h2>{{ $barang->nama_barang }}</h2></td>
+                        <th>
+                            <h3>Nama Barang</h3>
+                        </th>
+                        <td>
+                            <h3>:</h3>
+                        </td>
+                        <td>
+                            <h3>{{ $barang->nama_barang }}</h3>
+                        </td>
                     </tr>
                     <tr>
-                        <th><h2>Detail Barang</h2></th>
-                        <td><h2>:</h2></td>
-                        <td><h2>{{ $barang->detail_barang }}</h2></td>
+                        <th>
+                            <h3>Detail Barang</h3>
+                        </th>
+                        <td>
+                            <h3>:</h3>
+                        </td>
+                        <td>
+                            <h3>{{ $barang->detail_barang }}</h3>
+                        </td>
                     </tr>
                     <tr>
-                        <th><h2>Harga Barang</h2></th>
-                        <td><h2>:</h2></td>
-                        <td><h2>@currency($barang->harga_barang)</h2></td>
+                        <th>
+                            <h3>Harga Barang</h3>
+                        </th>
+                        <td>
+                            <h3>:</h3>
+                        </td>
+                        <td>
+                            <h3>@currency($barang->harga_barang)</h3>
+                        </td>
                     </tr>
                     <tr>
-                        <th><h2>Kategori Barang</h2></th>
-                        <td><h2>:</h2></td>
-                        <td><h2>{{ $barang->kategori->nama_kategori }}</h2></td>
+                        <th>
+                            <h3>Kategori Barang</h3>
+                        </th>
+                        <td>
+                            <h3>:</h3>
+                        </td>
+                        <td>
+                            <h3>{{ $barang->kategori->nama_kategori }}</h3>
+                        </td>
                     </tr>
                     <tr>
-                        <th><h2>Fungsi Barang</h2></th>
-                        <td><h2>:</h2></td>
-                        <td><h2>{{ $barang->fungsi }}</h2></td>
+                        <th>
+                            <h3>Fungsi Barang</h3>
+                        </th>
+                        <td>
+                            <h3>:</h3>
+                        </td>
+                        <td>
+                            <h3>{{ $barang->fungsi }}</h3>
+                        </td>
                     </tr>
                     <tr>
-                        <th><h2>Lokasi Barang</h2></th>
-                        <td><h2>:</h2></td>
-                        <td><h2>{{ $barang->lokasi->lokasi }}</h2></td>
+                        <th>
+                            <h3>Lokasi Barang</h3>
+                        </th>
+                        <td>
+                            <h3>:</h3>
+                        </td>
+                        <td>
+                            <h3>{{ $barang->lokasi->lokasi }}</h3>
+                        </td>
                     </tr>
                     <tr>
-                        <th><h2>Jenis Barang</h2></th>
-                        <td><h2>:</h2></td>
-                        <td><h2>{{ $barang->jenis->jenis_barang }}</h2></td>
+                        <th>
+                            <h3>Pengguna</h3>
+                        </th>
+                        <td>
+                            <h3>:</h3>
+                        </td>
+                        <td>
+                            <h3>{{ $barang->pengguna->name }}</h3>
+                        </td>
                     </tr>
                     <tr>
-                        <th><h2>Pengguna</h2></th>
-                        <td><h2>:</h2></td>
-                        <td><h2>{{ $barang->pengguna->name }}</h2></td>
+                        <th>
+                            <h3>Tahun</h3>
+                        </th>
+                        <td>
+                            <h3>:</h3>
+                        </td>
+                        <td>
+                            <h3>{{ $barang->year }}</h3>
+                        </td>
                     </tr>
                     <tr>
-                        <th><h2>Tahun</h2></th>
-                        <td><h2>:</h2></td>
-                        <td><h2>{{ $barang->year }}</h2></td>
-                    </tr>
-                    <tr>
-                        <th><h2>Jumlah Barang</h2></th>
-                        <td><h2>:</h2></td>
-                        <td><h2>{{ $barang->jumlah_barang }}</h2></td>
+                        <th>
+                            <h3>Jumlah Barang</h3>
+                        </th>
+                        <td>
+                            <h3>:</h3>
+                        </td>
+                        <td>
+                            <h3>{{ $barang->jumlah_barang }}</h3>
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -6,7 +6,7 @@
           <div class="card-header">Create User</div>
 
           <div class="card-body">
-            <form @submit.prevent="UserStore">
+            <form @submit.prevent="checkForm">
               <div class="form-group">
                 <label>Nama User</label>
                 <input
@@ -23,6 +23,7 @@
                   class="form-control"
                   v-model="users.email"
                   placeholder="Masukan Email"
+                  id="email"
                 />
               </div>
               <div class="form-group">
@@ -42,7 +43,11 @@
                   v-model="users.roles"
                 >
                   <option value="" disabled>Pilih User</option>
-                  <option v-for="roles in roles" :key="roles.id" :value="roles.id">
+                  <option
+                    v-for="roles in roles"
+                    :key="roles.id"
+                    :value="roles.id"
+                  >
                     {{ roles.name }}
                   </option>
                 </select>
@@ -51,6 +56,14 @@
                 <button class="btn btn-md btn-success" type="submit">
                   SIMPAN
                 </button>
+              </div>
+              <div v-if="errors.length">
+                <div class="alert alert-danger">
+                  <b>Tolong Isi Kolom Tersebut :</b>
+                  <ul>
+                    <li v-for="error in errors" :key="error">{{ error }}</li>
+                  </ul>
+                </div>
               </div>
             </form>
           </div>
@@ -61,7 +74,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   metaInfo: {
     title: "Create User",
@@ -69,29 +82,70 @@ export default {
   data() {
     return {
       users: {
-        name: '',
-        email: '',
-        password: '',
-        roles: '',
+        name: "",
+        email: "",
+        password: "",
+        roles: "",
       },
+      validUser: [],
       roles: [],
+      errors: [],
     };
   },
-  created(){
-      axios.get('/api/roles').then(response => {
-        this.roles = response.data.roles;
-      });
+  created() {
+    axios.get("/api/roles").then((response) => {
+      this.roles = response.data.roles;
+    });
+    axios.get("/api/users").then((response) => {
+      this.validUser = response.data.user;
+    });
   },
   methods: {
-    UserStore() {
-      axios
-        .post("/api/users", this.users)
-        .then((response) => {
-          this.$router.push("/users");
-        })
-        .catch((error) => {
-          console.log(error.response.data.errors);
-        });
+    checkForm: function (e) {
+      this.errors = [];
+      if (this.users.name == "") {
+        this.errors.push("Nama pengguna harus diisi");
+      }
+      if (this.users.email == "") {
+        this.errors.push("Email pengguna harus diisi");
+      }
+      if (this.users.email != "") {
+        if (!this.validEmail(this.users.email)) {
+          this.errors.push("Valid email required.");
+        }
+        // validation email duplicate
+        if (this.validUser.length > 0) {
+          for (let i = 0; i < this.validUser.length; i++) {
+            if (this.users.email == this.validUser[i].email) {
+              this.errors.push("Email sudah terdaftar");
+            }
+          }
+        }
+      }
+      if (this.users.password == "") {
+        this.errors.push("Password harus diisi");
+      }
+      if (this.users.roles == "") {
+        this.errors.push("Roles harus diisi");
+      }
+      if (this.errors.length > 0) {
+        e.preventDefault();
+      }
+      if (this.errors.length == 0) {
+        axios
+          .post("/api/users", this.users)
+          .then((response) => {
+            this.$router.push("/users");
+          })
+          .catch((error) => {
+            console.log(error.response.data.errors);
+          });
+      }
+    },
+    validEmail: function (email) {
+      var re =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
     },
   },
 };

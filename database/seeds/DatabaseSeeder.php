@@ -36,12 +36,10 @@ class DatabaseSeeder extends Seeder
 
         lokasi::create([
             'lokasi' => 'Four Vision Media - Office 1',
-            'kordinat' => '-7.0331861,107.5943322'
         ]);
 
         lokasi::create([
             'lokasi' => 'Four Vision Media - Office 2',
-            'kordinat' => '-6.9557103,107.6367724'
         ]);
 
     }

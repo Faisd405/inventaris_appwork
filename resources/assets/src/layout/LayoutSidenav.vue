@@ -38,6 +38,20 @@
       >
       <sidenav-divider />
       <sidenav-header> <strong>Modul Inventaris</strong> </sidenav-header>
+      <sidenav-router-link
+          icon="ion ion-md-desktop"
+        :to="{ name: 'index-pengajuan', params: { id: user.id } }"
+          :exact="true"
+          v-if=" user.roles[0].name == 'user'"
+          >Pengajuan Barang User</sidenav-router-link
+        >
+        <sidenav-router-link
+          icon="ion ion-md-desktop"
+          to="/pengajuan/admin/"
+          :exact="true"
+          v-if=" user.roles[0].name == 'admin'"
+          >Pengajuan Barang Admin</sidenav-router-link
+        >
       <sidenav-menu icon="ion ion-md-cube">
         <template slot="link-text">
           <strong>Inventaris Barang</strong>
@@ -75,22 +89,40 @@
       >
       <sidenav-divider />
       <sidenav-header> <strong>Laporan</strong> </sidenav-header>
-      <sidenav-router-link icon="ion ion-md-folder" to="/laporan/barang" :exact="true"
+      <sidenav-router-link
+        icon="ion ion-md-folder"
+        to="/laporan/barang"
+        :exact="true"
         >Laporan Barang</sidenav-router-link
       >
-      <sidenav-router-link icon="ion ion-md-folder" to="/laporan/pengguna" :exact="true"
+      <sidenav-router-link
+        icon="ion ion-md-folder"
+        to="/laporan/pengguna"
+        :exact="true"
         >Laporan Pengguna</sidenav-router-link
       >
-      <sidenav-router-link icon="ion ion-md-folder" to="/laporan/buku" :exact="true"
+      <sidenav-router-link
+        icon="ion ion-md-folder"
+        to="/laporan/buku"
+        :exact="true"
         >Laporan Buku</sidenav-router-link
       >
-      <sidenav-router-link icon="ion ion-md-folder" to="/laporan/LaporanTBarangTerpakai" :exact="true"
+      <sidenav-router-link
+        icon="ion ion-md-folder"
+        to="/laporan/LaporanTBarangTerpakai"
+        :exact="true"
         >Laporan Barang yang terpakai</sidenav-router-link
       >
-      <sidenav-router-link icon="ion ion-md-folder" to="/laporan/LaporanTBarangTidakTerpakai" :exact="true"
+      <sidenav-router-link
+        icon="ion ion-md-folder"
+        to="/laporan/LaporanTBarangTidakTerpakai"
+        :exact="true"
         >Laporan Barang yang tidak terpakai</sidenav-router-link
       >
-      <sidenav-router-link icon="ion ion-md-folder" to="/laporan/LaporanTHargaBarang" :exact="true"
+      <sidenav-router-link
+        icon="ion ion-md-folder"
+        to="/laporan/LaporanTHargaBarang"
+        :exact="true"
         >Laporan Harga Barang</sidenav-router-link
       >
     </div>
@@ -123,7 +155,7 @@ export default {
     SidenavMenu,
     SidenavHeader,
     SidenavBlock,
-    SidenavDivider
+    SidenavDivider,
   },
 
   props: {

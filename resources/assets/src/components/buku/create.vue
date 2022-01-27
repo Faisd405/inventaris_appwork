@@ -6,7 +6,7 @@
           <div class="card-header">Create Buku</div>
 
           <div class="card-body">
-            <form @submit.prevent="BookStore">
+            <form @submit.prevent="BookStore" @submit="checkForm">
               <div class="form-group">
                 <label>Judul Buku</label>
                 <input
@@ -123,6 +123,15 @@
                   SIMPAN
                 </button>
               </div>
+
+              <div v-if="errors.length">
+                <div class="alert alert-danger">
+                  <b>Tolong Isi Kolom Tersebut :</b>
+                  <ul>
+                    <li v-for="error in errors" :key="error">{{ error }}</li>
+                  </ul>
+                </div>
+              </div>
             </form>
           </div>
         </div>
@@ -139,9 +148,20 @@ export default {
   },
   data() {
     return {
-      buku: {},
+      buku: {
+        judul: "",
+        penulis: "",
+        penerbit: "",
+        tanggal: "",
+        kondisi: "",
+        jumlah: "",
+        jenis_id: "",
+        pengguna_id: "",
+        lokasi_id: "",
+      },
       lokasi: [],
       jenis: [],
+      errors: [],
       pengguna: [],
     };
   },
@@ -167,6 +187,37 @@ export default {
           console.log(error.response.data.errors);
         });
     },
+    checkForm: function (e) {
+      this.errors = [];
+        if(this.buku.judul == ''){
+            this.errors.push('Judul Buku tidak boleh kosong');
+        }
+        if(this.buku.penulis == ''){
+            this.errors.push('Penulis tidak boleh kosong');
+        }
+        if(this.buku.penerbit == ''){
+            this.errors.push('Penerbit tidak boleh kosong');
+        }
+        if(this.buku.tanggal == ''){
+            this.errors.push('Tanggal tidak boleh kosong');
+        }
+        if(this.buku.kondisi == ''){
+            this.errors.push('Kondisi tidak boleh kosong');
+        }
+        if(this.buku.jumlah == ''){
+            this.errors.push('Jumlah tidak boleh kosong');
+        }
+        if(this.buku.jenis_id == ''){
+            this.errors.push('Jenis tidak boleh kosong');
+        }
+        if(this.buku.pengguna_id == ''){
+            this.errors.push('Pengguna tidak boleh kosong');
+        }
+        if(this.buku.lokasi_id == ''){
+            this.errors.push('Lokasi tidak boleh kosong');
+        }
+      e.preventDefault();
+    }
   },
 };
 </script>

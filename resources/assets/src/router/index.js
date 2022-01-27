@@ -404,6 +404,52 @@ const router = new Router({
             path: '/laporan/LaporanTHargaBarang',
             component: () => import('@/components/Laporan/LaporanTHargaBarang'),
         },
+        //Route Pengajuan
+        {
+            name: 'create-pengajuan',
+            path: '/pengajuan/user/create',
+            component: () => import('@/components/pengajuan/user/create'),
+            meta: {
+                requiresAuth: true,
+                isUser: true
+            }
+        },
+        {
+            name: 'edit-pengajuan',
+            path: '/pengajuan/user/edit/:id',
+            component: () => import('@/components/pengajuan/user/edit'),
+            meta: {
+                requiresAuth: true,
+                isUser: true
+            }
+        },
+        {
+            name: 'index-pengajuan',
+            path: '/pengajuan/user/:id',
+            component: () => import('@/components/pengajuan/user/index'),
+            meta: {
+                requiresAuth: true,
+                isUser: true
+            }
+        },
+        {
+            name: 'index-pengajuan-admin',
+            path: '/pengajuan/admin',
+            component: () => import('@/components/pengajuan/admin/index'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
+        },
+        {
+            name: 'setuju-pengajuan-admin',
+            path: '/pengajuan/admin/setuju/:id',
+            component: () => import('@/components/pengajuan/admin/setuju'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
+        },
         ]
     }]
 })

@@ -6,7 +6,7 @@
           <div class="card-header">Edit Barang</div>
 
           <div class="card-body">
-            <form @submit.prevent="BarangUpdate">
+            <form @submit.prevent="BarangUpdate" @submit="checkForm">
               <!-- 'nama_barang', 'kode_barang', 'detail_barang', 'kategori_id', 'fungsi', 'harga_barang', 'lokasi', 'pengguna_id' -->
               <div class="form-group">
                 <label for="nama_barang">Nama Barang</label>
@@ -189,6 +189,15 @@
                   SIMPAN
                 </button>
               </div>
+
+              <div v-if="errors.length">
+                <div class="alert alert-danger">
+                  <b>Tolong Isi Kolom Tersebut :</b>
+                  <ul>
+                    <li v-for="error in errors" :key="error">{{ error }}</li>
+                  </ul>
+                </div>
+              </div>
             </form>
           </div>
         </div>
@@ -209,6 +218,7 @@ export default {
         pengguna: {},
         kategori: {},
       },
+      errors: [],
       kategori: [],
       pengguna: [],
       lokasi: [],
@@ -287,6 +297,47 @@ export default {
     },
     onFileChangePDF(e) {
       this.barang.lampiran = e.target.files[0];
+    },
+
+    checkForm: function (e) {
+      this.errors = [];
+      if (this.barang.nama_barang == "") {
+        this.errors.push("Nama Barang tidak boleh kosong");
+      }
+      if (this.barang.kode_barang == "") {
+        this.errors.push("Kode Barang tidak boleh kosong");
+      }
+      if (this.barang.detail_barang == "") {
+        this.errors.push("Detail Barang tidak boleh kosong");
+      }
+      if (this.barang.kategori_id == "") {
+        this.errors.push("Kategori tidak boleh kosong");
+      }
+      if (this.barang.fungsi == "") {
+        this.errors.push("Fungsi tidak boleh kosong");
+      }
+      if (this.barang.harga_barang == "") {
+        this.errors.push("Harga Barang tidak boleh kosong");
+      }
+      if (this.barang.year == "") {
+        this.errors.push("Tahun tidak boleh kosong");
+      }
+      if (this.barang.lokasi_id == "") {
+        this.errors.push("Lokasi tidak boleh kosong");
+      }
+      if (this.barang.detail_lokasi == "") {
+        this.errors.push("Detail Lokasi tidak boleh kosong");
+      }
+      if (this.barang.pengguna_id == "") {
+        this.errors.push("Pengguna tidak boleh kosong");
+      }
+      if (this.barang.jumlah_barang == "") {
+        this.errors.push("Jumlah tidak boleh kosong");
+      }
+      if (this.barang.lampiran == "") {
+        this.errors.push("Lampiran tidak boleh kosong");
+      }
+      e.preventDefault();
     },
   },
   mounted() {

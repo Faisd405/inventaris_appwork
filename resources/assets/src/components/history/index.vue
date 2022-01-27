@@ -88,6 +88,7 @@
                           data.item.id
                         )
                       "
+                      @submit="checkForm"
                     >
                       <div class="form-group">
                         <label for="pengguna_id">Pengguna</label>
@@ -120,6 +121,15 @@
                           SIMPAN
                         </button>
                       </div>
+
+              <div v-if="errors.length">
+                <div class="alert alert-danger">
+                  <b>Tolong Isi Kolom Tersebut :</b>
+                  <ul>
+                    <li v-for="error in errors" :key="error">{{ error }}</li>
+                  </ul>
+                </div>
+              </div>
                     </form>
                   </b-modal>
                 </template>
@@ -153,7 +163,10 @@ export default {
   },
   data() {
     return {
-      historys: {},
+      historys: {
+        pengguna_id: "",
+        keterangan: "",
+      },
       pengguna: [],
       fields: [
         { key: "id", label: "Id" },
@@ -190,6 +203,7 @@ export default {
       user: "",
       isLoggedIn: false,
       loginType: null,
+      errors: [],
     };
   },
   created() {
@@ -229,6 +243,15 @@ export default {
     },
     showModal(id) {
       this.$refs[`modal-${id}`].show();
+    },
+    checkForm: function (e) {;
+      this.errors = [];
+      if (this.historys.pengguna_id == "") {
+        this.errors.push("Pengguna Harus Diisi");
+      }
+      if (this.errors.length) {
+        e.preventDefault();
+      }
     },
   },
   mounted() {

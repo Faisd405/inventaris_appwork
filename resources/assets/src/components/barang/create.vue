@@ -6,7 +6,11 @@
           <div class="card-header">Create Barang</div>
 
           <div class="card-body">
-            <form @submit.prevent="BarangStore" enctype="multipart/form-data">
+            <form
+              @submit.prevent="BarangStore"
+              enctype="multipart/form-data"
+              @submit="checkForm"
+            >
               <div class="form-group">
                 <label for="nama_barang">Nama Barang</label>
                 <input
@@ -182,6 +186,14 @@
                   SIMPAN
                 </button>
               </div>
+              <div v-if="errors.length">
+                <div class="alert alert-danger">
+                  <b>Tolong Isi Kolom Tersebut :</b>
+                  <ul>
+                    <li v-for="error in errors" :key="error">{{ error }}</li>
+                  </ul>
+                </div>
+              </div>
             </form>
           </div>
         </div>
@@ -198,13 +210,28 @@ export default {
   },
   data() {
     return {
-      barang: {},
+      barang: {
+        nama_barang: "",
+        kode_barang: "",
+        detail_barang: "",
+        kategori_id: "",
+        fungsi: "",
+        harga_barang: "",
+        year: "",
+        lokasi_id: "",
+        detail_lokasi: "",
+        jumlah_barang: "",
+        pengguna_id: "",
+        image: "",
+        lampiran: "",
+      },
       kategori: [],
       lokasi: [],
       pengguna: [],
       preview: null,
       jumlah: 0,
       i: 0,
+      errors: [],
     };
   },
   created() {
@@ -218,7 +245,6 @@ export default {
       this.lokasi = response.data.lokasi;
     });
   },
-  computed: {},
   methods: {
     BarangStore() {
       let formData = new FormData();
@@ -253,6 +279,54 @@ export default {
     },
     onFileChangePDF(e) {
       this.barang.lampiran = e.target.files[0];
+    },
+    checkForm: function (e) {
+      this.errors = [];
+      if (this.barang.nama_barang == "") {
+        this.errors.push("Nama Barang tidak boleh kosong");
+      }
+      if (this.barang.kode_barang == "") {
+        this.errors.push("Kode Barang tidak boleh kosong");
+      }
+      if (this.barang.detail_barang == "") {
+        this.errors.push("Detail Barang tidak boleh kosong");
+      }
+      if (this.barang.kategori_id == "") {
+        this.errors.push("Kategori tidak boleh kosong");
+      }
+      if (this.barang.fungsi == "") {
+        this.errors.push("Fungsi tidak boleh kosong");
+      }
+      if (this.barang.harga_barang == "") {
+        this.errors.push("Harga Barang tidak boleh kosong");
+      }
+      if (this.barang.year == "") {
+        this.errors.push("Tahun tidak boleh kosong");
+      }
+      if (this.barang.year != "") {
+        if (this.barang.year < 1901) {
+          this.errors.push("Tahun tidak boleh kurang dari 1901");
+        }
+        if (this.barang.year.length > 4) {
+          this.errors.push("Tahun tidak boleh lebih dari 4 digit");
+        }
+      }
+      if (this.barang.lokasi_id == "") {
+        this.errors.push("Lokasi tidak boleh kosong");
+      }
+      if (this.barang.detail_lokasi == "") {
+        this.errors.push("Detail Lokasi tidak boleh kosong");
+      }
+      if (this.barang.jumlah_barang == "") {
+        this.errors.push("Jumlah tidak boleh kosong");
+      }
+      if (this.barang.pengguna_id == "") {
+        this.errors.push("Pengguna tidak boleh kosong");
+      }
+      if (this.barang.lampiran == "") {
+        this.errors.push("Lampiran tidak boleh kosong");
+      }
+      e.preventDefault();
     },
   },
 };

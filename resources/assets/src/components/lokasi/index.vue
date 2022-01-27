@@ -63,7 +63,7 @@
                         ></router-link>
 
                         <button
-                          @click="deletePengguna(data.id)"
+                          @click="destroy(data.id)"
                           class="btn btn-sm btn-danger"
                         >
                           <i class="ion ion-ios-trash"></i></button

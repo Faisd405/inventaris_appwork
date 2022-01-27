@@ -35,6 +35,7 @@ class BarangExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoSi
             $barang->fungsi,
             $barang->harga_barang,
             $barang->lokasi->lokasi,
+            $barang->detail_lokasi,
             $barang->pengguna->name,
         ];
     }
@@ -50,6 +51,7 @@ class BarangExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoSi
             'Fungsi',
             'Harga Barang',
             'Lokasi',
+            'Detail Lokasi',
             'Nama Pemakai',
         ];
     }

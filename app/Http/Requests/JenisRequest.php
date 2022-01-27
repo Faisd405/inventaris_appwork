@@ -25,7 +25,7 @@ class JenisRequest extends FormRequest
     {
         return [
             //
-            'jenis_barang' => 'required'
+            'jenis_buku' => 'required'
         ];
     }
 }

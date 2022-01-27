@@ -6,7 +6,7 @@
           <div class="card-header">Edit Buku</div>
 
           <div class="card-body">
-            <form @submit.prevent="BookUpdate">
+            <form @submit.prevent="BookUpdate" @submit="checkForm">
               <div class="form-group">
                 <label>Judul Buku</label>
                 <input
@@ -121,6 +121,14 @@
                   SIMPAN
                 </button>
               </div>
+              <div v-if="errors.length">
+                <div class="alert alert-danger">
+                  <b>Tolong Isi Kolom Tersebut :</b>
+                  <ul>
+                    <li v-for="error in errors" :key="error">{{ error }}</li>
+                  </ul>
+                </div>
+              </div>
             </form>
           </div>
         </div>
@@ -138,6 +146,7 @@ export default {
   data() {
     return {
       buku: {},
+      errors: [],
       lokasi: [],
         jenis: [],
         pengguna: [],
@@ -163,6 +172,37 @@ export default {
       axios.put(uri, this.buku).then((response) => {
         this.$router.push("/buku");
       });
+    },
+    checkForm: function (e) {
+      this.errors = [];
+      if (!this.buku.judul) {
+        this.errors.push("Judul harus diisi");
+      }
+      if (!this.buku.penulis) {
+        this.errors.push("Penulis harus diisi");
+      }
+      if (!this.buku.penerbit) {
+        this.errors.push("Penerbit harus diisi");
+      }
+      if (!this.buku.tanggal) {
+        this.errors.push("Tanggal harus diisi");
+      }
+      if (!this.buku.kondisi) {
+        this.errors.push("Kondisi harus diisi");
+      }
+      if (!this.buku.jumlah) {
+        this.errors.push("Jumlah harus diisi");
+      }
+      if (!this.buku.jenis_id) {
+        this.errors.push("Jenis harus diisi");
+      }
+      if (!this.buku.pengguna_id) {
+        this.errors.push("Pengguna harus diisi");
+      }
+      if (!this.buku.lokasi_id) {
+        this.errors.push("Lokasi harus diisi");
+      }
+        e.preventDefault();
     },
   },
 };
