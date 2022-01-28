@@ -48,6 +48,7 @@ export default {
     return {
       sifat: {},
         errors: [],
+        ValidSifat: [],
     };
   },
   created() {
@@ -57,6 +58,9 @@ export default {
       })
       .catch((errors) => {
         console.log(errors);
+      });
+      axios.get('/api/sifat').then((response) => {
+        this.ValidSifat = response.data.sifat;
       });
   },
   methods: {
@@ -71,6 +75,13 @@ export default {
         if(this.sifat.sifat_kategori == ""){
             this.errors.push("Sifat Barang harus diisi");
         }
+      if (this.ValidSifat.length > 0) {
+        for (let i = 0; i < this.ValidSifat.length; i++) {
+          if (this.ValidSifat[i].sifat_kategori == this.sifat.sifat_kategori) {
+            this.errors.push("Sifat Barang sudah ada");
+          }
+        }
+      }
       if (this.errors.length > 0) {
         e.preventDefault();
       }

@@ -62,15 +62,23 @@ __webpack_require__.r(__webpack_exports__);
       jenis: {
         jenis_buku: ""
       },
+      ValidJenis: [],
       errors: []
     };
   },
+  created: function created() {
+    var _this = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/jenis").then(function (response) {
+      _this.ValidJenis = response.data.jenis;
+    });
+  },
   methods: {
     JenisStore: function JenisStore() {
-      var _this = this;
+      var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/jenis", this.jenis).then(function (response) {
-        _this.$router.push("/jenis");
+        _this2.$router.push("/jenis");
       })["catch"](function (error) {
         console.log(error.response.data.errors);
       });
@@ -80,6 +88,14 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.jenis.jenis_buku == "") {
         this.errors.push("Jenis Buku tidak boleh kosong");
+      }
+
+      if (this.ValidJenis > 0) {
+        for (var i = 0; i < this.ValidJenis.length; i++) {
+          if (this.jenis.jenis_buku == this.ValidJenis[i].jenis_buku) {
+            this.errors.push("Jenis Buku sudah ada");
+          }
+        }
       }
 
       if (this.errors.length > 0) {

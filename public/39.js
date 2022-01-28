@@ -59,7 +59,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       sifat: {},
-      errors: []
+      errors: [],
+      ValidSifat: []
     };
   },
   created: function created() {
@@ -69,6 +70,9 @@ __webpack_require__.r(__webpack_exports__);
       _this.sifat = response.data.sifat;
     })["catch"](function (errors) {
       console.log(errors);
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/sifat').then(function (response) {
+      _this.ValidSifat = response.data.sifat;
     });
   },
   methods: {
@@ -85,6 +89,14 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.sifat.sifat_kategori == "") {
         this.errors.push("Sifat Barang harus diisi");
+      }
+
+      if (this.ValidSifat.length > 0) {
+        for (var i = 0; i < this.ValidSifat.length; i++) {
+          if (this.ValidSifat[i].sifat_kategori == this.sifat.sifat_kategori) {
+            this.errors.push("Sifat Barang sudah ada");
+          }
+        }
       }
 
       if (this.errors.length > 0) {

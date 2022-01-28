@@ -50,9 +50,15 @@ export default {
       jenis: {
         jenis_buku: "",
       },
+      ValidJenis: [],
       errors: [],
     };
   },
+    created() {
+        axios.get("/api/jenis").then((response) => {
+        this.ValidJenis = response.data.jenis;
+        });
+    },
   methods: {
     JenisStore() {
       axios
@@ -68,6 +74,13 @@ export default {
         this.errors = [];
       if (this.jenis.jenis_buku == "") {
         this.errors.push("Jenis Buku tidak boleh kosong");
+      }
+      if (this.ValidJenis > 0) {
+          for (var i = 0; i < this.ValidJenis.length; i++) {
+            if (this.jenis.jenis_buku == this.ValidJenis[i].jenis_buku) {
+              this.errors.push("Jenis Buku sudah ada");
+            }
+          }
       }
       if (this.errors.length > 0) {
         e.preventDefault();

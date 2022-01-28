@@ -51,8 +51,14 @@ export default {
       sifat: {
         sifat_kategori: "",
       },
-        errors: [],
+      ValidSifat: [],
+      errors: [],
     };
+  },
+  created() {
+    axios.get("/api/sifat").then((response) => {
+      this.ValidSifat = response.data.sifat;
+    });
   },
   methods: {
     SifatStore() {
@@ -65,18 +71,25 @@ export default {
           console.log(error.response.data.errors);
         });
     },
-    checkForm: function(e){
-        this.errors = [];
-        if(this.sifat.sifat_kategori == ""){
-            this.errors.push("Sifat Barang tidak boleh kosong");
+    checkForm: function (e) {
+      this.errors = [];
+      if (this.sifat.sifat_kategori == "") {
+        this.errors.push("Sifat Barang tidak boleh kosong");
+      }
+      if (this.ValidSifat.length > 0) {
+        for (let i = 0; i < this.ValidSifat.length; i++) {
+          if (this.ValidSifat[i].sifat_kategori == this.sifat.sifat_kategori) {
+            this.errors.push("Sifat Barang sudah ada");
+          }
         }
+      }
       if (this.errors.length > 0) {
         e.preventDefault();
       }
       if (this.errors.length == 0) {
         this.SifatStore();
       }
-    }
+    },
   },
 };
 </script>

@@ -63,15 +63,23 @@ __webpack_require__.r(__webpack_exports__);
       sifat: {
         sifat_kategori: ""
       },
+      ValidSifat: [],
       errors: []
     };
   },
+  created: function created() {
+    var _this = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/sifat").then(function (response) {
+      _this.ValidSifat = response.data.sifat;
+    });
+  },
   methods: {
     SifatStore: function SifatStore() {
-      var _this = this;
+      var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/sifat", this.sifat).then(function (response) {
-        _this.$router.push("/sifat");
+        _this2.$router.push("/sifat");
       })["catch"](function (error) {
         console.log(error.response.data.errors);
       });
@@ -81,6 +89,14 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.sifat.sifat_kategori == "") {
         this.errors.push("Sifat Barang tidak boleh kosong");
+      }
+
+      if (this.ValidSifat.length > 0) {
+        for (var i = 0; i < this.ValidSifat.length; i++) {
+          if (this.ValidSifat[i].sifat_kategori == this.sifat.sifat_kategori) {
+            this.errors.push("Sifat Barang sudah ada");
+          }
+        }
       }
 
       if (this.errors.length > 0) {
