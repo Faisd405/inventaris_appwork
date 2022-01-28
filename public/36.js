@@ -70,6 +70,11 @@ __webpack_require__.r(__webpack_exports__);
       _this.pengguna = response.data.pengguna;
     });
   },
+  mounted: function mounted() {
+    if (this.$route.params.id == 1) {
+      this.$router.push("/pengguna");
+    }
+  },
   methods: {
     penggunaUpdate: function penggunaUpdate() {
       var _this2 = this;

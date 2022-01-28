@@ -56,6 +56,11 @@ export default {
       this.pengguna = response.data.pengguna;
     });
   },
+  mounted() {
+    if (this.$route.params.id == 1) {
+      this.$router.push("/pengguna");
+    }
+  },
   methods: {
     penggunaUpdate() {
       let uri = "/api/pengguna/" + this.$route.params.id;
