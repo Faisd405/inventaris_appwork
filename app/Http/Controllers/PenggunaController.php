@@ -72,12 +72,24 @@ class PenggunaController extends Controller
 
     // update json
     public function update(PenggunaRequest $request, $id) {
+        if ($id == 1) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Tidak bisa update pengguna ini',
+            ], 400);
+        }
         $pengguna = $this->pengguna->putPengguna($request, $id);
         return $this->respons($pengguna);
     }
 
     // delete json
     public function destroy($id) {
+        if ($id == 1) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Tidak bisa delete pengguna ini',
+            ], 400);
+        }
         $pengguna = $this->pengguna->deletePengguna($id);
         return $this->respons($pengguna);
     }

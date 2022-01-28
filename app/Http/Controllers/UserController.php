@@ -50,6 +50,13 @@ class UserController extends Controller
     //update json
     public function update(Request $request, $id)
     {
+        if ($id == 1) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Tidak Bisa Update Admin!',
+                'data'    => ''
+            ], 404);
+        }
         $users = $this->user->putUser($request, $id);
 
         $users->roles()->sync($request->roles);
@@ -67,6 +74,13 @@ class UserController extends Controller
 
     public function destroy($id)
     {
+        if ($id == 1) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Tidak Bisa Delete Admin!',
+                'data'    => ''
+            ], 404);
+        }
         $this->role_user->deleteRoleUserByUserId($id);
 
         $users = $this->user->deleteUser($id);
