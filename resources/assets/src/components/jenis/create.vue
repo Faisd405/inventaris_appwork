@@ -69,24 +69,6 @@ export default {
       if (this.jenis.jenis_buku == "") {
         this.errors.push("Jenis Buku tidak boleh kosong");
       }
-      if (this.jenis.jenis_buku != "") {
-        // validation jenis duplicate
-        axios
-          .get("/api/jenis")
-          .then((response) => {
-            for (let i = 0; i < response.data.length; i++) {
-              if (
-                this.jenis.jenis_buku.toLowerCase() ==
-                response.data[i].jenis_buku.toLowerCase()
-              ) {
-                this.errors.push("Jenis Buku sudah ada");
-              }
-            }
-          })
-          .catch((error) => {
-            console.log(error.response.data.errors);
-          });
-      }
       if (this.errors.length > 0) {
         e.preventDefault();
       }
