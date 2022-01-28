@@ -228,7 +228,13 @@ __webpack_require__.r(__webpack_exports__);
         this.errors.push("Lokasi harus diisi");
       }
 
-      e.preventDefault();
+      if (this.errors.length > 0) {
+        e.preventDefault();
+      }
+
+      if (this.errors.length == 0) {
+        this.BookUpdate();
+      }
     }
   }
 });

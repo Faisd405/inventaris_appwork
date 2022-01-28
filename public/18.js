@@ -76,12 +76,33 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     checkForm: function checkForm(e) {
+      var _this2 = this;
+
+      this.errors = [];
+
       if (this.jenis.jenis_buku == "") {
         this.errors.push("Jenis Buku tidak boleh kosong");
       }
 
-      if (this.errors.length) {
+      if (this.jenis.jenis_buku != "") {
+        // validation jenis duplicate
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/jenis").then(function (response) {
+          for (var i = 0; i < response.data.length; i++) {
+            if (_this2.jenis.jenis_buku.toLowerCase() == response.data[i].jenis_buku.toLowerCase()) {
+              _this2.errors.push("Jenis Buku sudah ada");
+            }
+          }
+        })["catch"](function (error) {
+          console.log(error.response.data.errors);
+        });
+      }
+
+      if (this.errors.length > 0) {
         e.preventDefault();
+      }
+
+      if (this.errors.length == 0) {
+        this.JenisStore();
       }
     }
   }
@@ -115,13 +136,10 @@ var render = function () {
               "form",
               {
                 on: {
-                  submit: [
-                    function ($event) {
-                      $event.preventDefault()
-                      return _vm.JenisStore.apply(null, arguments)
-                    },
-                    _vm.checkForm,
-                  ],
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.checkForm.apply(null, arguments)
+                  },
                 },
               },
               [

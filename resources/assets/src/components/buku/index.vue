@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="card card-default">
-          <div class="card-header">buku</div>
+          <div class="card-header">Buku</div>
 
           <div class="card-body">
             <div

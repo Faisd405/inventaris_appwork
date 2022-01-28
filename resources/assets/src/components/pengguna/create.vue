@@ -6,7 +6,7 @@
           <div class="card-header">Create pengguna</div>
 
           <div class="card-body">
-            <form @submit.prevent="penggunaStore" @submit="checkForm">
+            <form @submit.prevent="checkForm">
               <div class="form-group">
                 <label>Nama pengguna</label>
                 <input
@@ -69,9 +69,12 @@ export default {
         if(this.pengguna.name == ""){
             this.errors.push("Nama pengguna harus diisi");
         }
-        if(this.errors.length > 0){
-            e.preventDefault();
-        }
+      if (this.errors.length > 0) {
+        e.preventDefault();
+      }
+      if (this.errors.length == 0) {
+        this.penggunaStore();
+      }
     }
   },
 };

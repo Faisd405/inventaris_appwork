@@ -9,7 +9,7 @@
           </div>
         </div>
         <div class="card card-default">
-          <div class="card-header">history</div>
+          <div class="card-header">History</div>
           <div class="card-body">
             <div class="table-responsive mt-2">
               <b-row>

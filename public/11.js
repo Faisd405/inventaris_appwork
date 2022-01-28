@@ -371,7 +371,13 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
-      e.preventDefault();
+      if (this.errors.length > 0) {
+        e.preventDefault();
+      }
+
+      if (this.errors.length == 0) {
+        this.BarangUpdate();
+      }
     }
   },
   mounted: function mounted() {
@@ -422,13 +428,10 @@ var render = function () {
               "form",
               {
                 on: {
-                  submit: [
-                    function ($event) {
-                      $event.preventDefault()
-                      return _vm.BarangUpdate.apply(null, arguments)
-                    },
-                    _vm.checkForm,
-                  ],
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.checkForm.apply(null, arguments)
+                  },
                 },
               },
               [

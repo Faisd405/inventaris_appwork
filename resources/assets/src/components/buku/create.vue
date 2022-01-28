@@ -6,7 +6,7 @@
           <div class="card-header">Create Buku</div>
 
           <div class="card-body">
-            <form @submit.prevent="BookStore" @submit="checkForm">
+            <form @submit.prevent="checkForm">
               <div class="form-group">
                 <label>Judul Buku</label>
                 <input
@@ -216,7 +216,12 @@ export default {
         if(this.buku.lokasi_id == ''){
             this.errors.push('Lokasi tidak boleh kosong');
         }
-      e.preventDefault();
+      if (this.errors.length > 0) {
+        e.preventDefault();
+      }
+      if (this.errors.length == 0) {
+        this.BookStore();
+      }
     }
   },
 };

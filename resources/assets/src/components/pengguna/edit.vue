@@ -6,7 +6,7 @@
           <div class="card-header">Edit pengguna</div>
 
           <div class="card-body">
-            <form @submit.prevent="penggunaUpdate" @submit="checkForm">
+            <form @submit.prevent="checkForm">
               <div class="form-group">
                 <label>Nama pengguna</label>
                 <input
@@ -67,9 +67,12 @@ export default {
         if(this.pengguna.name == ""){
             this.errors.push("Nama pengguna tidak boleh kosong");
         }
-        if(this.errors.length > 0){
-            e.preventDefault();
-        }
+      if (this.errors.length > 0) {
+        e.preventDefault();
+      }
+      if (this.errors.length == 0) {
+        this.penggunaUpdate();
+      }
     }
   },
 };

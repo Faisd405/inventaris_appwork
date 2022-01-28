@@ -6,7 +6,7 @@
           <div class="card-header">Edit Barang</div>
 
           <div class="card-body">
-            <form @submit.prevent="BarangUpdate" @submit="checkForm">
+            <form @submit.prevent="checkForm">
               <!-- 'nama_barang', 'kode_barang', 'detail_barang', 'kategori_id', 'fungsi', 'harga_barang', 'lokasi', 'pengguna_id' -->
               <div class="form-group">
                 <label for="nama_barang">Nama Barang</label>
@@ -349,7 +349,12 @@ export default {
             this.errors.push("Ukuran lampiran tidak boleh lebih dari 2MB");
             }
         }
-      e.preventDefault();
+      if (this.errors.length > 0) {
+        e.preventDefault();
+      }
+      if (this.errors.length == 0) {
+        this.BarangUpdate();
+      }
     },
   },
   mounted() {

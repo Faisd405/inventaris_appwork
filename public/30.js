@@ -214,7 +214,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -381,6 +380,10 @@ __webpack_require__.r(__webpack_exports__);
       if (this.errors.length > 0) {
         e.preventDefault();
       }
+
+      if (this.errors.length == 0) {
+        this.BarangStore();
+      }
     }
   }
 });
@@ -416,13 +419,10 @@ var render = function () {
               {
                 attrs: { enctype: "multipart/form-data" },
                 on: {
-                  submit: [
-                    function ($event) {
-                      $event.preventDefault()
-                      return _vm.BarangStore.apply(null, arguments)
-                    },
-                    _vm.checkForm,
-                  ],
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.checkForm.apply(null, arguments)
+                  },
                 },
               },
               [

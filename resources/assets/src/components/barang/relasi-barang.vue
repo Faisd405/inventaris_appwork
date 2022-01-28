@@ -6,7 +6,7 @@
           <div class="card-header">Ganti Pengguna Barang</div>
 
           <div class="card-body">
-            <form @submit.prevent="RelasiUserBarangUpdate" @submit="checkForm">
+            <form @submit.prevent="checkForm">
               <!-- select user -->
               <div class="form-group">
                 <label for="user_id">Pengguna</label>
@@ -124,7 +124,12 @@ export default {
       if (this.barang.id == "") {
         this.errors.push("Barang Harus Diisi");
       }
-      e.preventDefault();
+      if (this.errors.length > 0) {
+        e.preventDefault();
+      }
+      if (this.errors.length == 0) {
+        this.RelasiUserBarangUpdate();
+      }
     },
   },
 };

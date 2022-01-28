@@ -192,7 +192,7 @@ var render = function () {
         _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "card card-default mt-3" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("pengguna")]),
+          _c("div", { staticClass: "card-header" }, [_vm._v("Pengguna")]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _vm.loginType == "admin"
@@ -312,7 +312,7 @@ var render = function () {
                                       ]
                                     ),
                                     _vm._v(" "),
-                                    _vm.loginType == "admin"
+                                    _vm.loginType == "admin" && data.id != 1
                                       ? _c(
                                           "span",
                                           [
@@ -343,9 +343,7 @@ var render = function () {
                                                   "btn btn-sm btn-danger",
                                                 on: {
                                                   click: function ($event) {
-                                                    return _vm.deletePengguna(
-                                                      data.id
-                                                    )
+                                                    return _vm.destroy(data.id)
                                                   },
                                                 },
                                               },

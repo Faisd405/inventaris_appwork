@@ -6,7 +6,7 @@
           <div class="card-header">Edit lokasi</div>
 
           <div class="card-body">
-            <form @submit.prevent="LokasiUpdate" @submit="checkForm">
+            <form @submit.prevent="checkForm">
               <div class="form-group">
                 <label>Nama lokasi</label>
                 <input
@@ -68,7 +68,12 @@ export default {
         if(this.lokasi.lokasi == ""){
             this.errors.push("Nama lokasi tidak boleh kosong");
         }
+      if (this.errors.length > 0) {
         e.preventDefault();
+      }
+      if (this.errors.length == 0) {
+        this.LokasiUpdate();
+      }
     }
   },
 };

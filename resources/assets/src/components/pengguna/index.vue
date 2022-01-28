@@ -8,7 +8,7 @@
           </div>
         </div>
         <div class="card card-default mt-3">
-          <div class="card-header">pengguna</div>
+          <div class="card-header">Pengguna</div>
 
           <div class="card-body">
             <span
@@ -67,7 +67,7 @@
                           <i class="ion ion-ios-eye"></i>
                         </button>
                       </router-link>
-                      <span v-if="loginType == 'admin'">
+                      <span v-if="loginType == 'admin' && data.id != 1">
                         <router-link
                           :to="{
                             name: 'edit-pengguna',
@@ -79,7 +79,7 @@
                         ></router-link>
 
                         <button
-                          @click="deletePengguna(data.id)"
+                          @click="destroy(data.id)"
                           class="btn btn-sm btn-danger"
                         >
                           <i class="ion ion-ios-trash"></i></button

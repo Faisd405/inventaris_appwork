@@ -140,7 +140,13 @@ __webpack_require__.r(__webpack_exports__);
         this.errors.push("Barang Harus Diisi");
       }
 
-      e.preventDefault();
+      if (this.errors.length > 0) {
+        e.preventDefault();
+      }
+
+      if (this.errors.length == 0) {
+        this.RelasiUserBarangUpdate();
+      }
     }
   }
 });
@@ -175,13 +181,10 @@ var render = function () {
               "form",
               {
                 on: {
-                  submit: [
-                    function ($event) {
-                      $event.preventDefault()
-                      return _vm.RelasiUserBarangUpdate.apply(null, arguments)
-                    },
-                    _vm.checkForm,
-                  ],
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.checkForm.apply(null, arguments)
+                  },
                 },
               },
               [

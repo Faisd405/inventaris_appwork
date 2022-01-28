@@ -6,7 +6,7 @@
           <div class="card-header">Edit jenis</div>
 
           <div class="card-body">
-            <form @submit.prevent="JenisUpdate" @submit="checkForm">
+            <form @submit.prevent="checkForm">
               <div class="form-group">
                 <label>Jenis Buku</label>
                 <input
@@ -71,9 +71,12 @@ export default {
         if(this.jenis.jenis_buku == ""){
             this.errors.push("Jenis Buku Tidak Boleh Kosong");
         }
-        if(this.errors.length > 0){
-            e.preventDefault();
-        }
+      if (this.errors.length > 0) {
+        e.preventDefault();
+      }
+      if (this.errors.length == 0) {
+        this.JenisUpdate();
+      }
     }
   },
 };

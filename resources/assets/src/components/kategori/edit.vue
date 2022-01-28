@@ -6,7 +6,7 @@
           <div class="card-header">Edit kategori</div>
 
           <div class="card-body">
-            <form @submit.prevent="KategoriUpdate" @submit="checkForm">
+            <form @submit.prevent=  "checkForm">
               <div class="form-group">
                 <label>Nama kategori</label>
                 <input
@@ -117,11 +117,11 @@ export default {
       if (this.kategori.sifat_id == "") {
         this.errors.push("Sifat tidak boleh kosong");
       }
-      if (this.kategori.jumlah == "") {
-        this.errors.push("Jumlah tidak boleh kosong");
-      }
-      if (this.errors.length) {
+      if (this.errors.length > 0) {
         e.preventDefault();
+      }
+      if (this.errors.length == 0) {
+        this.KategoriUpdate();
       }
     },
   },

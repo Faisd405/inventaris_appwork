@@ -239,7 +239,13 @@ __webpack_require__.r(__webpack_exports__);
         this.errors.push('Lokasi tidak boleh kosong');
       }
 
-      e.preventDefault();
+      if (this.errors.length > 0) {
+        e.preventDefault();
+      }
+
+      if (this.errors.length == 0) {
+        this.BookStore();
+      }
     }
   }
 });
@@ -272,13 +278,10 @@ var render = function () {
               "form",
               {
                 on: {
-                  submit: [
-                    function ($event) {
-                      $event.preventDefault()
-                      return _vm.BookStore.apply(null, arguments)
-                    },
-                    _vm.checkForm,
-                  ],
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.checkForm.apply(null, arguments)
+                  },
                 },
               },
               [

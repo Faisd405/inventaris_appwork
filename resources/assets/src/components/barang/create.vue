@@ -7,9 +7,8 @@
 
           <div class="card-body">
             <form
-              @submit.prevent="BarangStore"
               enctype="multipart/form-data"
-              @submit="checkForm"
+              @submit.prevent="checkForm"
             >
               <div class="form-group">
                 <label for="nama_barang">Nama Barang</label>
@@ -338,7 +337,12 @@ export default {
             this.errors.push("Ukuran lampiran tidak boleh lebih dari 2MB");
             }
         }
-      e.preventDefault();
+      if (this.errors.length > 0) {
+        e.preventDefault();
+      }
+      if (this.errors.length == 0) {
+        this.BarangStore();
+      }
     },
   },
 };

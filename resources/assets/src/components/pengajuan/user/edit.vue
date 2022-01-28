@@ -6,7 +6,7 @@
           <div class="card-header">Edit pengajuan</div>
 
           <div class="card-body">
-            <form @submit.prevent="pengajuanUpdate" @submit="checkForm">
+            <form @submit.prevent="checkForm">
               <div class="form-group">
                 <!-- No	Nama Barang	Detail Barang	Fungsi	Harga Barang	Jumlah Barang -->
                 <label>Nama Barang</label>
@@ -140,9 +140,12 @@ export default {
         if (!this.pengajuan.jumlah_barang) {
             this.errors.push("Jumlah Barang Harus Diisi");
         }
-        if (this.errors.length) {
-            e.preventDefault();
-        }
+      if (this.errors.length > 0) {
+        e.preventDefault();
+      }
+      if (this.errors.length == 0) {
+        this.pengajuanUpdate();
+      }
     }
   },
 };

@@ -80,8 +80,12 @@ __webpack_require__.r(__webpack_exports__);
         this.errors.push("Nama Lokasi Harus Diisi");
       }
 
-      if (this.errors.length) {
-        return false;
+      if (this.errors.length > 0) {
+        e.preventDefault();
+      }
+
+      if (this.errors.length == 0) {
+        this.LokasiStore();
       }
     }
   }
@@ -115,13 +119,10 @@ var render = function () {
               "form",
               {
                 on: {
-                  submit: [
-                    function ($event) {
-                      $event.preventDefault()
-                      return _vm.LokasiStore.apply(null, arguments)
-                    },
-                    _vm.checkForm,
-                  ],
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.checkForm.apply(null, arguments)
+                  },
                 },
               },
               [

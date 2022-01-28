@@ -212,7 +212,7 @@ var render = function () {
         _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "card card-default" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("buku")]),
+          _c("div", { staticClass: "card-header" }, [_vm._v("Buku")]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _vm.loginType == "admin"

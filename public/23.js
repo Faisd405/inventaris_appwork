@@ -134,12 +134,12 @@ __webpack_require__.r(__webpack_exports__);
         this.errors.push("Sifat tidak boleh kosong");
       }
 
-      if (this.kategori.jumlah == "") {
-        this.errors.push("Jumlah tidak boleh kosong");
+      if (this.errors.length > 0) {
+        e.preventDefault();
       }
 
-      if (this.errors.length) {
-        e.preventDefault();
+      if (this.errors.length == 0) {
+        this.KategoriUpdate();
       }
     }
   }
@@ -173,13 +173,10 @@ var render = function () {
               "form",
               {
                 on: {
-                  submit: [
-                    function ($event) {
-                      $event.preventDefault()
-                      return _vm.KategoriUpdate.apply(null, arguments)
-                    },
-                    _vm.checkForm,
-                  ],
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.checkForm.apply(null, arguments)
+                  },
                 },
               },
               [

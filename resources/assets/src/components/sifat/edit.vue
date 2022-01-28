@@ -6,7 +6,7 @@
           <div class="card-header">Edit sifat</div>
 
           <div class="card-body">
-            <form @submit.prevent="SifatUpdate" @submit="checkForm">
+            <form @submit.prevent="checkForm">
               <div class="form-group">
                 <label>Sifat Barang</label>
                 <input
@@ -71,7 +71,12 @@ export default {
         if(this.sifat.sifat_kategori == ""){
             this.errors.push("Sifat Barang harus diisi");
         }
+      if (this.errors.length > 0) {
         e.preventDefault();
+      }
+      if (this.errors.length == 0) {
+        this.SifatUpdate();
+      }
     }
   },
 };

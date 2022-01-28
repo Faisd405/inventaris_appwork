@@ -202,7 +202,12 @@ export default {
       if (!this.buku.lokasi_id) {
         this.errors.push("Lokasi harus diisi");
       }
+      if (this.errors.length > 0) {
         e.preventDefault();
+      }
+      if (this.errors.length == 0) {
+        this.BookUpdate();
+      }
     },
   },
 };

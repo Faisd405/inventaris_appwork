@@ -6,7 +6,7 @@
           <div class="card-header">Create jenis</div>
 
           <div class="card-body">
-            <form @submit.prevent="JenisStore" @submit="checkForm">
+            <form @submit.prevent="checkForm">
               <div class="form-group">
                 <label>Jenis Buku</label>
                 <input
@@ -65,11 +65,33 @@ export default {
         });
     },
     checkForm: function (e) {
+        this.errors = [];
       if (this.jenis.jenis_buku == "") {
         this.errors.push("Jenis Buku tidak boleh kosong");
       }
-      if (this.errors.length) {
+      if (this.jenis.jenis_buku != "") {
+        // validation jenis duplicate
+        axios
+          .get("/api/jenis")
+          .then((response) => {
+            for (let i = 0; i < response.data.length; i++) {
+              if (
+                this.jenis.jenis_buku.toLowerCase() ==
+                response.data[i].jenis_buku.toLowerCase()
+              ) {
+                this.errors.push("Jenis Buku sudah ada");
+              }
+            }
+          })
+          .catch((error) => {
+            console.log(error.response.data.errors);
+          });
+      }
+      if (this.errors.length > 0) {
         e.preventDefault();
+      }
+      if (this.errors.length == 0) {
+        this.JenisStore();
       }
     },
   },

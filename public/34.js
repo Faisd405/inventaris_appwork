@@ -85,6 +85,10 @@ __webpack_require__.r(__webpack_exports__);
       if (this.errors.length > 0) {
         e.preventDefault();
       }
+
+      if (this.errors.length == 0) {
+        this.penggunaStore();
+      }
     }
   }
 });
@@ -119,13 +123,10 @@ var render = function () {
               "form",
               {
                 on: {
-                  submit: [
-                    function ($event) {
-                      $event.preventDefault()
-                      return _vm.penggunaStore.apply(null, arguments)
-                    },
-                    _vm.checkForm,
-                  ],
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.checkForm.apply(null, arguments)
+                  },
                 },
               },
               [

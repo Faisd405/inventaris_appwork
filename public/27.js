@@ -86,7 +86,13 @@ __webpack_require__.r(__webpack_exports__);
         this.errors.push("Nama lokasi tidak boleh kosong");
       }
 
-      e.preventDefault();
+      if (this.errors.length > 0) {
+        e.preventDefault();
+      }
+
+      if (this.errors.length == 0) {
+        this.LokasiUpdate();
+      }
     }
   }
 });
@@ -119,13 +125,10 @@ var render = function () {
               "form",
               {
                 on: {
-                  submit: [
-                    function ($event) {
-                      $event.preventDefault()
-                      return _vm.LokasiUpdate.apply(null, arguments)
-                    },
-                    _vm.checkForm,
-                  ],
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.checkForm.apply(null, arguments)
+                  },
                 },
               },
               [

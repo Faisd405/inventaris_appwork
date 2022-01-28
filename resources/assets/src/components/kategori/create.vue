@@ -6,7 +6,7 @@
           <div class="card-header">Create kategori</div>
 
           <div class="card-body">
-            <form @submit.prevent="KategoriStore" @submit="checkForm">
+            <form @submit.prevent="checkForm">
               <div class="form-group">
                 <label>Nama kategori</label>
                 <input
@@ -104,9 +104,12 @@ export default {
         if(this.kategori.sifat_id == ""){
             this.errors.push("Sifat tidak boleh kosong");
         }
-        if(this.errors.length){
-            e.preventDefault();
-        }
+      if (this.errors.length > 0) {
+        e.preventDefault();
+      }
+      if (this.errors.length == 0) {
+        this.KategoriStore();
+      }
     }
   },
 };

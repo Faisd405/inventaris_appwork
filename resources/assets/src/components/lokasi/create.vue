@@ -6,7 +6,7 @@
           <div class="card-header">Create lokasi</div>
 
           <div class="card-body">
-            <form @submit.prevent="LokasiStore" @submit="checkForm">
+            <form @submit.prevent="checkForm">
               <div class="form-group">
                 <label>Nama lokasi</label>
                 <input
@@ -67,8 +67,11 @@ export default {
       if (!this.lokasi.lokasi) {
         this.errors.push("Nama Lokasi Harus Diisi");
       }
-      if (this.errors.length) {
-        return false;
+      if (this.errors.length > 0) {
+        e.preventDefault();
+      }
+      if (this.errors.length == 0) {
+        this.LokasiStore();
       }
     },
   },
