@@ -94,6 +94,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -173,6 +179,8 @@ var render = function () {
   return _c("div", { staticClass: "container mt-3" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-xl-12" }, [
+        _vm._m(0),
+        _vm._v(" "),
         _c("div", { staticClass: "card card-default" }, [
           _c("div", { staticClass: "card-header" }, [_vm._v("Lokasi")]),
           _vm._v(" "),
@@ -364,7 +372,20 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card mb-3 mt-3" }, [
+      _c("div", { staticClass: "card-body bg-dark text-white" }, [
+        _vm._v(
+          "\n          Halaman ini merupakan untuk menambahkan lokasi sebuah tempat untuk\n          penempatan barang dan buku.\n        "
+        ),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 

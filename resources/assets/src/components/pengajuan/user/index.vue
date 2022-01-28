@@ -2,6 +2,12 @@
   <div class="container mt-3">
     <div class="row justify-content-center">
       <div class="col-xl-12">
+        <div class="card mb-3 mt-3">
+          <div class="card-body bg-dark text-white">
+            Halaman Pengajuan User merupakan halaman untuk mengajukan barang
+            yang dibutuhkan user.
+          </div>
+        </div>
         <div class="card card-default">
           <div class="card-header">Pengajuan</div>
 
@@ -75,7 +81,7 @@
 import axios from "axios";
 export default {
   metaInfo: {
-    title: "pengajuan",
+    title: "Pengajuan",
   },
   data() {
     return {
@@ -116,7 +122,6 @@ export default {
         this.loginType = response.data.roles[0].name;
         if (this.user.id != this.$route.params.id) {
           this.$router.push({ name: "home" });
-
         }
       })
       .catch((error) => {

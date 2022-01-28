@@ -240,6 +240,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -614,6 +619,8 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _vm._m(0),
+    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c(
         "div",
@@ -622,7 +629,7 @@ var render = function () {
           staticStyle: { width: "14rem", height: "10rem" },
         },
         [
-          _vm._m(0),
+          _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c("h1", { staticClass: "card-title" }, [
@@ -815,6 +822,18 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card mb-3 mt-3" }, [
+      _c("div", { staticClass: "card-body bg-dark text-white" }, [
+        _vm._v(
+          "\n          Halaman laporan yang memberikan informasi data barang\n        "
+        ),
+      ]),
+    ])
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

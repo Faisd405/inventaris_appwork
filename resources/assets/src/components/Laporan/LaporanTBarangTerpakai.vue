@@ -2,6 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-12 justify-content-center">
+        <div class="card mb-3 mt-3">
+          <div class="card-body bg-dark text-white">
+            Halaman laporan yang memberikan informasi data barang yang sedang dipakai
+          </div>
+        </div>
         <div class="card card-default">
           <div class="card-header">Barang Terpakai</div>
 

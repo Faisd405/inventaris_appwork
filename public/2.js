@@ -135,6 +135,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -500,6 +505,8 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _vm._m(0),
+    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-xl-12 justify-content-center" }, [
         _c("div", { staticClass: "card card-default" }, [
@@ -620,7 +627,20 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card mb-3 mt-3" }, [
+      _c("div", { staticClass: "card-body bg-dark text-white" }, [
+        _vm._v(
+          "\n          Halaman laporan yang memberikan informasi data harga barang.\n        "
+        ),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 

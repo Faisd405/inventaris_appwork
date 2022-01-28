@@ -89,6 +89,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -171,6 +178,8 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container mt-3" }, [
+    _vm._m(0),
+    _vm._v(" "),
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-xl-12" }, [
         _c("div", { staticClass: "card card-default" }, [
@@ -223,81 +232,81 @@ var render = function () {
                               return _c("tr", { key: data.guid }, [
                                 _c("td", { attrs: { scope: "data" } }, [
                                   _vm._v(
-                                    "\n                              " +
+                                    "\n                    " +
                                       _vm._s(data.id) +
-                                      "\n                          "
+                                      "\n                  "
                                   ),
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [
                                   _vm._v(
-                                    "\n                              " +
+                                    "\n                    " +
                                       _vm._s(data.judul) +
-                                      "\n                          "
+                                      "\n                  "
                                   ),
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [
                                   _vm._v(
-                                    "\n                              " +
+                                    "\n                    " +
                                       _vm._s(data.penulis) +
-                                      "\n                          "
+                                      "\n                  "
                                   ),
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [
                                   _vm._v(
-                                    "\n                              " +
+                                    "\n                    " +
                                       _vm._s(data.penerbit) +
-                                      "\n                          "
+                                      "\n                  "
                                   ),
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [
                                   _vm._v(
-                                    "\n                              " +
+                                    "\n                    " +
                                       _vm._s(data.tanggal) +
-                                      "\n                          "
+                                      "\n                  "
                                   ),
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [
                                   _vm._v(
-                                    "\n                              " +
+                                    "\n                    " +
                                       _vm._s(data.kondisi) +
-                                      "\n                          "
+                                      "\n                  "
                                   ),
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [
                                   _vm._v(
-                                    "\n                              " +
+                                    "\n                    " +
                                       _vm._s(data.jumlah) +
-                                      "\n                          "
+                                      "\n                  "
                                   ),
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [
                                   _vm._v(
-                                    "\n                              " +
+                                    "\n                    " +
                                       _vm._s(data.jenis.jenis_buku) +
-                                      "\n                          "
+                                      "\n                  "
                                   ),
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [
                                   _vm._v(
-                                    "\n                              " +
+                                    "\n                    " +
                                       _vm._s(data.pengguna.name) +
-                                      "\n                          "
+                                      "\n                  "
                                   ),
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [
                                   _vm._v(
-                                    "\n                              " +
+                                    "\n                    " +
                                       _vm._s(data.lokasi.lokasi) +
-                                      "\n                          "
+                                      "\n                  "
                                   ),
                                 ]),
                               ])
@@ -388,7 +397,20 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card mb-3 mt-3" }, [
+      _c("div", { staticClass: "card-body bg-dark text-white" }, [
+        _vm._v(
+          "\n      Halaman laporan yang memberikan informasi data buku\n    "
+        ),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 

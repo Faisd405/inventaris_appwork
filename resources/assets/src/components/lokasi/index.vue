@@ -2,6 +2,12 @@
   <div class="container mt-3">
     <div class="row justify-content-center">
       <div class="col-xl-12">
+        <div class="card mb-3 mt-3">
+          <div class="card-body bg-dark text-white">
+            Halaman ini merupakan untuk menambahkan lokasi sebuah tempat untuk
+            penempatan barang dan buku.
+          </div>
+        </div>
         <div class="card card-default">
           <div class="card-header">Lokasi</div>
 

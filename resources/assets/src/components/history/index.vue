@@ -2,6 +2,12 @@
   <div class="container mt-3">
     <div class="row justify-content-center">
       <div class="col-xl-12">
+        <div class="card mb-3">
+          <div class="card-body bg-dark text-white">
+            Halaman ini merupakan untuk mengetahui Riwayat penggunaan barang
+            yang pernah memakai barang dan yang sedang memakai barang
+          </div>
+        </div>
         <div class="card card-default">
           <div class="card-header">history</div>
           <div class="card-body">
@@ -122,14 +128,16 @@
                         </button>
                       </div>
 
-              <div v-if="errors.length">
-                <div class="alert alert-danger">
-                  <b>Perhatikan hal berikut :</b>
-                  <ul>
-                    <li v-for="error in errors" :key="error">{{ error }}</li>
-                  </ul>
-                </div>
-              </div>
+                      <div v-if="errors.length">
+                        <div class="alert alert-danger">
+                          <b>Perhatikan hal berikut :</b>
+                          <ul>
+                            <li v-for="error in errors" :key="error">
+                              {{ error }}
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
                     </form>
                   </b-modal>
                 </template>
@@ -140,7 +148,7 @@
                       class="btn btn-sm btn-danger"
                       @click="destroy(data.item.id)"
                     >
-                    <i class="ion ion-ios-trash"></i>
+                      <i class="ion ion-ios-trash"></i>
                     </button>
                   </span>
                   <span v-if="loginType != 'admin'"> Tidak ada Akses </span>
@@ -244,7 +252,7 @@ export default {
     showModal(id) {
       this.$refs[`modal-${id}`].show();
     },
-    checkForm: function (e) {;
+    checkForm: function (e) {
       this.errors = [];
       if (this.historys.pengguna_id == "") {
         this.errors.push("Pengguna Harus Diisi");
@@ -259,7 +267,9 @@ export default {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + localStorage.getItem("token");
 
-    axios.get(`/api/user`).then((response) => {
+    axios
+      .get(`/api/user`)
+      .then((response) => {
         this.user = response.data;
         this.loginType = response.data.roles[0].name;
       })
@@ -269,7 +279,7 @@ export default {
           this.$router.push("/login");
         }
         console.error(error);
-      })
+      });
   },
 };
 </script>

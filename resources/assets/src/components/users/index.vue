@@ -2,6 +2,13 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-xl-12">
+        <div class="card mb-3 mt-3">
+          <div class="card-body bg-dark text-white">
+            ini adalah halaman dimana kita dapat mengelola Data User pada Sistem
+            untuk Login, dan juga pengaturan hierarki User dapat di atur dalam
+            menu management user ini.
+          </div>
+        </div>
         <div class="card card-default">
           <div class="card-header">Management Users</div>
 

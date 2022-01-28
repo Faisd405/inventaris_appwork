@@ -2,6 +2,12 @@
   <div class="container mt-3">
     <div class="row justify-content-center">
       <div class="col-xl-12">
+        <div class="card mb-3 mt-3">
+          <div class="card-body bg-dark text-white">
+            Halaman Pengajuan Admin merupakan halaman untuk menerima apa yang
+            telah di ajukan oleh user dan memasukan ke daftar barang.
+          </div>
+        </div>
         <div class="card card-default">
           <div class="card-header">Pengajuan</div>
 
@@ -40,16 +46,20 @@
                     <td>{{ data.user.name }}</td>
                     <td>
                       <router-link
-                        :to="{ name: 'setuju-pengajuan-admin', params: { id: data.id } }"
+                        :to="{
+                          name: 'setuju-pengajuan-admin',
+                          params: { id: data.id },
+                        }"
                         class="btn btn-sm btn-primary"
                         >Setuju</router-link
                       >
-                      <br>
+                      <br />
                       <button
                         @click="destroy(data.id)"
                         class="btn btn-sm btn-danger"
-                        >Tolak</button
                       >
+                        Tolak
+                      </button>
                     </td>
                   </tr>
                 </tbody>
@@ -67,7 +77,7 @@
 import axios from "axios";
 export default {
   metaInfo: {
-    title: "pengajuan",
+    title: "Pengajuan",
   },
   data() {
     return {
@@ -90,7 +100,9 @@ export default {
     destroy(id) {
       let uri = `/api/pengajuan/${id}`;
       axios.delete(uri).then((response) => {
-        this.pengajuan = this.pengajuan.filter((pengajuan) => pengajuan.id != id);
+        this.pengajuan = this.pengajuan.filter(
+          (pengajuan) => pengajuan.id != id
+        );
       });
     },
   },

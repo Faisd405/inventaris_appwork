@@ -2,6 +2,11 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-xl-12">
+        <div class="card mb-3 mt-3">
+          <div class="card-body bg-dark text-white">
+            PIC adalah Daftar Pengguna Barang dan Buku.
+          </div>
+        </div>
         <div class="card card-default mt-3">
           <div class="card-header">pengguna</div>
 
@@ -23,7 +28,11 @@
             </span>
             <div class="table-responsive mt-2">
               <label>Filter berdasarkan Nama Pengguna:</label>
-              <input type="text" class="form-control" v-model="filters.name.value" />
+              <input
+                type="text"
+                class="form-control"
+                v-model="filters.name.value"
+              />
 
               <br />
               <v-table
@@ -125,7 +134,9 @@ export default {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + localStorage.getItem("token");
 
-    axios.get(`/api/user`).then((response) => {
+    axios
+      .get(`/api/user`)
+      .then((response) => {
         this.user = response.data;
         this.loginType = response.data.roles[0].name;
       })
@@ -135,7 +146,7 @@ export default {
           this.$router.push("/login");
         }
         console.error(error);
-      })
+      });
   },
 };
 </script>

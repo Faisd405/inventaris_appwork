@@ -1,5 +1,10 @@
 <template>
   <div class="container">
+        <div class="card mb-3 mt-3">
+          <div class="card-body bg-dark text-white">
+            Halaman laporan yang memberikan informasi data pengguna
+          </div>
+        </div>
     <div class="row justify-content-center">
       <div class="col-xl-12">
         <div class="card card-default">
