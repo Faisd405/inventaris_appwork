@@ -1,14 +1,8 @@
-<style>
-sidenav {
-    background-color: #769FCD;
-}
-</style>
-
 <template>
-  <sidenav :orientation="orientation" :class="curClasses" v-if="isLoggedIn" >
+  <sidenav :orientation="orientation" :class="curClasses" v-if="isLoggedIn" class="bg-info">
     <!-- Inner -->
     <div
-      class="sidenav-inner"
+      class="sidenav-inner pallet-darken"
       :class="{ 'py-1': orientation !== 'horizontal' }"
     >
       <sidenav-header> <strong>Dashboard</strong> </sidenav-header>

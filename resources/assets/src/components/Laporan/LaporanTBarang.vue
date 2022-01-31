@@ -1,22 +1,24 @@
 <template>
   <div class="container">
         <div class="card mb-3 mt-3">
-          <div class="card-body bg-dark text-white">
+          <div class="card-body pallet-darken font-lighten">
             Halaman laporan yang memberikan informasi data barang
           </div>
         </div>
     <div class="row">
-      <div
-        class="card text-white bg-primary m-3"
+              <div
+                class="card text-white pallet-light m-3 shadow-lg"
         style="width: 14rem; height: 10rem"
-      >
-        <div class="card-header">
-          <strong> Total Barang </strong>
-        </div>
-        <div class="card-body">
-          <h1 class="card-title">{{ barang.length }}</h1>
-        </div>
-      </div>
+              >
+                <div class="card-header">
+                  <router-link to="/laporan/barang" class="text-primary">
+                    <strong> Total Barang </strong>
+                  </router-link>
+                </div>
+                <div class="card-body">
+                  <h1 class="card-title text-info">{{ barang.length }}</h1>
+                </div>
+              </div>
 
       <div class="card m-3 col">
         <div class="card-body">

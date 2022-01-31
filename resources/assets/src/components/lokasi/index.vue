@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-xl-12">
         <div class="card mb-3 mt-3">
-          <div class="card-body bg-dark text-white">
+          <div class="card-body pallet-darken font-lighten">
             Halaman ini merupakan untuk menambahkan lokasi sebuah tempat untuk
             penempatan barang dan buku.
           </div>

@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-xl-12">
         <div class="card mb-3">
-          <div class="card-body bg-dark text-white">
+          <div class="card-body pallet-darken font-lighten">
             Ini adalah halaman DataMaster Jenis Buku. Contoh Jenis Buku seperti
             Buku Pendidikan, Novel, dan Komik
           </div>

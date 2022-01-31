@@ -5,7 +5,7 @@
       class="
         flex-shrink-1 flex-grow-0
         w-25
-        bg-light
+        pallet-light
         container-p-x container-p-y
         card card-default
       "
@@ -27,7 +27,7 @@
     <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
       <div class="layout-example-block layout-example-block-1">
         <div class="card mb-3">
-          <div class="card-body bg-dark text-white">
+          <div class="card-body pallet-darken font-lighten">
             Ini adalah halaman Daftar Barang untuk meng list barang apa saja
             yang ada di kantor, dipegang oleh siapa dan untuk mengetahui dimana
             lokasi barang tersebut. Di halaman ini kita dapat meng export data

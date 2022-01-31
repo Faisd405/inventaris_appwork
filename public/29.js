@@ -85,7 +85,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -241,7 +240,8 @@ var render = function () {
                                     _c(
                                       "router-link",
                                       {
-                                        staticClass: "btn btn-sm btn-primary",
+                                        staticClass:
+                                          "btn btn-sm btn-primary mt-1",
                                         attrs: {
                                           to: {
                                             name: "setuju-pengajuan-admin",
@@ -252,12 +252,11 @@ var render = function () {
                                       [_vm._v("Setuju")]
                                     ),
                                     _vm._v(" "),
-                                    _c("br"),
-                                    _vm._v(" "),
                                     _c(
                                       "button",
                                       {
-                                        staticClass: "btn btn-sm btn-danger",
+                                        staticClass:
+                                          "btn btn-sm btn-danger mt-1",
                                         on: {
                                           click: function ($event) {
                                             return _vm.destroy(data.id)
@@ -334,7 +333,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card mb-3 mt-3" }, [
-      _c("div", { staticClass: "card-body bg-dark text-white" }, [
+      _c("div", { staticClass: "card-body pallet-darken font-lighten" }, [
         _vm._v(
           "\n          Halaman Pengajuan Admin merupakan halaman untuk menerima apa yang\n          telah di ajukan oleh user dan memasukan ke daftar barang.\n        "
         ),

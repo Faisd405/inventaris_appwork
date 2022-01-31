@@ -5,8 +5,8 @@
         <div class="card card-default">
           <div class="card-header">Home</div>
 
-          <div class="card-body mx-auto">
-            <div class="h-100 p-5 text-white bg-dark rounded-3">
+          <div class="card-body mx-auto ">
+            <div class="h-100 p-5 text-white rounded-3 pallet-darken">
               <h1>Halo {{ user.name }}, Di Web Inventaris Barang</h1>
               <div v-if="user">
                 <label>Login sebagai:</label>
@@ -18,85 +18,85 @@
             </div>
             <div class="row d-flex justify-content-center">
               <div
-                class="card text-white bg-primary col-md-6 m-1 shadow-lg"
+                class="card text-white pallet-light col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
               >
                 <div class="card-header">
-                  <router-link to="/laporan/barang">
+                  <router-link to="/laporan/barang" class="text-primary">
                     <strong> Total Barang </strong>
                   </router-link>
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title">{{ barang.length }}</h1>
+                  <h1 class="card-title text-primary">{{ barang.length }}</h1>
                 </div>
               </div>
               <div
-                class="card text-white bg-primary col-md-6 m-1 shadow-lg"
+                class="card text-white pallet-light col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
               >
                 <div class="card-header">
-                  <router-link to="/laporan/pengguna"
+                  <router-link to="/laporan/pengguna" class="text-primary"
                     ><strong> Total Pengguna</strong></router-link
                   >
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title">{{ pengguna.length }}</h1>
+                  <h1 class="card-title text-primary">{{ pengguna.length }}</h1>
                 </div>
               </div>
               <div
-                class="card text-white bg-primary col-md-6 m-1 shadow-lg"
+                class="card text-white pallet-light col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
               >
                 <div class="card-header">
-                  <router-link to="/laporan/buku"
+                  <router-link to="/laporan/buku" class="text-primary"
                     ><strong> Total Buku</strong></router-link
                   >
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title">{{ buku.length }}</h1>
+                  <h1 class="card-title text-primary">{{ buku.length }}</h1>
                 </div>
               </div>
               <div
-                class="card text-white bg-primary col-md-6 m-1 shadow-lg"
+                class="card text-white pallet-light col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
               >
                 <div class="card-header">
-                  <router-link to="/laporan/LaporanTBarangTerpakai"
+                  <router-link to="/laporan/LaporanTBarangTerpakai" class="text-primary"
                     ><strong>Total Barang Yang Terpakai</strong></router-link
                   >
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title">
+                  <h1 class="card-title text-primary">
                     {{ barang.length - NoPengguna.length }}
                   </h1>
                 </div>
               </div>
               <div
-                class="card text-white bg-primary col-md-6 m-1 shadow-lg"
+                class="card text-white pallet-light col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
               >
                 <div class="card-header">
-                  <router-link to="/laporan/LaporanTBarangTidakTerpakai"
+                  <router-link to="/laporan/LaporanTBarangTidakTerpakai" class="text-primary"
                     ><strong
                       >Total Barang Yang Tidak Terpakai</strong
                     ></router-link
                   >
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title">{{ NoPengguna.length }}</h1>
+                  <h1 class="card-title text-primary">{{ NoPengguna.length }}</h1>
                 </div>
               </div>
               <div
-                class="card text-white bg-primary col-md-6 m-1 shadow-lg"
+                class="card text-white pallet-light col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
               >
                 <div class="card-header">
-                  <router-link to="/laporan/LaporanTHargaBarang"
+                  <router-link to="/laporan/LaporanTHargaBarang" class="text-primary"
                     ><strong>Total Harga Barang</strong></router-link
                   >
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title">{{ total }}</h1>
+                  <h1 class="card-title text-primary">{{ total }}</h1>
                 </div>
               </div>
             </div>

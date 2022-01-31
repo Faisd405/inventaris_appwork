@@ -768,7 +768,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card mb-3" }, [
-      _c("div", { staticClass: "card-body bg-dark text-white" }, [
+      _c("div", { staticClass: "card-body pallet-darken font-lighten" }, [
         _vm._v(
           "\n          Halaman ini merupakan untuk mengetahui Riwayat penggunaan barang\n          yang pernah memakai barang dan yang sedang memakai barang\n        "
         ),

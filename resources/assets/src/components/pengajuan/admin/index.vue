@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-xl-12">
         <div class="card mb-3 mt-3">
-          <div class="card-body bg-dark text-white">
+          <div class="card-body pallet-darken font-lighten">
             Halaman Pengajuan Admin merupakan halaman untuk menerima apa yang
             telah di ajukan oleh user dan memasukan ke daftar barang.
           </div>
@@ -50,13 +50,12 @@
                           name: 'setuju-pengajuan-admin',
                           params: { id: data.id },
                         }"
-                        class="btn btn-sm btn-primary"
+                        class="btn btn-sm btn-primary mt-1"
                         >Setuju</router-link
                       >
-                      <br />
                       <button
                         @click="destroy(data.id)"
-                        class="btn btn-sm btn-danger"
+                        class="btn btn-sm btn-danger mt-1"
                       >
                         Tolak
                       </button>

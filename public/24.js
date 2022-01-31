@@ -451,7 +451,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card mb-3" }, [
-      _c("div", { staticClass: "card-body bg-dark text-white" }, [
+      _c("div", { staticClass: "card-body pallet-darken font-lighten" }, [
         _vm._v(
           "\n          Ini adalah halaman DataMaster Kategori Barang. Kategori Barang\n          merupakan turunan dari Sifat Barang. Contoh Kategori Barang seperti\n          bawahan elektronik yaitu PC, dan furniture yaitu meja. Isi Sifat\n          Barang terlebih dahulu.\n        "
         ),

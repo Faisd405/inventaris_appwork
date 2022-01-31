@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-xl-12">
         <div class="card mb-3">
-          <div class="card-body bg-dark text-white">
+          <div class="card-body pallet-darken font-lighten">
             Ini adalah halaman Daftar Buku untuk meng list buku apa saja yang
             ada di kantor, dipegang oleh siapa dan untuk mengetahui dimana
             lokasi buku tersebut.

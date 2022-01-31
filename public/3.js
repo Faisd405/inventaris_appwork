@@ -218,10 +218,10 @@ var render = function () {
         _c("div", { staticClass: "card card-default" }, [
           _c("div", { staticClass: "card-header" }, [_vm._v("Home")]),
           _vm._v(" "),
-          _c("div", { staticClass: "card-body mx-auto" }, [
+          _c("div", { staticClass: "card-body mx-auto " }, [
             _c(
               "div",
-              { staticClass: "h-100 p-5 text-white bg-dark rounded-3" },
+              { staticClass: "h-100 p-5 text-white rounded-3 pallet-darken" },
               [
                 _c("h1", [
                   _vm._v(
@@ -250,7 +250,7 @@ var render = function () {
                 "div",
                 {
                   staticClass:
-                    "card text-white bg-primary col-md-6 m-1 shadow-lg",
+                    "card text-white pallet-light col-md-6 m-1 shadow-lg",
                   staticStyle: { "max-width": "18rem" },
                 },
                 [
@@ -258,15 +258,20 @@ var render = function () {
                     "div",
                     { staticClass: "card-header" },
                     [
-                      _c("router-link", { attrs: { to: "/laporan/barang" } }, [
-                        _c("strong", [_vm._v(" Total Barang ")]),
-                      ]),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "text-primary",
+                          attrs: { to: "/laporan/barang" },
+                        },
+                        [_c("strong", [_vm._v(" Total Barang ")])]
+                      ),
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c("h1", { staticClass: "card-title" }, [
+                    _c("h1", { staticClass: "card-title text-primary" }, [
                       _vm._v(_vm._s(_vm.barang.length)),
                     ]),
                   ]),
@@ -277,7 +282,7 @@ var render = function () {
                 "div",
                 {
                   staticClass:
-                    "card text-white bg-primary col-md-6 m-1 shadow-lg",
+                    "card text-white pallet-light col-md-6 m-1 shadow-lg",
                   staticStyle: { "max-width": "18rem" },
                 },
                 [
@@ -287,7 +292,10 @@ var render = function () {
                     [
                       _c(
                         "router-link",
-                        { attrs: { to: "/laporan/pengguna" } },
+                        {
+                          staticClass: "text-primary",
+                          attrs: { to: "/laporan/pengguna" },
+                        },
                         [_c("strong", [_vm._v(" Total Pengguna")])]
                       ),
                     ],
@@ -295,7 +303,7 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c("h1", { staticClass: "card-title" }, [
+                    _c("h1", { staticClass: "card-title text-primary" }, [
                       _vm._v(_vm._s(_vm.pengguna.length)),
                     ]),
                   ]),
@@ -306,7 +314,7 @@ var render = function () {
                 "div",
                 {
                   staticClass:
-                    "card text-white bg-primary col-md-6 m-1 shadow-lg",
+                    "card text-white pallet-light col-md-6 m-1 shadow-lg",
                   staticStyle: { "max-width": "18rem" },
                 },
                 [
@@ -314,15 +322,20 @@ var render = function () {
                     "div",
                     { staticClass: "card-header" },
                     [
-                      _c("router-link", { attrs: { to: "/laporan/buku" } }, [
-                        _c("strong", [_vm._v(" Total Buku")]),
-                      ]),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "text-primary",
+                          attrs: { to: "/laporan/buku" },
+                        },
+                        [_c("strong", [_vm._v(" Total Buku")])]
+                      ),
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c("h1", { staticClass: "card-title" }, [
+                    _c("h1", { staticClass: "card-title text-primary" }, [
                       _vm._v(_vm._s(_vm.buku.length)),
                     ]),
                   ]),
@@ -333,7 +346,7 @@ var render = function () {
                 "div",
                 {
                   staticClass:
-                    "card text-white bg-primary col-md-6 m-1 shadow-lg",
+                    "card text-white pallet-light col-md-6 m-1 shadow-lg",
                   staticStyle: { "max-width": "18rem" },
                 },
                 [
@@ -343,7 +356,10 @@ var render = function () {
                     [
                       _c(
                         "router-link",
-                        { attrs: { to: "/laporan/LaporanTBarangTerpakai" } },
+                        {
+                          staticClass: "text-primary",
+                          attrs: { to: "/laporan/LaporanTBarangTerpakai" },
+                        },
                         [_c("strong", [_vm._v("Total Barang Yang Terpakai")])]
                       ),
                     ],
@@ -351,7 +367,7 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c("h1", { staticClass: "card-title" }, [
+                    _c("h1", { staticClass: "card-title text-primary" }, [
                       _vm._v(
                         "\n                  " +
                           _vm._s(_vm.barang.length - _vm.NoPengguna.length) +
@@ -366,7 +382,7 @@ var render = function () {
                 "div",
                 {
                   staticClass:
-                    "card text-white bg-primary col-md-6 m-1 shadow-lg",
+                    "card text-white pallet-light col-md-6 m-1 shadow-lg",
                   staticStyle: { "max-width": "18rem" },
                 },
                 [
@@ -377,6 +393,7 @@ var render = function () {
                       _c(
                         "router-link",
                         {
+                          staticClass: "text-primary",
                           attrs: { to: "/laporan/LaporanTBarangTidakTerpakai" },
                         },
                         [
@@ -390,7 +407,7 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c("h1", { staticClass: "card-title" }, [
+                    _c("h1", { staticClass: "card-title text-primary" }, [
                       _vm._v(_vm._s(_vm.NoPengguna.length)),
                     ]),
                   ]),
@@ -401,7 +418,7 @@ var render = function () {
                 "div",
                 {
                   staticClass:
-                    "card text-white bg-primary col-md-6 m-1 shadow-lg",
+                    "card text-white pallet-light col-md-6 m-1 shadow-lg",
                   staticStyle: { "max-width": "18rem" },
                 },
                 [
@@ -411,7 +428,10 @@ var render = function () {
                     [
                       _c(
                         "router-link",
-                        { attrs: { to: "/laporan/LaporanTHargaBarang" } },
+                        {
+                          staticClass: "text-primary",
+                          attrs: { to: "/laporan/LaporanTHargaBarang" },
+                        },
                         [_c("strong", [_vm._v("Total Harga Barang")])]
                       ),
                     ],
@@ -419,7 +439,7 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c("h1", { staticClass: "card-title" }, [
+                    _c("h1", { staticClass: "card-title text-primary" }, [
                       _vm._v(_vm._s(_vm.total)),
                     ]),
                   ]),

@@ -245,6 +245,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -625,14 +627,28 @@ var render = function () {
       _c(
         "div",
         {
-          staticClass: "card text-white bg-primary m-3",
+          staticClass: "card text-white pallet-light m-3 shadow-lg",
           staticStyle: { width: "14rem", height: "10rem" },
         },
         [
-          _vm._m(1),
+          _c(
+            "div",
+            { staticClass: "card-header" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "text-primary",
+                  attrs: { to: "/laporan/barang" },
+                },
+                [_c("strong", [_vm._v(" Total Barang ")])]
+              ),
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("h1", { staticClass: "card-title" }, [
+            _c("h1", { staticClass: "card-title text-info" }, [
               _vm._v(_vm._s(_vm.barang.length)),
             ]),
           ]),
@@ -827,19 +843,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card mb-3 mt-3" }, [
-      _c("div", { staticClass: "card-body bg-dark text-white" }, [
+      _c("div", { staticClass: "card-body pallet-darken font-lighten" }, [
         _vm._v(
           "\n          Halaman laporan yang memberikan informasi data barang\n        "
         ),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("strong", [_vm._v(" Total Barang ")]),
     ])
   },
 ]

@@ -573,7 +573,7 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "\n      flex-shrink-1 flex-grow-0\n      w-25\n      bg-light\n      container-p-x container-p-y\n      card card-default\n    ",
+          "\n      flex-shrink-1 flex-grow-0\n      w-25\n      pallet-light\n      container-p-x container-p-y\n      card card-default\n    ",
         staticStyle: { "min-width": "200px" },
       },
       [
@@ -615,7 +615,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card mb-3" }, [
-      _c("div", { staticClass: "card-body bg-dark text-white" }, [
+      _c("div", { staticClass: "card-body pallet-darken font-lighten" }, [
         _vm._v(
           "\n          Ini adalah halaman Daftar Barang untuk meng list barang apa saja\n          yang ada di kantor, dipegang oleh siapa dan untuk mengetahui dimana\n          lokasi barang tersebut. Di halaman ini kita dapat meng export data\n          barang menjadi PDF dan Excel.\n        "
         ),

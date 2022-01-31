@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="card mb-3 mt-3">
-      <div class="card-body bg-dark text-white">
+      <div class="card-body pallet-darken font-lighten">
         Halaman laporan yang memberikan informasi data barang yang sedang tidak
         dipakai
       </div>
