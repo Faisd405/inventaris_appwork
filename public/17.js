@@ -289,6 +289,10 @@ __webpack_require__.r(__webpack_exports__);
         this.errors.push("Pengguna Harus Diisi");
       }
 
+      if (this.historys.pengguna_id == this.barang[0].pengguna.id) {
+        this.errors.push("Pengguna Tidak Boleh Sama");
+      }
+
       if (this.errors.length) {
         e.preventDefault();
       }

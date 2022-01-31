@@ -54,8 +54,11 @@ class HistoryController extends Controller
 
     public function update(Request $request, $id)
     {
-        $barang = $this->barang->putBarang($request, $id);
-        $history = $this->history->putHistory($request, $barang);
+        $barangs = $this->barang->getBarangById($id);
+        if ($barangs->pengguna_id != $request->pengguna_id) {
+            $barang = $this->barang->putBarang($request, $id);
+            $history = $this->history->putHistory($request, $barang);
+        }
 
         return response()->json([
             'success' => true,

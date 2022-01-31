@@ -1,5 +1,11 @@
+<style>
+sidenav {
+    background-color: #769FCD;
+}
+</style>
+
 <template>
-  <sidenav :orientation="orientation" :class="curClasses" v-if="isLoggedIn">
+  <sidenav :orientation="orientation" :class="curClasses" v-if="isLoggedIn" >
     <!-- Inner -->
     <div
       class="sidenav-inner"
