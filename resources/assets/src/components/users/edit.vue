@@ -84,6 +84,7 @@ export default {
           id: this.$route.params.id,
         name: "",
         email: "",
+        roles: "",
       },
       user: {},
       loginType: "",
@@ -98,6 +99,7 @@ export default {
       .then((response) => {
         this.users.name = response.data.user.name;
         this.users.email = response.data.user.email;
+        this.users.roles = response.data.user.roles;
       })
       .catch((errors) => {
         console.log(errors);

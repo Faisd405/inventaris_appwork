@@ -72,11 +72,13 @@ class PenggunaController extends Controller
 
     // update json
     public function update(PenggunaRequest $request, $id) {
-        if ($id == 1) {
+        $user = Auth::user();
+        if ($user->id != 1) {
             return response()->json([
                 'success' => false,
-                'message' => 'Tidak bisa update pengguna ini',
-            ], 400);
+                'message' => 'Anda Tidak Memiliki Akses!',
+                'data'    => ''
+            ], 401);
         }
         $pengguna = $this->pengguna->putPengguna($request, $id);
         return $this->respons($pengguna);

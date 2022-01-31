@@ -95,7 +95,8 @@ __webpack_require__.r(__webpack_exports__);
       users: {
         id: this.$route.params.id,
         name: "",
-        email: ""
+        email: "",
+        roles: ""
       },
       user: {},
       loginType: "",
@@ -110,6 +111,7 @@ __webpack_require__.r(__webpack_exports__);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/users/".concat(this.$route.params.id)).then(function (response) {
       _this.users.name = response.data.user.name;
       _this.users.email = response.data.user.email;
+      _this.users.roles = response.data.user.roles;
     })["catch"](function (errors) {
       console.log(errors);
     });

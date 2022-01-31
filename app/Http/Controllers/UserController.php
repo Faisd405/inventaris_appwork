@@ -50,16 +50,21 @@ class UserController extends Controller
     //update json
     public function update(Request $request, $id)
     {
-        if ($id == 1) {
+        $user = Auth::user();
+        if ($user->id != 1) {
             return response()->json([
                 'success' => false,
-                'message' => 'Tidak Bisa Update Admin!',
+                'message' => 'Anda Tidak Memiliki Akses!',
                 'data'    => ''
-            ], 404);
+            ], 401);
         }
+
         $users = $this->user->putUser($request, $id);
 
-        $users->roles()->sync($request->roles);
+        if ($request->roles) {
+            $users->roles()->sync($request->roles);
+        }
+
         $users->save();
     }
 
