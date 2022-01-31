@@ -18,7 +18,7 @@
             </div>
             <div class="row d-flex justify-content-center">
               <div
-                class="card text-white pallet-light col-md-6 m-1 shadow-lg"
+                class="card text-white pallet-dark col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
               >
                 <div class="card-header">
@@ -27,11 +27,11 @@
                   </router-link>
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title text-primary">{{ barang.length }}</h1>
+                  <h1 class="card-title text-white">{{ barang.length }}</h1>
                 </div>
               </div>
               <div
-                class="card text-white pallet-light col-md-6 m-1 shadow-lg"
+                class="card text-white pallet-dark col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
               >
                 <div class="card-header">
@@ -40,11 +40,11 @@
                   >
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title text-primary">{{ pengguna.length }}</h1>
+                  <h1 class="card-title text-white">{{ pengguna.length }}</h1>
                 </div>
               </div>
               <div
-                class="card text-white pallet-light col-md-6 m-1 shadow-lg"
+                class="card text-white pallet-dark col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
               >
                 <div class="card-header">
@@ -53,11 +53,11 @@
                   >
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title text-primary">{{ buku.length }}</h1>
+                  <h1 class="card-title text-white">{{ buku.length }}</h1>
                 </div>
               </div>
               <div
-                class="card text-white pallet-light col-md-6 m-1 shadow-lg"
+                class="card text-white pallet-dark col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
               >
                 <div class="card-header">
@@ -66,13 +66,13 @@
                   >
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title text-primary">
+                  <h1 class="card-title text-white">
                     {{ barang.length - NoPengguna.length }}
                   </h1>
                 </div>
               </div>
               <div
-                class="card text-white pallet-light col-md-6 m-1 shadow-lg"
+                class="card text-white pallet-dark col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
               >
                 <div class="card-header">
@@ -83,11 +83,11 @@
                   >
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title text-primary">{{ NoPengguna.length }}</h1>
+                  <h1 class="card-title text-white">{{ NoPengguna.length }}</h1>
                 </div>
               </div>
               <div
-                class="card text-white pallet-light col-md-6 m-1 shadow-lg"
+                class="card text-white pallet-dark col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
               >
                 <div class="card-header">
@@ -96,7 +96,7 @@
                   >
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title text-primary">{{ total }}</h1>
+                  <h1 class="card-title text-white">{{ total }}</h1>
                 </div>
               </div>
             </div>

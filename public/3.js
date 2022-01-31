@@ -250,7 +250,7 @@ var render = function () {
                 "div",
                 {
                   staticClass:
-                    "card text-white pallet-light col-md-6 m-1 shadow-lg",
+                    "card text-white pallet-dark col-md-6 m-1 shadow-lg",
                   staticStyle: { "max-width": "18rem" },
                 },
                 [
@@ -271,7 +271,7 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c("h1", { staticClass: "card-title text-primary" }, [
+                    _c("h1", { staticClass: "card-title text-white" }, [
                       _vm._v(_vm._s(_vm.barang.length)),
                     ]),
                   ]),
@@ -282,7 +282,7 @@ var render = function () {
                 "div",
                 {
                   staticClass:
-                    "card text-white pallet-light col-md-6 m-1 shadow-lg",
+                    "card text-white pallet-dark col-md-6 m-1 shadow-lg",
                   staticStyle: { "max-width": "18rem" },
                 },
                 [
@@ -303,7 +303,7 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c("h1", { staticClass: "card-title text-primary" }, [
+                    _c("h1", { staticClass: "card-title text-white" }, [
                       _vm._v(_vm._s(_vm.pengguna.length)),
                     ]),
                   ]),
@@ -314,7 +314,7 @@ var render = function () {
                 "div",
                 {
                   staticClass:
-                    "card text-white pallet-light col-md-6 m-1 shadow-lg",
+                    "card text-white pallet-dark col-md-6 m-1 shadow-lg",
                   staticStyle: { "max-width": "18rem" },
                 },
                 [
@@ -335,7 +335,7 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c("h1", { staticClass: "card-title text-primary" }, [
+                    _c("h1", { staticClass: "card-title text-white" }, [
                       _vm._v(_vm._s(_vm.buku.length)),
                     ]),
                   ]),
@@ -346,7 +346,7 @@ var render = function () {
                 "div",
                 {
                   staticClass:
-                    "card text-white pallet-light col-md-6 m-1 shadow-lg",
+                    "card text-white pallet-dark col-md-6 m-1 shadow-lg",
                   staticStyle: { "max-width": "18rem" },
                 },
                 [
@@ -367,7 +367,7 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c("h1", { staticClass: "card-title text-primary" }, [
+                    _c("h1", { staticClass: "card-title text-white" }, [
                       _vm._v(
                         "\n                  " +
                           _vm._s(_vm.barang.length - _vm.NoPengguna.length) +
@@ -382,7 +382,7 @@ var render = function () {
                 "div",
                 {
                   staticClass:
-                    "card text-white pallet-light col-md-6 m-1 shadow-lg",
+                    "card text-white pallet-dark col-md-6 m-1 shadow-lg",
                   staticStyle: { "max-width": "18rem" },
                 },
                 [
@@ -407,7 +407,7 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c("h1", { staticClass: "card-title text-primary" }, [
+                    _c("h1", { staticClass: "card-title text-white" }, [
                       _vm._v(_vm._s(_vm.NoPengguna.length)),
                     ]),
                   ]),
@@ -418,7 +418,7 @@ var render = function () {
                 "div",
                 {
                   staticClass:
-                    "card text-white pallet-light col-md-6 m-1 shadow-lg",
+                    "card text-white pallet-dark col-md-6 m-1 shadow-lg",
                   staticStyle: { "max-width": "18rem" },
                 },
                 [
@@ -439,7 +439,7 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c("h1", { staticClass: "card-title text-primary" }, [
+                    _c("h1", { staticClass: "card-title text-white" }, [
                       _vm._v(_vm._s(_vm.total)),
                     ]),
                   ]),
