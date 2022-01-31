@@ -180,7 +180,15 @@ class BarangController extends Controller
 
         $imageName = $this->gantifoto($request, $barang);
         $updateLampiran = $this->updateLampiran($request, $barang);
+
+        if ($barang->kategori_id != $request->kategori_id) {
+            $this->kategori->minus($barang->kategori_id);
+            $this->kategori->add($request->kategori_id);
+        }
+
         $this->barang->updateBarang($request, $barang, $imageName, $updateLampiran);
+
+
 
         return response()->json([
             'success' => true,

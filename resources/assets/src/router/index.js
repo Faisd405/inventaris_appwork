@@ -22,6 +22,15 @@ const router = new Router({
             path: '',
             name: 'home',
             component: () => import('@/components/Home'),
+            meta: {
+                requiresAuth: true,
+                if(isAdmin) {
+                    isAdmin: true;
+                },
+                if(isUser) {
+                    isUser: true
+                }
+            }
         },
         // Route Auth
         {
