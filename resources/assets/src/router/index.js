@@ -48,9 +48,6 @@ const router = new Router({
                 if(isAdmin) {
                     isAdmin: true;
                 },
-                if(isUser) {
-                    isUser: true
-                }
             }
         },
         {
@@ -89,9 +86,6 @@ const router = new Router({
                 if(isAdmin) {
                     isAdmin: true;
                 },
-                if(isUser) {
-                    isUser: true
-                }
             }
         },
         // Router Pengguna
@@ -104,9 +98,6 @@ const router = new Router({
                 if(isAdmin) {
                     isAdmin: true;
                 },
-                if(isUser) {
-                    isUser: true
-                }
             }
         },
         {
@@ -136,9 +127,6 @@ const router = new Router({
                 if(isAdmin) {
                     isAdmin: true;
                 },
-                if(isUser) {
-                    isUser: true
-                }
             }
         },
         // Route kategori
@@ -151,9 +139,6 @@ const router = new Router({
                 if(isAdmin) {
                     isAdmin: true;
                 },
-                if(isUser) {
-                    isUser: true
-                }
             }
         },
         {
@@ -183,9 +168,6 @@ const router = new Router({
                 if(isAdmin) {
                     isAdmin: true;
                 },
-                if(isUser) {
-                    isUser: true
-                }
             }
         },
         // Route users
@@ -198,9 +180,6 @@ const router = new Router({
                 if(isAdmin) {
                     isAdmin: true;
                 },
-                if(isUser) {
-                    isUser: true
-                }
             }
         },
         {
@@ -231,9 +210,6 @@ const router = new Router({
                 if(isAdmin) {
                     isAdmin: true;
                 },
-                if(isUser) {
-                    isUser: true
-                }
             }
         },
         {
@@ -264,9 +240,6 @@ const router = new Router({
                 if(isAdmin) {
                     isAdmin: true;
                 },
-                if(isUser) {
-                    isUser: true
-                }
             }
         },
         {
@@ -297,9 +270,6 @@ const router = new Router({
                 if(isAdmin) {
                     isAdmin: true;
                 },
-                if(isUser) {
-                    isUser: true
-                }
             }
         },
         {
@@ -330,9 +300,6 @@ const router = new Router({
                 if(isAdmin) {
                     isAdmin: true;
                 },
-                if(isUser) {
-                    isUser: true
-                }
             }
         },
         {
@@ -362,9 +329,6 @@ const router = new Router({
                 if(isAdmin) {
                     isAdmin: true;
                 },
-                if(isUser) {
-                    isUser: true
-                }
             }
         },
         // Route History
@@ -377,8 +341,16 @@ const router = new Router({
                 if(isAdmin) {
                     isAdmin: true;
                 },
-                if(isUser) {
-                    isUser: true
+            }
+        },
+        {
+            name: 'detail-history',
+            path: '/history/detail/',
+            component: () => import('@/components/history/detail'),
+            meta: {
+                requiresAuth: true,
+                if(isAdmin) {
+                    isAdmin: true;
                 }
             }
         },

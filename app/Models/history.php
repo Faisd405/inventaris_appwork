@@ -42,12 +42,6 @@ class history extends Model
         return $this->with('pengguna', 'barang')->where('barang_id', $id)->get();
     }
 
-    // getHistory by date range tanggal_awal_penggunaan	to tanggal_akhir_penggunaan
-    public function getHistoryByDate($tanggal_awal_penggunaan, $tanggal_akhir_penggunaan)
-    {
-        return $this->with('pengguna', 'barang')->whereBetween('tanggal_awal_penggunaan', [$tanggal_awal_penggunaan, $tanggal_akhir_penggunaan])->get();
-    }
-
     public function putHistory($request, $barang)
     {
         $historyupdate = history::find($request->id_history);

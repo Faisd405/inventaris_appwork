@@ -9,7 +9,14 @@
           </div>
         </div>
         <div class="card card-default">
-          <div class="card-header">History</div>
+          <div class="card-header d-flex justify-content-between">
+            <div>History</div>
+            <div>
+              <router-link to="/history/detail" class="btn btn-outline-primary"
+                >Cek Riwayat PerBarang</router-link
+              >
+            </div>
+          </div>
           <div class="card-body">
             <div class="table-responsive mt-2">
               <b-row>

@@ -53326,14 +53326,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! @/components/barang/index */ "./resources/assets/src/components/barang/index.vue"));
       },
-      meta: _defineProperty({
+      meta: {
         requiresAuth: true,
         "if": function _if(isAdmin) {
           isAdmin: true;
         }
-      }, "if", function _if(isUser) {
-        isUser: true;
-      })
+      }
     }, {
       name: 'relasiuserbarang',
       path: '/barang/relasi',
@@ -53370,14 +53368,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! @/components/barang/detail */ "./resources/assets/src/components/barang/detail.vue"));
       },
-      meta: _defineProperty({
+      meta: {
         requiresAuth: true,
         "if": function _if(isAdmin) {
           isAdmin: true;
         }
-      }, "if", function _if(isUser) {
-        isUser: true;
-      })
+      }
     }, // Router Pengguna
     {
       name: 'index-pengguna',
@@ -53385,14 +53381,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return __webpack_require__.e(/*! import() */ 37).then(__webpack_require__.bind(null, /*! @/components/pengguna/index */ "./resources/assets/src/components/pengguna/index.vue"));
       },
-      meta: _defineProperty({
+      meta: {
         requiresAuth: true,
         "if": function _if(isAdmin) {
           isAdmin: true;
         }
-      }, "if", function _if(isUser) {
-        isUser: true;
-      })
+      }
     }, {
       name: 'create-pengguna',
       path: '/pengguna/create',
@@ -53419,14 +53413,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return __webpack_require__.e(/*! import() */ 35).then(__webpack_require__.bind(null, /*! @/components/pengguna/detail */ "./resources/assets/src/components/pengguna/detail.vue"));
       },
-      meta: _defineProperty({
+      meta: {
         requiresAuth: true,
         "if": function _if(isAdmin) {
           isAdmin: true;
         }
-      }, "if", function _if(isUser) {
-        isUser: true;
-      })
+      }
     }, // Route kategori
     {
       name: 'index-kategori',
@@ -53434,14 +53426,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return __webpack_require__.e(/*! import() */ 24).then(__webpack_require__.bind(null, /*! @/components/kategori/index */ "./resources/assets/src/components/kategori/index.vue"));
       },
-      meta: _defineProperty({
+      meta: {
         requiresAuth: true,
         "if": function _if(isAdmin) {
           isAdmin: true;
         }
-      }, "if", function _if(isUser) {
-        isUser: true;
-      })
+      }
     }, {
       name: 'create-kategori',
       path: '/kategori/create',
@@ -53468,14 +53458,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! @/components/kategori/detail */ "./resources/assets/src/components/kategori/detail.vue"));
       },
-      meta: _defineProperty({
+      meta: {
         requiresAuth: true,
         "if": function _if(isAdmin) {
           isAdmin: true;
         }
-      }, "if", function _if(isUser) {
-        isUser: true;
-      })
+      }
     }, // Route users
     {
       name: 'index-users',
@@ -53483,14 +53471,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return __webpack_require__.e(/*! import() */ 43).then(__webpack_require__.bind(null, /*! @/components/users/index */ "./resources/assets/src/components/users/index.vue"));
       },
-      meta: _defineProperty({
+      meta: {
         requiresAuth: true,
         "if": function _if(isAdmin) {
           isAdmin: true;
         }
-      }, "if", function _if(isUser) {
-        isUser: true;
-      })
+      }
     }, {
       name: 'create-users',
       path: '/users/create',
@@ -53518,14 +53504,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! @/components/buku/index */ "./resources/assets/src/components/buku/index.vue"));
       },
-      meta: _defineProperty({
+      meta: {
         requiresAuth: true,
         "if": function _if(isAdmin) {
           isAdmin: true;
         }
-      }, "if", function _if(isUser) {
-        isUser: true;
-      })
+      }
     }, {
       name: 'create-buku',
       path: '/buku/create',
@@ -53553,14 +53537,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return __webpack_require__.e(/*! import() */ 40).then(__webpack_require__.bind(null, /*! @/components/sifat/index */ "./resources/assets/src/components/sifat/index.vue"));
       },
-      meta: _defineProperty({
+      meta: {
         requiresAuth: true,
         "if": function _if(isAdmin) {
           isAdmin: true;
         }
-      }, "if", function _if(isUser) {
-        isUser: true;
-      })
+      }
     }, {
       name: 'create-sifat',
       path: '/sifat/create',
@@ -53588,14 +53570,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.bind(null, /*! @/components/jenis/index */ "./resources/assets/src/components/jenis/index.vue"));
       },
-      meta: _defineProperty({
+      meta: {
         requiresAuth: true,
         "if": function _if(isAdmin) {
           isAdmin: true;
         }
-      }, "if", function _if(isUser) {
-        isUser: true;
-      })
+      }
     }, {
       name: 'create-jenis',
       path: '/jenis/create',
@@ -53623,14 +53603,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! @/components/lokasi/index */ "./resources/assets/src/components/lokasi/index.vue"));
       },
-      meta: _defineProperty({
+      meta: {
         requiresAuth: true,
         "if": function _if(isAdmin) {
           isAdmin: true;
         }
-      }, "if", function _if(isUser) {
-        isUser: true;
-      })
+      }
     }, {
       name: 'create-lokasi',
       path: '/lokasi/create',
@@ -53657,14 +53635,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! @/components/lokasi/detail */ "./resources/assets/src/components/lokasi/detail.vue"));
       },
-      meta: _defineProperty({
+      meta: {
         requiresAuth: true,
         "if": function _if(isAdmin) {
           isAdmin: true;
         }
-      }, "if", function _if(isUser) {
-        isUser: true;
-      })
+      }
     }, // Route History
     {
       name: 'index-history',
@@ -53672,14 +53648,24 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! @/components/history/index */ "./resources/assets/src/components/history/index.vue"));
       },
-      meta: _defineProperty({
+      meta: {
         requiresAuth: true,
         "if": function _if(isAdmin) {
           isAdmin: true;
         }
-      }, "if", function _if(isUser) {
-        isUser: true;
-      })
+      }
+    }, {
+      name: 'detail-history',
+      path: '/history/detail/',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 45).then(__webpack_require__.bind(null, /*! @/components/history/detail */ "./resources/assets/src/components/history/detail.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        "if": function _if(isAdmin) {
+          isAdmin: true;
+        }
+      }
     }, // Route Laporan
     {
       name: 'laporan-barang',
