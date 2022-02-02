@@ -2207,6 +2207,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = (_data$name$components = {
   data: function data() {
@@ -35131,80 +35146,90 @@ var render = function () {
               _vm._v(" "),
               _c("sidenav-divider"),
               _vm._v(" "),
-              _c("sidenav-header", [_c("strong", [_vm._v("DataMaster")])]),
-              _vm._v(" "),
-              _c(
-                "sidenav-router-link",
-                {
-                  attrs: {
-                    icon: "ion ion-md-person",
-                    to: "/users",
-                    exact: true,
-                  },
-                },
-                [_vm._v("Management User")]
-              ),
-              _vm._v(" "),
-              _c(
-                "sidenav-menu",
-                { attrs: { icon: "ion ion-md-cube" } },
-                [
-                  _c("template", { slot: "link-text" }, [
-                    _c("strong", [_vm._v("Kategori Barang")]),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "sidenav-router-link",
-                    {
-                      attrs: {
-                        icon: "ion ion-md-desktop",
-                        to: "/sifat",
-                        exact: true,
-                      },
-                    },
-                    [_vm._v("Sifat Barang")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "sidenav-router-link",
-                    {
-                      attrs: {
-                        icon: "ion ion-md-desktop",
-                        to: "/kategori",
-                        exact: true,
-                      },
-                    },
-                    [_vm._v("Kategori Barang")]
-                  ),
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "sidenav-router-link",
-                {
-                  attrs: {
-                    icon: "ion ion-md-desktop",
-                    to: "/jenis",
-                    exact: true,
-                  },
-                },
-                [_vm._v("Jenis Buku")]
-              ),
-              _vm._v(" "),
-              _c(
-                "sidenav-router-link",
-                {
-                  attrs: {
-                    icon: "ion ion-md-compass",
-                    to: "/lokasi",
-                    exact: true,
-                  },
-                },
-                [_vm._v("Lokasi Barang dan Buku")]
-              ),
-              _vm._v(" "),
-              _c("sidenav-divider"),
+              _vm.user.roles[0].name == "admin"
+                ? _c(
+                    "span",
+                    [
+                      _c("sidenav-header", [
+                        _c("strong", [_vm._v("DataMaster")]),
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "sidenav-router-link",
+                        {
+                          attrs: {
+                            icon: "ion ion-md-person",
+                            to: "/users",
+                            exact: true,
+                          },
+                        },
+                        [_vm._v("Management User")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "sidenav-menu",
+                        { attrs: { icon: "ion ion-md-cube" } },
+                        [
+                          _c("template", { slot: "link-text" }, [
+                            _c("strong", [_vm._v("Kategori Barang")]),
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "sidenav-router-link",
+                            {
+                              attrs: {
+                                icon: "ion ion-md-desktop",
+                                to: "/sifat",
+                                exact: true,
+                              },
+                            },
+                            [_vm._v("Sifat Barang")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "sidenav-router-link",
+                            {
+                              attrs: {
+                                icon: "ion ion-md-desktop",
+                                to: "/kategori",
+                                exact: true,
+                              },
+                            },
+                            [_vm._v("Kategori Barang")]
+                          ),
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "sidenav-router-link",
+                        {
+                          attrs: {
+                            icon: "ion ion-md-desktop",
+                            to: "/jenis",
+                            exact: true,
+                          },
+                        },
+                        [_vm._v("Jenis Buku")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "sidenav-router-link",
+                        {
+                          attrs: {
+                            icon: "ion ion-md-compass",
+                            to: "/lokasi",
+                            exact: true,
+                          },
+                        },
+                        [_vm._v("Lokasi Barang dan Buku")]
+                      ),
+                      _vm._v(" "),
+                      _c("sidenav-divider"),
+                    ],
+                    1
+                  )
+                : _vm._e(),
               _vm._v(" "),
               _c("sidenav-header", [
                 _c("strong", [_vm._v("Modul Inventaris")]),
@@ -35241,87 +35266,95 @@ var render = function () {
                   )
                 : _vm._e(),
               _vm._v(" "),
-              _c(
-                "sidenav-menu",
-                { attrs: { icon: "ion ion-md-cube" } },
-                [
-                  _c("template", { slot: "link-text" }, [
-                    _c("strong", [_vm._v("Inventaris Barang")]),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "sidenav-router-link",
-                    {
-                      attrs: {
-                        icon: "ion ion-md-list-box",
-                        to: "/barang",
-                        exact: true,
-                      },
-                    },
-                    [_vm._v("Daftar Barang")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "sidenav-router-link",
-                    {
-                      attrs: {
-                        icon: "ion ion-md-person",
-                        to: "/pengguna",
-                        exact: true,
-                      },
-                    },
-                    [_vm._v("PIC Barang")]
-                  ),
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "sidenav-menu",
-                { attrs: { icon: "ion ion-md-cube" } },
-                [
-                  _c("template", { slot: "link-text" }, [
-                    _c("strong", [_vm._v("Inventaris Buku")]),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "sidenav-router-link",
-                    {
-                      attrs: {
-                        icon: "ion ion-md-book",
-                        to: "/buku",
-                        exact: true,
-                      },
-                    },
-                    [_vm._v("Daftar Buku")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "sidenav-router-link",
-                    {
-                      attrs: {
-                        icon: "ion ion-md-person",
-                        to: "/pengguna",
-                        exact: true,
-                      },
-                    },
-                    [_vm._v("PIC Buku")]
-                  ),
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "sidenav-router-link",
-                {
-                  attrs: {
-                    icon: "ion ion-md-desktop",
-                    to: "/history",
-                    exact: true,
-                  },
-                },
-                [_vm._v("Riwayat Penggunaan Barang")]
-              ),
+              _vm.user.roles[0].name == "admin"
+                ? _c(
+                    "span",
+                    [
+                      _c(
+                        "sidenav-menu",
+                        { attrs: { icon: "ion ion-md-cube" } },
+                        [
+                          _c("template", { slot: "link-text" }, [
+                            _c("strong", [_vm._v("Inventaris Barang")]),
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "sidenav-router-link",
+                            {
+                              attrs: {
+                                icon: "ion ion-md-list-box",
+                                to: "/barang",
+                                exact: true,
+                              },
+                            },
+                            [_vm._v("Daftar Barang")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "sidenav-router-link",
+                            {
+                              attrs: {
+                                icon: "ion ion-md-person",
+                                to: "/pengguna",
+                                exact: true,
+                              },
+                            },
+                            [_vm._v("PIC Barang")]
+                          ),
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "sidenav-menu",
+                        { attrs: { icon: "ion ion-md-cube" } },
+                        [
+                          _c("template", { slot: "link-text" }, [
+                            _c("strong", [_vm._v("Inventaris Buku")]),
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "sidenav-router-link",
+                            {
+                              attrs: {
+                                icon: "ion ion-md-book",
+                                to: "/buku",
+                                exact: true,
+                              },
+                            },
+                            [_vm._v("Daftar Buku")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "sidenav-router-link",
+                            {
+                              attrs: {
+                                icon: "ion ion-md-person",
+                                to: "/pengguna",
+                                exact: true,
+                              },
+                            },
+                            [_vm._v("PIC Buku")]
+                          ),
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "sidenav-router-link",
+                        {
+                          attrs: {
+                            icon: "ion ion-md-desktop",
+                            to: "/history",
+                            exact: true,
+                          },
+                        },
+                        [_vm._v("Riwayat Penggunaan Barang")]
+                      ),
+                    ],
+                    1
+                  )
+                : _vm._e(),
               _vm._v(" "),
               _c("sidenav-divider"),
               _vm._v(" "),

@@ -27,8 +27,8 @@ __webpack_require__.r(__webpack_exports__);
           borderWidth: 1,
           // Colors for the bars
           // lightblue
-          backgroundColor: "rgba(0,0,255,0.2)",
-          borderColor: "rgba(0,0,255,1)",
+          backgroundColor: "rgba(185, 215, 234, 0.5)",
+          borderColor: "rgba(118, 159, 205, 1)",
           pointBorderColor: "#2554FF",
           // length of the bar
           data: []

@@ -19,16 +19,6 @@
               </div>
 
               <div class="form-group">
-                <label>Detail Barang</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  v-model="pengajuan.detail_barang"
-                  placeholder="Masukan Detail Barang"
-                />
-              </div>
-
-              <div class="form-group">
                 <label>Fungsi</label>
                 <input
                   type="text"
@@ -56,6 +46,34 @@
                   v-model="pengajuan.jumlah_barang"
                   placeholder="Masukan Jumlah Barang"
                 />
+              </div>
+
+
+              <div class="form-group">
+                <label>Detail Barang</label>
+                <textarea
+                  type="text"
+                  class="form-control"
+                  v-model="pengajuan.detail_barang"
+                  placeholder="Masukan Detail Barang"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="image">Gambar</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  name="image"
+                  accept="image/png, image/jpeg"
+                  @change="onFileChange"
+                />
+              </div>
+              <br />
+              <div class="preview" v-if="preview">
+                <p>Preview:</p>
+                <img :src="preview" class="img-thumbnail" />
+                <br />
               </div>
 
               <div class="form-group">
@@ -91,9 +109,15 @@ export default {
       pengajuan: {},
       user: {},
       errors: [],
+        preview: null,
     };
   },
   methods: {
+
+    onFileChange(e) {
+      this.pengajuan.image = e.target.files[0];
+      this.preview = URL.createObjectURL(e.target.files[0]);
+    },
     pengajuanStore() {
       axios
         .post("/api/pengajuan", this.pengajuan)

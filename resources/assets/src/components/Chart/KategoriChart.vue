@@ -13,9 +13,9 @@ export default {
           label: "Jumlah Barang per Kategori",
           borderWidth: 1,
           // Colors for the bars
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          backgroundColor: "rgba(185, 215, 234, 0.5)",
 
-          borderColor: "rgba(255,99,132,1)",
+          borderColor: "rgba(118, 159, 205, 1)",
 
           pointBorderColor: "#2554FF",
           // length of the bar

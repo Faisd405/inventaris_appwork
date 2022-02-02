@@ -113,4 +113,12 @@ class barang extends Model
 
         return $barang;
     }
+
+    //Length Barang By all Lokasi
+    public function getLengthBarangByLokasi(){
+        $barang = barang::selectRaw('count(*) as total, lokasi_id')
+            ->groupBy('lokasi_id')->pluck('total');
+
+        return $barang;
+    }
 }

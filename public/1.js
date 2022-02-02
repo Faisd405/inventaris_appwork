@@ -25,8 +25,8 @@ __webpack_require__.r(__webpack_exports__);
           label: "Jumlah Barang per Kategori",
           borderWidth: 1,
           // Colors for the bars
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgba(255,99,132,1)",
+          backgroundColor: "rgba(185, 215, 234, 0.5)",
+          borderColor: "rgba(118, 159, 205, 1)",
           pointBorderColor: "#2554FF",
           // length of the bar
           data: []
@@ -70,6 +70,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Chart/LokasiPieChart.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/Chart/LokasiPieChart.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Pie"],
+  data: function data() {
+    return {
+      chartData: {
+        // Labels for the bars
+        labels: [],
+        datasets: [{
+          label: "Jumlah Barang per Kategori",
+          // Colors for the bars
+          backgroundColor: "rgba(185, 215, 234, 0.2)",
+          borderColor: "rgba(118, 159, 205, 1)",
+          pointBorderColor: "#2554FF",
+          // length of the bar
+          data: []
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            },
+            gridLines: {
+              display: true
+            }
+          }],
+          xAxes: [{
+            gridLines: {
+              display: false
+            }
+          }]
+        },
+        legend: {
+          display: true
+        },
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/lokasi/barang').then(function (response) {
+      _this.chartData.labels = response.data.lokasi;
+      _this.chartData.datasets[0].data = response.data.jumlah;
+
+      _this.renderChart(_this.chartData, _this.options);
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Chart/TotalChart.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/Chart/TotalChart.vue?vue&type=script&lang=js& ***!
@@ -97,8 +166,8 @@ __webpack_require__.r(__webpack_exports__);
           borderWidth: 1,
           // Colors for the bars
           // lightblue
-          backgroundColor: "rgba(0,0,255,0.2)",
-          borderColor: "rgba(0,0,255,1)",
+          backgroundColor: "rgba(185, 215, 234, 0.5)",
+          borderColor: "rgba(118, 159, 205, 1)",
           pointBorderColor: "#2554FF",
           // length of the bar
           data: []
@@ -153,8 +222,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Chart_KategoriChart_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Chart/KategoriChart.vue */ "./resources/assets/src/components/Chart/KategoriChart.vue");
 /* harmony import */ var _Chart_TotalChart_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Chart/TotalChart.vue */ "./resources/assets/src/components/Chart/TotalChart.vue");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Chart_LokasiPieChart_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Chart/LokasiPieChart.vue */ "./resources/assets/src/components/Chart/LokasiPieChart.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 //
 //
 //
@@ -247,6 +317,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -256,7 +336,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     KategoriChart: _Chart_KategoriChart_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    TotalChart: _Chart_TotalChart_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    TotalChart: _Chart_TotalChart_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    LokasiChart: _Chart_LokasiPieChart_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -276,7 +357,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     var uri = "/api/barang";
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(uri).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_3___default.a.get(uri).then(function (response) {
       _this.barang = response.data.barang;
     });
   },
@@ -288,7 +369,7 @@ __webpack_require__.r(__webpack_exports__);
     destroy: function destroy(id) {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("/api/barang/".concat(id)).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default.a["delete"]("/api/barang/".concat(id)).then(function (response) {
         _this2.barang = _this2.barang.filter(function (barang) {
           return barang.id != id;
         });
@@ -300,9 +381,9 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this3 = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.defaults.headers.common["Content-Type"] = "application/json";
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("token");
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/user").then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_3___default.a.defaults.headers.common["Content-Type"] = "application/json";
+    axios__WEBPACK_IMPORTED_MODULE_3___default.a.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("token");
+    axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/user").then(function (response) {
       _this3.user = response.data;
       _this3.loginType = response.data.roles[0].name;
     })["catch"](function (error) {
@@ -627,8 +708,68 @@ var render = function () {
       _c(
         "div",
         {
+          staticClass: "card m-3",
+          staticStyle: { width: "32.3rem", height: "30rem" },
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "card-body" },
+            [
+              _c("label", [_vm._v("Chart Total Barang PerLokasi")]),
+              _vm._v(" "),
+              _c("LokasiChart"),
+            ],
+            1
+          ),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "card m-3",
+          staticStyle: { width: "32.3rem", height: "30rem" },
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "card-body" },
+            [
+              _c("label", [_vm._v("Chart Kategori :")]),
+              _vm._v(" "),
+              _c("KategoriChart"),
+            ],
+            1
+          ),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "card m-3",
+          staticStyle: { width: "32.3rem", height: "30rem" },
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "card-body" },
+            [
+              _c("label", [_vm._v("Chart Total Aset Pertahun :")]),
+              _vm._v(" "),
+              _c("TotalChart"),
+            ],
+            1
+          ),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
           staticClass: "card text-white pallet-light m-3 shadow-lg",
-          staticStyle: { width: "14rem", height: "10rem" },
+          staticStyle: { width: "15rem", height: "10rem" },
         },
         [
           _c(
@@ -648,38 +789,21 @@ var render = function () {
           ),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("h1", { staticClass: "card-title text-info" }, [
-              _vm._v(_vm._s(_vm.barang.length)),
-            ]),
+            _c(
+              "h1",
+              {
+                staticClass:
+                  "card-title text-info text-center align-self-center",
+              },
+              [
+                _vm._v(
+                  "\n          " + _vm._s(_vm.barang.length) + "\n        "
+                ),
+              ]
+            ),
           ]),
         ]
       ),
-      _vm._v(" "),
-      _c("div", { staticClass: "card m-3 col" }, [
-        _c(
-          "div",
-          { staticClass: "card-body" },
-          [
-            _c("label", [_vm._v("Chart Kategori :")]),
-            _vm._v(" "),
-            _c("KategoriChart"),
-          ],
-          1
-        ),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card m-3 col" }, [
-        _c(
-          "div",
-          { staticClass: "card-body" },
-          [
-            _c("label", [_vm._v("Chart Total Aset Pertahun :")]),
-            _vm._v(" "),
-            _c("TotalChart"),
-          ],
-          1
-        ),
-      ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-xl-12 justify-content-center m-3" }, [
         _c("div", { staticClass: "card card-default" }, [
@@ -845,7 +969,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card mb-3 mt-3" }, [
       _c("div", { staticClass: "card-body pallet-darken font-lighten" }, [
         _vm._v(
-          "\n          Halaman laporan yang memberikan informasi data barang\n        "
+          "\n      Halaman laporan yang memberikan informasi data barang\n    "
         ),
       ]),
     ])
@@ -904,6 +1028,56 @@ component.options.__file = "resources/assets/src/components/Chart/KategoriChart.
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_KategoriChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./KategoriChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Chart/KategoriChart.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_KategoriChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/src/components/Chart/LokasiPieChart.vue":
+/*!******************************************************************!*\
+  !*** ./resources/assets/src/components/Chart/LokasiPieChart.vue ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LokasiPieChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LokasiPieChart.vue?vue&type=script&lang=js& */ "./resources/assets/src/components/Chart/LokasiPieChart.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _LokasiPieChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/src/components/Chart/LokasiPieChart.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/src/components/Chart/LokasiPieChart.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/assets/src/components/Chart/LokasiPieChart.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LokasiPieChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./LokasiPieChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Chart/LokasiPieChart.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LokasiPieChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 

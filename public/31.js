@@ -93,6 +93,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -102,10 +120,15 @@ __webpack_require__.r(__webpack_exports__);
     return {
       pengajuan: {},
       user: {},
-      errors: []
+      errors: [],
+      preview: null
     };
   },
   methods: {
+    onFileChange: function onFileChange(e) {
+      this.pengajuan.image = e.target.files[0];
+      this.preview = URL.createObjectURL(e.target.files[0]);
+    },
     pengajuanStore: function pengajuanStore() {
       var _this = this;
 
@@ -236,39 +259,6 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Detail Barang")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.pengajuan.detail_barang,
-                        expression: "pengajuan.detail_barang",
-                      },
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      placeholder: "Masukan Detail Barang",
-                    },
-                    domProps: { value: _vm.pengajuan.detail_barang },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.pengajuan,
-                          "detail_barang",
-                          $event.target.value
-                        )
-                      },
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
                   _c("label", [_vm._v("Fungsi")]),
                   _vm._v(" "),
                   _c("input", {
@@ -359,6 +349,68 @@ var render = function () {
                     },
                   }),
                 ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Detail Barang")]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.pengajuan.detail_barang,
+                        expression: "pengajuan.detail_barang",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Masukan Detail Barang",
+                    },
+                    domProps: { value: _vm.pengajuan.detail_barang },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.pengajuan,
+                          "detail_barang",
+                          $event.target.value
+                        )
+                      },
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "image" } }, [_vm._v("Gambar")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "file",
+                      name: "image",
+                      accept: "image/png, image/jpeg",
+                    },
+                    on: { change: _vm.onFileChange },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _vm.preview
+                  ? _c("div", { staticClass: "preview" }, [
+                      _c("p", [_vm._v("Preview:")]),
+                      _vm._v(" "),
+                      _c("img", {
+                        staticClass: "img-thumbnail",
+                        attrs: { src: _vm.preview },
+                      }),
+                      _vm._v(" "),
+                      _c("br"),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _vm._m(0),
                 _vm._v(" "),

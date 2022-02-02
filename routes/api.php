@@ -92,6 +92,7 @@ Route::delete('/sifat/{id}', [SifatController::class, 'destroy']);
 
 //Route API Lokasi
 Route::get('/lokasi', [LokasiController::class, 'index']);
+Route::get('/lokasi/barang', [LokasiController::class, 'getLengthBarangByLokasi']);
 Route::get('/lokasi/{id}', [LokasiController::class, 'show']);
 Route::post('/lokasi', [LokasiController::class, 'store']);
 Route::put('/lokasi/{id}', [LokasiController::class, 'update']);

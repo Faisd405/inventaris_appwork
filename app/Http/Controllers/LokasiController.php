@@ -63,4 +63,14 @@ class LokasiController extends Controller
             'lokasi' => $lokasi
         ], 200);
     }
+
+    //Length Barang By Lokasi
+    public function getLengthBarangByLokasi(){
+        $lokasi = $this->lokasi->selectLokasi();
+        $jumlah = $this->barang->getLengthBarangByLokasi();
+        return response()->json([
+            'lokasi' => $lokasi,
+            'jumlah' => $jumlah
+        ], 200);
+    }
 }

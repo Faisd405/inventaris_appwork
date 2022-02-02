@@ -46,4 +46,9 @@ class lokasi extends Model
         $lokasi = lokasi::find($id);
         return $lokasi->delete();
     }
+
+    //selectRaw Lokasi and pluck lokasi
+    public function selectLokasi(){
+        return lokasi::selectRaw('lokasi')->pluck('lokasi');
+    }
 }

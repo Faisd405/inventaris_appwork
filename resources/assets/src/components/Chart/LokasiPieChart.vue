@@ -12,7 +12,9 @@ export default {
         datasets: [{
           label: "Jumlah Barang per Kategori",
           // Colors for the bars
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          backgroundColor: "rgba(185, 215, 234, 0.2)",
+
+          borderColor: "rgba(118, 159, 205, 1)",
 
           pointBorderColor: "#2554FF",
           // length of the bar
@@ -48,11 +50,11 @@ export default {
     };
   },
   mounted() {
-    axios.get(`/api/namakategori`).then((response) => {
-      this.chartData.labels = response.data.kategori;
-      this.chartData.datasets[0].data = response.data.jumlah;
-      this.renderChart(this.chartData, this.options);
-    });
+      axios.get('/api/lokasi/barang').then((response) => {
+        this.chartData.labels = response.data.lokasi;
+        this.chartData.datasets[0].data = response.data.jumlah;
+        this.renderChart(this.chartData, this.options);
+      });
   },
 };
 </script>
