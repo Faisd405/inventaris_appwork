@@ -10,7 +10,7 @@ class pengajuan extends Model
     protected $table = 'pengajuan';
 
     protected $fillable = [
-        'nama_barang', 'detail_barang', 'fungsi', 'harga_barang', 'jumlah_barang', 'status', 'user_id'
+        'nama_barang', 'detail_barang', 'fungsi', 'harga_barang', 'jumlah_barang', 'status', 'user_id', 'image'
     ];
 
     public function user()
@@ -26,9 +26,18 @@ class pengajuan extends Model
         return pengajuan::with('user')->find($id);
     }
 
-    public function postPengajuan($request){
-        $pengajuan = $request->merge(['status' => 'Belum diterima']);
-        return pengajuan::create($pengajuan->all());
+    public function postPengajuan($request, $imageName){
+        $pengajuan = new pengajuan;
+        $pengajuan->nama_barang = $request->nama_barang;
+        $pengajuan->detail_barang = $request->detail_barang;
+        $pengajuan->fungsi = $request->fungsi;
+        $pengajuan->harga_barang = $request->harga_barang;
+        $pengajuan->jumlah_barang = $request->jumlah_barang;
+        $pengajuan->status = 'Belum diterima';
+        $pengajuan->user_id = $request->user_id;
+        $pengajuan->image = $imageName;
+        $pengajuan->save();
+        return $pengajuan;
     }
 
     public function putPengajuan($request, $id){

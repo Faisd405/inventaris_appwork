@@ -459,6 +459,20 @@ const router = new Router({
                 isAdmin: true
             }
         },
+        {
+            name: 'detail-pengajuan',
+            path: '/pengajuan/detail/:id',
+            component: () => import('@/components/pengajuan/detail'),
+            meta: {
+                requiresAuth: true,
+                if(isAdmin) {
+                    isAdmin: true;
+                },
+                if(isUser) {
+                    isUser: true
+                }
+            }
+        },
         ]
     }]
 })

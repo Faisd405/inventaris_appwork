@@ -52,17 +52,27 @@
                     <td>
                       <router-link
                         :to="{
-                          name: 'edit-pengajuan',
+                          name: 'detail-pengajuan',
                           params: { id: data.id },
                         }"
                         class="btn btn-sm btn-primary"
-                        >Edit</router-link
                       >
+                        <i class="ion ion-ios-eye"></i
+                      ></router-link>
+                      <router-link
+                        :to="{
+                          name: 'edit-pengajuan',
+                          params: { id: data.id },
+                        }"
+                        class="btn btn-sm btn-warning"
+                      >
+                        <i class="ion ion-md-create"></i
+                      ></router-link>
                       <button
                         @click="destroy(data.id)"
                         class="btn btn-sm btn-danger"
                       >
-                        Hapus
+                        <i class="ion ion-ios-trash"></i>
                       </button>
                     </td>
                   </tr>

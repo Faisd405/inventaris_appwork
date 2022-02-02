@@ -119,8 +119,16 @@ export default {
       this.preview = URL.createObjectURL(e.target.files[0]);
     },
     pengajuanStore() {
+        const formData = new FormData();
+        formData.append("image", this.pengajuan.image);
+        formData.append("nama_barang", this.pengajuan.nama_barang);
+        formData.append("fungsi", this.pengajuan.fungsi);
+        formData.append("harga_barang", this.pengajuan.harga_barang);
+        formData.append("jumlah_barang", this.pengajuan.jumlah_barang);
+        formData.append("detail_barang", this.pengajuan.detail_barang);
+        formData.append("user_id", this.user.id);
       axios
-        .post("/api/pengajuan", this.pengajuan)
+        .post("/api/pengajuan", formData)
         .then((response) => {
           this.$router.push("/pengajuan/user/" + this.user.id);
         })

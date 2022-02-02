@@ -90,6 +90,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -268,12 +278,34 @@ var render = function () {
                                         staticClass: "btn btn-sm btn-primary",
                                         attrs: {
                                           to: {
+                                            name: "detail-pengajuan",
+                                            params: { id: data.id },
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "ion ion-ios-eye",
+                                        }),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "router-link",
+                                      {
+                                        staticClass: "btn btn-sm btn-warning",
+                                        attrs: {
+                                          to: {
                                             name: "edit-pengajuan",
                                             params: { id: data.id },
                                           },
                                         },
                                       },
-                                      [_vm._v("Edit")]
+                                      [
+                                        _c("i", {
+                                          staticClass: "ion ion-md-create",
+                                        }),
+                                      ]
                                     ),
                                     _vm._v(" "),
                                     _c(
@@ -287,9 +319,9 @@ var render = function () {
                                         },
                                       },
                                       [
-                                        _vm._v(
-                                          "\n                      Hapus\n                    "
-                                        ),
+                                        _c("i", {
+                                          staticClass: "ion ion-ios-trash",
+                                        }),
                                       ]
                                     ),
                                   ],

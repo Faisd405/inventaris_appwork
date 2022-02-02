@@ -47,10 +47,19 @@
                     <td>
                       <router-link
                         :to="{
-                          name: 'setuju-pengajuan-admin',
+                          name: 'detail-pengajuan',
                           params: { id: data.id },
                         }"
                         class="btn btn-sm btn-primary mt-1"
+                      >
+                        <i class="ion ion-ios-eye"></i
+                      ></router-link>
+                      <router-link
+                        :to="{
+                          name: 'setuju-pengajuan-admin',
+                          params: { id: data.id },
+                        }"
+                        class="btn btn-sm btn-success mt-1"
                         >Setuju</router-link
                       >
                       <button

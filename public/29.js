@@ -85,6 +85,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -242,6 +251,25 @@ var render = function () {
                                       {
                                         staticClass:
                                           "btn btn-sm btn-primary mt-1",
+                                        attrs: {
+                                          to: {
+                                            name: "detail-pengajuan",
+                                            params: { id: data.id },
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "ion ion-ios-eye",
+                                        }),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "router-link",
+                                      {
+                                        staticClass:
+                                          "btn btn-sm btn-success mt-1",
                                         attrs: {
                                           to: {
                                             name: "setuju-pengajuan-admin",

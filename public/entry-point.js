@@ -53768,6 +53768,20 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         requiresAuth: true,
         isAdmin: true
       }
+    }, {
+      name: 'detail-pengajuan',
+      path: '/pengajuan/detail/:id',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 44).then(__webpack_require__.bind(null, /*! @/components/pengajuan/detail */ "./resources/assets/src/components/pengajuan/detail.vue"));
+      },
+      meta: _defineProperty({
+        requiresAuth: true,
+        "if": function _if(isAdmin) {
+          isAdmin: true;
+        }
+      }, "if", function _if(isUser) {
+        isUser: true;
+      })
     }]
   }]
 });
