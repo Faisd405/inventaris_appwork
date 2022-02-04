@@ -137,10 +137,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      nama_barang: "",
+      barang_id: "",
       tanggal_awal: "",
       tanggal_akhir: "",
       historys: [],
@@ -183,7 +214,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       return historys.filter(function (history) {
-        return !history.barang.nama_barang.indexOf(_this2.nama_barang);
+        return !history.barang_id.toString().indexOf(_this2.barang_id);
       });
     },
     filterhistorysBytanggalAwal: function filterhistorysBytanggalAwal(historys) {
@@ -233,270 +264,311 @@ var render = function () {
               _c(
                 "div",
                 [
-                  _c("h5", [_vm._v("List of historys")]),
-                  _vm._v(" "),
                   _c(
                     "b-row",
                     [
-                      _c(
-                        "b-col",
-                        { staticClass: "my-1", attrs: { lg: "6" } },
-                        [
-                          _c(
-                            "b-form-group",
-                            {
-                              staticClass: "mb-0",
-                              attrs: {
-                                label: "Filter Barang",
-                                "label-for": "filter-input",
-                                "label-cols-sm": "3",
-                                "label-align-sm": "right",
-                                "label-size": "sm",
+                      _c("b-col", { staticClass: "my-1", attrs: { lg: "6" } }, [
+                        _c(
+                          "form",
+                          [
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mt-1 mb-1",
+                                attrs: {
+                                  label: "Filter Barang",
+                                  "label-for": "filter-input",
+                                  "label-cols-sm": "3",
+                                  "label-align-sm": "left",
+                                  "label-size": "sm",
+                                },
                               },
-                            },
-                            [
-                              _c("b-input-group", { attrs: { size: "sm" } }, [
-                                _c(
-                                  "select",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.nama_barang,
-                                        expression: "nama_barang",
-                                      },
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: { id: "filter-input" },
-                                    on: {
-                                      change: function ($event) {
-                                        var $$selectedVal =
-                                          Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function (o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function (o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                        _vm.nama_barang = $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      },
-                                    },
-                                  },
-                                  [
-                                    _c("option", { attrs: { value: "" } }, [
-                                      _vm._v("Semua Barang"),
-                                    ]),
-                                    _vm._v(" "),
-                                    _vm._l(_vm.barang, function (barang) {
-                                      return _c(
-                                        "option",
+                              [
+                                _c("b-input-group", { attrs: { size: "sm" } }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
                                         {
-                                          key: barang.id,
-                                          domProps: {
-                                            value: barang.nama_barang,
-                                          },
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.barang_id,
+                                          expression: "barang_id",
                                         },
-                                        [
-                                          _vm._v(
-                                            "\n                          " +
-                                              _vm._s(barang.nama_barang) +
-                                              "\n                        "
-                                          ),
-                                        ]
-                                      )
-                                    }),
-                                  ],
-                                  2
-                                ),
-                              ]),
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-form-group",
-                            {
-                              staticClass: "mb-0",
-                              attrs: {
-                                label: "Filter Tanggal awal",
-                                "label-for": "filter-input",
-                                "label-cols-sm": "3",
-                                "label-align-sm": "right",
-                                "label-size": "sm",
-                              },
-                            },
-                            [
-                              _c("b-input-group", { attrs: { size: "sm" } }, [
-                                _c(
-                                  "select",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.tanggal_awal,
-                                        expression: "tanggal_awal",
-                                      },
-                                    ],
-                                    staticClass: "form-control",
-                                    on: {
-                                      change: function ($event) {
-                                        var $$selectedVal =
-                                          Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function (o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function (o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                        _vm.tanggal_awal = $event.target
-                                          .multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { id: "filter-input" },
+                                      on: {
+                                        change: function ($event) {
+                                          var $$selectedVal =
+                                            Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function (o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function (o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                          _vm.barang_id = $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        },
                                       },
                                     },
-                                  },
-                                  [
-                                    _c("option", { attrs: { value: "" } }, [
-                                      _vm._v(
-                                        "\n                          Semua Tanggal Awal Penggunaan\n                        "
+                                    [
+                                      _c("option", { attrs: { value: "" } }, [
+                                        _vm._v("Semua Barang"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.barang, function (barang) {
+                                        return _c(
+                                          "option",
+                                          {
+                                            key: barang.id,
+                                            domProps: { value: barang.id },
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                            " +
+                                                _vm._s(barang.nama_barang) +
+                                                "\n                          "
+                                            ),
+                                          ]
+                                        )
+                                      }),
+                                    ],
+                                    2
+                                  ),
+                                ]),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mt-1 mb-1",
+                                attrs: {
+                                  label: "Filter Tanggal awal",
+                                  "label-for": "filter-input",
+                                  "label-cols-sm": "3",
+                                  "label-align-sm": "left",
+                                  "label-size": "sm",
+                                },
+                              },
+                              [
+                                _c("b-input-group", { attrs: { size: "sm" } }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.tanggal_awal,
+                                          expression: "tanggal_awal",
+                                        },
+                                      ],
+                                      staticClass: "form-control",
+                                      on: {
+                                        change: function ($event) {
+                                          var $$selectedVal =
+                                            Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function (o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function (o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                          _vm.tanggal_awal = $event.target
+                                            .multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        },
+                                      },
+                                    },
+                                    [
+                                      _c("option", { attrs: { value: "" } }, [
+                                        _vm._v(
+                                          "\n                            Semua Tanggal Awal Penggunaan\n                          "
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(
+                                        _vm.FilterAwal,
+                                        function (history) {
+                                          return _c(
+                                            "option",
+                                            {
+                                              key: history.tanggal_awal_penggunaan,
+                                              domProps: {
+                                                value:
+                                                  history.tanggal_awal_penggunaan,
+                                              },
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                            " +
+                                                  _vm._s(
+                                                    history.tanggal_awal_penggunaan
+                                                  ) +
+                                                  "\n                          "
+                                              ),
+                                            ]
+                                          )
+                                        }
                                       ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _vm._l(_vm.FilterAwal, function (history) {
-                                      return _c(
-                                        "option",
-                                        {
-                                          key: history.tanggal_awal_penggunaan,
-                                          domProps: {
-                                            value:
-                                              history.tanggal_awal_penggunaan,
-                                          },
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                          " +
-                                              _vm._s(
-                                                history.tanggal_awal_penggunaan
-                                              ) +
-                                              "\n                        "
-                                          ),
-                                        ]
-                                      )
-                                    }),
-                                  ],
-                                  2
-                                ),
-                              ]),
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-form-group",
-                            {
-                              staticClass: "mb-0",
-                              attrs: {
-                                label: "Filter Tanggal akhir",
-                                "label-for": "filter-input",
-                                "label-cols-sm": "3",
-                                "label-align-sm": "right",
-                                "label-size": "sm",
-                              },
-                            },
-                            [
-                              _c("b-input-group", { attrs: { size: "sm" } }, [
-                                _c(
-                                  "select",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.tanggal_akhir,
-                                        expression: "tanggal_akhir",
-                                      },
                                     ],
-                                    staticClass: "form-control",
-                                    on: {
-                                      change: function ($event) {
-                                        var $$selectedVal =
-                                          Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function (o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function (o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                        _vm.tanggal_akhir = $event.target
-                                          .multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
+                                    2
+                                  ),
+                                ]),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-form-group",
+                              {
+                                staticClass: "mt-1 mb-1",
+                                attrs: {
+                                  label: "Filter Tanggal akhir",
+                                  "label-for": "filter-input",
+                                  "label-cols-sm": "3",
+                                  "label-align-sm": "left",
+                                  "label-size": "sm",
+                                },
+                              },
+                              [
+                                _c("b-input-group", { attrs: { size: "sm" } }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.tanggal_akhir,
+                                          expression: "tanggal_akhir",
+                                        },
+                                      ],
+                                      staticClass: "form-control",
+                                      on: {
+                                        change: function ($event) {
+                                          var $$selectedVal =
+                                            Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function (o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function (o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                          _vm.tanggal_akhir = $event.target
+                                            .multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        },
                                       },
                                     },
-                                  },
-                                  [
-                                    _c("option", { attrs: { value: "" } }, [
-                                      _vm._v(
-                                        "\n                          Semua Tanggal Akhir Penggunaan\n                        "
+                                    [
+                                      _c("option", { attrs: { value: "" } }, [
+                                        _vm._v(
+                                          "\n                            Semua Tanggal Akhir Penggunaan\n                          "
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(
+                                        _vm.FilterAkhir,
+                                        function (history) {
+                                          return _c(
+                                            "option",
+                                            {
+                                              key: history.tanggal_akhir_penggunaan,
+                                              domProps: {
+                                                value:
+                                                  history.tanggal_akhir_penggunaan,
+                                              },
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                            " +
+                                                  _vm._s(
+                                                    history.tanggal_akhir_penggunaan
+                                                  ) +
+                                                  "\n                          "
+                                              ),
+                                            ]
+                                          )
+                                        }
                                       ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _vm._l(_vm.FilterAkhir, function (history) {
-                                      return _c(
-                                        "option",
-                                        {
-                                          key: history.tanggal_akhir_penggunaan,
-                                          domProps: {
-                                            value:
-                                              history.tanggal_akhir_penggunaan,
-                                          },
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                          " +
-                                              _vm._s(
-                                                history.tanggal_akhir_penggunaan
-                                              ) +
-                                              "\n                        "
-                                          ),
-                                        ]
-                                      )
-                                    }),
-                                  ],
-                                  2
-                                ),
-                              ]),
-                            ],
-                            1
+                                    ],
+                                    2
+                                  ),
+                                ]),
+                              ],
+                              1
+                            ),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("label", [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-primary btn-sm mt-1 mb-1",
+                              attrs: {
+                                href:
+                                  "/history/history_pdf/detail/" +
+                                  _vm.barang_id +
+                                  "/" +
+                                  _vm.tanggal_awal +
+                                  "/" +
+                                  _vm.tanggal_akhir,
+                              },
+                            },
+                            [_vm._v("Print Riwayat Barang PDF")]
                           ),
-                        ],
-                        1
-                      ),
+                        ]),
+                        _vm._v(" "),
+                        _c("label", [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-primary btn-sm mt-1 mb-1",
+                              attrs: {
+                                href:
+                                  "/history/history_excel/detail/" +
+                                  _vm.barang_id +
+                                  "/" +
+                                  _vm.tanggal_awal +
+                                  "/" +
+                                  _vm.tanggal_akhir,
+                              },
+                            },
+                            [_vm._v("Print Riwayat Barang Excel")]
+                          ),
+                        ]),
+                      ]),
                     ],
                     1
                   ),

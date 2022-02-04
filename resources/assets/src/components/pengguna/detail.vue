@@ -3,11 +3,11 @@
     <div class="row justify-content-center">
       <div class="col-xl-12">
         <div class="card card-default">
-          <div class="card-header">User</div>
+          <div class="card-header">Detail Pengguna <b-badge variant="primary">{{ pengguna.name }}</b-badge> </div>
 
           <div class="card-body">
             <div class="table-responsive mt-2">
-              <h2>Ini adalah barang yang dipakai {{ pengguna.name }}</h2>
+              <h2>Inventaris Barang </h2>
 
               <v-table
                 :data="barang"
@@ -57,7 +57,7 @@
               </v-table>
             </div>
             <div class="table-responsive mt-2">
-                <h2>Ini adalah buku yang dipakai {{ pengguna.name }}</h2>
+                <h2>Inventaris Buku </h2>
 
               <v-table
                 :data="buku"

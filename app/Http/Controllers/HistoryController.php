@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\barang;
 use App\Models\history;
 use PDF;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HistoryController extends Controller
 {
@@ -44,6 +45,7 @@ class HistoryController extends Controller
         return $pdf->stream($name);
     }
 
+
     public function HistoryPDF()
     {
         $history = $this->history->getHistory();
@@ -76,5 +78,20 @@ class HistoryController extends Controller
             'message' => 'barang Berhasil Dihapus!',
             'data'    => $history
         ], 200);
+    }
+
+
+    public function HistoryDetailBarangPDF($barang_id, $tanggal_awal=NULL, $tanggal_akhir=NULL)
+    {
+        $history = $this->history->getHistoryDetailByBarangIdAndDate($barang_id, $tanggal_awal, $tanggal_akhir);
+        $pdf = PDF::loadView('history.riwayatbarangdetail_pdf', compact('history', 'tanggal_awal', 'tanggal_akhir'));
+        $name = 'Laporan Riwayat Detail Barang ' . date('d-m-Y') . '.pdf';
+        return $pdf->stream($name);
+    }
+
+    public function HistoryDetailBarangExcel($barang_id, $tanggal_awal=NULL, $tanggal_akhir=NULL)
+    {
+        $name = 'Laporan Riwayat Detail Barang ' . date('d-m-Y') . '.xlsx';
+        return Excel::download(new \App\Exports\RiwayatExport($barang_id, $tanggal_awal, $tanggal_akhir), $name);
     }
 }

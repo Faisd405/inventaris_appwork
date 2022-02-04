@@ -42,6 +42,31 @@ class history extends Model
         return $this->with('pengguna', 'barang')->where('barang_id', $id)->get();
     }
 
+    public function getHistoryDetailByBarangIdAndDate($barang_id, $tanggal_awal, $tanggal_akhir)
+    {
+        if ($barang_id && $tanggal_awal && $tanggal_akhir) {
+            $history = $this->with('pengguna', 'barang')
+                ->where('barang_id', $barang_id)
+                ->where('tanggal_awal_penggunaan', $tanggal_awal)
+                ->where('tanggal_akhir_penggunaan', $tanggal_akhir)->get();
+        }
+        elseif ($barang_id && $tanggal_awal) {
+            $history = $this->with('pengguna', 'barang')
+                ->where('barang_id', $barang_id)
+                ->where('tanggal_awal_penggunaan', $tanggal_awal)->get();
+        }
+        elseif ($barang_id && $tanggal_akhir) {
+            $history = $this->with('pengguna', 'barang')
+                ->where('barang_id', $barang_id)
+                ->where('tanggal_akhir_penggunaan', $tanggal_akhir)->get();
+        }
+        elseif ($barang_id) {
+            $history = $this->with('pengguna', 'barang')
+                ->where('barang_id', $barang_id)->get();
+        }
+        return $history;
+    }
+
     public function putHistory($request, $barang)
     {
         $historyupdate = history::find($request->id_history);
@@ -77,8 +102,7 @@ class history extends Model
             }
             if ($request->keterangan == "undefined") {
                 $history->keterangan = "Pengguna " . $barang->nama_barang . " Diganti pada tanggal " . date('d-m-Y');
-            }
-            else {
+            } else {
                 $history->keterangan = "Pengguna " . $barang->nama_barang . " Diganti pada tanggal " . date('d-m-Y');
             }
             $history->status = "Tidak Digunakan";

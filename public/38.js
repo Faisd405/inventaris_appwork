@@ -236,19 +236,24 @@ var render = function () {
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-xl-12" }, [
         _c("div", { staticClass: "card card-default" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("User")]),
+          _c(
+            "div",
+            { staticClass: "card-header" },
+            [
+              _vm._v("Detail Pengguna "),
+              _c("b-badge", { attrs: { variant: "primary" } }, [
+                _vm._v(_vm._s(_vm.pengguna.name)),
+              ]),
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c(
               "div",
               { staticClass: "table-responsive mt-2" },
               [
-                _c("h2", [
-                  _vm._v(
-                    "Ini adalah barang yang dipakai " +
-                      _vm._s(_vm.pengguna.name)
-                  ),
-                ]),
+                _c("h2", [_vm._v("Inventaris Barang ")]),
                 _vm._v(" "),
                 _c(
                   "v-table",
@@ -373,11 +378,7 @@ var render = function () {
               "div",
               { staticClass: "table-responsive mt-2" },
               [
-                _c("h2", [
-                  _vm._v(
-                    "Ini adalah buku yang dipakai " + _vm._s(_vm.pengguna.name)
-                  ),
-                ]),
+                _c("h2", [_vm._v("Inventaris Buku ")]),
                 _vm._v(" "),
                 _c(
                   "v-table",

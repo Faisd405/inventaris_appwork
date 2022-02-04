@@ -15,82 +15,113 @@
           <div class="card-body">
             <div class="table-responsive mt-2">
               <div>
-                <h5>List of historys</h5>
                 <b-row>
                   <b-col lg="6" class="my-1">
-                    <b-form-group
-                      label="Filter Barang"
-                      label-for="filter-input"
-                      label-cols-sm="3"
-                      label-align-sm="right"
-                      label-size="sm"
-                      class="mb-0"
-                    >
-                      <b-input-group size="sm">
-                        <select
-                          id="filter-input"
-                          class="form-control"
-                          v-model="nama_barang"
-                        >
-                          <option value="">Semua Barang</option>
-                          <option
-                            v-for="barang in barang"
-                            :value="barang.nama_barang"
-                            :key="barang.id"
+                    <form>
+                      <b-form-group
+                        label="Filter Barang"
+                        label-for="filter-input"
+                        label-cols-sm="3"
+                        label-align-sm="left"
+                        label-size="sm"
+                        class="mt-1 mb-1"
+                      >
+                        <b-input-group size="sm">
+                          <select
+                            id="filter-input"
+                            class="form-control"
+                            v-model="barang_id"
                           >
-                            {{ barang.nama_barang }}
-                          </option>
-                        </select>
-                      </b-input-group>
-                    </b-form-group>
+                            <option value="">Semua Barang</option>
+                            <option
+                              v-for="barang in barang"
+                              :value="barang.id"
+                              :key="barang.id"
+                            >
+                              {{ barang.nama_barang }}
+                            </option>
+                          </select>
+                        </b-input-group>
+                      </b-form-group>
 
-                    <b-form-group
-                      label="Filter Tanggal awal"
-                      label-for="filter-input"
-                      label-cols-sm="3"
-                      label-align-sm="right"
-                      label-size="sm"
-                      class="mb-0"
-                    >
-                      <b-input-group size="sm">
-                        <select class="form-control" v-model="tanggal_awal">
-                          <option value="">
-                            Semua Tanggal Awal Penggunaan
-                          </option>
-                          <option
-                            v-for="history in FilterAwal"
-                            :value="history.tanggal_awal_penggunaan"
-                            :key="history.tanggal_awal_penggunaan"
-                          >
-                            {{ history.tanggal_awal_penggunaan }}
-                          </option>
-                        </select>
-                      </b-input-group>
-                    </b-form-group>
+                      <b-form-group
+                        label="Filter Tanggal awal"
+                        label-for="filter-input"
+                        label-cols-sm="3"
+                        label-align-sm="left"
+                        label-size="sm"
+                        class="mt-1 mb-1"
+                      >
+                        <b-input-group size="sm">
+                          <select class="form-control" v-model="tanggal_awal">
+                            <option value="">
+                              Semua Tanggal Awal Penggunaan
+                            </option>
+                            <option
+                              v-for="history in FilterAwal"
+                              :value="history.tanggal_awal_penggunaan"
+                              :key="history.tanggal_awal_penggunaan"
+                            >
+                              {{ history.tanggal_awal_penggunaan }}
+                            </option>
+                          </select>
+                        </b-input-group>
+                      </b-form-group>
 
-                    <b-form-group
-                      label="Filter Tanggal akhir"
-                      label-for="filter-input"
-                      label-cols-sm="3"
-                      label-align-sm="right"
-                      label-size="sm"
-                      class="mb-0"
+                      <b-form-group
+                        label="Filter Tanggal akhir"
+                        label-for="filter-input"
+                        label-cols-sm="3"
+                        label-align-sm="left"
+                        label-size="sm"
+                        class="mt-1 mb-1"
+                      >
+                        <b-input-group size="sm">
+                          <select class="form-control" v-model="tanggal_akhir">
+                            <option value="">
+                              Semua Tanggal Akhir Penggunaan
+                            </option>
+                            <option
+                              v-for="history in FilterAkhir"
+                              :value="history.tanggal_akhir_penggunaan"
+                              :key="history.tanggal_akhir_penggunaan"
+                            >
+                              {{ history.tanggal_akhir_penggunaan }}
+                            </option>
+                          </select>
+                        </b-input-group>
+                      </b-form-group>
+                    </form>
+                    <!-- Export PDF -->
+                    <label
+                      ><a
+                        :href="
+                          '/history/history_pdf/detail/' +
+                          barang_id +
+                          '/' +
+                          tanggal_awal +
+                          '/' +
+                          tanggal_akhir
+                        "
+                        class="btn btn-primary btn-sm mt-1 mb-1"
+                        >Print Riwayat Barang PDF</a
+                      ></label
                     >
-                      <b-input-group size="sm">
-                        <select class="form-control" v-model="tanggal_akhir">
-                          <option value="">
-                            Semua Tanggal Akhir Penggunaan
-                          </option>
-                          <option
-                            v-for="history in FilterAkhir"
-                            :value="history.tanggal_akhir_penggunaan"
-                            :key="history.tanggal_akhir_penggunaan"
-                          >
-                            {{ history.tanggal_akhir_penggunaan }}
-                          </option>
-                        </select>
-                      </b-input-group>
-                    </b-form-group>
+                    <!-- Export excel -->
+                    <label
+                      ><a
+                        :href="
+                          '/history/history_excel/detail/' +
+                          barang_id +
+                          '/' +
+                          tanggal_awal +
+                          '/' +
+                          tanggal_akhir
+                        "
+                        class="btn btn-primary btn-sm mt-1 mb-1"
+                        >Print Riwayat Barang Excel</a
+                      ></label
+                    >
                   </b-col>
                 </b-row>
 
@@ -130,7 +161,7 @@
 export default {
   data() {
     return {
-      nama_barang: "",
+      barang_id: "",
       tanggal_awal: "",
       tanggal_akhir: "",
       historys: [],
@@ -183,7 +214,7 @@ export default {
   methods: {
     filterhistorysBynamaBarang: function (historys) {
       return historys.filter(
-        (history) => !history.barang.nama_barang.indexOf(this.nama_barang)
+        (history) => !history.barang_id.toString().indexOf(this.barang_id)
       );
     },
     filterhistorysBytanggalAwal: function (historys) {

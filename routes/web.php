@@ -21,4 +21,12 @@ Route::get('/barang/HistoryPDFDetail/{id}', [HistoryController::class, 'HistoryP
 Route::get('/barang/HistoryPDF', [HistoryController::class, 'HistoryPDF'])->name('barang.riwayatbarang_pdf');
 Route::get('/barang/barang_excel', [BarangController::class, 'barang_excel'])->name('barang.barang_excel');
 
+Route::get('/history/history_pdf/detail/{barang_id}', [HistoryController::class, 'HistoryDetailBarangPDF'])->name('history.HistoryDetailBarangPDF');
+Route::get('/history/history_pdf/detail/{barang_id}/{tanggal_awal}', [HistoryController::class, 'HistoryDetailBarangPDF'])->name('history.HistoryDetailBarangPDF');
+Route::get('/history/history_pdf/detail/{barang_id}/{tanggal_awal}/{tanggal_akhir}', [HistoryController::class, 'HistoryDetailBarangPDF'])->name('history.HistoryDetailBarangPDF');
+
+Route::get('history/history_excel/detail/{barang_id}', [HistoryController::class, 'HistoryDetailBarangExcel'])->name('history.HistoryDetailBarangExcel');
+Route::get('history/history_excel/detail/{barang_id}/{tanggal_awal}', [HistoryController::class, 'HistoryDetailBarangExcel'])->name('history.HistoryDetailBarangExcel');
+Route::get('history/history_excel/detail/{barang_id}/{tanggal_awal}/{tanggal_akhir}', [HistoryController::class, 'HistoryDetailBarangExcel'])->name('history.HistoryDetailBarangExcel');
+
 Route::get('/{any}', 'ApplicationController')->where('any', '.*');
