@@ -27,7 +27,8 @@ class BarangController extends Controller
         $this->history = $history;
     }
 
-    public function respons($barang){
+    public function respons($barang)
+    {
         return response()->json([
             'barang' => $barang,
         ]);
@@ -66,7 +67,8 @@ class BarangController extends Controller
         ], 200);
     }
 
-    public function image($request){
+    public function image($request)
+    {
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -79,7 +81,8 @@ class BarangController extends Controller
         return $imageName;
     }
 
-    public function lampiran($request){
+    public function lampiran($request)
+    {
         $request->validate([
             'lampiran' => 'required|mimes:pdf|max:2048'
         ]);
@@ -124,18 +127,23 @@ class BarangController extends Controller
         ], 200);
     }
 
-    public function relasi(Request $request, $id){
-        $barang = $this->barang->putBarang($request, $id);
+    public function relasi(Request $request, $id)
+    {
+        $barang = $this->barang->getBarangById($id);
+        $pengguna_barang = barang::find($id);
 
-        $history = $this->history->updateHistory($request, $barang);
+        if ($request->pengguna_id != $pengguna_barang->pengguna_id) {
+            $this->history->updateHistory($request, $barang, $id);
+        }
+        $this->barang->putBarang($request, $id);
+
 
         return response()->json([
             'barang' => $barang,
-            'history' => $history
         ], 200);
     }
 
-    public function gantifoto ($request, $barang)
+    public function gantifoto($request, $barang)
     {
         if ($request->hasFile('image')) {
             $request->validate([
@@ -146,15 +154,15 @@ class BarangController extends Controller
             if ($barang->image != "default.jpg") {
                 File::delete('images/' . $barang->image);
             }
-        }
-        else{
+        } else {
             $imageName = $barang->image;
         }
 
         return $imageName;
     }
 
-    public function updateLampiran($request, $barang){
+    public function updateLampiran($request, $barang)
+    {
 
         if ($request->hasFile('lampiran')) {
             $request->validate([
@@ -165,8 +173,7 @@ class BarangController extends Controller
             if ($barang->lampiran != "default.pdf") {
                 File::delete('lampiran/' . $barang->lampiran);
             }
-        }
-        else{
+        } else {
             $lampiranName = $barang->lampiran;
         }
 
@@ -176,7 +183,13 @@ class BarangController extends Controller
     public function update(Request $request, $id)
     {
         $barang = $this->barang->getBarangById($id);
-        $this->history->updateHistory($request, $barang);
+        $pengguna_barang = barang::find($id);
+
+        if ($request->pengguna_id != $pengguna_barang->pengguna_id) {
+            $this->history->updateHistory($request, $barang, $id);
+        }
+
+        $this->barang->putBarang($request, $id);
 
         $imageName = $this->gantifoto($request, $barang);
         $updateLampiran = $this->updateLampiran($request, $barang);

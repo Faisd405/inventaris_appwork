@@ -28,7 +28,7 @@ class HistoryController extends Controller
 
     public function show($id)
     {
-        $history = $this->history->getHistoryDetail($id);
+        $history = $this->history->getHistoryDetailByBarangId($id);
         return response([
             'success' => true,
             'message' => 'List Semua history',
@@ -38,7 +38,7 @@ class HistoryController extends Controller
 
     public function HistoryPDFDetail($id)
     {
-        $history = $this->history->getHistoryDetail($id);
+        $history = $this->history->getHistoryDetailByBarangId($id);
         $pdf = PDF::loadView('barang.riwayatbarangdetail_pdf', compact('history'));
         $name = 'Laporan Riwayat Detail Barang ' . date('d-m-Y') . '.pdf';
         return $pdf->stream($name);

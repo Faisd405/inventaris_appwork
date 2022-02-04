@@ -1,51 +1,123 @@
 <template>
   <div class="container mt-3">
     <div class="row justify-content-center">
-      <div class="card card-default">
-        <div class="card-header">history</div>
+      <div class="col-xl-12">
+        <div class="card mb-3">
+          <div class="card-body pallet-darken font-lighten">
+            Halaman ini merupakan untuk mengetahui Riwayat penggunaan barang
+            yang pernah memakai barang dan yang sedang memakai barang
+          </div>
+        </div>
+        <div class="card card-default">
+          <div class="card-header d-flex justify-content-between">
+            <div>Cek History Per Barang</div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive mt-2">
+              <div>
+                <h5>List of historys</h5>
+                <b-row>
+                  <b-col lg="6" class="my-1">
+                    <b-form-group
+                      label="Filter Barang"
+                      label-for="filter-input"
+                      label-cols-sm="3"
+                      label-align-sm="right"
+                      label-size="sm"
+                      class="mb-0"
+                    >
+                      <b-input-group size="sm">
+                        <select
+                          id="filter-input"
+                          class="form-control"
+                          v-model="nama_barang"
+                        >
+                          <option value="">Semua Barang</option>
+                          <option
+                            v-for="barang in barang"
+                            :value="barang.nama_barang"
+                            :key="barang.id"
+                          >
+                            {{ barang.nama_barang }}
+                          </option>
+                        </select>
+                      </b-input-group>
+                    </b-form-group>
 
-        <div class="card-body">
-          <div class="table-responsive mt-2">
-            <label>Minimal Tanggal Awal:</label>
-            <input class="form-control" v-model="filters.tanggal_awal_penggunaan.value.min" min="1997-01-01" :max="filters.tanggal_awal_penggunaan.value.max"/>
+                    <b-form-group
+                      label="Filter Tanggal awal"
+                      label-for="filter-input"
+                      label-cols-sm="3"
+                      label-align-sm="right"
+                      label-size="sm"
+                      class="mb-0"
+                    >
+                      <b-input-group size="sm">
+                        <select class="form-control" v-model="tanggal_awal">
+                          <option value="">
+                            Semua Tanggal Awal Penggunaan
+                          </option>
+                          <option
+                            v-for="history in FilterAwal"
+                            :value="history.tanggal_awal_penggunaan"
+                            :key="history.tanggal_awal_penggunaan"
+                          >
+                            {{ history.tanggal_awal_penggunaan }}
+                          </option>
+                        </select>
+                      </b-input-group>
+                    </b-form-group>
 
-            <label>Maksimal Tanggal Awal:</label>
-            <input class="form-control" v-model="filters.tanggal_awal_penggunaan.value.max" max="2030-12-31" :min="filters.tanggal_awal_penggunaan.value.min" />
-            <br />
+                    <b-form-group
+                      label="Filter Tanggal akhir"
+                      label-for="filter-input"
+                      label-cols-sm="3"
+                      label-align-sm="right"
+                      label-size="sm"
+                      class="mb-0"
+                    >
+                      <b-input-group size="sm">
+                        <select class="form-control" v-model="tanggal_akhir">
+                          <option value="">
+                            Semua Tanggal Akhir Penggunaan
+                          </option>
+                          <option
+                            v-for="history in FilterAkhir"
+                            :value="history.tanggal_akhir_penggunaan"
+                            :key="history.tanggal_akhir_penggunaan"
+                          >
+                            {{ history.tanggal_akhir_penggunaan }}
+                          </option>
+                        </select>
+                      </b-input-group>
+                    </b-form-group>
+                  </b-col>
+                </b-row>
 
-            <v-table
-              :data="history"
-              :filters="filters"
-              class="table table-striped table-bordered"
-            >
-              <thead slot="head">
-                <th>Nama Barang</th>
-                <th>Tanggal Awal Penggunaan</th>
-                <th>Tanggal Akhir Penggunaan</th>
-                <th>Keterangan</th>
-                <th>Nama Pengguna</th>
-              </thead>
-              <tbody slot="body" slot-scope="{ displayData }">
-                <tr v-for="data in displayData" :key="data.guid">
-                  <!-- index number -->
-                  <td scope="data">
-                    {{ data.barang.nama_barang }}
-                  </td>
-                  <td>
-                    {{ data.tanggal_awal_penggunaan }}
-                  </td>
-                  <td>
-                    {{ data.tanggal_akhir_penggunaan }}
-                  </td>
-                  <td>
-                    {{ data.keterangan }}
-                  </td>
-                  <td>
-                    {{ data.pengguna.name }}
-                  </td>
-                </tr>
-              </tbody>
-            </v-table>
+                <table class="table table-striped table-bordered">
+                  <thead slot="HEAD">
+                    <tr>
+                      <th>Nama Barang</th>
+                      <th>Tanggal Awal Penggunaan</th>
+                      <th>Tanggal Akhir Penggunaan</th>
+                      <th>Nama Pengguna</th>
+                      <th>Keterangan</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="history in filterhistorys" :key="history.id">
+                      <td>{{ history.barang.nama_barang }}</td>
+                      <td>{{ history.tanggal_awal_penggunaan }}</td>
+                      <td>{{ history.tanggal_akhir_penggunaan }}</td>
+                      <td>{{ history.pengguna.name }}</td>
+                      <td>{{ history.keterangan }}</td>
+                      <td>{{ history.status }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -55,44 +127,76 @@
 
 
 <script>
-import axios from "axios";
 export default {
-  metaInfo: {
-    title: "history",
-  },
   data() {
     return {
-      filters: {
-        tanggal_awal_penggunaan: { value: { min: "", max: "" }, custom: this.dateFilter },
-      },
-      history: [],
-      user: "",
-      isLoggedIn: false,
-      loginType: null,
+      nama_barang: "",
+      tanggal_awal: "",
+      tanggal_akhir: "",
+      historys: [],
+      barang: [],
+      barangs: "",
     };
   },
-  methods: {
-    dateFilter(filterValue, row) {
-        const min = filterValue.min;
-        const max = filterValue.max;
-        const rowValue = row.tanggal_awal_penggunaan;
-        if (min && max) {
-            return rowValue >= min && rowValue <= max;
-        }
-        if (min) {
-            return rowValue >= min;
-        }
-        if (max) {
-            return rowValue <= max;
-        }
-        return true;
-        },
-  },
+
   created() {
-    let uri = `/api/history`;
-    axios.get(uri).then((response) => {
-      this.history = response.data.history;
+    axios.get("/api/history").then((response) => {
+      this.historys = response.data.history;
     });
+    axios.get("/api/barang").then((response) => {
+      this.barang = response.data.barang;
+    });
+  },
+
+  computed: {
+    filterhistorys: function () {
+      return this.filterhistorysBynamaBarang(
+        this.filterhistorysBytanggalAwal(
+          this.filterhistorysBytanggalAkhir(this.historys)
+        )
+      );
+    },
+
+    // Remove Duplicate history.tanggal_awal_penggunaan
+    FilterAwal: function () {
+      return this.historys.filter(
+        (history, index, self) =>
+          index ===
+          self.findIndex(
+            (t) => t.tanggal_awal_penggunaan === history.tanggal_awal_penggunaan
+          )
+      );
+    },
+
+    FilterAkhir: function () {
+      return this.historys.filter(
+        (history, index, self) =>
+          index ===
+          self.findIndex(
+            (t) =>
+              t.tanggal_akhir_penggunaan === history.tanggal_akhir_penggunaan
+          )
+      );
+    },
+  },
+
+  methods: {
+    filterhistorysBynamaBarang: function (historys) {
+      return historys.filter(
+        (history) => !history.barang.nama_barang.indexOf(this.nama_barang)
+      );
+    },
+    filterhistorysBytanggalAwal: function (historys) {
+      return historys.filter(
+        (history) => !history.tanggal_awal_penggunaan.indexOf(this.tanggal_awal)
+      );
+    },
+    filterhistorysBytanggalAkhir: function (historys) {
+      return historys.filter(
+        (history) =>
+          !history.tanggal_akhir_penggunaan.indexOf(this.tanggal_akhir)
+      );
+    },
   },
 };
 </script>

@@ -37,7 +37,7 @@ class history extends Model
         return $this->with('pengguna', 'barang')->get();
     }
 
-    public function getHistoryDetail($id)
+    public function getHistoryDetailByBarangId($id)
     {
         return $this->with('pengguna', 'barang')->where('barang_id', $id)->get();
     }
@@ -67,9 +67,9 @@ class history extends Model
         $history->save();
     }
 
-    public function updateHistory($request, $barang)
+    public function updateHistory($request, $barang, $id)
     {
-        $history = history::where('barang_id', $barang->id)->orderBy('id', 'desc')->first();
+        $history = history::where('barang_id', $id)->orderBy('id', 'desc')->first();
         if ($history) {
             $history->tanggal_akhir_penggunaan = date('d-m-Y');
             if ($request->keterangan != "undefined") {
@@ -87,7 +87,7 @@ class history extends Model
 
         $history = new history;
         $history->pengguna_id = $request->pengguna_id;
-        $history->barang_id = $barang->id;
+        $history->barang_id = $id;
         $history->tanggal_awal_penggunaan = date('d-m-Y');
         $history->tanggal_akhir_penggunaan = "Masih Terpakai";
         $history->keterangan = "Barang " . $barang->nama_barang . " dipakai pada tanggal " . date('d-m-Y');

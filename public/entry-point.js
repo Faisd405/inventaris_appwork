@@ -53379,7 +53379,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-pengguna',
       path: '/pengguna',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 37).then(__webpack_require__.bind(null, /*! @/components/pengguna/index */ "./resources/assets/src/components/pengguna/index.vue"));
+        return __webpack_require__.e(/*! import() */ 40).then(__webpack_require__.bind(null, /*! @/components/pengguna/index */ "./resources/assets/src/components/pengguna/index.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53391,7 +53391,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-pengguna',
       path: '/pengguna/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 34).then(__webpack_require__.bind(null, /*! @/components/pengguna/create */ "./resources/assets/src/components/pengguna/create.vue"));
+        return __webpack_require__.e(/*! import() */ 37).then(__webpack_require__.bind(null, /*! @/components/pengguna/create */ "./resources/assets/src/components/pengguna/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53401,7 +53401,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'edit-pengguna',
       path: '/pengguna/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 36).then(__webpack_require__.bind(null, /*! @/components/pengguna/edit */ "./resources/assets/src/components/pengguna/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 39).then(__webpack_require__.bind(null, /*! @/components/pengguna/edit */ "./resources/assets/src/components/pengguna/edit.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53411,7 +53411,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'detail-pengguna',
       path: '/pengguna/detail/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 35).then(__webpack_require__.bind(null, /*! @/components/pengguna/detail */ "./resources/assets/src/components/pengguna/detail.vue"));
+        return __webpack_require__.e(/*! import() */ 38).then(__webpack_require__.bind(null, /*! @/components/pengguna/detail */ "./resources/assets/src/components/pengguna/detail.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53424,7 +53424,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-kategori',
       path: '/kategori',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 24).then(__webpack_require__.bind(null, /*! @/components/kategori/index */ "./resources/assets/src/components/kategori/index.vue"));
+        return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! @/components/kategori/index */ "./resources/assets/src/components/kategori/index.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53436,7 +53436,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-kategori',
       path: '/kategori/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! @/components/kategori/create */ "./resources/assets/src/components/kategori/create.vue"));
+        return __webpack_require__.e(/*! import() */ 23).then(__webpack_require__.bind(null, /*! @/components/kategori/create */ "./resources/assets/src/components/kategori/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53446,7 +53446,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'edit-kategori',
       path: '/kategori/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 23).then(__webpack_require__.bind(null, /*! @/components/kategori/edit */ "./resources/assets/src/components/kategori/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! @/components/kategori/edit */ "./resources/assets/src/components/kategori/edit.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53456,7 +53456,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'detail-kategori',
       path: '/kategori/detail/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! @/components/kategori/detail */ "./resources/assets/src/components/kategori/detail.vue"));
+        return __webpack_require__.e(/*! import() */ 24).then(__webpack_require__.bind(null, /*! @/components/kategori/detail */ "./resources/assets/src/components/kategori/detail.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53469,7 +53469,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-users',
       path: '/users',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 43).then(__webpack_require__.bind(null, /*! @/components/users/index */ "./resources/assets/src/components/users/index.vue"));
+        return __webpack_require__.e(/*! import() */ 46).then(__webpack_require__.bind(null, /*! @/components/users/index */ "./resources/assets/src/components/users/index.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53481,7 +53481,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-users',
       path: '/users/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 41).then(__webpack_require__.bind(null, /*! @/components/users/create */ "./resources/assets/src/components/users/create.vue"));
+        return __webpack_require__.e(/*! import() */ 44).then(__webpack_require__.bind(null, /*! @/components/users/create */ "./resources/assets/src/components/users/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53491,7 +53491,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'edit-users',
       path: '/users/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 42).then(__webpack_require__.bind(null, /*! @/components/users/edit */ "./resources/assets/src/components/users/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 45).then(__webpack_require__.bind(null, /*! @/components/users/edit */ "./resources/assets/src/components/users/edit.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53535,7 +53535,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-sifat',
       path: '/sifat',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 40).then(__webpack_require__.bind(null, /*! @/components/sifat/index */ "./resources/assets/src/components/sifat/index.vue"));
+        return __webpack_require__.e(/*! import() */ 43).then(__webpack_require__.bind(null, /*! @/components/sifat/index */ "./resources/assets/src/components/sifat/index.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53547,7 +53547,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-sifat',
       path: '/sifat/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 38).then(__webpack_require__.bind(null, /*! @/components/sifat/create */ "./resources/assets/src/components/sifat/create.vue"));
+        return __webpack_require__.e(/*! import() */ 41).then(__webpack_require__.bind(null, /*! @/components/sifat/create */ "./resources/assets/src/components/sifat/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53557,7 +53557,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'edit-sifat',
       path: '/sifat/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 39).then(__webpack_require__.bind(null, /*! @/components/sifat/edit */ "./resources/assets/src/components/sifat/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 42).then(__webpack_require__.bind(null, /*! @/components/sifat/edit */ "./resources/assets/src/components/sifat/edit.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53568,7 +53568,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-jenis',
       path: '/jenis',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.bind(null, /*! @/components/jenis/index */ "./resources/assets/src/components/jenis/index.vue"));
+        return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! @/components/jenis/index */ "./resources/assets/src/components/jenis/index.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53580,7 +53580,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-jenis',
       path: '/jenis/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.bind(null, /*! @/components/jenis/create */ "./resources/assets/src/components/jenis/create.vue"));
+        return __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.bind(null, /*! @/components/jenis/create */ "./resources/assets/src/components/jenis/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53590,7 +53590,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'edit-jenis',
       path: '/jenis/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! @/components/jenis/edit */ "./resources/assets/src/components/jenis/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! @/components/jenis/edit */ "./resources/assets/src/components/jenis/edit.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53601,7 +53601,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-lokasi',
       path: '/lokasi',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! @/components/lokasi/index */ "./resources/assets/src/components/lokasi/index.vue"));
+        return __webpack_require__.e(/*! import() */ 30).then(__webpack_require__.bind(null, /*! @/components/lokasi/index */ "./resources/assets/src/components/lokasi/index.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53613,7 +53613,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-lokasi',
       path: '/lokasi/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! @/components/lokasi/create */ "./resources/assets/src/components/lokasi/create.vue"));
+        return __webpack_require__.e(/*! import() */ 27).then(__webpack_require__.bind(null, /*! @/components/lokasi/create */ "./resources/assets/src/components/lokasi/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53623,7 +53623,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'edit-lokasi',
       path: '/lokasi/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 27).then(__webpack_require__.bind(null, /*! @/components/lokasi/edit */ "./resources/assets/src/components/lokasi/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 29).then(__webpack_require__.bind(null, /*! @/components/lokasi/edit */ "./resources/assets/src/components/lokasi/edit.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53633,7 +53633,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'detail-lokasi',
       path: '/lokasi/detail/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! @/components/lokasi/detail */ "./resources/assets/src/components/lokasi/detail.vue"));
+        return __webpack_require__.e(/*! import() */ 28).then(__webpack_require__.bind(null, /*! @/components/lokasi/detail */ "./resources/assets/src/components/lokasi/detail.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53646,7 +53646,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-history',
       path: '/history',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! @/components/history/index */ "./resources/assets/src/components/history/index.vue"));
+        return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! @/components/history/index */ "./resources/assets/src/components/history/index.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53658,7 +53658,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'detail-history',
       path: '/history/detail/',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 45).then(__webpack_require__.bind(null, /*! @/components/history/detail */ "./resources/assets/src/components/history/detail.vue"));
+        return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! @/components/history/detail */ "./resources/assets/src/components/history/detail.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53708,7 +53708,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-pengajuan',
       path: '/pengajuan/user/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 31).then(__webpack_require__.bind(null, /*! @/components/pengajuan/user/create */ "./resources/assets/src/components/pengajuan/user/create.vue"));
+        return __webpack_require__.e(/*! import() */ 34).then(__webpack_require__.bind(null, /*! @/components/pengajuan/user/create */ "./resources/assets/src/components/pengajuan/user/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53718,7 +53718,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'edit-pengajuan',
       path: '/pengajuan/user/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 32).then(__webpack_require__.bind(null, /*! @/components/pengajuan/user/edit */ "./resources/assets/src/components/pengajuan/user/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 35).then(__webpack_require__.bind(null, /*! @/components/pengajuan/user/edit */ "./resources/assets/src/components/pengajuan/user/edit.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53728,7 +53728,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-pengajuan',
       path: '/pengajuan/user/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 33).then(__webpack_require__.bind(null, /*! @/components/pengajuan/user/index */ "./resources/assets/src/components/pengajuan/user/index.vue"));
+        return __webpack_require__.e(/*! import() */ 36).then(__webpack_require__.bind(null, /*! @/components/pengajuan/user/index */ "./resources/assets/src/components/pengajuan/user/index.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53738,7 +53738,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-pengajuan-admin',
       path: '/pengajuan/admin',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 29).then(__webpack_require__.bind(null, /*! @/components/pengajuan/admin/index */ "./resources/assets/src/components/pengajuan/admin/index.vue"));
+        return __webpack_require__.e(/*! import() */ 31).then(__webpack_require__.bind(null, /*! @/components/pengajuan/admin/index */ "./resources/assets/src/components/pengajuan/admin/index.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53748,7 +53748,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'setuju-pengajuan-admin',
       path: '/pengajuan/admin/setuju/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 30).then(__webpack_require__.bind(null, /*! @/components/pengajuan/admin/setuju */ "./resources/assets/src/components/pengajuan/admin/setuju.vue"));
+        return __webpack_require__.e(/*! import() */ 32).then(__webpack_require__.bind(null, /*! @/components/pengajuan/admin/setuju */ "./resources/assets/src/components/pengajuan/admin/setuju.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -53758,7 +53758,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'detail-pengajuan',
       path: '/pengajuan/detail/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 44).then(__webpack_require__.bind(null, /*! @/components/pengajuan/detail */ "./resources/assets/src/components/pengajuan/detail.vue"));
+        return __webpack_require__.e(/*! import() */ 33).then(__webpack_require__.bind(null, /*! @/components/pengajuan/detail */ "./resources/assets/src/components/pengajuan/detail.vue"));
       },
       meta: _defineProperty({
         requiresAuth: true,

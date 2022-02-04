@@ -20,7 +20,7 @@
               <router-link
                 :to="{ name: 'create-users' }"
                 class="btn btn-md btn-primary"
-                >Tambah Data Management Users</router-link
+                >Tambah Users</router-link
               >
             </span>
             <div class="table-responsive mt-2">
