@@ -214,7 +214,7 @@ export default {
   methods: {
     filterhistorysBynamaBarang: function (historys) {
       return historys.filter(
-        (history) => !history.barang_id.toString().indexOf(this.barang_id)
+        (history) => !history.barang.id.toString().indexOf(this.barang_id)
       );
     },
     filterhistorysBytanggalAwal: function (historys) {

@@ -214,7 +214,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       return historys.filter(function (history) {
-        return !history.barang_id.toString().indexOf(_this2.barang_id);
+        return !history.barang.id.toString().indexOf(_this2.barang_id);
       });
     },
     filterhistorysBytanggalAwal: function filterhistorysBytanggalAwal(historys) {
