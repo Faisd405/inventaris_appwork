@@ -92,45 +92,47 @@
                         </b-input-group>
                       </b-form-group>
                     </form>
-                    <!-- Export PDF -->
-                    <label
-                      ><a
-                        :href="
-                          '/history/history_pdf/detail/' +
-                          barang_id +
-                          '/' +
-                          tanggal_awal +
-                          '/' +
-                          tanggal_akhir
-                        "
-                        class="btn btn-primary btn-sm mt-1 mb-1"
-                        >Print Riwayat Barang PDF</a
-                      ></label
-                    >
-                    <!-- Export excel -->
-                    <label
-                      ><a
-                        :href="
-                          '/history/history_excel/detail/' +
-                          barang_id +
-                          '/' +
-                          tanggal_awal +
-                          '/' +
-                          tanggal_akhir
-                        "
-                        class="btn btn-primary btn-sm mt-1 mb-1"
-                        >Print Riwayat Barang Excel</a
-                      ></label
-                    >
+                    <span v-if="barang_id[0] != ''">
+                      <!-- Export PDF -->
+                      <label
+                        ><a
+                          :href="
+                            '/history/history_pdf/detail/' +
+                            barang_id +
+                            '/' +
+                            tanggal_awal +
+                            '/' +
+                            tanggal_akhir
+                          "
+                          class="btn btn-primary btn-sm mt-1 mb-1"
+                          >Print Riwayat Barang PDF</a
+                        ></label
+                      >
+                      <!-- Export excel -->
+                      <label
+                        ><a
+                          :href="
+                            '/history/history_excel/detail/' +
+                            barang_id +
+                            '/' +
+                            tanggal_awal +
+                            '/' +
+                            tanggal_akhir
+                          "
+                          class="btn btn-primary btn-sm mt-1 mb-1"
+                          >Print Riwayat Barang Excel</a
+                        ></label
+                      >
+                    </span>
                   </b-col>
                 </b-row>
 
                 <v-table
                   :data="filterhistorys"
                   class="table table-striped table-bordered"
-                :currentPage.sync="currentPage"
-                :pageSize="5"
-                @totalPagesChanged="totalPages = $event"
+                  :currentPage.sync="currentPage"
+                  :pageSize="5"
+                  @totalPagesChanged="totalPages = $event"
                 >
                   <thead slot="head">
                     <tr>
@@ -153,10 +155,10 @@
                     </tr>
                   </tbody>
                 </v-table>
-              <smart-pagination
-                :currentPage.sync="currentPage"
-                :totalPages="totalPages"
-              />
+                <smart-pagination
+                  :currentPage.sync="currentPage"
+                  :totalPages="totalPages"
+                />
               </div>
             </div>
           </div>

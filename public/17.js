@@ -178,6 +178,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -557,43 +559,49 @@ var render = function () {
                           1
                         ),
                         _vm._v(" "),
-                        _c("label", [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "btn btn-primary btn-sm mt-1 mb-1",
-                              attrs: {
-                                href:
-                                  "/history/history_pdf/detail/" +
-                                  _vm.barang_id +
-                                  "/" +
-                                  _vm.tanggal_awal +
-                                  "/" +
-                                  _vm.tanggal_akhir,
-                              },
-                            },
-                            [_vm._v("Print Riwayat Barang PDF")]
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("label", [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "btn btn-primary btn-sm mt-1 mb-1",
-                              attrs: {
-                                href:
-                                  "/history/history_excel/detail/" +
-                                  _vm.barang_id +
-                                  "/" +
-                                  _vm.tanggal_awal +
-                                  "/" +
-                                  _vm.tanggal_akhir,
-                              },
-                            },
-                            [_vm._v("Print Riwayat Barang Excel")]
-                          ),
-                        ]),
+                        _vm.barang_id[0] != ""
+                          ? _c("span", [
+                              _c("label", [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass:
+                                      "btn btn-primary btn-sm mt-1 mb-1",
+                                    attrs: {
+                                      href:
+                                        "/history/history_pdf/detail/" +
+                                        _vm.barang_id +
+                                        "/" +
+                                        _vm.tanggal_awal +
+                                        "/" +
+                                        _vm.tanggal_akhir,
+                                    },
+                                  },
+                                  [_vm._v("Print Riwayat Barang PDF")]
+                                ),
+                              ]),
+                              _vm._v(" "),
+                              _c("label", [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass:
+                                      "btn btn-primary btn-sm mt-1 mb-1",
+                                    attrs: {
+                                      href:
+                                        "/history/history_excel/detail/" +
+                                        _vm.barang_id +
+                                        "/" +
+                                        _vm.tanggal_awal +
+                                        "/" +
+                                        _vm.tanggal_akhir,
+                                    },
+                                  },
+                                  [_vm._v("Print Riwayat Barang Excel")]
+                                ),
+                              ]),
+                            ])
+                          : _vm._e(),
                       ]),
                     ],
                     1
