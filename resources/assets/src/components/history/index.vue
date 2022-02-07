@@ -18,7 +18,7 @@
             </div>
           </div>
           <div class="card-body">
-            <div class="table-responsive mt-2">
+            <div class="mt-2">
               <b-row>
                 <b-col lg="6" class="my-1">
                   <b-form-group
@@ -161,6 +161,11 @@
                   <span v-if="loginType != 'admin'"> Tidak ada Akses </span>
                 </template>
               </b-table>
+              <b-pagination
+                v-model="currentPage"
+                :total-rows="rows"
+                :per-page="perPage"
+              ></b-pagination>
             </div>
           </div>
         </div>
@@ -270,6 +275,11 @@ export default {
       if (this.errors.length) {
         e.preventDefault();
       }
+    },
+  },
+  computed: {
+    rows() {
+      return this.history.length;
     },
   },
   mounted() {

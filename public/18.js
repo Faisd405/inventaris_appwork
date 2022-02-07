@@ -183,6 +183,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -305,6 +310,11 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
+  computed: {
+    rows: function rows() {
+      return this.history.length;
+    }
+  },
   mounted: function mounted() {
     var _this4 = this;
 
@@ -374,7 +384,7 @@ var render = function () {
           _c("div", { staticClass: "card-body" }, [
             _c(
               "div",
-              { staticClass: "table-responsive mt-2" },
+              { staticClass: "mt-2" },
               [
                 _c(
                   "b-row",
@@ -780,6 +790,17 @@ var render = function () {
                       },
                     },
                   ]),
+                }),
+                _vm._v(" "),
+                _c("b-pagination", {
+                  attrs: { "total-rows": _vm.rows, "per-page": _vm.perPage },
+                  model: {
+                    value: _vm.currentPage,
+                    callback: function ($$v) {
+                      _vm.currentPage = $$v
+                    },
+                    expression: "currentPage",
+                  },
                 }),
               ],
               1
