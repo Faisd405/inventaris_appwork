@@ -36,6 +36,9 @@
                 :data="users"
                 :filters="filters"
                 class="table table-striped table-bordered"
+                :currentPage.sync="currentPage"
+                :pageSize="5"
+                @totalPagesChanged="totalPages = $event"
               >
                 <thead slot="head">
                   <tr>
@@ -77,6 +80,10 @@
                   </tr>
                 </tbody>
               </v-table>
+              <smart-pagination
+                :currentPage.sync="currentPage"
+                :totalPages="totalPages"
+              />
             </div>
           </div>
         </div>
@@ -101,6 +108,8 @@ export default {
       user: "",
       isLoggedIn: false,
       loginType: "",
+      currentPage: 1,
+      totalPages: 0,
     };
   },
   created() {

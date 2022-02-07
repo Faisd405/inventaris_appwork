@@ -173,21 +173,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      filters: {
-        barang_id: {
-          value: "",
-          keys: ["barang_id"]
-        }
-      },
       barang_id: ["", ""],
       tanggal_awal: "",
       tanggal_akhir: "",
       historys: [],
       barang: [],
-      barangs: ""
+      barangs: "",
+      currentPage: 1,
+      totalPages: 0
     };
   },
   created: function created() {
@@ -371,11 +372,6 @@ var render = function () {
                                     2
                                   ),
                                 ]),
-                                _vm._v(
-                                  "\n                      " +
-                                    _vm._s(_vm.filters.barang_id.value) +
-                                    "\n                    "
-                                ),
                               ],
                               1
                             ),
@@ -607,7 +603,22 @@ var render = function () {
                     "v-table",
                     {
                       staticClass: "table table-striped table-bordered",
-                      attrs: { data: _vm.filterhistorys, filters: _vm.filters },
+                      attrs: {
+                        data: _vm.filterhistorys,
+                        currentPage: _vm.currentPage,
+                        pageSize: 5,
+                      },
+                      on: {
+                        "update:currentPage": function ($event) {
+                          _vm.currentPage = $event
+                        },
+                        "update:current-page": function ($event) {
+                          _vm.currentPage = $event
+                        },
+                        totalPagesChanged: function ($event) {
+                          _vm.totalPages = $event
+                        },
+                      },
                       scopedSlots: _vm._u([
                         {
                           key: "body",
@@ -669,6 +680,21 @@ var render = function () {
                       ]),
                     ]
                   ),
+                  _vm._v(" "),
+                  _c("smart-pagination", {
+                    attrs: {
+                      currentPage: _vm.currentPage,
+                      totalPages: _vm.totalPages,
+                    },
+                    on: {
+                      "update:currentPage": function ($event) {
+                        _vm.currentPage = $event
+                      },
+                      "update:current-page": function ($event) {
+                        _vm.currentPage = $event
+                      },
+                    },
+                  }),
                 ],
                 1
               ),

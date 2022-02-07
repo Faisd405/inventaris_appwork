@@ -42,7 +42,6 @@
                             </option>
                           </select>
                         </b-input-group>
-                        {{ filters.barang_id.value }}
                       </b-form-group>
 
                       <b-form-group
@@ -128,8 +127,10 @@
 
                 <v-table
                   :data="filterhistorys"
-                  :filters="filters"
                   class="table table-striped table-bordered"
+                :currentPage.sync="currentPage"
+                :pageSize="5"
+                @totalPagesChanged="totalPages = $event"
                 >
                   <thead slot="head">
                     <tr>
@@ -152,6 +153,10 @@
                     </tr>
                   </tbody>
                 </v-table>
+              <smart-pagination
+                :currentPage.sync="currentPage"
+                :totalPages="totalPages"
+              />
               </div>
             </div>
           </div>
@@ -166,15 +171,14 @@
 export default {
   data() {
     return {
-      filters: {
-        barang_id: { value: "", keys: ["barang_id"] },
-      },
       barang_id: ["", ""],
       tanggal_awal: "",
       tanggal_akhir: "",
       historys: [],
       barang: [],
       barangs: "",
+      currentPage: 1,
+      totalPages: 0,
     };
   },
 

@@ -109,6 +109,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -118,7 +132,11 @@ __webpack_require__.r(__webpack_exports__);
     return {
       buku: [],
       barang: [],
-      lokasi: {}
+      lokasi: {},
+      currentPage: 1,
+      totalPages: 0,
+      currentPage1: 1,
+      totalPages1: 0
     };
   },
   created: function created() {
@@ -172,7 +190,22 @@ var render = function () {
                   "v-table",
                   {
                     staticClass: "table table-striped table-bordered",
-                    attrs: { data: _vm.barang },
+                    attrs: {
+                      data: _vm.barang,
+                      currentPage: _vm.currentPage,
+                      pageSize: 5,
+                    },
+                    on: {
+                      "update:currentPage": function ($event) {
+                        _vm.currentPage = $event
+                      },
+                      "update:current-page": function ($event) {
+                        _vm.currentPage = $event
+                      },
+                      totalPagesChanged: function ($event) {
+                        _vm.totalPages = $event
+                      },
+                    },
                     scopedSlots: _vm._u([
                       {
                         key: "body",
@@ -235,6 +268,21 @@ var render = function () {
                   ]
                 ),
                 _vm._v(" "),
+                _c("smart-pagination", {
+                  attrs: {
+                    currentPage: _vm.currentPage,
+                    totalPages: _vm.totalPages,
+                  },
+                  on: {
+                    "update:currentPage": function ($event) {
+                      _vm.currentPage = $event
+                    },
+                    "update:current-page": function ($event) {
+                      _vm.currentPage = $event
+                    },
+                  },
+                }),
+                _vm._v(" "),
                 _c("h2", [
                   _vm._v(
                     "Ini adalah buku yang berada di " +
@@ -246,7 +294,22 @@ var render = function () {
                   "v-table",
                   {
                     staticClass: "table table-striped table-bordered",
-                    attrs: { data: _vm.buku },
+                    attrs: {
+                      data: _vm.buku,
+                      currentPage: _vm.currentPage1,
+                      pageSize: 5,
+                    },
+                    on: {
+                      "update:currentPage": function ($event) {
+                        _vm.currentPage1 = $event
+                      },
+                      "update:current-page": function ($event) {
+                        _vm.currentPage1 = $event
+                      },
+                      totalPagesChanged: function ($event) {
+                        _vm.totalPages1 = $event
+                      },
+                    },
                     scopedSlots: _vm._u([
                       {
                         key: "body",
@@ -415,6 +478,21 @@ var render = function () {
                     ]),
                   ]
                 ),
+                _vm._v(" "),
+                _c("smart-pagination", {
+                  attrs: {
+                    currentPage: _vm.currentPage1,
+                    totalPages: _vm.totalPages1,
+                  },
+                  on: {
+                    "update:currentPage": function ($event) {
+                      _vm.currentPage1 = $event
+                    },
+                    "update:current-page": function ($event) {
+                      _vm.currentPage1 = $event
+                    },
+                  },
+                }),
               ],
               1
             ),

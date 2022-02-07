@@ -34,6 +34,9 @@
                 :data="jenis"
                 :filters="filters"
                 class="table table-striped table-bordered"
+                :currentPage.sync="currentPage"
+                :pageSize="5"
+                @totalPagesChanged="totalPages = $event"
               >
                 <thead slot="head">
                   <tr>
@@ -52,7 +55,7 @@
                       {{ data.jenis_buku }}
                     </td>
                     <td>
-                       <span v-if="loginType == 'admin'">
+                      <span v-if="loginType == 'admin'">
                         <router-link
                           :to="{
                             name: 'edit-jenis',
@@ -74,6 +77,10 @@
                   </tr>
                 </tbody>
               </v-table>
+              <smart-pagination
+                :currentPage.sync="currentPage"
+                :totalPages="totalPages"
+              />
             </div>
           </div>
         </div>
@@ -98,6 +105,8 @@ export default {
       user: "",
       isLoggedIn: false,
       loginType: null,
+      currentPage: 1,
+      totalPages: 0,
     };
   },
   created() {
@@ -119,7 +128,9 @@ export default {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + localStorage.getItem("token");
 
-    axios.get(`/api/user`).then((response) => {
+    axios
+      .get(`/api/user`)
+      .then((response) => {
         this.user = response.data;
         this.loginType = response.data.roles[0].name;
       })
@@ -129,7 +140,7 @@ export default {
           this.$router.push("/login");
         }
         console.error(error);
-      })
+      });
   },
 };
 </script>

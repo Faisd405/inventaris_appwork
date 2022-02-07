@@ -12,6 +12,9 @@
               <v-table
                 :data="barang"
                 class="table table-striped table-bordered"
+                :currentPage.sync="currentPage"
+                :pageSize="5"
+                @totalPagesChanged="totalPages = $event"
               >
                 <thead slot="head">
                   <tr>
@@ -55,6 +58,10 @@
                   </tr>
                 </tbody>
               </v-table>
+              <smart-pagination
+                :currentPage.sync="currentPage"
+                :totalPages="totalPages"
+              />
             </div>
             <div class="table-responsive mt-2">
                 <h2>Inventaris Buku </h2>
@@ -62,6 +69,9 @@
               <v-table
                 :data="buku"
                 class="table table-striped table-bordered"
+                :currentPage.sync="currentPage1"
+                :pageSize="5"
+                @totalPagesChanged="totalPages1 = $event"
               >
                 <!-- Id	judul	Penulis	Penerbit	Tanggal	Kondisi	Jumlah	Jenis	Pengguna	Lokasi	Action -->
                 <thead slot="head">
@@ -134,6 +144,10 @@
                   </tr>
                 </tbody>
               </v-table>
+              <smart-pagination
+                :currentPage.sync="currentPage1"
+                :totalPages="totalPages1"
+              />
             </div>
 
           </div>
@@ -158,6 +172,10 @@ export default {
       user: "",
       isLoggedIn: false,
       loginType: '',
+      currentPage: 1,
+      totalPages: 0,
+      currentPage1: 1,
+      totalPages1: 0,
     };
   },
   created() {

@@ -20,6 +20,9 @@
                 :data="buku"
                 :filters="filters"
                 class="table table-striped table-bordered"
+                :currentPage.sync="currentPage"
+                :pageSize="5"
+                @totalPagesChanged="totalPages = $event"
               >
                 <!-- Id	judul	Penulis	Penerbit	Tanggal	Kondisi	Jumlah	Jenis	Pengguna	Lokasi	Action -->
                 <thead slot="head">
@@ -74,6 +77,10 @@
                   </tr>
                 </tbody>
               </v-table>
+              <smart-pagination
+                :currentPage.sync="currentPage"
+                :totalPages="totalPages"
+              />
             </div>
           </div>
         </div>
@@ -99,6 +106,8 @@ export default {
       user: "",
       isLoggedIn: false,
       loginType: "",
+      currentPage: 1,
+      totalPages: 0,
     };
   },
   created() {

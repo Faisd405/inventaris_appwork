@@ -21,6 +21,9 @@
                 :data="barang"
                 :filters="filters"
                 class="table table-striped table-bordered"
+                :currentPage.sync="currentPage"
+                :pageSize="5"
+                @totalPagesChanged="totalPages = $event"
               >
                 <thead slot="head">
                   <tr>
@@ -39,6 +42,10 @@
                   </tr>
                 </tbody>
               </v-table>
+              <smart-pagination
+                :currentPage.sync="currentPage"
+                :totalPages="totalPages"
+              />
             </div>
           </div>
         </div>
@@ -74,6 +81,8 @@ export default {
       isLoggedIn: false,
       loginType: "",
       total: 0,
+      currentPage: 1,
+      totalPages: 0,
     };
   },
 

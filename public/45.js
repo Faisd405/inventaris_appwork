@@ -98,6 +98,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -115,7 +122,9 @@ __webpack_require__.r(__webpack_exports__);
       barang: [],
       user: "",
       isLoggedIn: false,
-      loginType: ""
+      loginType: "",
+      currentPage: 1,
+      totalPages: 0
     };
   },
   created: function created() {
@@ -242,7 +251,23 @@ var render = function () {
                   "v-table",
                   {
                     staticClass: "table table-striped table-bordered",
-                    attrs: { data: _vm.users, filters: _vm.filters },
+                    attrs: {
+                      data: _vm.users,
+                      filters: _vm.filters,
+                      currentPage: _vm.currentPage,
+                      pageSize: 5,
+                    },
+                    on: {
+                      "update:currentPage": function ($event) {
+                        _vm.currentPage = $event
+                      },
+                      "update:current-page": function ($event) {
+                        _vm.currentPage = $event
+                      },
+                      totalPagesChanged: function ($event) {
+                        _vm.totalPages = $event
+                      },
+                    },
                     scopedSlots: _vm._u([
                       {
                         key: "body",
@@ -351,6 +376,21 @@ var render = function () {
                     ]),
                   ]
                 ),
+                _vm._v(" "),
+                _c("smart-pagination", {
+                  attrs: {
+                    currentPage: _vm.currentPage,
+                    totalPages: _vm.totalPages,
+                  },
+                  on: {
+                    "update:currentPage": function ($event) {
+                      _vm.currentPage = $event
+                    },
+                    "update:current-page": function ($event) {
+                      _vm.currentPage = $event
+                    },
+                  },
+                }),
               ],
               1
             ),

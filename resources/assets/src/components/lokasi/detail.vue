@@ -12,6 +12,9 @@
               <v-table
                 :data="barang"
                 class="table table-striped table-bordered"
+                :currentPage.sync="currentPage"
+                :pageSize="5"
+                @totalPagesChanged="totalPages = $event"
               >
                 <thead slot="head">
                   <tr>
@@ -32,9 +35,16 @@
                   </tr>
                 </tbody>
               </v-table>
+              <smart-pagination
+                :currentPage.sync="currentPage"
+                :totalPages="totalPages"
+              />
               <h2>Ini adalah buku yang berada di {{ lokasi.lokasi }}</h2>
 
-              <v-table :data="buku" class="table table-striped table-bordered">
+              <v-table :data="buku" class="table table-striped table-bordered"
+                :currentPage.sync="currentPage1"
+                :pageSize="5"
+                @totalPagesChanged="totalPages1 = $event">
                 <thead slot="head">
                   <tr>
                     <th scope="col">No</th>
@@ -87,6 +97,10 @@
                   </tr>
                 </tbody>
               </v-table>
+              <smart-pagination
+                :currentPage.sync="currentPage1"
+                :totalPages="totalPages1"
+              />
             </div>
           </div>
         </div>
@@ -107,6 +121,10 @@ export default {
       buku: [],
       barang: [],
       lokasi: {},
+      currentPage: 1,
+      totalPages: 0,
+      currentPage1: 1,
+      totalPages1: 0,
     };
   },
   created() {
