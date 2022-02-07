@@ -32,16 +32,17 @@
                             class="form-control"
                             v-model="barang_id"
                           >
-                            <option value="">Semua Barang</option>
+                            <option :value="['', '']">Semua Barang</option>
                             <option
                               v-for="barang in barang"
-                              :value="barang.id"
+                              :value="[barang.id, barang.nama_barang]"
                               :key="barang.id"
                             >
                               {{ barang.nama_barang }}
                             </option>
                           </select>
                         </b-input-group>
+                        {{ filters.barang_id.value }}
                       </b-form-group>
 
                       <b-form-group
@@ -125,8 +126,12 @@
                   </b-col>
                 </b-row>
 
-                <table class="table table-striped table-bordered">
-                  <thead slot="HEAD">
+                <v-table
+                  :data="filterhistorys"
+                  :filters="filters"
+                  class="table table-striped table-bordered"
+                >
+                  <thead slot="head">
                     <tr>
                       <th>Nama Barang</th>
                       <th>Tanggal Awal Penggunaan</th>
@@ -136,8 +141,8 @@
                       <th>Status</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr v-for="history in filterhistorys" :key="history.id">
+                  <tbody slot="body" slot-scope="{ displayData }">
+                    <tr v-for="history in displayData" :key="history.id">
                       <td>{{ history.barang.nama_barang }}</td>
                       <td>{{ history.tanggal_awal_penggunaan }}</td>
                       <td>{{ history.tanggal_akhir_penggunaan }}</td>
@@ -146,7 +151,7 @@
                       <td>{{ history.status }}</td>
                     </tr>
                   </tbody>
-                </table>
+                </v-table>
               </div>
             </div>
           </div>
@@ -161,7 +166,10 @@
 export default {
   data() {
     return {
-      barang_id: "",
+      filters: {
+        barang_id: { value: "", keys: ["barang_id"] },
+      },
+      barang_id: ["", ""],
       tanggal_awal: "",
       tanggal_akhir: "",
       historys: [],
@@ -181,9 +189,11 @@ export default {
 
   computed: {
     filterhistorys: function () {
-      return this.filterhistorysBynamaBarang(
-        this.filterhistorysBytanggalAwal(
-          this.filterhistorysBytanggalAkhir(this.historys)
+      return this.filterhistorysByIdBarang(
+        this.filterhistorysByNamaBarang(
+          this.filterhistorysBytanggalAwal(
+            this.filterhistorysBytanggalAkhir(this.historys)
+          )
         )
       );
     },
@@ -212,9 +222,15 @@ export default {
   },
 
   methods: {
-    filterhistorysBynamaBarang: function (historys) {
+    filterhistorysByIdBarang: function (historys) {
       return historys.filter(
-        (history) => !history.barang.id.toString().indexOf(this.barang_id)
+        (history) => !history.barang.id.toString().indexOf(this.barang_id[0])
+      );
+    },
+    filterhistorysByNamaBarang: function (historys) {
+      return historys.filter(
+        (history) =>
+          !history.barang.nama_barang.toString().indexOf(this.barang_id[1])
       );
     },
     filterhistorysBytanggalAwal: function (historys) {

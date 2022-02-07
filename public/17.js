@@ -168,10 +168,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      barang_id: "",
+      filters: {
+        barang_id: {
+          value: "",
+          keys: ["barang_id"]
+        }
+      },
+      barang_id: ["", ""],
       tanggal_awal: "",
       tanggal_akhir: "",
       historys: [],
@@ -191,7 +202,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     filterhistorys: function filterhistorys() {
-      return this.filterhistorysBynamaBarang(this.filterhistorysBytanggalAwal(this.filterhistorysBytanggalAkhir(this.historys)));
+      return this.filterhistorysByIdBarang(this.filterhistorysByNamaBarang(this.filterhistorysBytanggalAwal(this.filterhistorysBytanggalAkhir(this.historys))));
     },
     // Remove Duplicate history.tanggal_awal_penggunaan
     FilterAwal: function FilterAwal() {
@@ -210,25 +221,32 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    filterhistorysBynamaBarang: function filterhistorysBynamaBarang(historys) {
+    filterhistorysByIdBarang: function filterhistorysByIdBarang(historys) {
       var _this2 = this;
 
       return historys.filter(function (history) {
-        return !history.barang.id.toString().indexOf(_this2.barang_id);
+        return !history.barang.id.toString().indexOf(_this2.barang_id[0]);
       });
     },
-    filterhistorysBytanggalAwal: function filterhistorysBytanggalAwal(historys) {
+    filterhistorysByNamaBarang: function filterhistorysByNamaBarang(historys) {
       var _this3 = this;
 
       return historys.filter(function (history) {
-        return !history.tanggal_awal_penggunaan.indexOf(_this3.tanggal_awal);
+        return !history.barang.nama_barang.toString().indexOf(_this3.barang_id[1]);
       });
     },
-    filterhistorysBytanggalAkhir: function filterhistorysBytanggalAkhir(historys) {
+    filterhistorysBytanggalAwal: function filterhistorysBytanggalAwal(historys) {
       var _this4 = this;
 
       return historys.filter(function (history) {
-        return !history.tanggal_akhir_penggunaan.indexOf(_this4.tanggal_akhir);
+        return !history.tanggal_awal_penggunaan.indexOf(_this4.tanggal_awal);
+      });
+    },
+    filterhistorysBytanggalAkhir: function filterhistorysBytanggalAkhir(historys) {
+      var _this5 = this;
+
+      return historys.filter(function (history) {
+        return !history.tanggal_akhir_penggunaan.indexOf(_this5.tanggal_akhir);
       });
     }
   }
@@ -322,16 +340,23 @@ var render = function () {
                                       },
                                     },
                                     [
-                                      _c("option", { attrs: { value: "" } }, [
-                                        _vm._v("Semua Barang"),
-                                      ]),
+                                      _c(
+                                        "option",
+                                        { domProps: { value: ["", ""] } },
+                                        [_vm._v("Semua Barang")]
+                                      ),
                                       _vm._v(" "),
                                       _vm._l(_vm.barang, function (barang) {
                                         return _c(
                                           "option",
                                           {
                                             key: barang.id,
-                                            domProps: { value: barang.id },
+                                            domProps: {
+                                              value: [
+                                                barang.id,
+                                                barang.nama_barang,
+                                              ],
+                                            },
                                           },
                                           [
                                             _vm._v(
@@ -346,6 +371,11 @@ var render = function () {
                                     2
                                   ),
                                 ]),
+                                _vm._v(
+                                  "\n                      " +
+                                    _vm._s(_vm.filters.barang_id.value) +
+                                    "\n                    "
+                                ),
                               ],
                               1
                             ),
@@ -574,38 +604,69 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c(
-                    "table",
-                    { staticClass: "table table-striped table-bordered" },
-                    [
-                      _c("thead", { attrs: { slot: "HEAD" }, slot: "HEAD" }, [
-                        _vm._m(2),
+                    "v-table",
+                    {
+                      staticClass: "table table-striped table-bordered",
+                      attrs: { data: _vm.filterhistorys, filters: _vm.filters },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "body",
+                          fn: function (ref) {
+                            var displayData = ref.displayData
+                            return _c(
+                              "tbody",
+                              {},
+                              _vm._l(displayData, function (history) {
+                                return _c("tr", { key: history.id }, [
+                                  _c("td", [
+                                    _vm._v(_vm._s(history.barang.nama_barang)),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      _vm._s(history.tanggal_awal_penggunaan)
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      _vm._s(history.tanggal_akhir_penggunaan)
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(_vm._s(history.pengguna.name)),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(_vm._s(history.keterangan)),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(history.status))]),
+                                ])
+                              }),
+                              0
+                            )
+                          },
+                        },
                       ]),
-                      _vm._v(" "),
-                      _c(
-                        "tbody",
-                        _vm._l(_vm.filterhistorys, function (history) {
-                          return _c("tr", { key: history.id }, [
-                            _c("td", [
-                              _vm._v(_vm._s(history.barang.nama_barang)),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(history.tanggal_awal_penggunaan)),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(history.tanggal_akhir_penggunaan)),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(history.pengguna.name))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(history.keterangan))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(history.status))]),
-                          ])
-                        }),
-                        0
-                      ),
+                    },
+                    [
+                      _c("thead", { attrs: { slot: "head" }, slot: "head" }, [
+                        _c("tr", [
+                          _c("th", [_vm._v("Nama Barang")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Tanggal Awal Penggunaan")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Tanggal Akhir Penggunaan")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Nama Pengguna")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Keterangan")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Status")]),
+                        ]),
+                      ]),
                     ]
                   ),
                 ],
@@ -640,24 +701,6 @@ var staticRenderFns = [
       { staticClass: "card-header d-flex justify-content-between" },
       [_c("div", [_vm._v("Cek History Per Barang")])]
     )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Nama Barang")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Tanggal Awal Penggunaan")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Tanggal Akhir Penggunaan")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Nama Pengguna")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Keterangan")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Status")]),
-    ])
   },
 ]
 render._withStripped = true

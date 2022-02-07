@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[42],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/sifat/edit.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/sifat/edit.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/sifat/index.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/sifat/index.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -51,71 +51,120 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
-    title: "Edit Sifat"
+    title: "Sifat"
   },
   data: function data() {
     return {
-      sifat: {},
-      errors: [],
-      ValidSifat: []
+      filters: {
+        sifat_kategori: {
+          value: "",
+          keys: ["sifat_kategori"]
+        }
+      },
+      sifat: [],
+      user: "",
+      isLoggedIn: false,
+      loginType: null
     };
   },
   created: function created() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/sifat/".concat(this.$route.params.id)).then(function (response) {
+    var uri = "/api/sifat";
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (response) {
       _this.sifat = response.data.sifat;
-    })["catch"](function (errors) {
-      console.log(errors);
-    });
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/sifat').then(function (response) {
-      _this.ValidSifat = response.data.sifat;
     });
   },
   methods: {
-    SifatUpdate: function SifatUpdate() {
+    onFiltered: function onFiltered(filteredItems) {
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
+    },
+    destroy: function destroy(id) {
       var _this2 = this;
 
-      var uri = "/api/sifat/" + this.$route.params.id;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.sifat).then(function (response) {
-        _this2.$router.push("/sifat");
+      var uri = "/api/sifat/".concat(id);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"](uri).then(function (response) {
+        _this2.sifat = _this2.sifat.filter(function (sifat) {
+          return sifat.id != id;
+        });
       });
-    },
-    checkForm: function checkForm(e) {
-      this.errors = [];
-
-      if (this.sifat.sifat_kategori == "") {
-        this.errors.push("Sifat Barang harus diisi");
-      }
-
-      if (this.ValidSifat.length > 0) {
-        for (var i = 0; i < this.ValidSifat.length; i++) {
-          if (this.ValidSifat[i].sifat_kategori == this.sifat.sifat_kategori) {
-            this.errors.push("Sifat Barang sudah ada");
-          }
-        }
-      }
-
-      if (this.errors.length > 0) {
-        e.preventDefault();
-      }
-
-      if (this.errors.length == 0) {
-        this.SifatUpdate();
-      }
     }
+  },
+  mounted: function mounted() {
+    var _this3 = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Content-Type"] = "application/json";
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("token");
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user").then(function (response) {
+      _this3.user = response.data;
+      _this3.loginType = response.data.roles[0].name;
+    })["catch"](function (error) {
+      if (error.response.status === 401 || error.response.status === 500) {
+        localStorage.clear();
+
+        _this3.$router.push("/login");
+      }
+
+      console.error(error);
+    });
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/sifat/edit.vue?vue&type=template&id=21a79c70&":
-/*!*********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/sifat/edit.vue?vue&type=template&id=21a79c70& ***!
-  \*********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/sifat/index.vue?vue&type=template&id=5503ab5c&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/sifat/index.vue?vue&type=template&id=5503ab5c& ***!
+  \**********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -127,74 +176,186 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container p-3" }, [
+  return _c("div", { staticClass: "container mt-3" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-xl-12" }, [
+        _vm._m(0),
+        _vm._v(" "),
         _c("div", { staticClass: "card card-default" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("Edit sifat")]),
+          _c("div", { staticClass: "card-header" }, [_vm._v("Sifat Barang")]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c(
-              "form",
-              {
-                on: {
-                  submit: function ($event) {
-                    $event.preventDefault()
-                    return _vm.checkForm.apply(null, arguments)
-                  },
-                },
-              },
-              [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Sifat Barang")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
+            _vm.loginType == "admin"
+              ? _c(
+                  "span",
+                  { staticClass: "d-flex flex-row-reverse mx-3" },
+                  [
+                    _c(
+                      "router-link",
                       {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.sifat.sifat_kategori,
-                        expression: "sifat.sifat_kategori",
+                        staticClass: "btn btn-md btn-primary",
+                        attrs: { to: { name: "create-sifat" } },
                       },
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "text", placeholder: "Masukan judul" },
-                    domProps: { value: _vm.sifat.sifat_kategori },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.sifat,
-                          "sifat_kategori",
-                          $event.target.value
-                        )
-                      },
+                      [_vm._v("Tambah Data sifat")]
+                    ),
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "table-responsive mt-2" },
+              [
+                _c("label", [_vm._v("Filter berdasarkan Nama Sifat:")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.filters.sifat_kategori.value,
+                      expression: "filters.sifat_kategori.value",
                     },
-                  }),
-                ]),
+                  ],
+                  staticClass: "form-control",
+                  domProps: { value: _vm.filters.sifat_kategori.value },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.filters.sifat_kategori,
+                        "value",
+                        $event.target.value
+                      )
+                    },
+                  },
+                }),
                 _vm._v(" "),
-                _vm._m(0),
+                _c("br"),
                 _vm._v(" "),
-                _vm.errors.length
-                  ? _c("div", [
-                      _c("div", { staticClass: "alert alert-danger" }, [
-                        _c("b", [_vm._v("Perhatikan hal berikut :")]),
-                        _vm._v(" "),
-                        _c(
-                          "ul",
-                          _vm._l(_vm.errors, function (error) {
-                            return _c("li", { key: error }, [
-                              _vm._v(_vm._s(error)),
-                            ])
-                          }),
-                          0
-                        ),
-                      ]),
-                    ])
-                  : _vm._e(),
-              ]
+                _c(
+                  "v-table",
+                  {
+                    staticClass: "table table-striped table-bordered",
+                    attrs: { data: _vm.sifat, filters: _vm.filters },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "body",
+                        fn: function (ref) {
+                          var displayData = ref.displayData
+                          return _c(
+                            "tbody",
+                            {},
+                            _vm._l(displayData, function (data) {
+                              return _c("tr", { key: data.guid }, [
+                                _c("td", { attrs: { scope: "data" } }, [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(data.id) +
+                                      "\n                  "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(data.sifat_kategori) +
+                                      "\n                  "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm.loginType == "admin"
+                                    ? _c(
+                                        "span",
+                                        [
+                                          _c(
+                                            "router-link",
+                                            {
+                                              staticClass:
+                                                "btn btn-sm btn-warning",
+                                              attrs: {
+                                                to: {
+                                                  name: "edit-sifat",
+                                                  params: { id: data.id },
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "ion ion-md-create",
+                                              }),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn btn-sm btn-danger",
+                                              on: {
+                                                click: function ($event) {
+                                                  return _vm.destroy(data.id)
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "ion ion-ios-trash",
+                                              }),
+                                            ]
+                                          ),
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.loginType != "admin"
+                                    ? _c("span", [_vm._v(" Tidak ada Akses ")])
+                                    : _vm._e(),
+                                ]),
+                              ])
+                            }),
+                            0
+                          )
+                        },
+                      },
+                    ]),
+                  },
+                  [
+                    _c("thead", { attrs: { slot: "head" }, slot: "head" }, [
+                      _c(
+                        "tr",
+                        [
+                          _c("th", { attrs: { scope: "col" } }, [_vm._v("No")]),
+                          _vm._v(" "),
+                          _c(
+                            "v-th",
+                            {
+                              attrs: {
+                                sortKey: "sifat_kategori",
+                                scope: "col",
+                              },
+                            },
+                            [_vm._v("Nama Sifat")]
+                          ),
+                          _vm._v(" "),
+                          _c("th", { attrs: { scope: "col" } }, [
+                            _vm._v("Aksi"),
+                          ]),
+                        ],
+                        1
+                      ),
+                    ]),
+                  ]
+                ),
+              ],
+              1
             ),
           ]),
         ]),
@@ -207,12 +368,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-md btn-success", attrs: { type: "submit" } },
-        [_vm._v("\n                SIMPAN\n              ")]
-      ),
+    return _c("div", { staticClass: "card mb-3" }, [
+      _c("div", { staticClass: "card-body pallet-darken font-lighten" }, [
+        _vm._v(
+          "\n          Ini adalah halaman DataMaster Sifat Barang. Contoh Sifat Barang\n          seperti Elektronik, dan Furniture\n        "
+        ),
+      ]),
     ])
   },
 ]
@@ -222,17 +383,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/assets/src/components/sifat/edit.vue":
-/*!********************************************************!*\
-  !*** ./resources/assets/src/components/sifat/edit.vue ***!
-  \********************************************************/
+/***/ "./resources/assets/src/components/sifat/index.vue":
+/*!*********************************************************!*\
+  !*** ./resources/assets/src/components/sifat/index.vue ***!
+  \*********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _edit_vue_vue_type_template_id_21a79c70___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./edit.vue?vue&type=template&id=21a79c70& */ "./resources/assets/src/components/sifat/edit.vue?vue&type=template&id=21a79c70&");
-/* harmony import */ var _edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit.vue?vue&type=script&lang=js& */ "./resources/assets/src/components/sifat/edit.vue?vue&type=script&lang=js&");
+/* harmony import */ var _index_vue_vue_type_template_id_5503ab5c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=5503ab5c& */ "./resources/assets/src/components/sifat/index.vue?vue&type=template&id=5503ab5c&");
+/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/assets/src/components/sifat/index.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -242,9 +403,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _edit_vue_vue_type_template_id_21a79c70___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _edit_vue_vue_type_template_id_21a79c70___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _index_vue_vue_type_template_id_5503ab5c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _index_vue_vue_type_template_id_5503ab5c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -254,38 +415,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/src/components/sifat/edit.vue"
+component.options.__file = "resources/assets/src/components/sifat/index.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/src/components/sifat/edit.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************!*\
-  !*** ./resources/assets/src/components/sifat/edit.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************/
+/***/ "./resources/assets/src/components/sifat/index.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/assets/src/components/sifat/index.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/sifat/edit.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/sifat/index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/src/components/sifat/edit.vue?vue&type=template&id=21a79c70&":
-/*!***************************************************************************************!*\
-  !*** ./resources/assets/src/components/sifat/edit.vue?vue&type=template&id=21a79c70& ***!
-  \***************************************************************************************/
+/***/ "./resources/assets/src/components/sifat/index.vue?vue&type=template&id=5503ab5c&":
+/*!****************************************************************************************!*\
+  !*** ./resources/assets/src/components/sifat/index.vue?vue&type=template&id=5503ab5c& ***!
+  \****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_vue_vue_type_template_id_21a79c70___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./edit.vue?vue&type=template&id=21a79c70& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/sifat/edit.vue?vue&type=template&id=21a79c70&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_vue_vue_type_template_id_21a79c70___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_5503ab5c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=5503ab5c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/sifat/index.vue?vue&type=template&id=5503ab5c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_5503ab5c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_edit_vue_vue_type_template_id_21a79c70___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_5503ab5c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
