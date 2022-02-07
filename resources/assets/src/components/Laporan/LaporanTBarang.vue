@@ -6,39 +6,22 @@
       </div>
     </div>
     <div class="row">
-      <div class="card m-3" style="width: 32.3rem; height: 30rem">
+      <div class="card m-3" style="width: 20rem; height: 30rem">
         <div class="card-body">
           <label>Chart Total Barang PerLokasi</label>
           <LokasiChart></LokasiChart>
         </div>
       </div>
-      <div class="card m-3" style="width: 32.3rem; height: 30rem">
+      <div class="card m-3" style="width: 20rem; height: 30rem">
         <div class="card-body">
           <label>Chart Kategori :</label>
           <KategoriChart></KategoriChart>
         </div>
       </div>
-      <div class="card m-3" style="width: 32.3rem; height: 30rem">
+      <div class="card m-3" style="width: 20rem; height: 30rem">
         <div class="card-body">
           <label>Chart Total Aset Pertahun :</label>
           <TotalChart></TotalChart>
-        </div>
-      </div>
-      <div
-        class="card text-white pallet-light m-3 shadow-lg"
-        style="width: 15rem; height: 10rem"
-      >
-        <div class="card-header">
-          <router-link to="/laporan/barang" class="text-primary">
-            <strong> Total Barang </strong>
-          </router-link>
-        </div>
-        <div class="card-body">
-          <h1
-            class="card-title text-info text-center align-self-center"
-          >
-            {{ barang.length }}
-          </h1>
         </div>
       </div>
       <div class="col-xl-12 justify-content-center m-3">

@@ -316,23 +316,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -718,7 +701,7 @@ var render = function () {
         "div",
         {
           staticClass: "card m-3",
-          staticStyle: { width: "32.3rem", height: "30rem" },
+          staticStyle: { width: "20rem", height: "30rem" },
         },
         [
           _c(
@@ -738,7 +721,7 @@ var render = function () {
         "div",
         {
           staticClass: "card m-3",
-          staticStyle: { width: "32.3rem", height: "30rem" },
+          staticStyle: { width: "20rem", height: "30rem" },
         },
         [
           _c(
@@ -758,7 +741,7 @@ var render = function () {
         "div",
         {
           staticClass: "card m-3",
-          staticStyle: { width: "32.3rem", height: "30rem" },
+          staticStyle: { width: "20rem", height: "30rem" },
         },
         [
           _c(
@@ -771,46 +754,6 @@ var render = function () {
             ],
             1
           ),
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "card text-white pallet-light m-3 shadow-lg",
-          staticStyle: { width: "15rem", height: "10rem" },
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "card-header" },
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass: "text-primary",
-                  attrs: { to: "/laporan/barang" },
-                },
-                [_c("strong", [_vm._v(" Total Barang ")])]
-              ),
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c(
-              "h1",
-              {
-                staticClass:
-                  "card-title text-info text-center align-self-center",
-              },
-              [
-                _vm._v(
-                  "\n          " + _vm._s(_vm.barang.length) + "\n        "
-                ),
-              ]
-            ),
-          ]),
         ]
       ),
       _vm._v(" "),
