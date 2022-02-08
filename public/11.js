@@ -219,6 +219,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -876,7 +890,11 @@ var render = function () {
                   _vm._v(" "),
                   _c("input", {
                     staticClass: "form-control",
-                    attrs: { type: "file", name: "image" },
+                    attrs: {
+                      type: "file",
+                      name: "image",
+                      accept: "image/png, image/jpeg",
+                    },
                     on: { change: _vm.onFileChange },
                   }),
                 ]),
@@ -894,6 +912,29 @@ var render = function () {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
+                _vm.barang.lampiran && _vm.barang.lampiran != "default.pdf"
+                  ? _c("div", [
+                      _c("label", [_vm._v("Lampiran Lama : ")]),
+                      _vm._v(" "),
+                      _c("iframe", {
+                        attrs: {
+                          src: "/lampiran/" + _vm.barang.lampiran,
+                          type: "document.pdf",
+                          width: "100%",
+                          height: "500px",
+                        },
+                      }),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                !_vm.barang.lampiran || _vm.barang.lampiran == "default.pdf"
+                  ? _c("div", [
+                      _c("p", { staticClass: "card card-body" }, [
+                        _vm._v("Belum Upload PDF"),
+                      ]),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "lampiran" } }, [
                     _vm._v("Lampiran (PDF)"),
@@ -901,7 +942,11 @@ var render = function () {
                   _vm._v(" "),
                   _c("input", {
                     staticClass: "form-control",
-                    attrs: { type: "file", name: "lampiran" },
+                    attrs: {
+                      type: "file",
+                      name: "lampiran",
+                      accept: "application/pdf",
+                    },
                     on: { change: _vm.onFileChangePDF },
                   }),
                 ]),

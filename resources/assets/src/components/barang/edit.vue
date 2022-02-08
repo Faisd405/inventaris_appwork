@@ -153,6 +153,7 @@
                   class="form-control"
                   name="image"
                   @change="onFileChange"
+                  accept="image/png, image/jpeg"
                 />
               </div>
               <br />
@@ -161,12 +162,25 @@
                 <img :src="preview" class="img-thumbnail" />
               </div>
 
+              <div v-if="barang.lampiran && barang.lampiran != 'default.pdf'">
+                  <label>Lampiran Lama : </label>
+                <iframe
+                  :src="'/lampiran/' + barang.lampiran"
+                  type="document.pdf"
+                  width="100%"
+                  height="500px"
+                ></iframe>
+              </div>
+              <div v-if="!barang.lampiran || barang.lampiran == 'default.pdf'">
+                <p  class="card card-body">Belum Upload PDF</p>
+              </div>
               <div class="form-group">
                 <label for="lampiran">Lampiran (PDF)</label>
                 <input
                   type="file"
                   class="form-control"
                   name="lampiran"
+                  accept="application/pdf"
                   @change="onFileChangePDF"
                 />
               </div>
@@ -343,12 +357,12 @@ export default {
       if (this.barang.lampiran == "") {
         this.errors.push("Lampiran tidak boleh kosong");
       }
-        if (this.barang.lampiran != "") {
-            // size 2048
-            if (this.barang.lampiran.size > 2048000) {
-            this.errors.push("Ukuran lampiran tidak boleh lebih dari 2MB");
-            }
+      if (this.barang.lampiran != "") {
+        // size 2048
+        if (this.barang.lampiran.size > 2048000) {
+          this.errors.push("Ukuran lampiran tidak boleh lebih dari 2MB");
         }
+      }
       if (this.errors.length > 0) {
         e.preventDefault();
       }
