@@ -29,7 +29,7 @@
                 v-model="filters.sifat_kategori.value"
               />
               <br />
-<div>
+              <div>
                 <label>Jumlah Baris:</label>
                 <select class="form-control" v-model="pageSize">
                   <option value="10">10</option>
@@ -38,6 +38,9 @@
                   <option value="100">100</option>
                 </select>
               </div>
+
+              <br>
+
               <v-table
                 :data="sifat"
                 :filters="filters"
@@ -115,7 +118,7 @@ export default {
       loginType: null,
       currentPage: 1,
       totalPages: 0,
-pageSize: 10,
+      pageSize: 10,
     };
   },
   created() {
@@ -141,7 +144,9 @@ pageSize: 10,
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + localStorage.getItem("token");
 
-    axios.get(`/api/user`).then((response) => {
+    axios
+      .get(`/api/user`)
+      .then((response) => {
         this.user = response.data;
         this.loginType = response.data.roles[0].name;
       })
@@ -151,7 +156,7 @@ pageSize: 10,
           this.$router.push("/login");
         }
         console.error(error);
-      })
+      });
   },
 };
 </script>
