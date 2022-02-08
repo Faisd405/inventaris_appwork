@@ -233,6 +233,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -250,7 +260,8 @@ __webpack_require__.r(__webpack_exports__);
       lokasi: [],
       user: "",
       loginType: "",
-      preview: null
+      preview: null,
+      previewPDF: null
     };
   },
   created: function created() {
@@ -319,6 +330,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     onFileChangePDF: function onFileChangePDF(e) {
       this.barang.lampiran = e.target.files[0];
+      this.previewPDF = URL.createObjectURL(e.target.files[0]);
     },
     checkForm: function checkForm(e) {
       this.errors = [];
@@ -372,10 +384,6 @@ __webpack_require__.r(__webpack_exports__);
         if (this.barang.image.size > 2048000) {
           this.errors.push("Ukuran gambar tidak boleh lebih dari 2MB");
         }
-      }
-
-      if (this.barang.lampiran == "") {
-        this.errors.push("Lampiran tidak boleh kosong");
       }
 
       if (this.barang.lampiran != "") {
@@ -873,17 +881,21 @@ var render = function () {
                   ),
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "" } }, [_vm._v("Foto Lama")]),
-                  _vm._v(" "),
-                  _c("img", {
-                    staticClass: "img-thumbnail rounded",
-                    attrs: {
-                      src: "/images/" + _vm.barang.image,
-                      width: "280px",
-                    },
-                  }),
-                ]),
+                !_vm.preview
+                  ? _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "" } }, [
+                        _vm._v("Foto Lama"),
+                      ]),
+                      _vm._v(" "),
+                      _c("img", {
+                        staticClass: "img-thumbnail rounded",
+                        attrs: {
+                          src: "/images/" + _vm.barang.image,
+                          width: "280px",
+                        },
+                      }),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "image" } }, [_vm._v("image")]),
@@ -912,7 +924,9 @@ var render = function () {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _vm.barang.lampiran && _vm.barang.lampiran != "default.pdf"
+                _vm.barang.lampiran &&
+                _vm.barang.lampiran != "default.pdf" &&
+                !_vm.previewPDF
                   ? _c("div", [
                       _c("label", [_vm._v("Lampiran Lama : ")]),
                       _vm._v(" "),
@@ -950,6 +964,22 @@ var render = function () {
                     on: { change: _vm.onFileChangePDF },
                   }),
                 ]),
+                _vm._v(" "),
+                _vm.previewPDF
+                  ? _c("div", { staticClass: "previewPDF" }, [
+                      _c("p", [_vm._v("Preview PDF:")]),
+                      _vm._v(" "),
+                      _c("iframe", {
+                        staticClass: "pdf-thumbnail",
+                        attrs: {
+                          src: _vm.previewPDF,
+                          type: "document.pdf",
+                          width: "100%",
+                          height: "500px",
+                        },
+                      }),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "keterangan" } }, [

@@ -173,6 +173,16 @@
                   @change="onFileChangePDF"
                 />
               </div>
+              <div class="previewPDF" v-if="previewPDF">
+                <p>Preview PDF:</p>
+                <iframe
+                  :src="previewPDF"
+                  type="document.pdf"
+                  class="pdf-thumbnail"
+                  width="100%"
+                  height="500px"
+                ></iframe>
+              </div>
               <div class="form-group">
                 <button
                   class="btn btn-md btn-success"
@@ -219,8 +229,9 @@ export default {
         jumlah_barang: "",
         pengguna_id: "",
         image: "",
-        lampiran: "",
       },
+      preview: null,
+        previewPDF: null,
       kategori: [],
       lokasi: [],
       pengguna: [],
@@ -275,7 +286,9 @@ export default {
     },
     onFileChangePDF(e) {
       this.barang.lampiran = e.target.files[0];
+        this.previewPDF = URL.createObjectURL(e.target.files[0]);
     },
+
     checkForm: function (e) {
       this.errors = [];
       if (this.barang.nama_barang == "") {

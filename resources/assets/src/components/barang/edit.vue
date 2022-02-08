@@ -137,7 +137,7 @@
                   </option>
                 </select>
               </div>
-              <div class="form-group">
+              <div class="form-group" v-if="!preview">
                 <label for="">Foto Lama</label>
                 <img
                   :src="'/images/' + barang.image"
@@ -162,7 +162,7 @@
                 <img :src="preview" class="img-thumbnail" />
               </div>
 
-              <div v-if="barang.lampiran && barang.lampiran != 'default.pdf'">
+              <div v-if="barang.lampiran && barang.lampiran != 'default.pdf' && !previewPDF">
                   <label>Lampiran Lama : </label>
                 <iframe
                   :src="'/lampiran/' + barang.lampiran"
@@ -183,6 +183,16 @@
                   accept="application/pdf"
                   @change="onFileChangePDF"
                 />
+              </div>
+              <div class="previewPDF" v-if="previewPDF">
+                <p>Preview PDF:</p>
+                <iframe
+                  :src="previewPDF"
+                  type="document.pdf"
+                  class="pdf-thumbnail"
+                  width="100%"
+                  height="500px"
+                ></iframe>
               </div>
 
               <!-- Keterangan Edit -->
@@ -239,6 +249,7 @@ export default {
       user: "",
       loginType: "",
       preview: null,
+        previewPDF: null,
     };
   },
   created() {
@@ -311,6 +322,7 @@ export default {
     },
     onFileChangePDF(e) {
       this.barang.lampiran = e.target.files[0];
+        this.previewPDF = URL.createObjectURL(e.target.files[0]);
     },
 
     checkForm: function (e) {
@@ -353,9 +365,6 @@ export default {
         if (this.barang.image.size > 2048000) {
           this.errors.push("Ukuran gambar tidak boleh lebih dari 2MB");
         }
-      }
-      if (this.barang.lampiran == "") {
-        this.errors.push("Lampiran tidak boleh kosong");
       }
       if (this.barang.lampiran != "") {
         // size 2048

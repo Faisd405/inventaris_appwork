@@ -11,6 +11,18 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -217,7 +229,9 @@ __webpack_require__.r(__webpack_exports__);
     title: "Create Barang"
   },
   data: function data() {
-    return {
+    var _ref;
+
+    return _ref = {
       barang: {
         nama_barang: "",
         kode_barang: "",
@@ -230,17 +244,14 @@ __webpack_require__.r(__webpack_exports__);
         detail_lokasi: "",
         jumlah_barang: "",
         pengguna_id: "",
-        image: "",
-        lampiran: ""
+        image: ""
       },
+      preview: null,
+      previewPDF: null,
       kategori: [],
       lokasi: [],
-      pengguna: [],
-      preview: null,
-      jumlah: 0,
-      i: 0,
-      errors: []
-    };
+      pengguna: []
+    }, _defineProperty(_ref, "preview", null), _defineProperty(_ref, "jumlah", 0), _defineProperty(_ref, "i", 0), _defineProperty(_ref, "errors", []), _ref;
   },
   created: function created() {
     var _this = this;
@@ -287,6 +298,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     onFileChangePDF: function onFileChangePDF(e) {
       this.barang.lampiran = e.target.files[0];
+      this.previewPDF = URL.createObjectURL(e.target.files[0]);
     },
     checkForm: function checkForm(e) {
       this.errors = [];
@@ -900,6 +912,22 @@ var render = function () {
                     on: { change: _vm.onFileChangePDF },
                   }),
                 ]),
+                _vm._v(" "),
+                _vm.previewPDF
+                  ? _c("div", { staticClass: "previewPDF" }, [
+                      _c("p", [_vm._v("Preview PDF:")]),
+                      _vm._v(" "),
+                      _c("iframe", {
+                        staticClass: "pdf-thumbnail",
+                        attrs: {
+                          src: _vm.previewPDF,
+                          type: "document.pdf",
+                          width: "100%",
+                          height: "500px",
+                        },
+                      }),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _vm._m(0),
                 _vm._v(" "),
