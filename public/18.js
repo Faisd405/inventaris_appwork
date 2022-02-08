@@ -237,8 +237,8 @@ __webpack_require__.r(__webpack_exports__);
       filterOn: [],
       sortDesc: true,
       currentPage: 1,
-      perPage: 5,
-      pageOptions: [5, 15, 25, 50, {
+      perPage: 10,
+      pageOptions: [10, 15, 25, 50, {
         value: 100,
         text: "Show a lot"
       }],

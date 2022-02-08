@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-        <div class="card mb-3 mt-3">
-          <div class="card-body pallet-darken font-lighten">
-            Halaman laporan yang memberikan informasi data pengguna
-          </div>
-        </div>
+    <div class="card mb-3 mt-3">
+      <div class="card-body pallet-darken font-lighten">
+        Halaman laporan yang memberikan informasi data pengguna
+      </div>
+    </div>
     <div class="row justify-content-center">
       <div class="col-xl-12">
         <div class="card card-default">
@@ -13,15 +13,31 @@
           <div class="card-body">
             <div class="table-responsive mt-2">
               <label>Filter berdasarkan Nama Pengguna:</label>
-              <input type="text" class="form-control" v-model="filters.name.value" />
+              <input
+                type="text"
+                class="form-control"
+                v-model="filters.name.value"
+              />
 
               <br />
+              <div>
+                <label>Jumlah Baris:</label>
+                <select class="form-control" v-model="pageSize">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+
+              <br />
+
               <v-table
                 :data="pengguna"
                 :filters="filters"
                 class="table table-striped table-bordered"
                 :currentPage.sync="currentPage"
-                :pageSize="5"
+                :pageSize="pageSize"
                 @totalPagesChanged="totalPages = $event"
               >
                 <thead slot="head">
@@ -62,7 +78,6 @@ export default {
   },
   data() {
     return {
-
       filters: {
         name: { value: "", keys: ["name"] },
       },
@@ -73,6 +88,7 @@ export default {
       loginType: "",
       currentPage: 1,
       totalPages: 0,
+      pageSize: 10,
     };
   },
   created() {
@@ -99,7 +115,9 @@ export default {
     axios.defaults.headers.common["Authorization"] =
       "Bearer " + localStorage.getItem("token");
 
-    axios.get(`/api/user`).then((response) => {
+    axios
+      .get(`/api/user`)
+      .then((response) => {
         this.user = response.data;
         this.loginType = response.data.roles[0].name;
       })
@@ -109,7 +127,7 @@ export default {
           this.$router.push("/login");
         }
         console.error(error);
-      })
+      });
   },
 };
 </script>

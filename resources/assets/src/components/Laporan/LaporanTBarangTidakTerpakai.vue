@@ -13,12 +13,24 @@
 
           <div class="card-body">
             <div>
+              <div>
+                <label>Jumlah Baris:</label>
+                <select class="form-control" v-model="pageSize">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+
+              <br />
+
               <v-table
                 :data="barang"
                 :filters="filters"
                 class="table table-striped table-bordered"
                 :currentPage.sync="currentPage"
-                :pageSize="5"
+                :pageSize="pageSize"
                 @totalPagesChanged="totalPages = $event"
               >
                 <thead slot="head">
@@ -45,7 +57,7 @@
                     <td>{{ data.detail_barang }}</td>
                     <td>{{ data.kategori.nama_kategori }}</td>
                     <td>{{ data.fungsi }}</td>
-                    <td>{{ data.harga_barang }}</td>
+                    <td>{{ data.harga_barang | toCurrency }}</td>
                     <td>{{ data.lokasi.lokasi }}</td>
                     <td>{{ data.detail_lokasi }}</td>
                     <td>{{ data.pengguna.name }}</td>
@@ -69,6 +81,7 @@
 
 <script>
 import axios from "axios";
+import Vue from "vue";
 export default {
   metaInfo: {
     title: "Barang",
@@ -85,6 +98,7 @@ export default {
       loginType: "",
       currentPage: 1,
       totalPages: 0,
+      pageSize: 10,
     };
   },
 
@@ -120,4 +134,14 @@ export default {
       });
   },
 };
+Vue.filter("toCurrency", function (value) {
+  if (typeof value !== "number") {
+    return value;
+  }
+  var formatter = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  });
+  return formatter.format(value);
+});
 </script>

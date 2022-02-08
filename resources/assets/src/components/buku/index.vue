@@ -28,12 +28,23 @@
               <input class="form-control" v-model="filters.judul.value" />
 
               <br />
+              <div>
+                <label>Jumlah Baris:</label>
+                <select class="form-control" v-model="pageSize">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+              <br />
+
               <v-table
                 :data="buku"
                 :filters="filters"
                 class="table table-striped table-bordered"
                 :currentPage.sync="currentPage"
-                :pageSize="5"
+                :pageSize="pageSize"
                 @totalPagesChanged="totalPages = $event"
               >
                 <!-- Id	judul	Penulis	Penerbit	Tanggal	Kondisi	Jumlah	Jenis	Pengguna	Lokasi	Action -->
@@ -137,6 +148,7 @@ export default {
       loginType: "",
       currentPage: 1,
       totalPages: 0,
+      pageSize: 10,
     };
   },
   created() {

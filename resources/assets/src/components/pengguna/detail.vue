@@ -3,17 +3,31 @@
     <div class="row justify-content-center">
       <div class="col-xl-12">
         <div class="card card-default">
-          <div class="card-header">Detail Pengguna <b-badge variant="primary">{{ pengguna.name }}</b-badge> </div>
+          <div class="card-header">
+            Detail Pengguna
+            <b-badge variant="primary">{{ pengguna.name }}</b-badge>
+          </div>
 
           <div class="card-body">
             <div class="table-responsive mt-2">
-              <h2>Inventaris Barang </h2>
+              <h2>Inventaris Barang</h2>
+              <div>
+                <label>Jumlah Baris:</label>
+                <select class="form-control" v-model="pageSize">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+
+              <br />
 
               <v-table
                 :data="barang"
                 class="table table-striped table-bordered"
                 :currentPage.sync="currentPage"
-                :pageSize="5"
+                :pageSize="pageSize"
                 @totalPagesChanged="totalPages = $event"
               >
                 <thead slot="head">
@@ -32,28 +46,26 @@
                     <td>{{ data.nama_barang }}</td>
                     <td>{{ data.fungsi }}</td>
                     <td>{{ data.lokasi.lokasi }}</td>
-                    <td>{{ data.harga_barang }}</td>
+                    <td>{{ data.harga_barang | toCurrency }}</td>
                     <td>
-                        <span v-if="loginType == 'admin'">
-                    <router-link
-                      :to="{
-                        name: 'edit-barang',
-                        params: { id: data.id },
-                      }"
-                      class="btn btn-sm btn-warning"
-                      >
-                    <i class="ion ion-md-create"></i></router-link
-                    >
-                    <button
-                      class="btn btn-sm btn-danger"
-                      @click="destroy(data.id)"
-                    >
+                      <span v-if="loginType == 'admin'">
+                        <router-link
+                          :to="{
+                            name: 'edit-barang',
+                            params: { id: data.id },
+                          }"
+                          class="btn btn-sm btn-warning"
+                        >
+                          <i class="ion ion-md-create"></i
+                        ></router-link>
+                        <button
+                          class="btn btn-sm btn-danger"
+                          @click="destroy(data.id)"
+                        >
                           <i class="ion ion-ios-trash"></i>
-                    </button>
-                    </span>
-                    <span v-if="loginType != 'admin'">
-                        Tidak ada Akses
-                    </span>
+                        </button>
+                      </span>
+                      <span v-if="loginType != 'admin'"> Tidak ada Akses </span>
                     </td>
                   </tr>
                 </tbody>
@@ -64,13 +76,24 @@
               />
             </div>
             <div class="table-responsive mt-2">
-                <h2>Inventaris Buku </h2>
+              <h2>Inventaris Buku</h2>
+              <div>
+                <label>Jumlah Baris:</label>
+                <select class="form-control" v-model="pageSize1">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+
+              <br />
 
               <v-table
                 :data="buku"
                 class="table table-striped table-bordered"
                 :currentPage.sync="currentPage1"
-                :pageSize="5"
+                :pageSize="pageSize1"
                 @totalPagesChanged="totalPages1 = $event"
               >
                 <!-- Id	judul	Penulis	Penerbit	Tanggal	Kondisi	Jumlah	Jenis	Pengguna	Lokasi	Action -->
@@ -149,7 +172,6 @@
                 :totalPages="totalPages1"
               />
             </div>
-
           </div>
         </div>
       </div>
@@ -159,7 +181,7 @@
 
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
   metaInfo: {
     title: "Detail Pengguna",
@@ -171,9 +193,11 @@ export default {
       buku: [],
       user: "",
       isLoggedIn: false,
-      loginType: '',
+      loginType: "",
       currentPage: 1,
       totalPages: 0,
+      pageSize: 10,
+      pageSize1: 10,
       currentPage1: 1,
       totalPages1: 0,
     };
@@ -183,7 +207,7 @@ export default {
     axios.get(uri).then((response) => {
       this.barang = response.data.barang;
       this.pengguna = response.data.pengguna;
-        this.buku = response.data.buku;
+      this.buku = response.data.buku;
     });
   },
   methods: {
@@ -191,7 +215,7 @@ export default {
       axios
         .delete(`/api/barang/${id}`)
         .then((response) => {
-        this.barangs = this.barangs.filter((barangs) => barangs.id != id);
+          this.barangs = this.barangs.filter((barangs) => barangs.id != id);
         })
         .catch((error) => {
           console.log(error);
@@ -199,21 +223,23 @@ export default {
     },
   },
   mounted() {
-      axios.defaults.headers.common['Content-Type'] = 'application/json'
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token')
+    axios.defaults.headers.common["Content-Type"] = "application/json";
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + localStorage.getItem("token");
 
-      axios.get(`/api/user`)
-        .then(response => {
-          this.user = response.data
-          this.loginType = response.data.roles[0].name
-        })
-        .catch(error => {
-          if (error.response.status === 401) {
-            localStorage.clear();
-            this.$router.push('/login')
-          }
-          console.error(error);
-        });
+    axios
+      .get(`/api/user`)
+      .then((response) => {
+        this.user = response.data;
+        this.loginType = response.data.roles[0].name;
+      })
+      .catch((error) => {
+        if (error.response.status === 401) {
+          localStorage.clear();
+          this.$router.push("/login");
+        }
+        console.error(error);
+      });
   },
 };
 </script>

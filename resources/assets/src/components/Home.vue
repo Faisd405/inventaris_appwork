@@ -27,7 +27,7 @@
                   </router-link>
                 </div>
                 <div class="card-body">
-                  <h2 class="card-title text-white">{{ barang.length }}</h2>
+                  <router-link to="/laporan/barang"><h2 class="card-title text-white" >{{ barang.length }}</h2></router-link>
                 </div>
               </div>
               <div
@@ -40,7 +40,7 @@
                   >
                 </div>
                 <div class="card-body">
-                  <h2 class="card-title text-white">{{ pengguna.length }}</h2>
+                  <router-link to="/laporan/pengguna"><h2 class="card-title text-white">{{ pengguna.length }}</h2></router-link>
                 </div>
               </div>
               <div
@@ -53,7 +53,7 @@
                   >
                 </div>
                 <div class="card-body">
-                  <h2 class="card-title text-white">{{ buku.length }}</h2>
+                  <router-link to="/laporan/buku"><h2 class="card-title text-white">{{ buku.length }}</h2></router-link>
                 </div>
               </div>
               <div
@@ -66,9 +66,9 @@
                   >
                 </div>
                 <div class="card-body">
-                  <h2 class="card-title text-white">
+                  <router-link to="/laporan/LaporanTBarangTerpakai"><h2 class="card-title text-white">
                     {{ barang.length - NoPengguna.length }}
-                  </h2>
+                  </h2></router-link>
                 </div>
               </div>
               <div
@@ -83,12 +83,13 @@
                   >
                 </div>
                 <div class="card-body">
-                  <h2 class="card-title text-white">{{ NoPengguna.length }}</h2>
+                  <router-link to="/laporan/LaporanTBarangTidakTerpakai"><h2 class="card-title text-white" >{{ NoPengguna.length }}</h2></router-link>
                 </div>
               </div>
               <div
                 class="card text-white pallet-dark col-md-6 m-1 shadow-lg"
                 style="max-width: 18rem"
+
               >
                 <div class="card-header">
                   <router-link to="/laporan/LaporanTHargaBarang" class="text-primary"
@@ -96,7 +97,7 @@
                   >
                 </div>
                 <div class="card-body">
-                  <h4 class="card-title text-white">{{ total | toCurrency }}</h4>
+                  <router-link to="/laporan/LaporanTHargaBarang"><h4 class="card-title text-white">{{ total | toCurrency }}</h4></router-link>
                 </div>
               </div>
             </div>

@@ -7,13 +7,23 @@
 
           <div class="card-body">
             <div class="table-responsive mt-2">
-              <h2>Ini adalah isi dari kategori {{kategori.nama_kategori}}</h2>
+              <h2>Ini adalah isi dari kategori {{ kategori.nama_kategori }}</h2>
+              <div>
+                <label>Jumlah Baris:</label>
+                <select class="form-control" v-model="pageSize">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+              <br />
 
               <v-table
                 :data="barang"
                 class="table table-striped table-bordered"
                 :currentPage.sync="currentPage"
-                :pageSize="5"
+                :pageSize="pageSize"
                 @totalPagesChanged="totalPages = $event"
               >
                 <thead slot="head">
@@ -31,7 +41,7 @@
                     <td>{{ data.nama_barang }}</td>
                     <td>{{ data.fungsi }}</td>
                     <td>{{ data.lokasi.lokasi }}</td>
-                    <td>{{ data.harga_barang }}</td>
+                    <td>{{ data.harga_barang | toCurrency }}</td>
                   </tr>
                 </tbody>
               </v-table>
@@ -49,7 +59,7 @@
 
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   metaInfo: {
     title: "Detail Kategori",
@@ -60,6 +70,7 @@ export default {
       kategori: {},
       currentPage: 1,
       totalPages: 0,
+      pageSize: 10,
     };
   },
   created() {

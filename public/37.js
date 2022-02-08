@@ -171,6 +171,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -183,9 +205,11 @@ __webpack_require__.r(__webpack_exports__);
       buku: [],
       user: "",
       isLoggedIn: false,
-      loginType: '',
+      loginType: "",
       currentPage: 1,
       totalPages: 0,
+      pageSize: 10,
+      pageSize1: 10,
       currentPage1: 1,
       totalPages1: 0
     };
@@ -216,8 +240,8 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this3 = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['Content-Type'] = 'application/json';
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Content-Type"] = "application/json";
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("token");
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user").then(function (response) {
       _this3.user = response.data;
       _this3.loginType = response.data.roles[0].name;
@@ -225,7 +249,7 @@ __webpack_require__.r(__webpack_exports__);
       if (error.response.status === 401) {
         localStorage.clear();
 
-        _this3.$router.push('/login');
+        _this3.$router.push("/login");
       }
 
       console.error(error);
@@ -258,7 +282,7 @@ var render = function () {
             "div",
             { staticClass: "card-header" },
             [
-              _vm._v("Detail Pengguna "),
+              _vm._v("\n          Detail Pengguna\n          "),
               _c("b-badge", { attrs: { variant: "primary" } }, [
                 _vm._v(_vm._s(_vm.pengguna.name)),
               ]),
@@ -271,7 +295,54 @@ var render = function () {
               "div",
               { staticClass: "table-responsive mt-2" },
               [
-                _c("h2", [_vm._v("Inventaris Barang ")]),
+                _c("h2", [_vm._v("Inventaris Barang")]),
+                _vm._v(" "),
+                _c("div", [
+                  _c("label", [_vm._v("Jumlah Baris:")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.pageSize,
+                          expression: "pageSize",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.pageSize = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                      },
+                    },
+                    [
+                      _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "25" } }, [_vm._v("25")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "100" } }, [
+                        _vm._v("100"),
+                      ]),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("br"),
                 _vm._v(" "),
                 _c(
                   "v-table",
@@ -280,7 +351,7 @@ var render = function () {
                     attrs: {
                       data: _vm.barang,
                       currentPage: _vm.currentPage,
-                      pageSize: 5,
+                      pageSize: _vm.pageSize,
                     },
                     on: {
                       "update:currentPage": function ($event) {
@@ -311,7 +382,13 @@ var render = function () {
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(data.lokasi.lokasi))]),
                                 _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(data.harga_barang))]),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm._f("toCurrency")(data.harga_barang)
+                                    )
+                                  ),
+                                ]),
                                 _vm._v(" "),
                                 _c("td", [
                                   _vm.loginType == "admin"
@@ -362,11 +439,7 @@ var render = function () {
                                     : _vm._e(),
                                   _vm._v(" "),
                                   _vm.loginType != "admin"
-                                    ? _c("span", [
-                                        _vm._v(
-                                          "\n                      Tidak ada Akses\n                  "
-                                        ),
-                                      ])
+                                    ? _c("span", [_vm._v(" Tidak ada Akses ")])
                                     : _vm._e(),
                                 ]),
                               ])
@@ -426,7 +499,54 @@ var render = function () {
               "div",
               { staticClass: "table-responsive mt-2" },
               [
-                _c("h2", [_vm._v("Inventaris Buku ")]),
+                _c("h2", [_vm._v("Inventaris Buku")]),
+                _vm._v(" "),
+                _c("div", [
+                  _c("label", [_vm._v("Jumlah Baris:")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.pageSize1,
+                          expression: "pageSize1",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.pageSize1 = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                      },
+                    },
+                    [
+                      _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "25" } }, [_vm._v("25")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "100" } }, [
+                        _vm._v("100"),
+                      ]),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("br"),
                 _vm._v(" "),
                 _c(
                   "v-table",
@@ -435,7 +555,7 @@ var render = function () {
                     attrs: {
                       data: _vm.buku,
                       currentPage: _vm.currentPage1,
-                      pageSize: 5,
+                      pageSize: _vm.pageSize1,
                     },
                     on: {
                       "update:currentPage": function ($event) {

@@ -24,10 +24,17 @@
             </span>
             <div class="table-responsive mt-2">
               <label>Filter berdasarkan Nama Jenis:</label>
-              <input
-                class="form-control"
-                v-model="filters.jenis_buku.value"
-              />
+              <input class="form-control" v-model="filters.jenis_buku.value" />
+              <br />
+              <div>
+                <label>Jumlah Baris:</label>
+                <select class="form-control" v-model="pageSize">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
               <br />
 
               <v-table
@@ -35,7 +42,7 @@
                 :filters="filters"
                 class="table table-striped table-bordered"
                 :currentPage.sync="currentPage"
-                :pageSize="5"
+                :pageSize="pageSize"
                 @totalPagesChanged="totalPages = $event"
               >
                 <thead slot="head">
@@ -107,6 +114,7 @@ export default {
       loginType: null,
       currentPage: 1,
       totalPages: 0,
+      pageSize: 10,
     };
   },
   created() {

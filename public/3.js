@@ -122,6 +122,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -284,11 +285,18 @@ var render = function () {
                     1
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "card-body" }, [
-                    _c("h2", { staticClass: "card-title text-white" }, [
-                      _vm._v(_vm._s(_vm.barang.length)),
-                    ]),
-                  ]),
+                  _c(
+                    "div",
+                    { staticClass: "card-body" },
+                    [
+                      _c("router-link", { attrs: { to: "/laporan/barang" } }, [
+                        _c("h2", { staticClass: "card-title text-white" }, [
+                          _vm._v(_vm._s(_vm.barang.length)),
+                        ]),
+                      ]),
+                    ],
+                    1
+                  ),
                 ]
               ),
               _vm._v(" "),
@@ -316,11 +324,22 @@ var render = function () {
                     1
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "card-body" }, [
-                    _c("h2", { staticClass: "card-title text-white" }, [
-                      _vm._v(_vm._s(_vm.pengguna.length)),
-                    ]),
-                  ]),
+                  _c(
+                    "div",
+                    { staticClass: "card-body" },
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: "/laporan/pengguna" } },
+                        [
+                          _c("h2", { staticClass: "card-title text-white" }, [
+                            _vm._v(_vm._s(_vm.pengguna.length)),
+                          ]),
+                        ]
+                      ),
+                    ],
+                    1
+                  ),
                 ]
               ),
               _vm._v(" "),
@@ -348,11 +367,18 @@ var render = function () {
                     1
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "card-body" }, [
-                    _c("h2", { staticClass: "card-title text-white" }, [
-                      _vm._v(_vm._s(_vm.buku.length)),
-                    ]),
-                  ]),
+                  _c(
+                    "div",
+                    { staticClass: "card-body" },
+                    [
+                      _c("router-link", { attrs: { to: "/laporan/buku" } }, [
+                        _c("h2", { staticClass: "card-title text-white" }, [
+                          _vm._v(_vm._s(_vm.buku.length)),
+                        ]),
+                      ]),
+                    ],
+                    1
+                  ),
                 ]
               ),
               _vm._v(" "),
@@ -380,15 +406,28 @@ var render = function () {
                     1
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "card-body" }, [
-                    _c("h2", { staticClass: "card-title text-white" }, [
-                      _vm._v(
-                        "\n                  " +
-                          _vm._s(_vm.barang.length - _vm.NoPengguna.length) +
-                          "\n                "
+                  _c(
+                    "div",
+                    { staticClass: "card-body" },
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: "/laporan/LaporanTBarangTerpakai" } },
+                        [
+                          _c("h2", { staticClass: "card-title text-white" }, [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(
+                                  _vm.barang.length - _vm.NoPengguna.length
+                                ) +
+                                "\n                "
+                            ),
+                          ]),
+                        ]
                       ),
-                    ]),
-                  ]),
+                    ],
+                    1
+                  ),
                 ]
               ),
               _vm._v(" "),
@@ -420,11 +459,24 @@ var render = function () {
                     1
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "card-body" }, [
-                    _c("h2", { staticClass: "card-title text-white" }, [
-                      _vm._v(_vm._s(_vm.NoPengguna.length)),
-                    ]),
-                  ]),
+                  _c(
+                    "div",
+                    { staticClass: "card-body" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          attrs: { to: "/laporan/LaporanTBarangTidakTerpakai" },
+                        },
+                        [
+                          _c("h2", { staticClass: "card-title text-white" }, [
+                            _vm._v(_vm._s(_vm.NoPengguna.length)),
+                          ]),
+                        ]
+                      ),
+                    ],
+                    1
+                  ),
                 ]
               ),
               _vm._v(" "),
@@ -452,11 +504,22 @@ var render = function () {
                     1
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "card-body" }, [
-                    _c("h4", { staticClass: "card-title text-white" }, [
-                      _vm._v(_vm._s(_vm._f("toCurrency")(_vm.total))),
-                    ]),
-                  ]),
+                  _c(
+                    "div",
+                    { staticClass: "card-body" },
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: "/laporan/LaporanTHargaBarang" } },
+                        [
+                          _c("h4", { staticClass: "card-title text-white" }, [
+                            _vm._v(_vm._s(_vm._f("toCurrency")(_vm.total))),
+                          ]),
+                        ]
+                      ),
+                    ],
+                    1
+                  ),
                 ]
               ),
             ]),

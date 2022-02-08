@@ -11,6 +11,20 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -81,6 +95,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
     title: "Barang"
@@ -99,7 +114,8 @@ __webpack_require__.r(__webpack_exports__);
       isLoggedIn: false,
       loginType: "",
       currentPage: 1,
-      totalPages: 0
+      totalPages: 0,
+      pageSize: 10
     };
   },
   created: function created() {
@@ -135,6 +151,17 @@ __webpack_require__.r(__webpack_exports__);
     });
   }
 });
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.filter("toCurrency", function (value) {
+  if (typeof value !== "number") {
+    return value;
+  }
+
+  var formatter = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR"
+  });
+  return formatter.format(value);
+});
 
 /***/ }),
 
@@ -167,6 +194,53 @@ var render = function () {
             _c(
               "div",
               [
+                _c("div", [
+                  _c("label", [_vm._v("Jumlah Baris:")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.pageSize,
+                          expression: "pageSize",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.pageSize = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                      },
+                    },
+                    [
+                      _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "25" } }, [_vm._v("25")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "100" } }, [
+                        _vm._v("100"),
+                      ]),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
                 _c(
                   "v-table",
                   {
@@ -175,7 +249,7 @@ var render = function () {
                       data: _vm.barang,
                       filters: _vm.filters,
                       currentPage: _vm.currentPage,
-                      pageSize: 5,
+                      pageSize: _vm.pageSize,
                     },
                     on: {
                       "update:currentPage": function ($event) {
@@ -210,7 +284,13 @@ var render = function () {
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(data.fungsi))]),
                                 _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(data.harga_barang))]),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm._f("toCurrency")(data.harga_barang)
+                                    )
+                                  ),
+                                ]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(data.lokasi.lokasi))]),
                                 _vm._v(" "),

@@ -67,6 +67,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -86,7 +102,8 @@ __webpack_require__.r(__webpack_exports__);
       isLoggedIn: false,
       loginType: "",
       currentPage: 1,
-      totalPages: 0
+      totalPages: 0,
+      pageSize: 10
     };
   },
   created: function created() {
@@ -189,6 +206,53 @@ var render = function () {
                 _vm._v(" "),
                 _c("br"),
                 _vm._v(" "),
+                _c("div", [
+                  _c("label", [_vm._v("Jumlah Baris:")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.pageSize,
+                          expression: "pageSize",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.pageSize = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                      },
+                    },
+                    [
+                      _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "25" } }, [_vm._v("25")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "100" } }, [
+                        _vm._v("100"),
+                      ]),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
                 _c(
                   "v-table",
                   {
@@ -197,7 +261,7 @@ var render = function () {
                       data: _vm.pengguna,
                       filters: _vm.filters,
                       currentPage: _vm.currentPage,
-                      pageSize: 5,
+                      pageSize: _vm.pageSize,
                     },
                     on: {
                       "update:currentPage": function ($event) {
@@ -293,7 +357,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card mb-3 mt-3" }, [
       _c("div", { staticClass: "card-body pallet-darken font-lighten" }, [
         _vm._v(
-          "\n          Halaman laporan yang memberikan informasi data pengguna\n        "
+          "\n      Halaman laporan yang memberikan informasi data pengguna\n    "
         ),
       ]),
     ])

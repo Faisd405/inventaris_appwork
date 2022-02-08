@@ -8,12 +8,23 @@
           <div class="card-body">
             <div class="table-responsive mt-2">
               <h2>Ini adalah barang yang berada di {{ lokasi.lokasi }}</h2>
+              <div>
+                <label>Jumlah Baris:</label>
+                <select class="form-control" v-model="pageSize">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+
+              <br />
 
               <v-table
                 :data="barang"
                 class="table table-striped table-bordered"
                 :currentPage.sync="currentPage"
-                :pageSize="5"
+                :pageSize="pageSize"
                 @totalPagesChanged="totalPages = $event"
               >
                 <thead slot="head">
@@ -31,7 +42,7 @@
                     <td>{{ data.nama_barang }}</td>
                     <td>{{ data.fungsi }}</td>
                     <td>{{ data.lokasi.lokasi }}</td>
-                    <td>{{ data.harga_barang }}</td>
+                    <td>{{ data.harga_barang | toCurrency }}</td>
                   </tr>
                 </tbody>
               </v-table>
@@ -40,11 +51,25 @@
                 :totalPages="totalPages"
               />
               <h2>Ini adalah buku yang berada di {{ lokasi.lokasi }}</h2>
+              <div>
+                <label>Jumlah Baris:</label>
+                <select class="form-control" v-model="pageSize1">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
 
-              <v-table :data="buku" class="table table-striped table-bordered"
+              <br />
+
+              <v-table
+                :data="buku"
+                class="table table-striped table-bordered"
                 :currentPage.sync="currentPage1"
-                :pageSize="5"
-                @totalPagesChanged="totalPages1 = $event">
+                :pageSize="pageSize1"
+                @totalPagesChanged="totalPages1 = $event"
+              >
                 <thead slot="head">
                   <tr>
                     <th scope="col">No</th>
@@ -123,6 +148,8 @@ export default {
       lokasi: {},
       currentPage: 1,
       totalPages: 0,
+      pageSize: 10,
+      pageSize1: 10,
       currentPage1: 1,
       totalPages1: 0,
     };
