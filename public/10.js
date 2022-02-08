@@ -282,7 +282,7 @@ var render = function () {
               1
             ),
             _vm._v(" "),
-            _vm.barang.lampiran
+            _vm.barang.lampiran && _vm.barang.lampiran != "default.pdf"
               ? _c("div", [
                   _c("hr"),
                   _vm._v(" "),

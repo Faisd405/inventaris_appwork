@@ -48,7 +48,7 @@
                 ></label
               >
             </div>
-            <div v-if="barang.lampiran">
+            <div v-if="barang.lampiran && barang.lampiran != 'default.pdf'">
             <hr />
               <h2 class="text-center">
                 Lampiran Surat Komitmen Peggunaan Barang Inventaris Kantor

@@ -341,9 +341,6 @@ export default {
           this.errors.push("Ukuran gambar tidak boleh lebih dari 2MB");
         }
       }
-      if (this.barang.lampiran == "") {
-        this.errors.push("Lampiran tidak boleh kosong");
-      }
         if (this.barang.lampiran != "") {
             // size 2048
             if (this.barang.lampiran.size > 2048000) {

@@ -211,9 +211,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -353,10 +350,6 @@ __webpack_require__.r(__webpack_exports__);
         if (this.barang.image.size > 2048000) {
           this.errors.push("Ukuran gambar tidak boleh lebih dari 2MB");
         }
-      }
-
-      if (this.barang.lampiran == "") {
-        this.errors.push("Lampiran tidak boleh kosong");
       }
 
       if (this.barang.lampiran != "") {

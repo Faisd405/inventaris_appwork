@@ -83,12 +83,16 @@ class BarangController extends Controller
 
     public function lampiran($request)
     {
-        $request->validate([
-            'lampiran' => 'required|mimes:pdf|max:2048'
-        ]);
+        if ($request->hasFile('lampiran')) {
+            $request->validate([
+                'lampiran' => 'required|mimes:pdf|max:2048',
+            ]);
+            $lampiranName = time() . '.' . $request->lampiran->extension();
+            $request->lampiran->move(public_path('lampiran'), $lampiranName);
+        } else {
+            $lampiranName = "default.pdf";
+        }
 
-        $lampiranName = time() . '.' . $request->lampiran->extension();
-        $request->lampiran->move(public_path('lampiran'), $lampiranName);
         return $lampiranName;
     }
 

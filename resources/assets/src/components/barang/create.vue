@@ -6,10 +6,7 @@
           <div class="card-header">Create Barang</div>
 
           <div class="card-body">
-            <form
-              enctype="multipart/form-data"
-              @submit.prevent="checkForm"
-            >
+            <form enctype="multipart/form-data" @submit.prevent="checkForm">
               <div class="form-group">
                 <label for="nama_barang">Nama Barang</label>
                 <input
@@ -328,15 +325,12 @@ export default {
           this.errors.push("Ukuran gambar tidak boleh lebih dari 2MB");
         }
       }
-      if (this.barang.lampiran == "") {
-        this.errors.push("Lampiran tidak boleh kosong");
-      }
-        if (this.barang.lampiran != "") {
-            // size 2048
-            if (this.barang.lampiran.size > 2048000) {
-            this.errors.push("Ukuran lampiran tidak boleh lebih dari 2MB");
-            }
+      if (this.barang.lampiran != "") {
+        // size 2048
+        if (this.barang.lampiran.size > 2048000) {
+          this.errors.push("Ukuran lampiran tidak boleh lebih dari 2MB");
         }
+      }
       if (this.errors.length > 0) {
         e.preventDefault();
       }
