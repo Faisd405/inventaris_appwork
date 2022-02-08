@@ -287,9 +287,7 @@ var render = function () {
                   _c("hr"),
                   _vm._v(" "),
                   _c("h2", { staticClass: "text-center" }, [
-                    _vm._v(
-                      "\n              Lampiran Surat Komitmen Peggunaan Barang Inventaris Kantor\n            "
-                    ),
+                    _vm._v("\n              Lampiran Invoice\n            "),
                   ]),
                   _vm._v(" "),
                   _c("iframe", {

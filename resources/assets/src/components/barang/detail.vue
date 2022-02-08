@@ -51,7 +51,7 @@
             <div v-if="barang.lampiran && barang.lampiran != 'default.pdf'">
             <hr />
               <h2 class="text-center">
-                Lampiran Surat Komitmen Peggunaan Barang Inventaris Kantor
+                Lampiran Invoice
               </h2>
               <iframe
                 :src="'/lampiran/' + barang.lampiran"
