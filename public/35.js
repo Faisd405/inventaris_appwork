@@ -11,6 +11,8 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -107,6 +109,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -172,6 +175,17 @@ __webpack_require__.r(__webpack_exports__);
       console.error(error);
     });
   }
+});
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.filter("toCurrency", function (value) {
+  if (typeof value !== "number") {
+    return value;
+  }
+
+  var formatter = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR"
+  });
+  return formatter.format(value);
 });
 
 /***/ }),
@@ -288,7 +302,13 @@ var render = function () {
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(data.fungsi))]),
                                 _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(data.harga_barang))]),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm._f("toCurrency")(data.harga_barang)
+                                    )
+                                  ),
+                                ]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(data.jumlah_barang))]),
                                 _vm._v(" "),

@@ -11,6 +11,8 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -120,6 +122,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "home",
@@ -193,6 +196,17 @@ __webpack_require__.r(__webpack_exports__);
       _this2.NoPengguna = response.data.barang;
     });
   }
+});
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.filter("toCurrency", function (value) {
+  if (typeof value !== "number") {
+    return value;
+  }
+
+  var formatter = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR"
+  });
+  return formatter.format(value);
 });
 
 /***/ }),
@@ -271,7 +285,7 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c("h1", { staticClass: "card-title text-white" }, [
+                    _c("h2", { staticClass: "card-title text-white" }, [
                       _vm._v(_vm._s(_vm.barang.length)),
                     ]),
                   ]),
@@ -303,7 +317,7 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c("h1", { staticClass: "card-title text-white" }, [
+                    _c("h2", { staticClass: "card-title text-white" }, [
                       _vm._v(_vm._s(_vm.pengguna.length)),
                     ]),
                   ]),
@@ -335,7 +349,7 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c("h1", { staticClass: "card-title text-white" }, [
+                    _c("h2", { staticClass: "card-title text-white" }, [
                       _vm._v(_vm._s(_vm.buku.length)),
                     ]),
                   ]),
@@ -367,7 +381,7 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c("h1", { staticClass: "card-title text-white" }, [
+                    _c("h2", { staticClass: "card-title text-white" }, [
                       _vm._v(
                         "\n                  " +
                           _vm._s(_vm.barang.length - _vm.NoPengguna.length) +
@@ -407,7 +421,7 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c("h1", { staticClass: "card-title text-white" }, [
+                    _c("h2", { staticClass: "card-title text-white" }, [
                       _vm._v(_vm._s(_vm.NoPengguna.length)),
                     ]),
                   ]),
@@ -439,8 +453,8 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c("h1", { staticClass: "card-title text-white" }, [
-                      _vm._v(_vm._s(_vm.total)),
+                    _c("h4", { staticClass: "card-title text-white" }, [
+                      _vm._v(_vm._s(_vm._f("toCurrency")(_vm.total))),
                     ]),
                   ]),
                 ]

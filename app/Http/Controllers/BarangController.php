@@ -60,6 +60,8 @@ class BarangController extends Controller
     public function total_harga()
     {
         $total_harga = $this->barang->getTotalHarga();
+        // parse int
+        $total_harga = (int) $total_harga;
         return response()->json([
             'success' => true,
             'message' => 'barang Berhasil Ditampilkan!',

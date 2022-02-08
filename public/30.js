@@ -161,6 +161,17 @@ __webpack_require__.r(__webpack_exports__);
     });
   }
 });
+Vue.filter("toCurrency", function (value) {
+  if (typeof value !== "number") {
+    return value;
+  }
+
+  var formatter = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR"
+  });
+  return formatter.format(value);
+});
 
 /***/ }),
 
@@ -260,7 +271,13 @@ var render = function () {
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(data.fungsi))]),
                                 _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(data.harga_barang))]),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm._f("toCurrency")(data.harga_barang)
+                                    )
+                                  ),
+                                ]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(data.jumlah_barang))]),
                                 _vm._v(" "),

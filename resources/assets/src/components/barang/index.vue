@@ -94,7 +94,7 @@
                     <td>{{ data.detail_barang }}</td>
                     <td>{{ data.kategori.nama_kategori }}</td>
                     <td>{{ data.fungsi }}</td>
-                    <td>{{ data.harga_barang }}</td>
+                    <td>{{ data.harga_barang | toCurrency }}</td>
                     <td>{{ data.lokasi.lokasi }}</td>
                     <td>{{ data.detail_lokasi }}</td>
                     <td>{{ data.pengguna.name }}</td>
@@ -147,6 +147,7 @@
 
 <script>
 import axios from "axios";
+import Vue from "vue";
 export default {
   metaInfo: {
     title: "Barang",
@@ -203,4 +204,14 @@ export default {
       });
   },
 };
+Vue.filter("toCurrency", function (value) {
+  if (typeof value !== "number") {
+    return value;
+  }
+  var formatter = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  });
+  return formatter.format(value);
+});
 </script>

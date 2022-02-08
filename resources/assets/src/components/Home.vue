@@ -27,7 +27,7 @@
                   </router-link>
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title text-white">{{ barang.length }}</h1>
+                  <h2 class="card-title text-white">{{ barang.length }}</h2>
                 </div>
               </div>
               <div
@@ -40,7 +40,7 @@
                   >
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title text-white">{{ pengguna.length }}</h1>
+                  <h2 class="card-title text-white">{{ pengguna.length }}</h2>
                 </div>
               </div>
               <div
@@ -53,7 +53,7 @@
                   >
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title text-white">{{ buku.length }}</h1>
+                  <h2 class="card-title text-white">{{ buku.length }}</h2>
                 </div>
               </div>
               <div
@@ -66,9 +66,9 @@
                   >
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title text-white">
+                  <h2 class="card-title text-white">
                     {{ barang.length - NoPengguna.length }}
-                  </h1>
+                  </h2>
                 </div>
               </div>
               <div
@@ -83,7 +83,7 @@
                   >
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title text-white">{{ NoPengguna.length }}</h1>
+                  <h2 class="card-title text-white">{{ NoPengguna.length }}</h2>
                 </div>
               </div>
               <div
@@ -96,7 +96,7 @@
                   >
                 </div>
                 <div class="card-body">
-                  <h1 class="card-title text-white">{{ total }}</h1>
+                  <h4 class="card-title text-white">{{ total | toCurrency }}</h4>
                 </div>
               </div>
             </div>
@@ -109,6 +109,7 @@
 
 <script>
 import axios from "axios";
+import Vue from "vue";
 
 export default {
   name: "home",
@@ -181,4 +182,16 @@ export default {
     });
   },
 };
+
+
+Vue.filter("toCurrency", function (value) {
+  if (typeof value !== "number") {
+    return value;
+  }
+  var formatter = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  });
+  return formatter.format(value);
+});
 </script>

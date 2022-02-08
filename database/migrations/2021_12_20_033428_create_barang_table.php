@@ -31,6 +31,7 @@ class CreateBarangTable extends Migration
             $table->year('year');
             $table->string('image');
             $table->string('lampiran');
+            $table->string('surat_pernyataan');
             $table->timestamps();
         });
     }

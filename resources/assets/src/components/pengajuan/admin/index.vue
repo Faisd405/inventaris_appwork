@@ -43,7 +43,7 @@
                     <td>{{ data.nama_barang }}</td>
                     <td>{{ data.detail_barang }}</td>
                     <td>{{ data.fungsi }}</td>
-                    <td>{{ data.harga_barang }}</td>
+                    <td>{{ data.harga_barang | toCurrency }}</td>
                     <td>{{ data.jumlah_barang }}</td>
                     <td>{{ data.status }}</td>
                     <td>{{ data.user.name }}</td>
@@ -143,4 +143,14 @@ export default {
       });
   },
 };
+Vue.filter("toCurrency", function (value) {
+  if (typeof value !== "number") {
+    return value;
+  }
+  var formatter = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  });
+  return formatter.format(value);
+});
 </script>
