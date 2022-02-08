@@ -12,6 +12,9 @@
                 class="img-thumbnail rounded mx-auto d-block"
                 width="400px"
               />
+              <button v-if="barang.image != 'default.jpg'" class="btn btn-danger" @click.prevent="deleteImage()">
+                Hapus Gambar
+                </button>
             </div>
             <div>
               <label>Nama Barang : </label>
@@ -48,7 +51,8 @@
                 ></label
               >
             </div>
-            <div v-if="barang.lampiran && barang.lampiran != 'default.pdf'">
+            <div v-if="barang.lampiran">
+                <!-- delete -->
             <hr />
               <h2 class="text-center">
                 Lampiran Invoice
@@ -59,6 +63,10 @@
                 width="100%"
                 height="500px"
               ></iframe>
+                <button v-if="barang.lampiran != 'default.pdf'" @click.prevent="deleteLampiran()"
+                  class="btn btn-danger">
+                  <i class="fas fa-trash-alt"></i> Delete Lampiran
+                </button>
             </div>
             <hr />
             <div>
@@ -118,6 +126,28 @@ export default {
       sortBy: "id",
       sortDesc: true,
     };
+  },
+  methods: {
+    deleteLampiran() {
+      axios
+        .put("/api/barang/Lampiran/" + this.$route.params.id)
+        .then((response) => {
+          this.barang.lampiran = "default.pdf";
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    deleteImage() {
+      axios
+        .put("/api/barang/Image/" + this.$route.params.id)
+        .then((response) => {
+          this.barang.image = "default.jpg";
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
   created() {
     axios.get("/api/kategori").then((response) => {

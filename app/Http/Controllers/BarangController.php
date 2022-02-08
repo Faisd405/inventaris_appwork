@@ -184,6 +184,25 @@ class BarangController extends Controller
         return $lampiranName;
     }
 
+    public function destroyLampiran($id){
+        $barang = $this->barang->getBarangById($id);
+        if ($barang->lampiran != "default.pdf") {
+            File::delete('lampiran/' . $barang->lampiran);
+            $barang->lampiran = "default.pdf";
+            $barang->save();
+        }
+
+    }
+
+    public function destroyImage($id){
+        $barang = $this->barang->getBarangById($id);
+        if ($barang->image != "default.jpg") {
+            File::delete('images/' . $barang->image);
+            $barang->image = "default.jpg";
+            $barang->save();
+        }
+    }
+
     public function update(Request $request, $id)
     {
         $barang = $this->barang->getBarangById($id);

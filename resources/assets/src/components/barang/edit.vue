@@ -171,7 +171,7 @@
                   height="500px"
                 ></iframe>
               </div>
-              <div v-if="!barang.lampiran || barang.lampiran == 'default.pdf'">
+              <div v-if="!barang.lampiran">
                 <p  class="card card-body">Belum Upload PDF</p>
               </div>
               <div class="form-group">

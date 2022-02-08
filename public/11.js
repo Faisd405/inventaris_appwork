@@ -941,7 +941,7 @@ var render = function () {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                !_vm.barang.lampiran || _vm.barang.lampiran == "default.pdf"
+                !_vm.barang.lampiran
                   ? _c("div", [
                       _c("p", { staticClass: "card card-body" }, [
                         _vm._v("Belum Upload PDF"),
