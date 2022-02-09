@@ -193,6 +193,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -211,7 +270,8 @@ __webpack_require__.r(__webpack_exports__);
       pageSize: 10,
       pageSize1: 10,
       currentPage1: 1,
-      totalPages1: 0
+      totalPages1: 0,
+      kode_lampiran: ""
     };
   },
   created: function created() {
@@ -291,11 +351,96 @@ var render = function () {
           ),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
+            _c("div", [
+              _c("tr", [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("td", { staticClass: "p-2" }, [_vm._v(":")]),
+                _vm._v(" "),
+                _c("td", [_c("span", [_vm._v(_vm._s(_vm.pengguna.name))])]),
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("td", { staticClass: "p-2" }, [_vm._v(":")]),
+                _vm._v(" "),
+                _c("td", [_c("span", [_vm._v(_vm._s(_vm.pengguna.ktp))])]),
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("td", { staticClass: "p-2" }, [_vm._v(":")]),
+                _vm._v(" "),
+                _c("td", [_c("span", [_vm._v(_vm._s(_vm.pengguna.jabatan))])]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
             _c(
               "div",
               { staticClass: "table-responsive mt-2" },
               [
                 _c("h2", [_vm._v("Inventaris Barang")]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "card card-body bg-light m-2 w-50 " },
+                  [
+                    _c(
+                      "form",
+                      {
+                        attrs: {
+                          action: "/pengguna/surat_komitmen/" + _vm.pengguna.id,
+                        },
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c("label", [_vm._v("Kode Lampiran : ")]),
+                            _vm._v(" "),
+                            _c("b-input", {
+                              staticClass: "form-control form-control-sm",
+                              staticStyle: { width: "200px" },
+                              attrs: {
+                                type: "text",
+                                name: "kode_lampiran",
+                                required: "",
+                              },
+                              model: {
+                                value: _vm.kode_lampiran,
+                                callback: function ($$v) {
+                                  _vm.kode_lampiran = $$v
+                                },
+                                expression: "kode_lampiran",
+                              },
+                            }),
+                            _vm._v(" "),
+                            _vm._m(3),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary btn-sm ",
+                            attrs: { type: "submit" },
+                          },
+                          [
+                            _vm._v(
+                              "\n                  Generate Surat Komitmen\n                "
+                            ),
+                          ]
+                        ),
+                      ]
+                    ),
+                  ]
+                ),
                 _vm._v(" "),
                 _c("div", [
                   _c("label", [_vm._v("Jumlah Baris:")]),
@@ -494,6 +639,8 @@ var render = function () {
               ],
               1
             ),
+            _vm._v(" "),
+            _c("hr"),
             _vm._v(" "),
             _c(
               "div",
@@ -817,7 +964,36 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_c("strong", [_vm._v("Nama Pengguna")])])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_c("strong", [_vm._v("No KTP")])])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_c("strong", [_vm._v("Jabatan Pengguna")])])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("span", { staticClass: "text-muted" }, [
+        _c("small", [_vm._v(" Contoh : NO. 008 / BIK / 4VM / XI / 2021")]),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 

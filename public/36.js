@@ -52,6 +52,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -60,7 +80,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       pengguna: {
-        name: ""
+        name: "",
+        ktp: null,
+        jabatan: ""
       },
       errors: []
     };
@@ -143,7 +165,10 @@ var render = function () {
                       },
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "text", placeholder: "Masukan pengguna" },
+                    attrs: {
+                      type: "text",
+                      placeholder: "Masukan Nama Pengguna",
+                    },
                     domProps: { value: _vm.pengguna.name },
                     on: {
                       input: function ($event) {
@@ -151,6 +176,61 @@ var render = function () {
                           return
                         }
                         _vm.$set(_vm.pengguna, "name", $event.target.value)
+                      },
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("No KTP")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.pengguna.ktp,
+                        expression: "pengguna.ktp",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "number", placeholder: "Masukan Nomor KTP" },
+                    domProps: { value: _vm.pengguna.ktp },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.pengguna, "ktp", $event.target.value)
+                      },
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Jabatan Pengguna")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.pengguna.jabatan,
+                        expression: "pengguna.jabatan",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Masukan Jabatan Pengguna",
+                    },
+                    domProps: { value: _vm.pengguna.jabatan },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.pengguna, "jabatan", $event.target.value)
                       },
                     },
                   }),

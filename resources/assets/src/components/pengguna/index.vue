@@ -59,6 +59,8 @@
                   <tr>
                     <th scope="col">No</th>
                     <v-th sortKey="name" scope="col">Nama Pengguna</v-th>
+                    <th sortKey="ktp" scope="col">No KTP</th>
+                    <th sortKey="jabatan" scope="col">Jabatan Pengguna</th>
                     <th scope="col">Aksi</th>
                   </tr>
                 </thead>
@@ -70,6 +72,12 @@
                     </td>
                     <td>
                       {{ data.name }}
+                    </td>
+                    <td>
+                      {{ data.ktp }}
+                    </td>
+                    <td>
+                      {{ data.jabatan }}
                     </td>
                     <td>
                       <router-link

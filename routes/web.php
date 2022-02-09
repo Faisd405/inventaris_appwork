@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\PenggunaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +26,10 @@ Route::get('/history/history_pdf/detail/{barang_id}', [HistoryController::class,
 Route::get('/history/history_pdf/detail/{barang_id}/{tanggal_awal}', [HistoryController::class, 'HistoryDetailBarangPDF'])->name('history.HistoryDetailBarangPDF');
 Route::get('/history/history_pdf/detail/{barang_id}/{tanggal_awal}/{tanggal_akhir}', [HistoryController::class, 'HistoryDetailBarangPDF'])->name('history.HistoryDetailBarangPDF');
 
-Route::get('history/history_excel/detail/{barang_id}', [HistoryController::class, 'HistoryDetailBarangExcel'])->name('history.HistoryDetailBarangExcel');
-Route::get('history/history_excel/detail/{barang_id}/{tanggal_awal}', [HistoryController::class, 'HistoryDetailBarangExcel'])->name('history.HistoryDetailBarangExcel');
-Route::get('history/history_excel/detail/{barang_id}/{tanggal_awal}/{tanggal_akhir}', [HistoryController::class, 'HistoryDetailBarangExcel'])->name('history.HistoryDetailBarangExcel');
+Route::get('/history/history_excel/detail/{barang_id}', [HistoryController::class, 'HistoryDetailBarangExcel'])->name('history.HistoryDetailBarangExcel');
+Route::get('/history/history_excel/detail/{barang_id}/{tanggal_awal}', [HistoryController::class, 'HistoryDetailBarangExcel'])->name('history.HistoryDetailBarangExcel');
+Route::get('/history/history_excel/detail/{barang_id}/{tanggal_awal}/{tanggal_akhir}', [HistoryController::class, 'HistoryDetailBarangExcel'])->name('history.HistoryDetailBarangExcel');
+
+Route::get('/pengguna/surat_komitmen/{id}', [PenggunaController::class, 'surat_komitmen'])->name('barang.surat_komitmen');
 
 Route::get('/{any}', 'ApplicationController')->where('any', '.*');

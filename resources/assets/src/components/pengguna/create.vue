@@ -13,7 +13,27 @@
                   type="text"
                   class="form-control"
                   v-model="pengguna.name"
-                  placeholder="Masukan pengguna"
+                  placeholder="Masukan Nama Pengguna"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>No KTP</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  v-model="pengguna.ktp"
+                  placeholder="Masukan Nomor KTP"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Jabatan Pengguna</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  v-model="pengguna.jabatan"
+                  placeholder="Masukan Jabatan Pengguna"
                 />
               </div>
 
@@ -49,8 +69,10 @@ export default {
     return {
       pengguna: {
         name: "",
+        ktp: null,
+        jabatan: "",
       },
-        errors: [],
+      errors: [],
     };
   },
   methods: {
@@ -64,18 +86,18 @@ export default {
           console.log(error.response.data.errors);
         });
     },
-    checkForm: function(e){
-        this.errors = [];
-        if(this.pengguna.name == ""){
-            this.errors.push("Nama pengguna harus diisi");
-        }
+    checkForm: function (e) {
+      this.errors = [];
+      if (this.pengguna.name == "") {
+        this.errors.push("Nama pengguna harus diisi");
+      }
       if (this.errors.length > 0) {
         e.preventDefault();
       }
       if (this.errors.length == 0) {
         this.penggunaStore();
       }
-    }
+    },
   },
 };
 </script>

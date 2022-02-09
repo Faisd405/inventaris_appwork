@@ -9,11 +9,69 @@
           </div>
 
           <div class="card-body">
+            <div>
+              <tr>
+                <td>
+                  <label><strong>Nama Pengguna</strong></label>
+                </td>
+                <td class="p-2">:</td>
+                <td>
+                  <span>{{ pengguna.name }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label><strong>No KTP</strong></label>
+                </td>
+                <td class="p-2">:</td>
+                <td>
+                  <span>{{ pengguna.ktp }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label><strong>Jabatan Pengguna</strong></label>
+                </td>
+                <td class="p-2">:</td>
+                <td>
+                  <span>{{ pengguna.jabatan }}</span>
+                </td>
+              </tr>
+            </div>
+            <hr />
             <div class="table-responsive mt-2">
               <h2>Inventaris Barang</h2>
+              <div class="card card-body bg-light m-2 w-50 ">
+                <form :action="'/pengguna/surat_komitmen/' + pengguna.id">
+                  <div class="form-group">
+                    <label>Kode Lampiran : </label>
+                    <b-input
+                      type="text"
+                      class="form-control form-control-sm"
+                      style="width: 200px"
+                      name="kode_lampiran"
+                      v-model="kode_lampiran"
+                      required
+                    />
+                    <div>
+                      <span class="text-muted"
+                        ><small
+                          > Contoh : NO. 008 / BIK / 4VM / XI / 2021</small
+                        ></span
+                      >
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-primary btn-sm "
+                    type="submit"
+                  >
+                    Generate Surat Komitmen
+                  </button>
+                </form>
+              </div>
               <div>
                 <label>Jumlah Baris:</label>
-                <select class="form-control"  v-model="pageSize">
+                <select class="form-control" v-model="pageSize">
                   <option :value="10">10</option>
                   <option :value="25">25</option>
                   <option :value="50">50</option>
@@ -75,6 +133,7 @@
                 :totalPages="totalPages"
               />
             </div>
+            <hr />
             <div class="table-responsive mt-2">
               <h2>Inventaris Buku</h2>
               <div>
@@ -200,6 +259,7 @@ export default {
       pageSize1: 10,
       currentPage1: 1,
       totalPages1: 0,
+      kode_lampiran: "",
     };
   },
   created() {

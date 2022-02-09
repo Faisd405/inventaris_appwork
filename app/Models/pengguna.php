@@ -11,7 +11,7 @@ class pengguna extends Model
     protected $table = 'pengguna';
 
     protected $fillable = [
-        'name'
+        'name','ktp','jabatan','surat_komitmen'
     ];
 
     public function barang()
@@ -35,12 +35,22 @@ class pengguna extends Model
     }
 
     public function postPengguna($request){
-        return pengguna::create($request->all());
+        // Merge surat_komitmen with request
+        $request->merge(['surat_komitmen' => 'default.pdf']);
+        // Create new pengguna
+        $pengguna = pengguna::create($request->all());
+        // Return new pengguna
+        return $pengguna;
     }
 
     public function putPengguna($request, $id){
         $pengguna = pengguna::find($id);
-        return $pengguna->update($request->all());
+
+        $request->merge(['surat_komitmen' => $pengguna->surat_komitmen]);
+
+        $pengguna->update($request->all());
+
+        return $pengguna;
     }
 
     public function deletePengguna($id){

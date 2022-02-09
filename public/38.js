@@ -52,6 +52,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -71,17 +91,34 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   mounted: function mounted() {
+    var _this2 = this;
+
     if (this.$route.params.id == 1) {
       this.$router.push("/pengguna");
     }
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Content-Type"] = "application/json";
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("token");
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user").then(function (response) {
+      _this2.user = response.data;
+      _this2.loginType = response.data.roles[0].name;
+    })["catch"](function (error) {
+      if (error.response.status === 401 || error.response.status === 500) {
+        localStorage.clear();
+
+        _this2.$router.push("/login");
+      }
+
+      console.error(error);
+    });
   },
   methods: {
     penggunaUpdate: function penggunaUpdate() {
-      var _this2 = this;
+      var _this3 = this;
 
       var uri = "/api/pengguna/" + this.$route.params.id;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(uri, this.pengguna).then(function (response) {
-        _this2.$router.push("/pengguna");
+        _this3.$router.push("/pengguna");
       });
     },
     checkForm: function checkForm(e) {
@@ -156,6 +193,61 @@ var render = function () {
                           return
                         }
                         _vm.$set(_vm.pengguna, "name", $event.target.value)
+                      },
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("No KTP")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.pengguna.ktp,
+                        expression: "pengguna.ktp",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "number", placeholder: "Masukan Nomor KTP" },
+                    domProps: { value: _vm.pengguna.ktp },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.pengguna, "ktp", $event.target.value)
+                      },
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Jabatan Pengguna")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.pengguna.jabatan,
+                        expression: "pengguna.jabatan",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Masukan Jabatan Pengguna",
+                    },
+                    domProps: { value: _vm.pengguna.jabatan },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.pengguna, "jabatan", $event.target.value)
                       },
                     },
                   }),

@@ -128,6 +128,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -368,6 +376,22 @@ var render = function () {
                                   ),
                                 ]),
                                 _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(data.ktp) +
+                                      "\n                  "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(data.jabatan) +
+                                      "\n                  "
+                                  ),
+                                ]),
+                                _vm._v(" "),
                                 _c(
                                   "td",
                                   [
@@ -465,6 +489,18 @@ var render = function () {
                             "v-th",
                             { attrs: { sortKey: "name", scope: "col" } },
                             [_vm._v("Nama Pengguna")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            { attrs: { sortKey: "ktp", scope: "col" } },
+                            [_vm._v("No KTP")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            { attrs: { sortKey: "jabatan", scope: "col" } },
+                            [_vm._v("Jabatan Pengguna")]
                           ),
                           _vm._v(" "),
                           _c("th", { attrs: { scope: "col" } }, [

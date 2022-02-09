@@ -18,6 +18,26 @@
               </div>
 
               <div class="form-group">
+                <label>No KTP</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  v-model="pengguna.ktp"
+                  placeholder="Masukan Nomor KTP"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Jabatan Pengguna</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  v-model="pengguna.jabatan"
+                  placeholder="Masukan Jabatan Pengguna"
+                />
+              </div>
+
+              <div class="form-group">
                 <button class="btn btn-md btn-success" type="submit">
                   SIMPAN
                 </button>
@@ -60,6 +80,23 @@ export default {
     if (this.$route.params.id == 1) {
       this.$router.push("/pengguna");
     }
+    axios.defaults.headers.common["Content-Type"] = "application/json";
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + localStorage.getItem("token");
+
+    axios
+      .get(`/api/user`)
+      .then((response) => {
+        this.user = response.data;
+        this.loginType = response.data.roles[0].name;
+      })
+      .catch((error) => {
+        if (error.response.status === 401 || error.response.status === 500) {
+          localStorage.clear();
+          this.$router.push("/login");
+        }
+        console.error(error);
+      });
   },
   methods: {
     penggunaUpdate() {
@@ -78,7 +115,7 @@ export default {
       if (this.errors.length == 0) {
         this.penggunaUpdate();
       }
-    }
+    },
   },
 };
 </script>

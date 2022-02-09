@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\barang;
 use App\Models\pengguna;
 use App\Models\buku;
+use Auth;
 use App\Http\Requests\PenggunaRequest;
+use Barryvdh\DomPDF\PDF;
 
 class PenggunaController extends Controller
 {
@@ -65,7 +67,7 @@ class PenggunaController extends Controller
     }
 
     // create json
-    public function store(PenggunaRequest $request) {
+    public function store(Request $request) {
         $pengguna = $this->pengguna->postPengguna($request);
         return $this->respons($pengguna);
     }
@@ -94,6 +96,15 @@ class PenggunaController extends Controller
         }
         $pengguna = $this->pengguna->deletePengguna($id);
         return $this->respons($pengguna);
+    }
+
+    public function surat_komitmen($id, Request $request) {
+        $pengguna = $this->pengguna->getPenggunaById($id);
+        $barang = $this->pengguna->getBarangbyPengguna($id);
+        $kode_lampiran = $request->kode_lampiran;
+
+        $pdf = \PDF::loadView('pengguna.surat_komitmen', compact('pengguna', 'barang', 'kode_lampiran'))->setPaper('a4', 'potrait');
+        return $pdf->stream('surat_komitmen.pdf');
     }
 
 }

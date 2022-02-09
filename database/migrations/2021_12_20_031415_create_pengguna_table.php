@@ -16,6 +16,9 @@ class CreatePenggunaTable extends Migration
         Schema::create('pengguna', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->integer('ktp');
+            $table->string('jabatan');
+            $table->string('surat_komitmen');
             $table->timestamps();
         });
     }
