@@ -292,13 +292,13 @@ var render = function () {
                       },
                     },
                     [
-                      _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
+                      _c("option", { domProps: { value: 10 } }, [_vm._v("10")]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "25" } }, [_vm._v("25")]),
+                      _c("option", { domProps: { value: 25 } }, [_vm._v("25")]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
+                      _c("option", { domProps: { value: 50 } }, [_vm._v("50")]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "100" } }, [
+                      _c("option", { domProps: { value: 100 } }, [
                         _vm._v("100"),
                       ]),
                     ]
