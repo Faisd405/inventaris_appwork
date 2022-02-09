@@ -164,7 +164,7 @@
                 <br />
               </div>
               <div class="form-group">
-                <label for="lampiran">Lampiran (PDF)</label>
+                <label for="lampiran">Lampiran Invoice (PDF)</label>
                 <input
                   type="file"
                   class="form-control"

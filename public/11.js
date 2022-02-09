@@ -928,7 +928,7 @@ var render = function () {
                 _vm.barang.lampiran != "default.pdf" &&
                 !_vm.previewPDF
                   ? _c("div", [
-                      _c("label", [_vm._v("Lampiran Lama : ")]),
+                      _c("label", [_vm._v("Lampiran Invoice Lama : ")]),
                       _vm._v(" "),
                       _c("iframe", {
                         attrs: {
@@ -944,14 +944,14 @@ var render = function () {
                 !_vm.barang.lampiran
                   ? _c("div", [
                       _c("p", { staticClass: "card card-body" }, [
-                        _vm._v("Belum Upload PDF"),
+                        _vm._v("Belum Upload Lampiran Invoice (PDF)"),
                       ]),
                     ])
                   : _vm._e(),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "lampiran" } }, [
-                    _vm._v("Lampiran (PDF)"),
+                    _vm._v("Lampiran Invoice (PDF)"),
                   ]),
                   _vm._v(" "),
                   _c("input", {

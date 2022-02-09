@@ -163,7 +163,7 @@
               </div>
 
               <div v-if="barang.lampiran && barang.lampiran != 'default.pdf' && !previewPDF">
-                  <label>Lampiran Lama : </label>
+                  <label>Lampiran Invoice Lama : </label>
                 <iframe
                   :src="'/lampiran/' + barang.lampiran"
                   type="document.pdf"
@@ -172,10 +172,10 @@
                 ></iframe>
               </div>
               <div v-if="!barang.lampiran">
-                <p  class="card card-body">Belum Upload PDF</p>
+                <p  class="card card-body">Belum Upload Lampiran Invoice (PDF)</p>
               </div>
               <div class="form-group">
-                <label for="lampiran">Lampiran (PDF)</label>
+                <label for="lampiran">Lampiran Invoice (PDF)</label>
                 <input
                   type="file"
                   class="form-control"

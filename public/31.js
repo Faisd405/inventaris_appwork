@@ -903,7 +903,7 @@ var render = function () {
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "lampiran" } }, [
-                    _vm._v("Lampiran (PDF)"),
+                    _vm._v("Lampiran Invoice (PDF)"),
                   ]),
                   _vm._v(" "),
                   _c("input", {
