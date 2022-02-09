@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <div class="card mb-3 mt-3">
       <div class="card-body pallet-darken font-lighten">
         Halaman laporan yang memberikan informasi data pengguna

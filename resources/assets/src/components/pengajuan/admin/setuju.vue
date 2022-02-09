@@ -1,5 +1,5 @@
 <template>
-  <div class="container p-3">
+  <div class="container-fluid-fluid p-3">
     <div class="row justify-content-center">
       <div class="col-xl-12">
         <div class="card card-default">
