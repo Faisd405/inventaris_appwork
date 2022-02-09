@@ -222,36 +222,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -351,34 +321,6 @@ var render = function () {
           ),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _c("div", [
-              _c("tr", [
-                _vm._m(0),
-                _vm._v(" "),
-                _c("td", { staticClass: "p-2" }, [_vm._v(":")]),
-                _vm._v(" "),
-                _c("td", [_c("span", [_vm._v(_vm._s(_vm.pengguna.name))])]),
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _vm._m(1),
-                _vm._v(" "),
-                _c("td", { staticClass: "p-2" }, [_vm._v(":")]),
-                _vm._v(" "),
-                _c("td", [_c("span", [_vm._v(_vm._s(_vm.pengguna.ktp))])]),
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _vm._m(2),
-                _vm._v(" "),
-                _c("td", { staticClass: "p-2" }, [_vm._v(":")]),
-                _vm._v(" "),
-                _c("td", [_c("span", [_vm._v(_vm._s(_vm.pengguna.jabatan))])]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
             _c(
               "div",
               { staticClass: "table-responsive mt-2" },
@@ -420,7 +362,7 @@ var render = function () {
                               },
                             }),
                             _vm._v(" "),
-                            _vm._m(3),
+                            _vm._m(0),
                           ],
                           1
                         ),
@@ -965,24 +907,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("label", [_c("strong", [_vm._v("Nama Pengguna")])])])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("label", [_c("strong", [_vm._v("No KTP")])])])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("label", [_c("strong", [_vm._v("Jabatan Pengguna")])])])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

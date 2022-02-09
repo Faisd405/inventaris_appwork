@@ -9,36 +9,6 @@
           </div>
 
           <div class="card-body">
-            <div>
-              <tr>
-                <td>
-                  <label><strong>Nama Pengguna</strong></label>
-                </td>
-                <td class="p-2">:</td>
-                <td>
-                  <span>{{ pengguna.name }}</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label><strong>No KTP</strong></label>
-                </td>
-                <td class="p-2">:</td>
-                <td>
-                  <span>{{ pengguna.ktp }}</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label><strong>Jabatan Pengguna</strong></label>
-                </td>
-                <td class="p-2">:</td>
-                <td>
-                  <span>{{ pengguna.jabatan }}</span>
-                </td>
-              </tr>
-            </div>
-            <hr />
             <div class="table-responsive mt-2">
               <h2>Inventaris Barang</h2>
               <div class="card card-body bg-light m-2 w-50 ">
