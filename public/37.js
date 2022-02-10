@@ -11,6 +11,8 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -222,6 +224,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -241,7 +266,8 @@ __webpack_require__.r(__webpack_exports__);
       pageSize1: 10,
       currentPage1: 1,
       totalPages1: 0,
-      kode_lampiran: ""
+      kode_lampiran: "",
+      DataDelete: {}
     };
   },
   created: function created() {
@@ -255,12 +281,41 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    showModal: function showModal(data) {
+      this.DataDelete = data;
+      this.$refs.modalDelete.open();
+    },
+    closeModal: function closeModal() {
+      this.$refs.modalDelete.close();
+    },
+    deleteData: function deleteData(id) {
+      this.closeModal();
+
+      if (this.DataDelete.nama_barang) {
+        this.destroy(id);
+      }
+
+      if (this.DataDelete.judul) {
+        this.destroy1(id);
+      }
+    },
     destroy: function destroy(id) {
       var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("/api/barang/".concat(id)).then(function (response) {
-        _this2.barangs = _this2.barangs.filter(function (barangs) {
-          return barangs.id != id;
+        _this2.barang = _this2.barang.filter(function (barang) {
+          return barang.id != id;
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    destroy1: function destroy1(id) {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("/api/buku/".concat(id)).then(function (response) {
+        _this3.buku = _this3.buku.filter(function (buku) {
+          return buku.id != id;
         });
       })["catch"](function (error) {
         console.log(error);
@@ -268,23 +323,34 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    var _this3 = this;
+    var _this4 = this;
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Content-Type"] = "application/json";
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("token");
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user").then(function (response) {
-      _this3.user = response.data;
-      _this3.loginType = response.data.roles[0].name;
+      _this4.user = response.data;
+      _this4.loginType = response.data.roles[0].name;
     })["catch"](function (error) {
       if (error.response.status === 401) {
         localStorage.clear();
 
-        _this3.$router.push("/login");
+        _this4.$router.push("/login");
       }
 
       console.error(error);
     });
   }
+});
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.filter("toCurrency", function (value) {
+  if (typeof value !== "number") {
+    return value;
+  }
+
+  var formatter = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR"
+  });
+  return formatter.format(value);
 });
 
 /***/ }),
@@ -327,62 +393,58 @@ var render = function () {
               [
                 _c("h2", [_vm._v("Inventaris Barang")]),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "card card-body bg-light m-2 w-50 " },
-                  [
-                    _c(
-                      "form",
-                      {
-                        attrs: {
-                          action: "/pengguna/surat_komitmen/" + _vm.pengguna.id,
-                        },
+                _c("div", { staticClass: "card card-body bg-light m-2 w-50" }, [
+                  _c(
+                    "form",
+                    {
+                      attrs: {
+                        action: "/pengguna/surat_komitmen/" + _vm.pengguna.id,
                       },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "form-group" },
-                          [
-                            _c("label", [_vm._v("Kode Lampiran : ")]),
-                            _vm._v(" "),
-                            _c("b-input", {
-                              staticClass: "form-control form-control-sm",
-                              staticStyle: { width: "200px" },
-                              attrs: {
-                                type: "text",
-                                name: "kode_lampiran",
-                                required: "",
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _c("label", [_vm._v("Kode Lampiran : ")]),
+                          _vm._v(" "),
+                          _c("b-input", {
+                            staticClass: "form-control form-control-sm",
+                            staticStyle: { width: "200px" },
+                            attrs: {
+                              type: "text",
+                              name: "kode_lampiran",
+                              required: "",
+                            },
+                            model: {
+                              value: _vm.kode_lampiran,
+                              callback: function ($$v) {
+                                _vm.kode_lampiran = $$v
                               },
-                              model: {
-                                value: _vm.kode_lampiran,
-                                callback: function ($$v) {
-                                  _vm.kode_lampiran = $$v
-                                },
-                                expression: "kode_lampiran",
-                              },
-                            }),
-                            _vm._v(" "),
-                            _vm._m(0),
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary btn-sm ",
-                            attrs: { type: "submit" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                  Generate Surat Komitmen\n                "
-                            ),
-                          ]
-                        ),
-                      ]
-                    ),
-                  ]
-                ),
+                              expression: "kode_lampiran",
+                            },
+                          }),
+                          _vm._v(" "),
+                          _vm._m(0),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary btn-sm",
+                          attrs: { type: "submit" },
+                        },
+                        [
+                          _vm._v(
+                            "\n                  Generate Surat Komitmen\n                "
+                          ),
+                        ]
+                      ),
+                    ]
+                  ),
+                ]),
                 _vm._v(" "),
                 _c("div", [
                   _c("label", [_vm._v("Jumlah Baris:")]),
@@ -509,7 +571,7 @@ var render = function () {
                                                 "btn btn-sm btn-danger",
                                               on: {
                                                 click: function ($event) {
-                                                  return _vm.destroy(data.id)
+                                                  return _vm.showModal(data)
                                                 },
                                               },
                                             },
@@ -779,7 +841,7 @@ var render = function () {
                                                 "btn btn-sm btn-danger",
                                               on: {
                                                 click: function ($event) {
-                                                  return _vm.destroy(data.id)
+                                                  return _vm.showModal(data)
                                                 },
                                               },
                                             },
@@ -897,6 +959,62 @@ var render = function () {
                     },
                   },
                 }),
+                _vm._v(" "),
+                _c(
+                  "sweet-modal",
+                  { ref: "modalDelete", attrs: { icon: "warning" } },
+                  [
+                    _c("div", { staticClass: "d-block text-center" }, [
+                      _c("h3", [
+                        _vm.DataDelete.nama_barang
+                          ? _c("div", [
+                              _vm._v(
+                                "\n                    Apakah Anda Yakin Mau Menghapus Data Barang " +
+                                  _vm._s(_vm.DataDelete.nama_barang) +
+                                  "\n                  "
+                              ),
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.DataDelete.judul
+                          ? _c("div", [
+                              _vm._v(
+                                "\n                    Apakah Anda Yakin Mau Menghapus Data Buku " +
+                                  _vm._s(_vm.DataDelete.judul) +
+                                  "\n                  "
+                              ),
+                            ])
+                          : _vm._e(),
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger btn-lg",
+                          on: {
+                            click: function ($event) {
+                              return _vm.deleteData(_vm.DataDelete.id)
+                            },
+                          },
+                        },
+                        [_vm._v("\n                  Hapus\n                ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary btn-lg",
+                          on: {
+                            click: function ($event) {
+                              return _vm.closeModal1()
+                            },
+                          },
+                        },
+                        [_vm._v("\n                  Batal\n                ")]
+                      ),
+                    ]),
+                  ]
+                ),
               ],
               1
             ),
@@ -913,7 +1031,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", [
       _c("span", { staticClass: "text-muted" }, [
-        _c("small", [_vm._v(" Contoh : NO. 008 / BIK / 4VM / XI / 2021")]),
+        _c("small", [
+          _vm._v(
+            "\n                        Contoh : NO. 008 / BIK / 4VM / XI / 2021"
+          ),
+        ]),
       ]),
     ])
   },

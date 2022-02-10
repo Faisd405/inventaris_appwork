@@ -18,15 +18,16 @@
                 class="btn btn-md btn-primary"
                 >Tambah Data pengajuan</router-link
               >
-            </span><div>
-                <label>Jumlah Baris:</label>
-                <select class="form-control"  v-model="pageSize">
-                  <option :value="10">10</option>
-                  <option :value="25">25</option>
-                  <option :value="50">50</option>
-                  <option :value="100">100</option>
-                </select>
-              </div>
+            </span>
+            <div>
+              <label>Jumlah Baris:</label>
+              <select class="form-control" v-model="pageSize">
+                <option :value="10">10</option>
+                <option :value="25">25</option>
+                <option :value="50">50</option>
+                <option :value="100">100</option>
+              </select>
+            </div>
             <div class="table-responsive mt-2">
               <label>Filter Berdasarkan pengajuan:</label>
               <input class="form-control" v-model="filters.pengajuan.value" />
@@ -80,7 +81,7 @@
                         <i class="ion ion-md-create"></i
                       ></router-link>
                       <button
-                        @click="destroy(data.id)"
+                        @click="showModal(data)"
                         class="btn btn-sm btn-danger"
                       >
                         <i class="ion ion-ios-trash"></i>
@@ -93,6 +94,23 @@
                 :currentPage.sync="currentPage"
                 :totalPages="totalPages"
               />
+              <sweet-modal ref="modalDelete" icon="warning">
+                <div class="d-block text-center">
+                  <h3>
+                    Apakah Anda Yakin Mau Menghapus Data Pengajuan Anda
+                    <div v-if="DataDelete">{{ DataDelete.nama_barang }}</div>
+                  </h3>
+                  <button
+                    @click="deleteData(DataDelete.id)"
+                    class="btn btn-danger btn-lg"
+                  >
+                    Hapus
+                  </button>
+                  <button @click="closeModal()" class="btn btn-primary btn-lg">
+                    Batal
+                  </button>
+                </div>
+              </sweet-modal>
             </div>
           </div>
         </div>
@@ -120,7 +138,8 @@ export default {
       loginType: null,
       currentPage: 1,
       totalPages: 0,
-pageSize: 10,
+      pageSize: 10,
+      DataDelete: {},
     };
   },
   created() {
@@ -130,6 +149,17 @@ pageSize: 10,
     });
   },
   methods: {
+    showModal(data) {
+      this.DataDelete = data;
+      this.$refs.modalDelete.open();
+    },
+    closeModal() {
+      this.$refs.modalDelete.close();
+    },
+    deleteData(id) {
+      this.closeModal();
+      this.destroy(id);
+    },
     destroy(id) {
       let uri = `/api/pengajuan/${id}`;
       axios.delete(uri).then((response) => {

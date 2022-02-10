@@ -144,6 +144,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -163,7 +180,8 @@ __webpack_require__.r(__webpack_exports__);
       loginType: "",
       currentPage: 1,
       totalPages: 0,
-      pageSize: 10
+      pageSize: 10,
+      DataDelete: {}
     };
   },
   created: function created() {
@@ -178,6 +196,17 @@ __webpack_require__.r(__webpack_exports__);
     onFiltered: function onFiltered(filteredItems) {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
+    },
+    showModal: function showModal(data) {
+      this.DataDelete = data;
+      this.$refs.modalDelete.open();
+    },
+    closeModal: function closeModal() {
+      this.$refs.modalDelete.close();
+    },
+    deleteData: function deleteData(id) {
+      this.closeModal();
+      this.destroy(id);
     },
     destroy: function destroy(id) {
       var _this2 = this;
@@ -473,7 +502,7 @@ var render = function () {
                                                 "btn btn-sm btn-danger",
                                               on: {
                                                 click: function ($event) {
-                                                  return _vm.destroy(data.id)
+                                                  return _vm.showModal(data)
                                                 },
                                               },
                                             },
@@ -591,6 +620,49 @@ var render = function () {
                     },
                   },
                 }),
+                _vm._v(" "),
+                _c(
+                  "sweet-modal",
+                  { ref: "modalDelete", attrs: { icon: "warning" } },
+                  [
+                    _c("div", { staticClass: "d-block text-center" }, [
+                      _c("h3", [
+                        _vm._v(
+                          "\n                  Apakah Anda Yakin Mau Menghapus Data Buku\n                  "
+                        ),
+                        _vm.DataDelete
+                          ? _c("div", [_vm._v(_vm._s(_vm.DataDelete.judul))])
+                          : _vm._e(),
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger btn-lg",
+                          on: {
+                            click: function ($event) {
+                              return _vm.deleteData(_vm.DataDelete.id)
+                            },
+                          },
+                        },
+                        [_vm._v("\n                  Hapus\n                ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary btn-lg",
+                          on: {
+                            click: function ($event) {
+                              return _vm.closeModal()
+                            },
+                          },
+                        },
+                        [_vm._v("\n                  Batal\n                ")]
+                      ),
+                    ]),
+                  ]
+                ),
               ],
               1
             ),

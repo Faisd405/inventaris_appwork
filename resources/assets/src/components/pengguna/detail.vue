@@ -11,7 +11,7 @@
           <div class="card-body">
             <div class="table-responsive mt-2">
               <h2>Inventaris Barang</h2>
-              <div class="card card-body bg-light m-2 w-50 ">
+              <div class="card card-body bg-light m-2 w-50">
                 <form :action="'/pengguna/surat_komitmen/' + pengguna.id">
                   <div class="form-group">
                     <label>Kode Lampiran : </label>
@@ -25,16 +25,13 @@
                     />
                     <div>
                       <span class="text-muted"
-                        ><small
-                          > Contoh : NO. 008 / BIK / 4VM / XI / 2021</small
+                        ><small>
+                          Contoh : NO. 008 / BIK / 4VM / XI / 2021</small
                         ></span
                       >
                     </div>
                   </div>
-                  <button
-                    class="btn btn-primary btn-sm "
-                    type="submit"
-                  >
+                  <button class="btn btn-primary btn-sm" type="submit">
                     Generate Surat Komitmen
                   </button>
                 </form>
@@ -88,7 +85,7 @@
                         ></router-link>
                         <button
                           class="btn btn-sm btn-danger"
-                          @click="destroy(data.id)"
+                          @click="showModal(data)"
                         >
                           <i class="ion ion-ios-trash"></i>
                         </button>
@@ -186,7 +183,7 @@
                         ></router-link>
                         <button
                           class="btn btn-sm btn-danger"
-                          @click="destroy(data.id)"
+                          @click="showModal(data)"
                         >
                           <i class="ion ion-ios-trash"></i>
                         </button>
@@ -200,6 +197,31 @@
                 :currentPage.sync="currentPage1"
                 :totalPages="totalPages1"
               />
+              <sweet-modal ref="modalDelete" icon="warning">
+                <div class="d-block text-center">
+                  <h3>
+                    <div v-if="DataDelete.nama_barang">
+                      Apakah Anda Yakin Mau Menghapus Data Barang {{
+                        DataDelete.nama_barang
+                      }}
+                    </div>
+                    <div v-if="DataDelete.judul">
+                      Apakah Anda Yakin Mau Menghapus Data Buku {{
+                        DataDelete.judul
+                      }}
+                    </div>
+                  </h3>
+                  <button
+                    @click="deleteData(DataDelete.id)"
+                    class="btn btn-danger btn-lg"
+                  >
+                    Hapus
+                  </button>
+                  <button @click="closeModal1()" class="btn btn-primary btn-lg">
+                    Batal
+                  </button>
+                </div>
+              </sweet-modal>
             </div>
           </div>
         </div>
@@ -211,6 +233,7 @@
 
 <script>
 import axios from "axios";
+import Vue from "vue";
 export default {
   metaInfo: {
     title: "Detail Pengguna",
@@ -230,6 +253,7 @@ export default {
       currentPage1: 1,
       totalPages1: 0,
       kode_lampiran: "",
+      DataDelete: {},
     };
   },
   created() {
@@ -241,11 +265,37 @@ export default {
     });
   },
   methods: {
+    showModal(data) {
+      this.DataDelete = data;
+      this.$refs.modalDelete.open();
+    },
+    closeModal() {
+      this.$refs.modalDelete.close();
+    },
+    deleteData(id) {
+      this.closeModal();
+      if (this.DataDelete.nama_barang) {
+        this.destroy(id);
+      }
+      if (this.DataDelete.judul) {
+        this.destroy1(id);
+      }
+    },
     destroy(id) {
       axios
         .delete(`/api/barang/${id}`)
         .then((response) => {
-          this.barangs = this.barangs.filter((barangs) => barangs.id != id);
+          this.barang = this.barang.filter((barang) => barang.id != id);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    destroy1(id) {
+      axios
+        .delete(`/api/buku/${id}`)
+        .then((response) => {
+          this.buku = this.buku.filter((buku) => buku.id != id);
         })
         .catch((error) => {
           console.log(error);
@@ -272,4 +322,14 @@ export default {
       });
   },
 };
+Vue.filter("toCurrency", function (value) {
+  if (typeof value !== "number") {
+    return value;
+  }
+  var formatter = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  });
+  return formatter.format(value);
+});
 </script>
