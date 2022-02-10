@@ -1006,7 +1006,7 @@ var render = function () {
                           staticClass: "btn btn-primary btn-lg",
                           on: {
                             click: function ($event) {
-                              return _vm.closeModal1()
+                              return _vm.closeModal()
                             },
                           },
                         },

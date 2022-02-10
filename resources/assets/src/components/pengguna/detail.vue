@@ -217,7 +217,7 @@
                   >
                     Hapus
                   </button>
-                  <button @click="closeModal1()" class="btn btn-primary btn-lg">
+                  <button @click="closeModal()" class="btn btn-primary btn-lg">
                     Batal
                   </button>
                 </div>
