@@ -25,16 +25,10 @@ class User extends Authenticatable implements JWTSubject
         'password',
     ];
 
-    public function barang()
-    {
-        return $this->belongsTo('App\Models\Barang');
-    }
-
     public function roles()
     {
         return $this->belongsToMany(Role::class);
     }
-
 
     public function getJWTIdentifier()
     {

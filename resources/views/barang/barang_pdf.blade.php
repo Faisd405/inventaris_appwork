@@ -33,7 +33,9 @@
                 <th scope="col">Fungsi</th>
                 <th scope="col">Harga</th>
                 <th scope="col">Lokasi</th>
+                <th scope="col">Detail Lokasi</th>
                 <th scope="col">Pengguna</th>
+                <th scope="col">Tahun</th>
                 <th scope="col">Jumlah Barang</th>
             </tr>
         </thead>
@@ -46,7 +48,9 @@
                     <td>{{ $b->fungsi }}</td>
                     <td>@currency($b->harga_barang)</td>
                     <td>{{ $b->lokasi->lokasi }}</td>
+                    <td>{{ $b->detail_lokasi }}</td>
                     <td>{{ $b->pengguna->name }}</td>
+                    <td>{{ $b->year }}</td>
                     <td>{{ $b->jumlah_barang}}</td>
                 </tr>
             @endforeach

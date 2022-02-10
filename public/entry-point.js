@@ -54373,6 +54373,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! @/components/auth/Login */ "./resources/assets/src/components/auth/Login.vue"));
       }
+    }, {
+      name: 'loginapi',
+      path: '/loginapi',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 46).then(__webpack_require__.bind(null, /*! @/components/authapi/Login */ "./resources/assets/src/components/authapi/Login.vue"));
+      }
     }, // Route barang
     {
       name: 'index-barang',

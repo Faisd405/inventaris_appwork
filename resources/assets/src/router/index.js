@@ -38,6 +38,11 @@ const router = new Router({
             path: '/login',
             component: () => import('@/components/auth/Login'),
         },
+        {
+            name: 'loginapi',
+            path: '/loginapi',
+            component: () => import('@/components/authapi/Login'),
+        },
         // Route barang
         {
             name: 'index-barang',
