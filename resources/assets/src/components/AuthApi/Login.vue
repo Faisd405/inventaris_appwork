@@ -64,27 +64,16 @@ export default {
   methods: {
     loginForm() {
       axios
-        .post("api/login/api", {
+        .post("https://laporan.4visionmedia.com/api/data/login", {
           email: this.email,
           password: this.password,
-        })
-        .then((response) => {
-          localStorage.setItem("user", JSON.stringify(response.data.user));
-          localStorage.setItem("token", response.data.token);
-
-          let loginType = response.data.user.roles[0].name;
-          if (loginType === "user") {
-            this.$router.push("/");
-          } else if (loginType === "admin") {
-            this.$router.push("/");
+        }).then(Response => {
+            console.log(Response.data.success);
+          if (Response.data.success === true) {
+            this.$router.push("/login");
           } else {
-            this.$router.push("login");
+            this.error = Response.data.message;
           }
-
-          this.$emit("IsloggedIn");
-        })
-        .catch((error) => {
-          this.error = error.response.data.error;
         });
     },
   },

@@ -75,25 +75,17 @@ __webpack_require__.r(__webpack_exports__);
     loginForm: function loginForm() {
       var _this = this;
 
-      axios.post("api/login/api", {
+      axios.post("https://laporan.4visionmedia.com/api/data/login", {
         email: this.email,
         password: this.password
-      }).then(function (response) {
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-        localStorage.setItem("token", response.data.token);
-        var loginType = response.data.user.roles[0].name;
+      }).then(function (Response) {
+        console.log(Response.data.success);
 
-        if (loginType === "user") {
-          _this.$router.push("/");
-        } else if (loginType === "admin") {
-          _this.$router.push("/");
+        if (Response.data.success === true) {
+          _this.$router.push("/login");
         } else {
-          _this.$router.push("login");
+          _this.error = Response.data.message;
         }
-
-        _this.$emit("IsloggedIn");
-      })["catch"](function (error) {
-        _this.error = error.response.data.error;
       });
     }
   }

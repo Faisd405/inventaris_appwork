@@ -35,4 +35,51 @@ class usersapi extends Authenticatable implements JWTSubject
         return [];
     }
 
+
+    public function postUser($request)
+    {
+        $user = $this->create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return $user;
+    }
+
+    public function getUser()
+    {
+        $user = $this->all();
+        return $user;
+    }
+
+    public function getUserById($id)
+    {
+        $user = $this->find($id);
+        return $user;
+    }
+
+    public function updateUser($request, $id)
+    {
+        $user = $this->find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return $user;
+    }
+
+    public function deleteUser($id)
+    {
+        $user = $this->find($id);
+        $user->delete();
+        return $user;
+    }
+
+    public function getUserByEmail($email)
+    {
+        $user = $this->where('email', $email)->first();
+        return $user;
+    }
+
 }

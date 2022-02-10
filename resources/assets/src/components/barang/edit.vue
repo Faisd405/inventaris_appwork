@@ -81,6 +81,17 @@
               </div>
 
               <div class="form-group">
+                <label for="year">Tahun</label>
+                <input
+                  type="year"
+                  name="year"
+                  class="form-control"
+                  v-model="barang.year"
+                  placeholder="Masukan Tahun"
+                />
+              </div>
+
+              <div class="form-group">
                 <label for="lokasi_id">Lokasi</label>
                 <select
                   name="lokasi_id"

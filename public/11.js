@@ -243,6 +243,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -681,6 +692,36 @@ var render = function () {
                           "harga_barang",
                           $event.target.value
                         )
+                      },
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "year" } }, [_vm._v("Tahun")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.barang.year,
+                        expression: "barang.year",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "year",
+                      name: "year",
+                      placeholder: "Masukan Tahun",
+                    },
+                    domProps: { value: _vm.barang.year },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.barang, "year", $event.target.value)
                       },
                     },
                   }),
