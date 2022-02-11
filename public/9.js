@@ -91,9 +91,10 @@ __webpack_require__.r(__webpack_exports__);
             id_api: _this.id_api,
             name: _this.name,
             email: _this.email,
-            password: _this.password,
-            success: _this.success
+            password: _this.password
           }).then(function (response) {
+            _this.success = response.data.success;
+
             if (response.data.login === true) {
               localStorage.setItem("user", JSON.stringify(response.data.user));
               localStorage.setItem("token", response.data.token);

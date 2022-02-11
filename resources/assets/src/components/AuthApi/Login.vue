@@ -82,10 +82,10 @@ export default {
                 id_api: this.id_api,
                 name: this.name,
                 email: this.email,
-                password: this.password,
-                success: this.success,
+                password: this.password
               })
               .then((response) => {
+                this.success = response.data.success;
                 if (response.data.login === true) {
                     localStorage.setItem("user", JSON.stringify(response.data.user)
                   );
