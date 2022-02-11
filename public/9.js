@@ -65,8 +65,7 @@ __webpack_require__.r(__webpack_exports__);
       email: "",
       password: "",
       error: null,
-      message: "",
-      success: false
+      message: ""
     };
   },
   created: function created() {
@@ -84,17 +83,15 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (Response) {
         _this.name = Response.data.user.username;
         _this.id_api = Response.data.user.id;
-        _this.success = Response.data.success;
 
         if (Response.data.success === true) {
           axios.post("/api/loginapi", {
             id_api: _this.id_api,
             name: _this.name,
             email: _this.email,
-            password: _this.password
+            password: _this.password,
+            success: Response.data.success
           }).then(function (response) {
-            _this.success = response.data.success;
-
             if (response.data.login === true) {
               localStorage.setItem("user", JSON.stringify(response.data.user));
               localStorage.setItem("token", response.data.token);

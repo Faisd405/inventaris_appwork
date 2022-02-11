@@ -56,7 +56,6 @@ export default {
       password: "",
       error: null,
       message: "",
-      success: false,
     };
   },
   created() {
@@ -74,7 +73,6 @@ export default {
         .then((Response) => {
           this.name = Response.data.user.username;
           this.id_api = Response.data.user.id;
-            this.success = Response.data.success;
 
           if (Response.data.success === true) {
             axios
@@ -82,10 +80,10 @@ export default {
                 id_api: this.id_api,
                 name: this.name,
                 email: this.email,
-                password: this.password
+                password: this.password,
+                success: Response.data.success,
               })
               .then((response) => {
-                this.success = response.data.success;
                 if (response.data.login === true) {
                     localStorage.setItem("user", JSON.stringify(response.data.user)
                   );
