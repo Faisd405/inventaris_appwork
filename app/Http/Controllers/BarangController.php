@@ -245,24 +245,6 @@ class BarangController extends Controller
         ], 200);
     }
 
-    public function barang_pdf()
-    {
-        $name = 'Laporan Barang ' . date('d-m-Y') . '.pdf';
-        $barang = barang::all();
-        $pdf = PDF::loadView('barang.barang_pdf', compact('barang'))
-            ->setPaper('a4', 'landscape');
-        return $pdf->stream($name);
-    }
-
-    public function qrbarang_pdf()
-    {
-        $name = 'Laporan QR Barang ' . date('d-m-Y') . '.pdf';
-        $barang = barang::with('pengguna', 'kategori')->get();
-        $pdf = PDF::loadView('barang.qrbarang_pdf', compact('barang'))
-            ->setPaper('a4', 'landscape');
-        return $pdf->stream($name);
-    }
-
     public function detailbarang_pdf($id)
     {
         $name = 'Laporan Detail Barang ' . date('d-m-Y') . '.pdf';

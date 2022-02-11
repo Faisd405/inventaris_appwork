@@ -13,12 +13,6 @@
     >
       <div>Export Barang</div>
       <hr />
-      <a href="/barang/barang_pdf" class="btn btn-md btn-primary mt-3 flex">
-        Export PDF
-      </a>
-      <a href="/barang/qrbarang_pdf" class="btn btn-md btn-warning mt-3 flex">
-        Export PDF With Qr
-      </a>
       <a href="/barang/barang_excel" class="btn btn-md btn-secondary mt-3 flex">
         Export Excel
       </a>

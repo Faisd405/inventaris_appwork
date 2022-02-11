@@ -38,13 +38,13 @@ class UsersapiController extends Controller
         if ($users) {
             return response()->json([
                 'success' => true,
-                'message' => 'Barang dan User!',
+                'message' => 'User!',
                 'user' => $users
             ], 200);
         } else {
             return response()->json([
                 'success' => false,
-                'message' => 'barangs Tidak Ditemukan!',
+                'message' => 'User Tidak Ditemukan!',
                 'data'    => ''
             ], 404);
         }
@@ -117,4 +117,62 @@ class UsersapiController extends Controller
         ], 200);
     }
 
+    public function getUserByEmail($email)
+    {
+        $users = $this->usersapi->getUserByEmail($email);
+
+        if ($users) {
+            return $users;
+        }
+    }
+
+    public function credentials($request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        return $credentials;
+    }
+
+    public function login(Request $request)
+    {
+        $name = $request->name;
+        $email = $request->email;
+        $password = $request->password;
+        $id_api = $request->id_api;
+        $credentials = $this->credentials($request);
+        $success = $request->success;
+
+        $ByEmail = $this->getUserByEmail($email);
+
+        if ($success) {
+            if ($ByEmail) {
+                $id = $ByEmail->id;
+                $credentials = $this->credentials($request);
+
+                if (Auth::guard('etask')->attempt($credentials)) {
+                    $status = 200;
+                    $user = Auth::guard('etask')->user();
+                    $response = [
+                        'user' => $this->usersapi->arrayMerge($user),
+                        'login' => true,
+                        'token' => JWTAuth::fromUser($user),
+                    ];
+                    return response()->json($response, $status);
+                } else {
+                    return $this->usersapi->updateUser($password, $id);
+                }
+            } else {
+                $createUser = $this->usersapi->postUser($name, $email, $password, $id_api);
+                $createUser->roles()->attach(1);
+
+                return response()->json(['message' => 'Registration Successful.'], 201);
+            }
+        } else {
+            $status = 422;
+            $response = ['error' => 'The email or password is incorrect.'];
+        }
+    }
 }

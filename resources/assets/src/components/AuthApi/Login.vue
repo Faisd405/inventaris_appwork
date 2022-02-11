@@ -50,10 +50,13 @@ export default {
   },
   data() {
     return {
+      name: "",
+      id_api: "",
       email: "",
       password: "",
       error: null,
       message: "",
+      success: false,
     };
   },
   created() {
@@ -67,12 +70,41 @@ export default {
         .post("https://laporan.4visionmedia.com/api/data/login", {
           email: this.email,
           password: this.password,
-        }).then(Response => {
-            console.log(Response.data.success);
+        })
+        .then((Response) => {
+          this.name = Response.data.user.username;
+          this.id_api = Response.data.user.id;
+            this.success = Response.data.success;
+
           if (Response.data.success === true) {
-            this.$router.push("/login");
-          } else {
-            this.error = Response.data.message;
+            axios
+              .post("/api/loginapi", {
+                id_api: this.id_api,
+                name: this.name,
+                email: this.email,
+                password: this.password,
+                success: this.success,
+              })
+              .then((response) => {
+                if (response.data.login === true) {
+                    localStorage.setItem("user", JSON.stringify(response.data.user)
+                  );
+                  localStorage.setItem("token", response.data.token);
+
+                  let loginType = response.data.user.roles[0].name;
+                  if (loginType === "user") {
+                    this.$router.push("/");
+                  } else if (loginType === "admin") {
+                    this.$router.push("/");
+                  } else {
+                    this.$router.push("login");
+                  }
+
+                  this.$emit("IsloggedIn");
+                } else {
+                  this.error = response.data.message;
+                }
+              });
           }
         });
     },

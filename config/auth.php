@@ -46,6 +46,12 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'etask' => [
+            'driver' => 'jwt',
+            'provider' => 'usersapi',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -69,6 +75,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'usersapi' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\usersapi::class,
         ],
 
         // 'users' => [

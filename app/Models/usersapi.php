@@ -19,6 +19,7 @@ class usersapi extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'id_api'
     ];
     public function roles()
     {
@@ -35,18 +36,6 @@ class usersapi extends Authenticatable implements JWTSubject
         return [];
     }
 
-
-    public function postUser($request)
-    {
-        $user = $this->create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        return $user;
-    }
-
     public function getUser()
     {
         $user = $this->all();
@@ -59,14 +48,30 @@ class usersapi extends Authenticatable implements JWTSubject
         return $user;
     }
 
-    public function updateUser($request, $id)
+    public function postUser($name, $email, $password, $id_api)
     {
-        $user = $this->find($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->save();
+        $user = $this->create([
+            'name' => $name,
+            'email' => $email,
+            'password' => Hash::make($password),
+            'id_api' => $id_api
+        ]);
+
         return $user;
+    }
+
+    public function updateUser($password, $id)
+    {
+        //put
+        $user = $this->find($id);
+        $user->password = Hash::make($password);
+        $user->save();
+        return response()->json([
+            'success' => true,
+            'message' => 'Password User Berhasil Diupdate!',
+            'user' => $user
+        ], 200);
+
     }
 
     public function deleteUser($id)
@@ -82,4 +87,14 @@ class usersapi extends Authenticatable implements JWTSubject
         return $user;
     }
 
+    public function getUserByEmailAndPassword($email, $password)
+    {
+        $user = $this->where('email', $email)->where('password', $password)->first();
+        return $user;
+    }
+
+    public function arrayMerge($user)
+    {
+        return array_merge($user->toArray(), ['roles' => $user->roles()->get()->toArray()]);
+    }
 }

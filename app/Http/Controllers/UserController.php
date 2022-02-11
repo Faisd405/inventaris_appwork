@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\usersapi;
 use App\Models\role_user;
 use Illuminate\Support\Facades\Hash;
 use Auth;
@@ -11,10 +12,11 @@ use JWTAuth;
 
 class UserController extends Controller
 {
-    public function __construct(User $user, role_user $role_user)
+    public function __construct(User $user, role_user $role_user, usersapi $usersapi)
     {
         $this->user = $user;
         $this->role_user = $role_user;
+        $this->usersapi = $usersapi;
     }
 
     //crud api
@@ -118,8 +120,13 @@ class UserController extends Controller
 
     public function getUser()
     {
-        $user = Auth::user();
-        $data = $this->user->arrayMerge($user);
+        if (Auth::check()) {
+            $user = Auth::user();
+            $data = $this->user->arrayMerge($user);
+        } if (Auth::guard('etask')->check()) {
+            $user = Auth::guard('etask')->user();
+            $data = $this->usersapi->arrayMerge($user);
+        }
         return response()->json($data, 200);
     }
 

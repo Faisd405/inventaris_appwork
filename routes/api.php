@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UsersapiController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\BukuController;
@@ -29,9 +30,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //Auth
-Route::post('/register', [UserController::class, 'register']);
-Route::post('login', [ 'as' => 'login', 'uses' => 'UserController@login']);
-Route::get('/user',[UserController::class, 'getUser']);
+Route::post('/login', [UserController::class, 'login']);
+Route::post('/loginapi', [UsersapiController::class, 'login']);
+Route::get('/user', [UserController::class, 'getUser']);
 
 //Route API User
 Route::get('/users', [UserController::class, 'index']);
@@ -39,6 +40,14 @@ Route::get('/users/{id}', [UserController::class, 'show']);
 Route::post('/users', [UserController::class, 'store']);
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::delete('/users/{id}', [UserController::class, 'destroy'])->middleware('auth:api');
+
+//Route API UserApi
+Route::get('/usersapi', [UsersapiController::class, 'index']);
+Route::get('/usersapi/{id}', [UsersapiController::class, 'show']);
+Route::post('/usersapi', [UsersapiController::class, 'store']);
+Route::put('/usersapi/{id}', [UsersapiController::class, 'update']);
+Route::delete('/usersapi/{id}', [UsersapiController::class, 'destroy'])->middleware('auth:api');
+Route::get('/usersapi/email/{email}', [UsersapiController::class, 'getUserByEmail']);
 
 //Route API Roles
 Route::get('/roles', [RolesController::class, 'index']);

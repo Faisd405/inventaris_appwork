@@ -15,6 +15,7 @@ class CreateUsersapiTable extends Migration
     {
         Schema::create('usersapi', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('id_api');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
