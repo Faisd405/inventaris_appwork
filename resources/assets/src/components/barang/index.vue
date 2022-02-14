@@ -52,7 +52,8 @@
             <div>
               <table>
                 <tr>
-                  <td><label>Nama Barang:</label></td>
+                  <td><label>Nama Barang</label></td>
+                  <td class="px-2">:</td>
                   <td>
                     <b-input
                       class="form-control-sm"
@@ -63,8 +64,9 @@
                 </tr>
                 <tr>
                   <td><label>Lokasi Barang</label></td>
+                  <td class="px-2">:</td>
                   <td>
-                    <b-select class="form-control-sm" v-model="lokasi_barang">
+                    <select class="form-control" v-model="lokasi_barang">
                       <option value="">Semua Lokasi Barang</option>
                       <option
                         v-for="lokasi in lokasi"
@@ -73,18 +75,19 @@
                       >
                         {{ lokasi.lokasi }}
                       </option>
-                    </b-select>
+                    </select>
                   </td>
                 </tr>
                 <tr>
-                  <td><label>Jumlah Baris:</label></td>
+                  <td><label>Jumlah Baris</label></td>
+                  <td class="px-2">:</td>
                   <td>
-                    <b-select class="form-control-sm" v-model="pageSize">
+                    <select class="form-control" v-model="pageSize">
                       <option :value="10">10</option>
                       <option :value="25">25</option>
                       <option :value="50">50</option>
                       <option :value="100">100</option>
-                    </b-select>
+                    </select>
                   </td>
                 </tr>
               </table>

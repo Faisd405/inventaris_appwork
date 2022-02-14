@@ -172,7 +172,8 @@ class UsersapiController extends Controller
             }
         } else {
             $status = 422;
-            $response = ['error' => 'The email or password is incorrect.'];
+            $response = ['message' => 'The email or password is incorrect.'];
+            return response()->json($response, $status);
         }
     }
 }

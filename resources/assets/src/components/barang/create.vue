@@ -229,6 +229,7 @@ export default {
         jumlah_barang: "",
         pengguna_id: "",
         image: "",
+        lampiran: "",
       },
       preview: null,
         previewPDF: null,

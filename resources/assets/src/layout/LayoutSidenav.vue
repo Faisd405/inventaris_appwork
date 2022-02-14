@@ -55,8 +55,15 @@
         icon="ion ion-md-desktop"
         :to="{ name: 'index-pengajuan', params: { id: user.id } }"
         :exact="true"
-        v-if="user.roles[0].name == 'user'"
+        v-if="user.roles[0].name == 'user' && !user.id_api"
         >Pengajuan Barang User</sidenav-router-link
+      >
+      <sidenav-router-link
+        icon="ion ion-md-desktop"
+        :to="{ name: 'index-pengajuan', params: { id: user.id } }"
+        :exact="true"
+        v-if="user.roles[0].name == 'user' && user.id_api"
+        >Pengajuan Barang User Account My E-task</sidenav-router-link
       >
       <sidenav-router-link
         icon="ion ion-md-desktop"

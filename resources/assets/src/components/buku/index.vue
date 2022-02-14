@@ -62,6 +62,7 @@
                     <th sortKey="jenis" scope="col">Jenis</th>
                     <th sortKey="pengguna" scope="col">Pengguna</th>
                     <th sortKey="lokasi" scope="col">Lokasi</th>
+                    <th sortKey="harga">Harga</th>
                     <th scope="col">Aksi</th>
                   </tr>
                 </thead>
@@ -97,6 +98,9 @@
                     </td>
                     <td>
                       {{ data.lokasi.lokasi }}
+                    </td>
+                    <td>
+                        {{data.harga}}
                     </td>
                     <td>
                       <span v-if="loginType == 'admin'">

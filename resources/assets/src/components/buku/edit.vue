@@ -98,7 +98,7 @@
                     </select>
                 </div>
               <!-- Lokasi -->
-              <div class="form=group">
+              <div class="form-group">
                 <label for="lokasi_id">Lokasi</label>
                 <select
                   name="lokasi_id"
@@ -115,6 +115,16 @@
                   </option>
                 </select>
               </div>
+
+              <div class="form-group">
+                <label>Harga</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  v-model="buku.harga"
+                  placeholder="Masukan Harga"
+                />
+                </div>
 
               <div class="form-group">
                 <button class="btn btn-md btn-success" type="submit">

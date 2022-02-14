@@ -31,7 +31,8 @@ class BukuRequest extends FormRequest
             'tanggal' => 'required',
             'jumlah' => 'required',
             'kondisi' => 'required',
-            'lokasi_id' => 'required'
+            'lokasi_id' => 'required',
+            'harga' => 'required',
         ];
     }
 }

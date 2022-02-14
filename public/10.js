@@ -244,7 +244,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         detail_lokasi: "",
         jumlah_barang: "",
         pengguna_id: "",
-        image: ""
+        image: "",
+        lampiran: ""
       },
       preview: null,
       previewPDF: null,

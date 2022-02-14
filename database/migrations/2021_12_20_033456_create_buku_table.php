@@ -27,6 +27,7 @@ class CreateBukuTable extends Migration
             $table->foreign('pengguna_id')->references('id')->on('pengguna');
             $table->unsignedBigInteger('lokasi_id');
             $table->foreign('lokasi_id')->references('id')->on('lokasi');
+            $table->integer('harga');
             $table->timestamps();
         });
     }

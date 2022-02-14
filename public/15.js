@@ -153,6 +153,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -203,40 +213,40 @@ __webpack_require__.r(__webpack_exports__);
     checkForm: function checkForm(e) {
       this.errors = [];
 
-      if (this.buku.judul == '') {
-        this.errors.push('Judul Buku tidak boleh kosong');
+      if (this.buku.judul == "") {
+        this.errors.push("Judul Buku tidak boleh kosong");
       }
 
-      if (this.buku.penulis == '') {
-        this.errors.push('Penulis tidak boleh kosong');
+      if (this.buku.penulis == "") {
+        this.errors.push("Penulis tidak boleh kosong");
       }
 
-      if (this.buku.penerbit == '') {
-        this.errors.push('Penerbit tidak boleh kosong');
+      if (this.buku.penerbit == "") {
+        this.errors.push("Penerbit tidak boleh kosong");
       }
 
-      if (this.buku.tanggal == '') {
-        this.errors.push('Tanggal tidak boleh kosong');
+      if (this.buku.tanggal == "") {
+        this.errors.push("Tanggal tidak boleh kosong");
       }
 
-      if (this.buku.kondisi == '') {
-        this.errors.push('Kondisi tidak boleh kosong');
+      if (this.buku.kondisi == "") {
+        this.errors.push("Kondisi tidak boleh kosong");
       }
 
-      if (this.buku.jumlah == '') {
-        this.errors.push('Jumlah tidak boleh kosong');
+      if (this.buku.jumlah == "") {
+        this.errors.push("Jumlah tidak boleh kosong");
       }
 
-      if (this.buku.jenis_id == '') {
-        this.errors.push('Jenis tidak boleh kosong');
+      if (this.buku.jenis_id == "") {
+        this.errors.push("Jenis tidak boleh kosong");
       }
 
-      if (this.buku.pengguna_id == '') {
-        this.errors.push('Pengguna tidak boleh kosong');
+      if (this.buku.pengguna_id == "") {
+        this.errors.push("Pengguna tidak boleh kosong");
       }
 
-      if (this.buku.lokasi_id == '') {
-        this.errors.push('Lokasi tidak boleh kosong');
+      if (this.buku.lokasi_id == "") {
+        this.errors.push("Lokasi tidak boleh kosong");
       }
 
       if (this.errors.length > 0) {
@@ -488,9 +498,9 @@ var render = function () {
                           { key: jenis.id, domProps: { value: jenis.id } },
                           [
                             _vm._v(
-                              "\n                      " +
+                              "\n                  " +
                                 _vm._s(jenis.jenis_buku) +
-                                "\n                  "
+                                "\n                "
                             ),
                           ]
                         )
@@ -550,9 +560,9 @@ var render = function () {
                           },
                           [
                             _vm._v(
-                              "\n                      " +
+                              "\n                  " +
                                 _vm._s(pengguna.name) +
-                                "\n                  "
+                                "\n                "
                             ),
                           ]
                         )
@@ -562,7 +572,7 @@ var render = function () {
                   ),
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "form=group" }, [
+                _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "lokasi_id" } }, [
                     _vm._v("Lokasi"),
                   ]),
@@ -621,6 +631,32 @@ var render = function () {
                     ],
                     2
                   ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Harga")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.buku.harga,
+                        expression: "buku.harga",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "number", placeholder: "Masukan Harga" },
+                    domProps: { value: _vm.buku.harga },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.buku, "harga", $event.target.value)
+                      },
+                    },
+                  }),
                 ]),
                 _vm._v(" "),
                 _c("br"),

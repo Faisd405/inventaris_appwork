@@ -2013,6 +2013,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = (_name$data$props$meth = {
   name: "app-layout-navbar",
@@ -2076,6 +2077,13 @@ var _data$name$components;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -36135,6 +36143,10 @@ var render = function () {
                     _c("b-nav-item", { attrs: { to: { name: "login" } } }, [
                       _vm._v("Login"),
                     ]),
+                    _vm._v(" "),
+                    _c("b-nav-item", { attrs: { to: { name: "loginapi" } } }, [
+                      _vm._v("Login With My E-task Account"),
+                    ]),
                   ],
                   1
                 ),
@@ -36284,7 +36296,7 @@ var render = function () {
                 _c("strong", [_vm._v("Modul Inventaris")]),
               ]),
               _vm._v(" "),
-              _vm.user.roles[0].name == "user"
+              _vm.user.roles[0].name == "user" && !_vm.user.id_api
                 ? _c(
                     "sidenav-router-link",
                     {
@@ -36298,6 +36310,23 @@ var render = function () {
                       },
                     },
                     [_vm._v("Pengajuan Barang User")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.user.roles[0].name == "user" && _vm.user.id_api
+                ? _c(
+                    "sidenav-router-link",
+                    {
+                      attrs: {
+                        icon: "ion ion-md-desktop",
+                        to: {
+                          name: "index-pengajuan",
+                          params: { id: _vm.user.id },
+                        },
+                        exact: true,
+                      },
+                    },
+                    [_vm._v("Pengajuan Barang User Account My E-task")]
                   )
                 : _vm._e(),
               _vm._v(" "),

@@ -207,6 +207,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -400,6 +403,8 @@ var render = function () {
                         _c("tr", [
                           _vm._m(2),
                           _vm._v(" "),
+                          _c("td", { staticClass: "px-2" }, [_vm._v(":")]),
+                          _vm._v(" "),
                           _c(
                             "td",
                             [
@@ -426,89 +431,125 @@ var render = function () {
                         _c("tr", [
                           _vm._m(3),
                           _vm._v(" "),
-                          _c(
-                            "td",
-                            [
-                              _c(
-                                "b-select",
-                                {
-                                  staticClass: "form-control-sm",
-                                  model: {
+                          _c("td", { staticClass: "px-2" }, [_vm._v(":")]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
                                     value: _vm.lokasi_barang,
-                                    callback: function ($$v) {
-                                      _vm.lokasi_barang = $$v
-                                    },
                                     expression: "lokasi_barang",
                                   },
-                                },
-                                [
-                                  _c("option", { attrs: { value: "" } }, [
-                                    _vm._v("Semua Lokasi Barang"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.lokasi, function (lokasi) {
-                                    return _c(
-                                      "option",
-                                      {
-                                        key: lokasi.id,
-                                        domProps: { value: lokasi.lokasi },
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                      " +
-                                            _vm._s(lokasi.lokasi) +
-                                            "\n                    "
-                                        ),
-                                      ]
-                                    )
-                                  }),
                                 ],
-                                2
-                              ),
-                            ],
-                            1
-                          ),
+                                staticClass: "form-control",
+                                on: {
+                                  change: function ($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call(
+                                        $event.target.options,
+                                        function (o) {
+                                          return o.selected
+                                        }
+                                      )
+                                      .map(function (o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.lokasi_barang = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  },
+                                },
+                              },
+                              [
+                                _c("option", { attrs: { value: "" } }, [
+                                  _vm._v("Semua Lokasi Barang"),
+                                ]),
+                                _vm._v(" "),
+                                _vm._l(_vm.lokasi, function (lokasi) {
+                                  return _c(
+                                    "option",
+                                    {
+                                      key: lokasi.id,
+                                      domProps: { value: lokasi.lokasi },
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                      " +
+                                          _vm._s(lokasi.lokasi) +
+                                          "\n                    "
+                                      ),
+                                    ]
+                                  )
+                                }),
+                              ],
+                              2
+                            ),
+                          ]),
                         ]),
                         _vm._v(" "),
                         _c("tr", [
                           _vm._m(4),
                           _vm._v(" "),
-                          _c(
-                            "td",
-                            [
-                              _c(
-                                "b-select",
-                                {
-                                  staticClass: "form-control-sm",
-                                  model: {
+                          _c("td", { staticClass: "px-2" }, [_vm._v(":")]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
                                     value: _vm.pageSize,
-                                    callback: function ($$v) {
-                                      _vm.pageSize = $$v
-                                    },
                                     expression: "pageSize",
                                   },
+                                ],
+                                staticClass: "form-control",
+                                on: {
+                                  change: function ($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call(
+                                        $event.target.options,
+                                        function (o) {
+                                          return o.selected
+                                        }
+                                      )
+                                      .map(function (o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.pageSize = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  },
                                 },
-                                [
-                                  _c("option", { domProps: { value: 10 } }, [
-                                    _vm._v("10"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { domProps: { value: 25 } }, [
-                                    _vm._v("25"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { domProps: { value: 50 } }, [
-                                    _vm._v("50"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { domProps: { value: 100 } }, [
-                                    _vm._v("100"),
-                                  ]),
-                                ]
-                              ),
-                            ],
-                            1
-                          ),
+                              },
+                              [
+                                _c("option", { domProps: { value: 10 } }, [
+                                  _vm._v("10"),
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { domProps: { value: 25 } }, [
+                                  _vm._v("25"),
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { domProps: { value: 50 } }, [
+                                  _vm._v("50"),
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { domProps: { value: 100 } }, [
+                                  _vm._v("100"),
+                                ]),
+                              ]
+                            ),
+                          ]),
                         ]),
                       ]),
                       _vm._v(" "),
@@ -888,7 +929,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [_c("label", [_vm._v("Nama Barang:")])])
+    return _c("td", [_c("label", [_vm._v("Nama Barang")])])
   },
   function () {
     var _vm = this
@@ -900,7 +941,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [_c("label", [_vm._v("Jumlah Baris:")])])
+    return _c("td", [_c("label", [_vm._v("Jumlah Baris")])])
   },
 ]
 render._withStripped = true
