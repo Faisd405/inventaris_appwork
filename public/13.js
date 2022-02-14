@@ -182,6 +182,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -196,7 +221,9 @@ __webpack_require__.r(__webpack_exports__);
           keys: ["nama_barang"]
         }
       },
+      lokasi_barang: "",
       barang: [],
+      lokasi: [],
       pageSize: 10,
       user: "",
       isLoggedIn: false,
@@ -213,6 +240,14 @@ __webpack_require__.r(__webpack_exports__);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (response) {
       _this.barang = response.data.barang;
     });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/lokasi").then(function (response) {
+      _this.lokasi = response.data.lokasi;
+    });
+  },
+  computed: {
+    filterBarang: function filterBarang() {
+      return this.filterbarangByLokasi(this.barang);
+    }
   },
   methods: {
     showModal: function showModal(data) {
@@ -236,21 +271,28 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    filterbarangByLokasi: function filterbarangByLokasi(barang) {
+      var _this3 = this;
+
+      return barang.filter(function (barang) {
+        return !barang.lokasi.lokasi.toString().indexOf(_this3.lokasi_barang);
+      });
     }
   },
   mounted: function mounted() {
-    var _this3 = this;
+    var _this4 = this;
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Content-Type"] = "application/json";
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("token");
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user").then(function (response) {
-      _this3.user = response.data;
-      _this3.loginType = response.data.roles[0].name;
+      _this4.user = response.data;
+      _this4.loginType = response.data.roles[0].name;
     })["catch"](function (error) {
       if (error.response.status === 401 || error.response.status === 500) {
         localStorage.clear();
 
-        _this3.$router.push("/login");
+        _this4.$router.push("/login");
       }
 
       console.error(error);
@@ -354,84 +396,120 @@ var render = function () {
                   _c(
                     "div",
                     [
-                      _c("label", [_vm._v("Filter berdasarkan Nama Barang:")]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.filters.nama_barang.value,
-                            expression: "filters.nama_barang.value",
-                          },
-                        ],
-                        staticClass: "form-control",
-                        domProps: { value: _vm.filters.nama_barang.value },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.filters.nama_barang,
-                              "value",
-                              $event.target.value
-                            )
-                          },
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("div", [
-                        _c("label", [_vm._v("Jumlah Baris:")]),
-                        _vm._v(" "),
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.pageSize,
-                                expression: "pageSize",
-                              },
+                      _c("table", [
+                        _c("tr", [
+                          _vm._m(2),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c("b-input", {
+                                staticClass: "form-control-sm",
+                                attrs: { placeholder: "Cari Nama Barang" },
+                                model: {
+                                  value: _vm.filters.nama_barang.value,
+                                  callback: function ($$v) {
+                                    _vm.$set(
+                                      _vm.filters.nama_barang,
+                                      "value",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "filters.nama_barang.value",
+                                },
+                              }),
                             ],
-                            staticClass: "form-control",
-                            on: {
-                              change: function ($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function (o) {
-                                    return o.selected
-                                  })
-                                  .map(function (o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.pageSize = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              },
-                            },
-                          },
-                          [
-                            _c("option", { domProps: { value: 10 } }, [
-                              _vm._v("10"),
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { domProps: { value: 25 } }, [
-                              _vm._v("25"),
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { domProps: { value: 50 } }, [
-                              _vm._v("50"),
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { domProps: { value: 100 } }, [
-                              _vm._v("100"),
-                            ]),
-                          ]
-                        ),
+                            1
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("tr", [
+                          _vm._m(3),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "b-select",
+                                {
+                                  staticClass: "form-control-sm",
+                                  model: {
+                                    value: _vm.lokasi_barang,
+                                    callback: function ($$v) {
+                                      _vm.lokasi_barang = $$v
+                                    },
+                                    expression: "lokasi_barang",
+                                  },
+                                },
+                                [
+                                  _c("option", { attrs: { value: "" } }, [
+                                    _vm._v("Semua Lokasi Barang"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.lokasi, function (lokasi) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: lokasi.id,
+                                        domProps: { value: lokasi.lokasi },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                      " +
+                                            _vm._s(lokasi.lokasi) +
+                                            "\n                    "
+                                        ),
+                                      ]
+                                    )
+                                  }),
+                                ],
+                                2
+                              ),
+                            ],
+                            1
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("tr", [
+                          _vm._m(4),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c(
+                                "b-select",
+                                {
+                                  staticClass: "form-control-sm",
+                                  model: {
+                                    value: _vm.pageSize,
+                                    callback: function ($$v) {
+                                      _vm.pageSize = $$v
+                                    },
+                                    expression: "pageSize",
+                                  },
+                                },
+                                [
+                                  _c("option", { domProps: { value: 10 } }, [
+                                    _vm._v("10"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { domProps: { value: 25 } }, [
+                                    _vm._v("25"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { domProps: { value: 50 } }, [
+                                    _vm._v("50"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { domProps: { value: 100 } }, [
+                                    _vm._v("100"),
+                                  ]),
+                                ]
+                              ),
+                            ],
+                            1
+                          ),
+                        ]),
                       ]),
                       _vm._v(" "),
                       _c("br"),
@@ -442,7 +520,7 @@ var render = function () {
                           staticClass: "table table-striped table-bordered",
                           attrs: {
                             id: "table-barang",
-                            data: _vm.barang,
+                            data: _vm.filterBarang,
                             filters: _vm.filters,
                             currentPage: _vm.currentPage,
                             pageSize: _vm.pageSize,
@@ -805,6 +883,24 @@ var staticRenderFns = [
         ),
       ]),
     ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Nama Barang:")])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Lokasi Barang")])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Jumlah Baris:")])])
   },
 ]
 render._withStripped = true

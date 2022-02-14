@@ -188,6 +188,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -248,7 +270,12 @@ __webpack_require__.r(__webpack_exports__);
       user: "",
       isLoggedIn: false,
       loginType: null,
-      errors: []
+      errors: [],
+      DataDelete: {
+        barang: {
+          nama_barang: ""
+        }
+      }
     };
   },
   created: function created() {
@@ -293,6 +320,17 @@ __webpack_require__.r(__webpack_exports__);
     },
     showModal: function showModal(id) {
       this.$refs["modal-".concat(id)].show();
+    },
+    showModal1: function showModal1(data) {
+      this.DataDelete = data;
+      this.$refs["modal-delete"].show();
+    },
+    closeModal1: function closeModal1() {
+      this.$refs["modal-delete"].hide();
+    },
+    deleteData: function deleteData(id) {
+      this.closeModal1();
+      this.destroy(id);
     },
     checkForm: function checkForm(e) {
       this.errors = [];
@@ -770,7 +808,7 @@ var render = function () {
                                     staticClass: "btn btn-sm btn-danger",
                                     on: {
                                       click: function ($event) {
-                                        return _vm.destroy(data.item.id)
+                                        return _vm.showModal1(data.item)
                                       },
                                     },
                                   },
@@ -802,6 +840,54 @@ var render = function () {
                     expression: "currentPage",
                   },
                 }),
+                _vm._v(" "),
+                _c(
+                  "b-modal",
+                  {
+                    ref: "modal-delete",
+                    attrs: { title: "Ganti Pengguna", "hide-footer": "" },
+                  },
+                  [
+                    _c("div", { staticClass: "d-block text-center" }, [
+                      _c("h3", [
+                        _vm._v(
+                          "\n                  Apakah Anda Yakin Mau Menghapus Data History\n                  "
+                        ),
+                        _vm.DataDelete
+                          ? _c("div", [
+                              _vm._v(_vm._s(_vm.DataDelete.barang.nama_barang)),
+                            ])
+                          : _vm._e(),
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger btn-lg",
+                          on: {
+                            click: function ($event) {
+                              return _vm.deleteData(_vm.DataDelete.id)
+                            },
+                          },
+                        },
+                        [_vm._v("\n                  Hapus\n                ")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary btn-lg",
+                          on: {
+                            click: function ($event) {
+                              return _vm.closeModal1()
+                            },
+                          },
+                        },
+                        [_vm._v("\n                  Batal\n                ")]
+                      ),
+                    ]),
+                  ]
+                ),
               ],
               1
             ),

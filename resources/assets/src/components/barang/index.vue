@@ -50,25 +50,50 @@
             </span>
             <br />
             <div>
-              <label>Filter berdasarkan Nama Barang:</label>
-              <input class="form-control" v-model="filters.nama_barang.value" />
-
-              <br />
-              <div>
-                <label>Jumlah Baris:</label>
-                <select class="form-control" v-model="pageSize">
-                  <option :value="10">10</option>
-                  <option :value="25">25</option>
-                  <option :value="50">50</option>
-                  <option :value="100">100</option>
-                </select>
-              </div>
+              <table>
+                <tr>
+                  <td><label>Nama Barang:</label></td>
+                  <td>
+                    <b-input
+                      class="form-control-sm"
+                      v-model="filters.nama_barang.value"
+                      placeholder="Cari Nama Barang"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td><label>Lokasi Barang</label></td>
+                  <td>
+                    <b-select class="form-control-sm" v-model="lokasi_barang">
+                      <option value="">Semua Lokasi Barang</option>
+                      <option
+                        v-for="lokasi in lokasi"
+                        :value="lokasi.lokasi"
+                        :key="lokasi.id"
+                      >
+                        {{ lokasi.lokasi }}
+                      </option>
+                    </b-select>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label>Jumlah Baris:</label></td>
+                  <td>
+                    <b-select class="form-control-sm" v-model="pageSize">
+                      <option :value="10">10</option>
+                      <option :value="25">25</option>
+                      <option :value="50">50</option>
+                      <option :value="100">100</option>
+                    </b-select>
+                  </td>
+                </tr>
+              </table>
 
               <br />
 
               <v-table
                 id="table-barang"
-                :data="barang"
+                :data="filterBarang"
                 :filters="filters"
                 class="table table-striped table-bordered"
                 :currentPage.sync="currentPage"
@@ -179,7 +204,9 @@ export default {
       filters: {
         nama_barang: { value: "", keys: ["nama_barang"] },
       },
+      lokasi_barang: "",
       barang: [],
+      lokasi: [],
       pageSize: 10,
       user: "",
       isLoggedIn: false,
@@ -195,6 +222,14 @@ export default {
     axios.get(uri).then((response) => {
       this.barang = response.data.barang;
     });
+    axios.get("/api/lokasi").then((response) => {
+      this.lokasi = response.data.lokasi;
+    });
+  },
+  computed: {
+      filterBarang: function() {
+          return this.filterbarangByLokasi(this.barang);
+      },
   },
   methods: {
     showModal(data) {
@@ -217,6 +252,11 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    filterbarangByLokasi: function(barang) {
+      return barang.filter(
+          (barang) => !barang.lokasi.lokasi.toString().indexOf(this.lokasi_barang)
+      );
     },
   },
   mounted() {

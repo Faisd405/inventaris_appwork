@@ -153,7 +153,7 @@
                   <span v-if="loginType == 'admin'">
                     <button
                       class="btn btn-sm btn-danger"
-                      @click="destroy(data.item.id)"
+                      @click="showModal1(data.item)"
                     >
                       <i class="ion ion-ios-trash"></i>
                     </button>
@@ -166,6 +166,28 @@
                 :total-rows="rows"
                 :per-page="perPage"
               ></b-pagination>
+                  <b-modal
+                    :ref="'modal-delete'"
+                    title="Ganti Pengguna"
+                    hide-footer
+                  >
+
+                <div class="d-block text-center">
+                  <h3>
+                    Apakah Anda Yakin Mau Menghapus Data History
+                    <div v-if="DataDelete">{{ DataDelete.barang.nama_barang }}</div>
+                  </h3>
+                  <button
+                    @click="deleteData(DataDelete.id)"
+                    class="btn btn-danger btn-lg"
+                  >
+                    Hapus
+                  </button>
+                  <button @click="closeModal1()" class="btn btn-primary btn-lg">
+                    Batal
+                  </button>
+                </div>
+                  </b-modal>
             </div>
           </div>
         </div>
@@ -224,6 +246,11 @@ export default {
       isLoggedIn: false,
       loginType: null,
       errors: [],
+      DataDelete: {
+          barang: {
+            nama_barang: "",
+          },
+      },
     };
   },
   created() {
@@ -263,6 +290,17 @@ export default {
     },
     showModal(id) {
       this.$refs[`modal-${id}`].show();
+    },
+    showModal1(data) {
+        this.DataDelete = data;
+        this.$refs[`modal-delete`].show();
+    },
+    closeModal1() {
+      this.$refs[`modal-delete`].hide();
+    },
+    deleteData(id) {
+      this.closeModal1();
+      this.destroy(id);
     },
     checkForm: function (e) {
       this.errors = [];
