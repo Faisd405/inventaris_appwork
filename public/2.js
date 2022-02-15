@@ -75,14 +75,16 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/inventaris/inventarisTidakDipakai').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/inventaris/inventarisTidakDipakai").then(function (response) {
       _this.chartData.labels = response.data.tanggal;
 
       for (var i = 0; i < response.data.kategori_barang.length; i++) {
         _this.chartData.datasets.push({
           label: response.data.kategori_barang[i],
-          backgroundColor: '#' + (Math.random() * 0xFFFFFF << 0).toString(16),
-          data: response.data.kategori[i]
+          backgroundColor: "#CC" + (Math.random() * 0xffffff << 0).toString(16),
+          data: response.data.kategori[i],
+          //rgb math random
+          borderColor: "#" + (Math.random() * 0xffffff << 0).toString(16)
         });
       }
 
