@@ -16,7 +16,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Pie"],
-  props: ["options"],
   data: function data() {
     return {
       chartData: {
@@ -31,28 +30,6 @@ __webpack_require__.r(__webpack_exports__);
           // length of the bar
           data: []
         }]
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            },
-            gridLines: {
-              display: true
-            }
-          }],
-          xAxes: [{
-            gridLines: {
-              display: false
-            }
-          }]
-        },
-        legend: {
-          display: true
-        },
-        responsive: true,
-        maintainAspectRatio: false
       }
     };
   },
@@ -86,50 +63,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Line"],
-  props: ["options"],
   data: function data() {
     return {
       chartData: {
         // Labels for the bars
-        labels: ["2015", "2016", "2017", "2018", "2019"],
-        datasets: [{
-          label: "Kategori A",
-          // Colors for the bars
-          backgroundColor: "rgba(185, 0, 0, 0.2)",
-          borderColor: "rgba(118, 159, 205, 1)",
-          pointBorderColor: "#2554FF",
-          // length of the bar
-          data: ["10", "30", "20", "40", "50"]
-        }, {
-          label: "Kategori B",
-          // Colors for the bars
-          backgroundColor: "rgba(255, 0, 0 , 0.2)",
-          borderColor: "rgba(255, 0, 0 , 1)",
-          pointBorderColor: "#2554FF",
-          data: ["30", "60", "40", "80", "100"]
-        }]
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            },
-            gridLines: {
-              display: true
-            }
-          }],
-          xAxes: [{
-            gridLines: {
-              display: false
-            }
-          }]
-        },
-        legend: {
-          display: true
-        },
-        responsive: true,
-        maintainAspectRatio: false
+        labels: [],
+        datasets: []
       }
     };
   },
@@ -138,6 +77,14 @@ __webpack_require__.r(__webpack_exports__);
 
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/inventaris/inventarisTidakDipakai').then(function (response) {
       _this.chartData.labels = response.data.tanggal;
+
+      for (var i = 0; i < response.data.kategori_barang.length; i++) {
+        _this.chartData.datasets.push({
+          label: response.data.kategori_barang[i],
+          backgroundColor: '#' + (Math.random() * 0xFFFFFF << 0).toString(16),
+          data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+        });
+      }
 
       _this.renderChart(_this.chartData, _this.options);
     });

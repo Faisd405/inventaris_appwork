@@ -34,13 +34,15 @@ class InventarisController extends Controller
 
     public function inventarisTidakDipakai()
     {
-        $kategori = $this->history->getHistoryByPenggunaId(1)->where('tanggal_akhir_penggunaan', 'Masih Terpakai')->pluck('barang.kategori_id');
+        // $kategori = $this->history->getHistoryByPenggunaId(1)->where('tanggal_akhir_penggunaan', 'Masih Terpakai')->pluck('barang.kategori.nama_kategori');
+        // length kategori1 kategori2
+        $kategori = $this->history->getHistoryByPenggunaId(1)->where('tanggal_akhir_penggunaan', 'Masih Terpakai')->pluck('barang.kategori.nama_kategori');
         $tanggal = history::with('pengguna', 'barang')->where('pengguna_id', 1)->where('tanggal_akhir_penggunaan','Masih Terpakai')->distinct()->select('tanggal_awal_penggunaan')->pluck('tanggal_awal_penggunaan');
-        $kategori_barang = $this->kategori->getKategoriRawNama();
+        $kategori_barang = $this->kategori->getKategori()->pluck('nama_kategori');
 
         return response()->json([
-            'kategori_barang' => $kategori_barang,
             'kategori' => $kategori,
+            'kategori_barang' => $kategori_barang,
             'tanggal' => $tanggal,
         ], 200);
     }

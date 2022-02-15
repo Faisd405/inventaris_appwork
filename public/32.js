@@ -361,8 +361,8 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.barang.image != "") {
         // size 2048
-        if (this.barang.image.size > 2048000) {
-          this.errors.push("Ukuran gambar tidak boleh lebih dari 2MB");
+        if (this.barang.image.size > 6048000) {
+          this.errors.push("Ukuran gambar tidak boleh lebih dari 6MB");
         }
       }
 
