@@ -5,7 +5,7 @@ import Meta from 'vue-meta'
 import globals from '@/globals'
 
 // Layouts
-import Layout1 from '@/layout/Layout1Flex'
+import Layout2 from '@/layout/Layout2Flex'
 
 Vue.use(Router)
 Vue.use(Meta)
@@ -17,7 +17,7 @@ const router = new Router({
 
     routes: [{
         path: '/',
-        component: Layout1,
+        component: Layout2,
         children: [{
             path: '',
             name: 'home',

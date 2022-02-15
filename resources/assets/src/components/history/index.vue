@@ -83,7 +83,7 @@
                   {{ data.item.status }}
                   <span v-if="loginType == 'admin'">
                     <span v-if="data.item.status == 'Masih Digunakan'">
-                      /<b-button id="show-btn" @click="showModal(data.item.id)"
+                      /<b-button id="show-btn" @click="showModal(data.item.id,data.item)"
                         >Ganti Pengguna</b-button
                       >
                     </span>
@@ -166,16 +166,13 @@
                 :total-rows="rows"
                 :per-page="perPage"
               ></b-pagination>
-                  <b-modal
-                    :ref="'modal-delete'"
-                    title="Ganti Pengguna"
-                    hide-footer
-                  >
-
+              <b-modal :ref="'modal-delete'" title="Ganti Pengguna" hide-footer>
                 <div class="d-block text-center">
                   <h3>
                     Apakah Anda Yakin Mau Menghapus Data History
-                    <div v-if="DataDelete">{{ DataDelete.barang.nama_barang }}</div>
+                    <div v-if="DataDelete">
+                      {{ DataDelete.barang.nama_barang }}
+                    </div>
                   </h3>
                   <button
                     @click="deleteData(DataDelete.id)"
@@ -187,7 +184,7 @@
                     Batal
                   </button>
                 </div>
-                  </b-modal>
+              </b-modal>
             </div>
           </div>
         </div>
@@ -246,10 +243,11 @@ export default {
       isLoggedIn: false,
       loginType: null,
       errors: [],
+      valid: [],
       DataDelete: {
-          barang: {
-            nama_barang: "",
-          },
+        barang: {
+          nama_barang: "",
+        },
       },
     };
   },
@@ -288,12 +286,13 @@ export default {
           console.log(this.historys);
         });
     },
-    showModal(id) {
+    showModal(id,valid) {
+      this.valid = valid;
       this.$refs[`modal-${id}`].show();
     },
     showModal1(data) {
-        this.DataDelete = data;
-        this.$refs[`modal-delete`].show();
+      this.DataDelete = data;
+      this.$refs[`modal-delete`].show();
     },
     closeModal1() {
       this.$refs[`modal-delete`].hide();
@@ -304,10 +303,12 @@ export default {
     },
     checkForm: function (e) {
       this.errors = [];
+      console.log(this.historys.pengguna_id);
+      console.log(this.valid.pengguna_id);
       if (this.historys.pengguna_id == "") {
         this.errors.push("Pengguna Harus Diisi");
       }
-      if (this.historys.pengguna_id == this.barang[0].pengguna.id) {
+      if (this.historys.pengguna_id == this.valid.pengguna_id) {
         this.errors.push("Pengguna Tidak Boleh Sama");
       }
       if (this.errors.length) {

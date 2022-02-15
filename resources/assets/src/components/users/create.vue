@@ -36,23 +36,6 @@
                 />
               </div>
               <div class="form-group">
-                <label for="roles_id">Roles</label>
-                <select
-                  name="roles_id"
-                  class="form-control"
-                  v-model="users.roles"
-                >
-                  <option value="" disabled>Pilih User</option>
-                  <option
-                    v-for="roles in roles"
-                    :key="roles.id"
-                    :value="roles.id"
-                  >
-                    {{ roles.name }}
-                  </option>
-                </select>
-              </div>
-              <div class="form-group">
                 <button class="btn btn-md btn-success" type="submit">
                   SIMPAN
                 </button>
@@ -85,17 +68,12 @@ export default {
         name: "",
         email: "",
         password: "",
-        roles: "",
       },
       validUser: [],
-      roles: [],
       errors: [],
     };
   },
   created() {
-    axios.get("/api/roles").then((response) => {
-      this.roles = response.data.roles;
-    });
     axios.get("/api/users").then((response) => {
       this.validUser = response.data.user;
     });
@@ -124,9 +102,6 @@ export default {
       }
       if (this.users.password == "") {
         this.errors.push("Password harus diisi");
-      }
-      if (this.users.roles == "") {
-        this.errors.push("Roles harus diisi");
       }
       if (this.errors.length > 0) {
         e.preventDefault();

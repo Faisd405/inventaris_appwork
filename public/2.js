@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[2],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Chart/TotalChart.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/Chart/TotalChart.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Chart/InventarisPieChart.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/Chart/InventarisPieChart.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -15,19 +15,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Bar"],
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Pie"],
+  props: ["options"],
   data: function data() {
     return {
       chartData: {
         // Labels for the bars
         labels: [],
-        //year
         datasets: [{
-          label: "Total Aset Pertahun",
-          borderWidth: 1,
+          label: "Jumlah Barang per Kategori",
           // Colors for the bars
-          // lightblue
-          backgroundColor: "rgba(185, 215, 234, 0.5)",
+          backgroundColor: "rgba(185, 215, 234, 0.2)",
           borderColor: "rgba(118, 159, 205, 1)",
           pointBorderColor: "#2554FF",
           // length of the bar
@@ -61,9 +59,9 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/barang/year").then(function (response) {
-      _this.chartData.labels = response.data.year;
-      _this.chartData.datasets[0].data = response.data.harga_barang;
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/inventaris/barangdanbuku').then(function (response) {
+      _this.chartData.labels = response.data.inventaris;
+      _this.chartData.datasets[0].data = response.data.total;
 
       _this.renderChart(_this.chartData, _this.options);
     });
@@ -72,10 +70,155 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Laporan/LaporanTHargaBarang.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/Laporan/LaporanTHargaBarang.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Chart/InventarisTidakTerpakai.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/Chart/InventarisTidakTerpakai.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Line"],
+  props: ["options"],
+  data: function data() {
+    return {
+      chartData: {
+        // Labels for the bars
+        labels: ["2015", "2016", "2017", "2018", "2019"],
+        datasets: [{
+          label: "Kategori A",
+          // Colors for the bars
+          backgroundColor: "rgba(185, 0, 0, 0.2)",
+          borderColor: "rgba(118, 159, 205, 1)",
+          pointBorderColor: "#2554FF",
+          // length of the bar
+          data: ["10", "30", "20", "40", "50"]
+        }, {
+          label: "Kategori B",
+          // Colors for the bars
+          backgroundColor: "rgba(255, 0, 0 , 0.2)",
+          borderColor: "rgba(255, 0, 0 , 1)",
+          pointBorderColor: "#2554FF",
+          data: ["30", "60", "40", "80", "100"]
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            },
+            gridLines: {
+              display: true
+            }
+          }],
+          xAxes: [{
+            gridLines: {
+              display: false
+            }
+          }]
+        },
+        legend: {
+          display: true
+        },
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/inventaris/inventarisTidakDipakai').then(function (response) {
+      _this.chartData.labels = response.data.tanggal;
+
+      _this.renderChart(_this.chartData, _this.options);
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Chart/KategoriPieChart.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/Chart/KategoriPieChart.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Pie"],
+  data: function data() {
+    return {
+      chartData: {
+        // Labels for the bars
+        labels: [],
+        datasets: [{
+          label: "Jumlah Barang per Kategori",
+          // Colors for the bars
+          backgroundColor: "rgba(185, 215, 234, 0.2)",
+          borderColor: "rgba(118, 159, 205, 1)",
+          pointBorderColor: "#2554FF",
+          // length of the bar
+          data: []
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            },
+            gridLines: {
+              display: true
+            }
+          }],
+          xAxes: [{
+            gridLines: {
+              display: false
+            }
+          }]
+        },
+        legend: {
+          display: true
+        },
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/namakategori").then(function (response) {
+      _this.chartData.labels = response.data.kategori;
+      _this.chartData.datasets[0].data = response.data.jumlah;
+
+      _this.renderChart(_this.chartData, _this.options);
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Home.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/Home.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -83,9 +226,11 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Chart_TotalChart_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Chart/TotalChart.vue */ "./resources/assets/src/components/Chart/TotalChart.vue");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Chart_InventarisPieChart_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Chart/InventarisPieChart.vue */ "./resources/assets/src/components/Chart/InventarisPieChart.vue");
+/* harmony import */ var _Chart_KategoriPieChart_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Chart/KategoriPieChart.vue */ "./resources/assets/src/components/Chart/KategoriPieChart.vue");
+/* harmony import */ var _Chart_InventarisTidakTerpakai_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Chart/InventarisTidakTerpakai.vue */ "./resources/assets/src/components/Chart/InventarisTidakTerpakai.vue");
 //
 //
 //
@@ -160,69 +305,291 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: "home",
   metaInfo: {
-    title: "Barang"
+    title: "Home"
   },
   components: {
-    TotalChart: _Chart_TotalChart_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    InventarisPieChart: _Chart_InventarisPieChart_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    KategoriPieChart: _Chart_KategoriPieChart_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    InventarisTidakTerpakai: _Chart_InventarisTidakTerpakai_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
-      filters: {
-        nama_barang: {
-          value: "",
-          keys: ["nama_barang"]
-        }
-      },
       barang: [],
+      buku: [],
+      users: [],
+      NoPengguna: [],
+      kategori: [],
+      total: [],
       user: "",
-      isLoggedIn: false,
       loginType: "",
-      total: 0,
+      pengguna: [],
       currentPage: 1,
       totalPages: 0,
-      pageSize: 10
+      currentPage1: 1,
+      totalPages1: 0
     };
   },
-  created: function created() {
-    var _this = this;
-
-    var uri = "/api/barang";
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (response) {
-      _this.barang = response.data.barang;
-    });
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/barang/total").then(function (response) {
-      _this.total = response.data.total;
-    });
-  },
-  methods: {
-    onFiltered: function onFiltered(filteredItems) {
-      this.totalRows = filteredItems.length;
-      this.currentPage = 1;
-    }
-  },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this = this;
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Content-Type"] = "application/json";
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("token");
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user").then(function (response) {
-      _this2.user = response.data;
-      _this2.loginType = response.data.roles[0].name;
+      _this.user = response.data;
+      _this.loginType = response.data.roles[0].name;
     })["catch"](function (error) {
       if (error.response.status === 401 || error.response.status === 500) {
         localStorage.clear();
 
-        _this2.$router.push("/login");
+        _this.$router.push("/login");
       }
 
       console.error(error);
     });
+  },
+  methods: {
+    logout: function logout() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      this.setUser();
+      this.$router.push("/");
+    }
+  },
+  created: function created() {
+    var _this2 = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/barang").then(function (response) {
+      _this2.barang = response.data.barang;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/barang/NoUser").then(function (response) {
+      _this2.NoUser = response.data.barang;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/barang/total").then(function (response) {
+      _this2.total = response.data.total;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/buku").then(function (response) {
+      _this2.buku = response.data.buku;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/users").then(function (response) {
+      _this2.users = response.data.user;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/kategori").then(function (response) {
+      _this2.kategori = response.data.kategori;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/pengguna").then(function (response) {
+      _this2.pengguna = response.data.pengguna;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/pengguna/nopengguna").then(function (response) {
+      _this2.NoPengguna = response.data.barang;
+    });
   }
+});
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.filter("toCurrency", function (value) {
+  if (typeof value !== "number") {
+    return value;
+  }
+
+  var formatter = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR"
+  });
+  return formatter.format(value);
 });
 
 /***/ }),
@@ -513,10 +880,10 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Laporan/LaporanTHargaBarang.vue?vue&type=template&id=3c58d7ba&":
-/*!**************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/Laporan/LaporanTHargaBarang.vue?vue&type=template&id=3c58d7ba& ***!
-  \**************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Home.vue?vue&type=template&id=e45ba24e&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/Home.vue?vue&type=template&id=e45ba24e& ***!
+  \***************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -529,102 +896,344 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-xl-12 justify-content-center" }, [
-        _c("div", { staticClass: "card card-default" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("Harga Barang")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
+    _c("div", { staticClass: "d-flex flex-row" }, [
+      _c("div", { staticClass: "d-flex flex-column bd-highlight mb-3 mx-1" }, [
+        _c(
+          "div",
+          {
+            staticClass: "card text-white pallet-dark m-1 shadow-lg",
+            staticStyle: { "min-width": "16rem", height: "12rem" },
+          },
+          [
             _c(
               "div",
+              { staticClass: "card-header" },
               [
-                _c("label", [_vm._v("Filter berdasarkan Nama Barang:")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.filters.nama_barang.value,
-                      expression: "filters.nama_barang.value",
-                    },
-                  ],
-                  staticClass: "form-control",
-                  domProps: { value: _vm.filters.nama_barang.value },
-                  on: {
-                    input: function ($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.filters.nama_barang,
-                        "value",
-                        $event.target.value
-                      )
-                    },
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "text-primary",
+                    attrs: { to: "/laporan/barang" },
                   },
-                }),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("div", [
-                  _c("label", [_vm._v("Jumlah Baris:")]),
-                  _vm._v(" "),
+                  [_c("strong", [_vm._v(" Total Inventaris ")])]
+                ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card-body" },
+              [
+                _c("router-link", { attrs: { to: "/laporan/barang" } }, [
+                  _c("h2", { staticClass: "card-title text-white" }, [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(_vm.barang.length + _vm.buku.length) +
+                        "\n            "
+                    ),
+                  ]),
+                ]),
+              ],
+              1
+            ),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "card text-white pallet-dark m-1 shadow-lg",
+            staticStyle: { "min-width": "16rem", height: "12rem" },
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "card-header" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "text-primary",
+                    attrs: { to: "/laporan/pengguna" },
+                  },
+                  [_c("strong", [_vm._v(" Total Pengguna")])]
+                ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card-body" },
+              [
+                _c("router-link", { attrs: { to: "/laporan/pengguna" } }, [
+                  _c("h2", { staticClass: "card-title text-white" }, [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(_vm.pengguna.length) +
+                        "\n            "
+                    ),
+                  ]),
+                ]),
+              ],
+              1
+            ),
+          ]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex flex-column bd-highlight mb-3 mx-1" }, [
+        _c(
+          "div",
+          {
+            staticClass: "card text-white pallet-dark m-1 shadow-lg",
+            staticStyle: { "min-width": "16rem", height: "12rem" },
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "card-header" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "text-primary",
+                    attrs: { to: "/laporan/LaporanTBarangTidakTerpakai" },
+                  },
+                  [_c("strong", [_vm._v("Inventaris Tidak digunakan")])]
+                ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card-body" },
+              [
+                _c(
+                  "router-link",
+                  { attrs: { to: "/laporan/LaporanTBarangTidakTerpakai" } },
+                  [
+                    _c("h2", { staticClass: "card-title text-white" }, [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.NoPengguna.length) +
+                          "\n            "
+                      ),
+                    ]),
+                  ]
+                ),
+              ],
+              1
+            ),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "card text-white pallet-dark m-1 shadow-lg",
+            staticStyle: { "min-width": "16rem", height: "12rem" },
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "card-header" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "text-primary",
+                    attrs: { to: "/laporan/LaporanTBarangTerpakai" },
+                  },
+                  [_c("strong", [_vm._v("Inventaris digunakan")])]
+                ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card-body" },
+              [
+                _c(
+                  "router-link",
+                  { attrs: { to: "/laporan/LaporanTBarangTerpakai" } },
+                  [
+                    _c("h2", { staticClass: "card-title text-white" }, [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.barang.length - _vm.NoPengguna.length) +
+                          "\n            "
+                      ),
+                    ]),
+                  ]
+                ),
+              ],
+              1
+            ),
+          ]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex flex-row bd-highlight mb-3 mx-1" }, [
+        _c(
+          "div",
+          {
+            staticClass: "flex-column card card-body",
+            staticStyle: { "max-width": "18rem", "max-height": "24rem" },
+          },
+          [
+            _c("label", [_vm._v("Kategori Inventaris :")]),
+            _vm._v(" "),
+            _c("InventarisPieChart", {
+              staticStyle: { "max-height": "18rem", "margin-top": "20px" },
+            }),
+          ],
+          1
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex flex-column bd-highlight mb-3 mx-1" }, [
+        _c(
+          "div",
+          {
+            staticClass: "card card-body",
+            staticStyle: { "min-width": "20rem", "max-height": "24rem" },
+          },
+          [
+            _c("div", { staticClass: "align-items-center" }, [
+              _c("div", [
+                _c("h2", [_vm._v("Name : " + _vm._s(_vm.user.name))]),
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("h2", [_vm._v("Roles : " + _vm._s(_vm.loginType))]),
+              ]),
+            ]),
+          ]
+        ),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "d-flex flex-row" }, [
+      _c(
+        "div",
+        {
+          staticClass: "flex-column bd-highlight mb-3 mx-1",
+          staticStyle: { "min-width": "800px" },
+        },
+        [
+          _c("div", { staticClass: "card card-default" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v("Daftar Inventaris Barang"),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c(
+                "div",
+                [
                   _c(
-                    "select",
+                    "v-table",
                     {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.pageSize,
-                          expression: "pageSize",
-                        },
-                      ],
-                      staticClass: "form-control",
+                      staticClass: "table table-striped table-bordered",
+                      staticStyle: {
+                        height: "300px",
+                        overflow: "scroll",
+                        width: "100%",
+                      },
+                      attrs: {
+                        data: _vm.barang,
+                        currentPage: _vm.currentPage,
+                        pageSize: 10,
+                      },
                       on: {
-                        change: function ($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function (o) {
-                              return o.selected
-                            })
-                            .map(function (o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.pageSize = $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
+                        "update:currentPage": function ($event) {
+                          _vm.currentPage = $event
+                        },
+                        "update:current-page": function ($event) {
+                          _vm.currentPage = $event
+                        },
+                        totalPagesChanged: function ($event) {
+                          _vm.totalPages = $event
                         },
                       },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "body",
+                          fn: function (ref) {
+                            var displayData = ref.displayData
+                            return _c(
+                              "tbody",
+                              {},
+                              _vm._l(displayData, function (data) {
+                                return _c("tr", { key: data.guid }, [
+                                  _c("td", [_vm._v(_vm._s(data.id))]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(data.nama_barang))]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v(_vm._s(data.year))]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm._f("toCurrency")(data.harga_barang)
+                                      )
+                                    ),
+                                  ]),
+                                ])
+                              }),
+                              0
+                            )
+                          },
+                        },
+                      ]),
                     },
                     [
-                      _c("option", { domProps: { value: 10 } }, [_vm._v("10")]),
-                      _vm._v(" "),
-                      _c("option", { domProps: { value: 25 } }, [_vm._v("25")]),
-                      _vm._v(" "),
-                      _c("option", { domProps: { value: 50 } }, [_vm._v("50")]),
-                      _vm._v(" "),
-                      _c("option", { domProps: { value: 100 } }, [
-                        _vm._v("100"),
+                      _c("thead", { attrs: { slot: "head" }, slot: "head" }, [
+                        _c(
+                          "tr",
+                          [
+                            _c("th", { attrs: { scope: "col" } }, [
+                              _vm._v("No"),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "v-th",
+                              {
+                                attrs: { sortKey: "nama_barang", scope: "col" },
+                              },
+                              [_vm._v("Nama Barang")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-th",
+                              { attrs: { sortKey: "year", scope: "col" } },
+                              [_vm._v("Tahun")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-th",
+                              {
+                                attrs: {
+                                  sortKey: "harga_barang",
+                                  scope: "col",
+                                },
+                              },
+                              [_vm._v("Harga Barang")]
+                            ),
+                          ],
+                          1
+                        ),
                       ]),
                     ]
                   ),
-                ]),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c(
-                  "v-table",
-                  {
-                    staticClass: "table table-striped table-bordered",
+                  _vm._v(" "),
+                  _c("smart-pagination", {
                     attrs: {
-                      data: _vm.barang,
-                      filters: _vm.filters,
                       currentPage: _vm.currentPage,
-                      pageSize: _vm.pageSize,
+                      totalPages: _vm.totalPages,
                     },
                     on: {
                       "update:currentPage": function ($event) {
@@ -633,138 +1242,330 @@ var render = function () {
                       "update:current-page": function ($event) {
                         _vm.currentPage = $event
                       },
-                      totalPagesChanged: function ($event) {
-                        _vm.totalPages = $event
-                      },
                     },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "body",
-                        fn: function (ref) {
-                          var displayData = ref.displayData
-                          return _c(
-                            "tbody",
-                            {},
-                            _vm._l(displayData, function (data) {
-                              return _c("tr", { key: data.guid }, [
-                                _c("td", [_vm._v(_vm._s(data.id))]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(data.nama_barang))]),
-                                _vm._v(" "),
-                                _c("td", [
-                                  _vm._v(
-                                    _vm._s(
-                                      _vm._f("toCurrency")(data.harga_barang)
-                                    )
-                                  ),
-                                ]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(data.pengguna.name))]),
-                              ])
-                            }),
-                            0
-                          )
+                  }),
+                ],
+                1
+              ),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card card-default" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v("Daftar Inventaris Buku"),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c(
+                "div",
+                { staticClass: "table-responsive mt-2" },
+                [
+                  _c(
+                    "v-table",
+                    {
+                      staticClass: "table table-striped table-bordere",
+                      staticStyle: {
+                        height: "500px",
+                        overflow: "scroll",
+                        width: "100%",
+                      },
+                      attrs: {
+                        data: _vm.buku,
+                        currentPage: _vm.currentPage1,
+                        pageSize: 10,
+                      },
+                      on: {
+                        "update:currentPage": function ($event) {
+                          _vm.currentPage1 = $event
+                        },
+                        "update:current-page": function ($event) {
+                          _vm.currentPage1 = $event
+                        },
+                        totalPagesChanged: function ($event) {
+                          _vm.totalPages1 = $event
                         },
                       },
-                    ]),
-                  },
-                  [
-                    _c("thead", { attrs: { slot: "head" }, slot: "head" }, [
-                      _c(
-                        "tr",
-                        [
-                          _c("th", { attrs: { scope: "col" } }, [_vm._v("No")]),
-                          _vm._v(" "),
-                          _c(
-                            "v-th",
-                            { attrs: { sortKey: "nama_barang", scope: "col" } },
-                            [_vm._v("Nama Barang")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-th",
-                            {
-                              attrs: { sortKey: "harga_barang", scope: "col" },
-                            },
-                            [_vm._v("Harga Barang")]
-                          ),
-                          _vm._v(" "),
-                          _c("th", { attrs: { scope: "col" } }, [
-                            _vm._v("Pemakai"),
-                          ]),
-                        ],
-                        1
-                      ),
-                    ]),
-                  ]
-                ),
-                _vm._v(" "),
-                _c("smart-pagination", {
-                  attrs: {
-                    currentPage: _vm.currentPage,
-                    totalPages: _vm.totalPages,
-                  },
-                  on: {
-                    "update:currentPage": function ($event) {
-                      _vm.currentPage = $event
+                      scopedSlots: _vm._u([
+                        {
+                          key: "body",
+                          fn: function (ref) {
+                            var displayData = ref.displayData
+                            return _c(
+                              "tbody",
+                              {},
+                              _vm._l(displayData, function (data) {
+                                return _c("tr", { key: data.guid }, [
+                                  _c("td", { attrs: { scope: "data" } }, [
+                                    _vm._v(
+                                      "\n                    " +
+                                        _vm._s(data.id) +
+                                        "\n                  "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      "\n                    " +
+                                        _vm._s(data.judul) +
+                                        "\n                  "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      "\n                    " +
+                                        _vm._s(data.tanggal) +
+                                        "\n                  "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      "\n                    " +
+                                        _vm._s(
+                                          _vm._f("toCurrency")(data.harga)
+                                        ) +
+                                        "\n                  "
+                                    ),
+                                  ]),
+                                ])
+                              }),
+                              0
+                            )
+                          },
+                        },
+                      ]),
                     },
-                    "update:current-page": function ($event) {
-                      _vm.currentPage = $event
+                    [
+                      _c("thead", { attrs: { slot: "head" }, slot: "head" }, [
+                        _c(
+                          "tr",
+                          [
+                            _c("th", { attrs: { scope: "col" } }, [
+                              _vm._v("No"),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "v-th",
+                              { attrs: { sortKey: "judul", scope: "col" } },
+                              [_vm._v("Judul")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-th",
+                              {
+                                attrs: {
+                                  sortKey: "tanggal_terbit",
+                                  scope: "col",
+                                },
+                              },
+                              [_vm._v("Tanggal Terbit")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-th",
+                              { attrs: { sortKey: "harga", scope: "col" } },
+                              [_vm._v("Harga")]
+                            ),
+                          ],
+                          1
+                        ),
+                      ]),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("smart-pagination", {
+                    attrs: {
+                      currentPage: _vm.currentPage1,
+                      totalPages: _vm.totalPages1,
                     },
-                  },
-                }),
-              ],
-              1
-            ),
+                    on: {
+                      "update:currentPage": function ($event) {
+                        _vm.currentPage1 = $event
+                      },
+                      "update:current-page": function ($event) {
+                        _vm.currentPage1 = $event
+                      },
+                    },
+                  }),
+                ],
+                1
+              ),
+            ]),
           ]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card mt-3" }, [
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "flex-column bd-highlight mb-3 mx-1 table-responsive" },
+        [
           _c(
             "div",
-            { staticClass: "card-body" },
+            {
+              staticClass: "card text-white pallet-dark col-md-6 m-1 shadow-lg",
+              staticStyle: { "min-width": "18rem", height: "12rem" },
+            },
             [
-              _c("label", [_vm._v("Chart Total :")]),
+              _c(
+                "div",
+                { staticClass: "card-header" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "text-primary",
+                      attrs: { to: "/laporan/LaporanTHargaBarang" },
+                    },
+                    [_c("strong", [_vm._v("Data Asset Barang")])]
+                  ),
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("TotalChart"),
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c(
+                    "router-link",
+                    { attrs: { to: "/laporan/LaporanTHargaBarang" } },
+                    [
+                      _c("h4", { staticClass: "card-title text-white" }, [
+                        _vm._v(
+                          "\n              " +
+                            _vm._s(_vm._f("toCurrency")(_vm.total)) +
+                            "\n            "
+                        ),
+                      ]),
+                    ]
+                  ),
+                ],
+                1
+              ),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "flex-column card card-body m-1",
+              staticStyle: { "max-width": "18rem", "max-height": "24rem" },
+            },
+            [
+              _c("label", [_vm._v("Kategori Barang :")]),
+              _vm._v(" "),
+              _c("KategoriPieChart", {
+                staticStyle: { "max-height": "18rem", "margin-top": "20px" },
+              }),
             ],
             1
           ),
-        ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "card text-white pallet-dark col-md-6 m-1 shadow-lg table-responsive",
+              staticStyle: { "min-width": "18rem", height: "12rem" },
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "card-header" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "text-primary",
+                      attrs: { to: "/laporan/LaporanTHargaBarang" },
+                    },
+                    [_c("strong", [_vm._v("Data Asset Barang")])]
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c(
+                    "router-link",
+                    { attrs: { to: "/laporan/LaporanTHargaBarang" } },
+                    [
+                      _c("h4", { staticClass: "card-title text-white" }, [
+                        _vm._v(
+                          "\n              " +
+                            _vm._s(_vm._f("toCurrency")(_vm.total)) +
+                            "\n            "
+                        ),
+                      ]),
+                    ]
+                  ),
+                ],
+                1
+              ),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "flex-column card card-body m-1",
+              staticStyle: { "max-width": "18rem", "max-height": "24rem" },
+            },
+            [
+              _c("label", [_vm._v("Kategori Barang :")]),
+              _vm._v(" "),
+              _c("KategoriPieChart", {
+                staticStyle: { "max-height": "18rem", "margin-top": "20px" },
+              }),
+            ],
+            1
+          ),
+        ]
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "d-flex flex-row" }, [
+      _c("div", { staticClass: "d-flex flex-row bd-highlight mb-3 mx-1" }, [
+        _c(
+          "div",
+          {
+            staticClass: "flex-column card card-body",
+            staticStyle: { "min-width": "800px", "min-height": "500px" },
+          },
+          [
+            _c("label", [_vm._v("Kategori Inventaris :")]),
+            _vm._v(" "),
+            _c("InventarisTidakTerpakai", {
+              staticStyle: { "margin-top": "20px" },
+            }),
+          ],
+          1
+        ),
       ]),
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card mb-3 mt-3" }, [
-      _c("div", { staticClass: "card-body pallet-darken font-lighten" }, [
-        _vm._v(
-          "\n      Halaman laporan yang memberikan informasi data harga barang.\n    "
-        ),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
 
 /***/ }),
 
-/***/ "./resources/assets/src/components/Chart/TotalChart.vue":
-/*!**************************************************************!*\
-  !*** ./resources/assets/src/components/Chart/TotalChart.vue ***!
-  \**************************************************************/
+/***/ "./resources/assets/src/components/Chart/InventarisPieChart.vue":
+/*!**********************************************************************!*\
+  !*** ./resources/assets/src/components/Chart/InventarisPieChart.vue ***!
+  \**********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _TotalChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TotalChart.vue?vue&type=script&lang=js& */ "./resources/assets/src/components/Chart/TotalChart.vue?vue&type=script&lang=js&");
+/* harmony import */ var _InventarisPieChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InventarisPieChart.vue?vue&type=script&lang=js& */ "./resources/assets/src/components/Chart/InventarisPieChart.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 var render, staticRenderFns
 
@@ -774,7 +1575,7 @@ var render, staticRenderFns
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  _TotalChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  _InventarisPieChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
   render,
   staticRenderFns,
   false,
@@ -786,48 +1587,47 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/src/components/Chart/TotalChart.vue"
+component.options.__file = "resources/assets/src/components/Chart/InventarisPieChart.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/src/components/Chart/TotalChart.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************!*\
-  !*** ./resources/assets/src/components/Chart/TotalChart.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************/
+/***/ "./resources/assets/src/components/Chart/InventarisPieChart.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/assets/src/components/Chart/InventarisPieChart.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TotalChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TotalChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Chart/TotalChart.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TotalChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InventarisPieChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./InventarisPieChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Chart/InventarisPieChart.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InventarisPieChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/src/components/Laporan/LaporanTHargaBarang.vue":
-/*!*************************************************************************!*\
-  !*** ./resources/assets/src/components/Laporan/LaporanTHargaBarang.vue ***!
-  \*************************************************************************/
+/***/ "./resources/assets/src/components/Chart/InventarisTidakTerpakai.vue":
+/*!***************************************************************************!*\
+  !*** ./resources/assets/src/components/Chart/InventarisTidakTerpakai.vue ***!
+  \***************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _LaporanTHargaBarang_vue_vue_type_template_id_3c58d7ba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LaporanTHargaBarang.vue?vue&type=template&id=3c58d7ba& */ "./resources/assets/src/components/Laporan/LaporanTHargaBarang.vue?vue&type=template&id=3c58d7ba&");
-/* harmony import */ var _LaporanTHargaBarang_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LaporanTHargaBarang.vue?vue&type=script&lang=js& */ "./resources/assets/src/components/Laporan/LaporanTHargaBarang.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
+/* harmony import */ var _InventarisTidakTerpakai_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InventarisTidakTerpakai.vue?vue&type=script&lang=js& */ "./resources/assets/src/components/Chart/InventarisTidakTerpakai.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
 
 
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _LaporanTHargaBarang_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _LaporanTHargaBarang_vue_vue_type_template_id_3c58d7ba___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _LaporanTHargaBarang_vue_vue_type_template_id_3c58d7ba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _InventarisTidakTerpakai_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
   false,
   null,
   null,
@@ -837,38 +1637,139 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/src/components/Laporan/LaporanTHargaBarang.vue"
+component.options.__file = "resources/assets/src/components/Chart/InventarisTidakTerpakai.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/src/components/Laporan/LaporanTHargaBarang.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************!*\
-  !*** ./resources/assets/src/components/Laporan/LaporanTHargaBarang.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************/
+/***/ "./resources/assets/src/components/Chart/InventarisTidakTerpakai.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/assets/src/components/Chart/InventarisTidakTerpakai.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LaporanTHargaBarang_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./LaporanTHargaBarang.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Laporan/LaporanTHargaBarang.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LaporanTHargaBarang_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InventarisTidakTerpakai_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./InventarisTidakTerpakai.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Chart/InventarisTidakTerpakai.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InventarisTidakTerpakai_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/src/components/Laporan/LaporanTHargaBarang.vue?vue&type=template&id=3c58d7ba&":
-/*!********************************************************************************************************!*\
-  !*** ./resources/assets/src/components/Laporan/LaporanTHargaBarang.vue?vue&type=template&id=3c58d7ba& ***!
-  \********************************************************************************************************/
+/***/ "./resources/assets/src/components/Chart/KategoriPieChart.vue":
+/*!********************************************************************!*\
+  !*** ./resources/assets/src/components/Chart/KategoriPieChart.vue ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _KategoriPieChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./KategoriPieChart.vue?vue&type=script&lang=js& */ "./resources/assets/src/components/Chart/KategoriPieChart.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _KategoriPieChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/src/components/Chart/KategoriPieChart.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/src/components/Chart/KategoriPieChart.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/assets/src/components/Chart/KategoriPieChart.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_KategoriPieChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./KategoriPieChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Chart/KategoriPieChart.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_KategoriPieChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/src/components/Home.vue":
+/*!**************************************************!*\
+  !*** ./resources/assets/src/components/Home.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Home_vue_vue_type_template_id_e45ba24e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Home.vue?vue&type=template&id=e45ba24e& */ "./resources/assets/src/components/Home.vue?vue&type=template&id=e45ba24e&");
+/* harmony import */ var _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Home.vue?vue&type=script&lang=js& */ "./resources/assets/src/components/Home.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Home_vue_vue_type_template_id_e45ba24e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Home_vue_vue_type_template_id_e45ba24e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/src/components/Home.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/src/components/Home.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/assets/src/components/Home.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Home.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Home.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/src/components/Home.vue?vue&type=template&id=e45ba24e&":
+/*!*********************************************************************************!*\
+  !*** ./resources/assets/src/components/Home.vue?vue&type=template&id=e45ba24e& ***!
+  \*********************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LaporanTHargaBarang_vue_vue_type_template_id_3c58d7ba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./LaporanTHargaBarang.vue?vue&type=template&id=3c58d7ba& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Laporan/LaporanTHargaBarang.vue?vue&type=template&id=3c58d7ba&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LaporanTHargaBarang_vue_vue_type_template_id_3c58d7ba___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_e45ba24e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Home.vue?vue&type=template&id=e45ba24e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/Home.vue?vue&type=template&id=e45ba24e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_e45ba24e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LaporanTHargaBarang_vue_vue_type_template_id_3c58d7ba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_e45ba24e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

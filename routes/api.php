@@ -13,6 +13,7 @@ use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\PengajuanController;
+use App\Http\Controllers\InventarisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,3 +124,7 @@ Route::post('/pengajuan', [PengajuanController::class, 'store']);
 Route::put('/pengajuan/{id}', [PengajuanController::class, 'update']);
 Route::delete('/pengajuan/{id}', [PengajuanController::class, 'destroy']);
 Route::get('/pengajuan/user/{id_user}', [PengajuanController::class, 'showByUserId']);
+
+//Inventaris Laporan
+Route::get('/inventaris/barangdanbuku', [InventarisController::class, 'lengthBarangdanBuku']);
+Route::get('/inventaris/inventarisTidakDipakai', [InventarisController::class, 'inventarisTidakDipakai']);

@@ -55,4 +55,10 @@ class buku extends Model
         $buku->delete();
         return $buku;
     }
+
+    //Lenth Buku
+    public function getLengthBuku() {
+        $buku = buku::count();
+        return $buku;
+    }
 }

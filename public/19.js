@@ -207,9 +207,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -271,6 +268,7 @@ __webpack_require__.r(__webpack_exports__);
       isLoggedIn: false,
       loginType: null,
       errors: [],
+      valid: [],
       DataDelete: {
         barang: {
           nama_barang: ""
@@ -318,7 +316,8 @@ __webpack_require__.r(__webpack_exports__);
         console.log(_this3.historys);
       });
     },
-    showModal: function showModal(id) {
+    showModal: function showModal(id, valid) {
+      this.valid = valid;
       this.$refs["modal-".concat(id)].show();
     },
     showModal1: function showModal1(data) {
@@ -334,12 +333,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     checkForm: function checkForm(e) {
       this.errors = [];
+      console.log(this.historys.pengguna_id);
+      console.log(this.valid.pengguna_id);
 
       if (this.historys.pengguna_id == "") {
         this.errors.push("Pengguna Harus Diisi");
       }
 
-      if (this.historys.pengguna_id == this.barang[0].pengguna.id) {
+      if (this.historys.pengguna_id == this.valid.pengguna_id) {
         this.errors.push("Pengguna Tidak Boleh Sama");
       }
 
@@ -587,7 +588,8 @@ var render = function () {
                                             on: {
                                               click: function ($event) {
                                                 return _vm.showModal(
-                                                  data.item.id
+                                                  data.item.id,
+                                                  data.item
                                                 )
                                               },
                                             },
@@ -855,7 +857,11 @@ var render = function () {
                         ),
                         _vm.DataDelete
                           ? _c("div", [
-                              _vm._v(_vm._s(_vm.DataDelete.barang.nama_barang)),
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(_vm.DataDelete.barang.nama_barang) +
+                                  "\n                  "
+                              ),
                             ])
                           : _vm._e(),
                       ]),

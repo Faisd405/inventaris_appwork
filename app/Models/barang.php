@@ -121,4 +121,11 @@ class barang extends Model
 
         return $barang;
     }
+
+    //Length Barang
+    public function getLengthBarang(){
+        $barang = barang::count();
+
+        return $barang;
+    }
 }

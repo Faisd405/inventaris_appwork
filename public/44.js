@@ -69,23 +69,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -96,20 +79,15 @@ __webpack_require__.r(__webpack_exports__);
       users: {
         name: "",
         email: "",
-        password: "",
-        roles: ""
+        password: ""
       },
       validUser: [],
-      roles: [],
       errors: []
     };
   },
   created: function created() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/roles").then(function (response) {
-      _this.roles = response.data.roles;
-    });
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/users").then(function (response) {
       _this.validUser = response.data.user;
     });
@@ -145,10 +123,6 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.users.password == "") {
         this.errors.push("Password harus diisi");
-      }
-
-      if (this.users.roles == "") {
-        this.errors.push("Roles harus diisi");
       }
 
       if (this.errors.length > 0) {
@@ -285,67 +259,6 @@ var render = function () {
                       },
                     },
                   }),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "roles_id" } }, [
-                    _vm._v("Roles"),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.users.roles,
-                          expression: "users.roles",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: { name: "roles_id" },
-                      on: {
-                        change: function ($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function (o) {
-                              return o.selected
-                            })
-                            .map(function (o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.users,
-                            "roles",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        },
-                      },
-                    },
-                    [
-                      _c("option", { attrs: { value: "", disabled: "" } }, [
-                        _vm._v("Pilih User"),
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.roles, function (roles) {
-                        return _c(
-                          "option",
-                          { key: roles.id, domProps: { value: roles.id } },
-                          [
-                            _vm._v(
-                              "\n                  " +
-                                _vm._s(roles.name) +
-                                "\n                "
-                            ),
-                          ]
-                        )
-                      }),
-                    ],
-                    2
-                  ),
                 ]),
                 _vm._v(" "),
                 _vm._m(0),

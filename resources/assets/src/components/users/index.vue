@@ -106,7 +106,7 @@
                     @click="deleteData(DataDelete.id)"
                     class="btn btn-danger btn-lg"
                   >
-                    Tolak
+                    Hapus
                   </button>
                   <button @click="closeModal()" class="btn btn-primary btn-lg">
                     Batal

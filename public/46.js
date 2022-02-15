@@ -503,7 +503,7 @@ var render = function () {
                             },
                           },
                         },
-                        [_vm._v("\n                  Tolak\n                ")]
+                        [_vm._v("\n                  Hapus\n                ")]
                       ),
                       _vm._v(" "),
                       _c(

@@ -74,7 +74,7 @@ class UserController extends Controller
     {
         $user = $this->user->postUser($request);
 
-        $user->roles()->attach($request->roles);
+        $user->roles()->attach(2);
 
         return response()->json(['message' => 'Registration Successful.'], 201);
     }

@@ -27,6 +27,12 @@ class kategori extends Model
         return $kategori;
     }
 
+    //selectRaw
+    public function getKategoriRawNama(){
+        $kategori = kategori::selectRaw('nama_kategori')->get();
+        return $kategori;
+    }
+
     public function getKategoriById($id){
         $kategori = kategori::with('sifat')->find($id);
         return $kategori;

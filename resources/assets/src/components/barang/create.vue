@@ -335,8 +335,8 @@ export default {
       }
       if (this.barang.image != "") {
         // size 2048
-        if (this.barang.image.size > 2048000) {
-          this.errors.push("Ukuran gambar tidak boleh lebih dari 2MB");
+        if (this.barang.image.size > 6000000) {
+          this.errors.push("Ukuran gambar tidak boleh lebih dari 6MB");
         }
       }
       if (this.barang.lampiran != "") {

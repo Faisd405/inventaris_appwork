@@ -37,6 +37,16 @@ class history extends Model
         return $this->with('pengguna', 'barang')->get();
     }
 
+    public function getHistoryById($id)
+    {
+        return $this->with('pengguna', 'barang')->find($id);
+    }
+
+    public function getHistoryByPenggunaId($id)
+    {
+        return $this->with('pengguna', 'barang')->where('pengguna_id', $id)->get();
+    }
+
     public function getHistoryDetailByBarangId($id)
     {
         return $this->with('pengguna', 'barang')->where('barang_id', $id)->get();
