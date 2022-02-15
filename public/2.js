@@ -82,7 +82,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.chartData.datasets.push({
           label: response.data.kategori_barang[i],
           backgroundColor: '#' + (Math.random() * 0xFFFFFF << 0).toString(16),
-          data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+          data: response.data.kategori[i]
         });
       }
 

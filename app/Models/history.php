@@ -52,6 +52,11 @@ class history extends Model
         return $this->with('pengguna', 'barang')->where('barang_id', $id)->get();
     }
 
+    public function getTanggalAwalUnique()
+    {
+        return $this->distinct()->select('tanggal_awal_penggunaan')->get();
+    }
+
     public function getHistoryDetailByBarangIdAndDate($barang_id, $tanggal_awal, $tanggal_akhir)
     {
         if ($barang_id && $tanggal_awal && $tanggal_akhir) {
