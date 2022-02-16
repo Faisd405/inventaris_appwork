@@ -183,10 +183,10 @@
                 ></iframe>
               </div>
               <div v-if="!barang.lampiran">
-                <p  class="card card-body">Belum Upload Lampiran Invoice (PDF)</p>
+                <p  class="card card-body">Belum Upload Lampiran Invoice</p>
               </div>
               <div class="form-group">
-                <label for="lampiran">Lampiran Invoice (PDF)</label>
+                <label for="lampiran">Lampiran Invoice</label>
                 <input
                   type="file"
                   class="form-control"

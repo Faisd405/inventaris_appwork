@@ -985,14 +985,14 @@ var render = function () {
                 !_vm.barang.lampiran
                   ? _c("div", [
                       _c("p", { staticClass: "card card-body" }, [
-                        _vm._v("Belum Upload Lampiran Invoice (PDF)"),
+                        _vm._v("Belum Upload Lampiran Invoice"),
                       ]),
                     ])
                   : _vm._e(),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "lampiran" } }, [
-                    _vm._v("Lampiran Invoice (PDF)"),
+                    _vm._v("Lampiran Invoice"),
                   ]),
                   _vm._v(" "),
                   _c("input", {
