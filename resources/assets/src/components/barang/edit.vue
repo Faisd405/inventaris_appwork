@@ -191,7 +191,7 @@
                   type="file"
                   class="form-control"
                   name="lampiran"
-                  accept="application/pdf"
+                  accept="application/pdf, image/png, image/jpeg, image/jpg"
                   @change="onFileChangePDF"
                 />
               </div>

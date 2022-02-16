@@ -1000,7 +1000,8 @@ var render = function () {
                     attrs: {
                       type: "file",
                       name: "lampiran",
-                      accept: "application/pdf",
+                      accept:
+                        "application/pdf, image/png, image/jpeg, image/jpg",
                     },
                     on: { change: _vm.onFileChangePDF },
                   }),

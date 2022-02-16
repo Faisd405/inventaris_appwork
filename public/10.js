@@ -900,7 +900,7 @@ var render = function () {
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "lampiran" } }, [
-                    _vm._v("Lampiran Invoice (PDF)"),
+                    _vm._v("Lampiran Invoice"),
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -908,7 +908,8 @@ var render = function () {
                     attrs: {
                       type: "file",
                       name: "lampiran",
-                      accept: "application/pdf",
+                      accept:
+                        "application/pdf, image/png, image/jpeg, image/jpg",
                     },
                     on: { change: _vm.onFileChangePDF },
                   }),

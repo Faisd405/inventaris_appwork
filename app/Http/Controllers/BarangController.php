@@ -85,12 +85,20 @@ class BarangController extends Controller
 
     public function lampiran($request)
     {
+        //getClientOriginalExtension
+        $extension = $request['lampiran']->getClientOriginalExtension();
         if ($request->hasFile('lampiran')) {
             $request->validate([
-                'lampiran' => 'required|mimes:pdf|max:2048',
+                'lampiran' => 'required|max:2048|mimes:png,jpg,jpeg,pdf,docx,doc',
             ]);
-            $lampiranName = time() . '.' . $request->lampiran->extension();
-            $request->lampiran->move(public_path('lampiran'), $lampiranName);
+            if ($extension == 'pdf') {
+                $lampiranName = time() . '.' . $request->lampiran->extension();
+                $request->lampiran->move(public_path('lampiran'), $lampiranName);
+            }
+            if ($extension == 'jpg' || $extension == 'png' || $extension == 'jpeg') {
+                $lampiranName = time() . '.' . $request->lampiran->extension();
+                $request->lampiran->move(public_path('lampiran'), $lampiranName);
+            }
         } else {
             $lampiranName = "default.pdf";
         }
@@ -109,7 +117,7 @@ class BarangController extends Controller
         $this->history->barangHistory($barang);
 
         return response()->json([
-            'barang' => $barang
+            'barang' => $barang,
         ], 200);
     }
 
@@ -186,17 +194,18 @@ class BarangController extends Controller
         return $lampiranName;
     }
 
-    public function destroyLampiran($id){
+    public function destroyLampiran($id)
+    {
         $barang = $this->barang->getBarangById($id);
         if ($barang->lampiran != "default.pdf") {
             File::delete('lampiran/' . $barang->lampiran);
             $barang->lampiran = "default.pdf";
             $barang->save();
         }
-
     }
 
-    public function destroyImage($id){
+    public function destroyImage($id)
+    {
         $barang = $this->barang->getBarangById($id);
         if ($barang->image != "default.jpg") {
             File::delete('images/' . $barang->image);

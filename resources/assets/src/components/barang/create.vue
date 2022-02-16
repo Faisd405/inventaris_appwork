@@ -164,12 +164,12 @@
                 <br />
               </div>
               <div class="form-group">
-                <label for="lampiran">Lampiran Invoice (PDF)</label>
+                <label for="lampiran">Lampiran Invoice</label>
                 <input
                   type="file"
                   class="form-control"
                   name="lampiran"
-                  accept="application/pdf"
+                  accept="application/pdf, image/png, image/jpeg, image/jpg"
                   @change="onFileChangePDF"
                 />
               </div>
@@ -232,7 +232,7 @@ export default {
         lampiran: "",
       },
       preview: null,
-        previewPDF: null,
+      previewPDF: null,
       kategori: [],
       lokasi: [],
       pengguna: [],
@@ -287,7 +287,7 @@ export default {
     },
     onFileChangePDF(e) {
       this.barang.lampiran = e.target.files[0];
-        this.previewPDF = URL.createObjectURL(e.target.files[0]);
+      this.previewPDF = URL.createObjectURL(e.target.files[0]);
     },
 
     checkForm: function (e) {
