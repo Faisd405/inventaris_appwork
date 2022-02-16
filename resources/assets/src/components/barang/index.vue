@@ -69,7 +69,7 @@
                     <b-input
                       class="form-control-sm"
                       v-model="nama_pengguna"
-                      placeholder="Cari Nama Barang"
+                      placeholder="Cari Nama Pengguna"
                     />
                   </td>
                 </tr>

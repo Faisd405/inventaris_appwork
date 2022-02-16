@@ -457,7 +457,7 @@ var render = function () {
                             [
                               _c("b-input", {
                                 staticClass: "form-control-sm",
-                                attrs: { placeholder: "Cari Nama Barang" },
+                                attrs: { placeholder: "Cari Nama Pengguna" },
                                 model: {
                                   value: _vm.nama_pengguna,
                                   callback: function ($$v) {
