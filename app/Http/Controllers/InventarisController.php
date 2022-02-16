@@ -34,18 +34,8 @@ class InventarisController extends Controller
 
     public function inventarisTidakDipakai()
     {
-        // length kategori with getTanggalAwalUnique and kategori_barang
-        // $kategori = $this->history->getHistoryByPenggunaId(1)->where('tanggal_akhir_penggunaan', 'Masih Terpakai')->where('barang.kategori_id', 2)->count();
-        // $tanggal_awal = $this->history->getTanggalAwalUnique()->pluck('tanggal_awal_penggunaan');
-        // $kategori = $this->history->getHistoryByPenggunaId(1)->where('tanggal_awal_penggunaan', '08-02-2022')->where('tanggal_akhir_penggunaan', 'Masih Terpakai')->where('barang.kategori_id', 1)->count();
-
         $tanggal = history::with('pengguna', 'barang')->where('pengguna_id', 1)->where('tanggal_akhir_penggunaan', 'Masih Terpakai')->distinct()->select('tanggal_awal_penggunaan')->pluck('tanggal_awal_penggunaan');
         $kategori_barang = $this->kategori->getKategori()->pluck('nama_kategori');
-
-
-        // for ($i = 0; $i < count($tanggal); $i++) {
-        //     $kategori[$i] = $this->history->getHistoryByPenggunaId(1)->where('tanggal_awal_penggunaan', $tanggal[$i])->where('tanggal_akhir_penggunaan', 'Masih Terpakai')->where('barang.kategori_id', 1)->count();
-        // }
 
         for ($i = 0; $i < count($kategori_barang); $i++) {
             for ($j = 0; $j < count($tanggal); $j++) {
@@ -57,6 +47,21 @@ class InventarisController extends Controller
             'kategori' => $kategori,
             'kategori_barang' => $kategori_barang,
             'tanggal' => $tanggal,
+        ], 200);
+    }
+
+    public function hargaPerPengguna(){
+        // $barang = $this->barang->getBarangByPenggunaId();
+
+        for ($i = 0; $i < count($this->pengguna->getPengguna()); $i++) {
+            $pengguna[$i] = $this->pengguna->getPengguna()[$i]->name;
+            $harga[$i] = $this->barang->getBarangByPenggunaId($this->pengguna->getPengguna()[$i]->id)->sum('harga_barang');
+        }
+
+        return response()->json([
+            'pengguna' => $pengguna,
+            'harga' => $harga,
+
         ], 200);
     }
 }

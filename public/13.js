@@ -210,6 +210,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -225,6 +236,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       },
       lokasi_barang: "",
+      nama_pengguna: "",
       barang: [],
       lokasi: [],
       pageSize: 10,
@@ -249,7 +261,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     filterBarang: function filterBarang() {
-      return this.filterbarangByLokasi(this.barang);
+      return this.filterbarangByLokasi(this.filterbarangByPengguna(this.barang));
     }
   },
   methods: {
@@ -281,21 +293,28 @@ __webpack_require__.r(__webpack_exports__);
       return barang.filter(function (barang) {
         return !barang.lokasi.lokasi.toString().indexOf(_this3.lokasi_barang);
       });
+    },
+    filterbarangByPengguna: function filterbarangByPengguna(barang) {
+      var _this4 = this;
+
+      return barang.filter(function (barang) {
+        return !barang.pengguna.name.toString().indexOf(_this4.nama_pengguna);
+      });
     }
   },
   mounted: function mounted() {
-    var _this4 = this;
+    var _this5 = this;
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Content-Type"] = "application/json";
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("token");
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user").then(function (response) {
-      _this4.user = response.data;
-      _this4.loginType = response.data.roles[0].name;
+      _this5.user = response.data;
+      _this5.loginType = response.data.roles[0].name;
     })["catch"](function (error) {
       if (error.response.status === 401 || error.response.status === 500) {
         localStorage.clear();
 
-        _this4.$router.push("/login");
+        _this5.$router.push("/login");
       }
 
       console.error(error);
@@ -433,6 +452,30 @@ var render = function () {
                           _vm._v(" "),
                           _c("td", { staticClass: "px-2" }, [_vm._v(":")]),
                           _vm._v(" "),
+                          _c(
+                            "td",
+                            [
+                              _c("b-input", {
+                                staticClass: "form-control-sm",
+                                attrs: { placeholder: "Cari Nama Barang" },
+                                model: {
+                                  value: _vm.nama_pengguna,
+                                  callback: function ($$v) {
+                                    _vm.nama_pengguna = $$v
+                                  },
+                                  expression: "nama_pengguna",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("tr", [
+                          _vm._m(4),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "px-2" }, [_vm._v(":")]),
+                          _vm._v(" "),
                           _c("td", [
                             _c(
                               "select",
@@ -494,7 +537,7 @@ var render = function () {
                         ]),
                         _vm._v(" "),
                         _c("tr", [
-                          _vm._m(4),
+                          _vm._m(5),
                           _vm._v(" "),
                           _c("td", { staticClass: "px-2" }, [_vm._v(":")]),
                           _vm._v(" "),
@@ -930,6 +973,12 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("td", [_c("label", [_vm._v("Nama Barang")])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("label", [_vm._v("Nama Pengguna")])])
   },
   function () {
     var _vm = this

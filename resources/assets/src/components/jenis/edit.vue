@@ -17,6 +17,16 @@
                 />
               </div>
 
+                <div class="form-group">
+                    <label>Jumlah</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    v-model="jenis.jumlah"
+                    placeholder="Masukan Jumlah"
+                    />
+                </div>
+
 
               <div class="form-group">
                 <button class="btn btn-md btn-success" type="submit">

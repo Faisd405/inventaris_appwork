@@ -190,7 +190,7 @@
         </div>
       </div>
 
-      <div class="flex-column bd-highlight mb-3 mx-1 table-responsive">
+      <div class="flex-column bd-highlight mb-3 mx-1">
         <div
           class="card text-white pallet-dark col-md-6 m-1 shadow-lg"
           style="min-width: 18rem; height: 12rem"
@@ -218,18 +218,26 @@
           ></KategoriPieChart>
         </div>
         <div
-          class="card text-white pallet-dark col-md-6 m-1 shadow-lg table-responsive"
+          class="
+            card
+            text-white
+            pallet-dark
+            col-md-6
+            m-1
+            shadow-lg
+            table-responsive
+          "
           style="min-width: 18rem; height: 12rem"
         >
           <div class="card-header">
             <router-link to="/laporan/LaporanTHargaBarang" class="text-primary"
-              ><strong>Data Asset Barang</strong></router-link
+              ><strong>Data Asset Buku</strong></router-link
             >
           </div>
           <div class="card-body">
-            <router-link to="/laporan/LaporanTHargaBarang"
+            <router-link to="/laporan/buku"
               ><h4 class="card-title text-white">
-                {{ total | toCurrency }}
+                {{ totalbuku | toCurrency }}
               </h4></router-link
             >
           </div>
@@ -238,10 +246,10 @@
           class="flex-column card card-body m-1"
           style="max-width: 18rem; max-height: 24rem"
         >
-          <label>Kategori Barang :</label>
-          <KategoriPieChart
+          <label>Jenis Buku :</label>
+          <JenisPieChart
             style="max-height: 18rem; margin-top: 20px"
-          ></KategoriPieChart>
+          ></JenisPieChart>
         </div>
       </div>
     </div>
@@ -251,12 +259,74 @@
           class="flex-column card card-body"
           style="min-width: 800px; min-height: 500px"
         >
-          <label>Kategori Inventaris :</label>
+          <label>Data Inventaris tidak terpakai sepanjang tahun :</label>
           <InventarisTidakTerpakai
             style="margin-top: 20px"
           ></InventarisTidakTerpakai>
         </div>
-      </div></div>
+      </div>
+      <div class="d-flex flex-row bd-highlight mb-3 mx-1">
+        <div class="table-responsive mt-2">
+          <div class="card card-default">
+            <div class="card-header">Daftar Pengguna</div>
+            <div class="card-body">
+              <v-table
+                :data="pengguna"
+                class="table table-striped table-bordered"
+                :currentPage.sync="currentPage2"
+                :pageSize="5"
+                @totalPagesChanged="totalPages2 = $event"
+              >
+                <thead slot="head">
+                  <tr>
+                    <th scope="col">No</th>
+                    <v-th sortKey="name" scope="col">Nama Pengguna</v-th>
+                    <th scope="col">Jabatan</th>
+                    <th scope="col">Nilai Asset</th>
+                    <th scope="col">Detail</th>
+                  </tr>
+                </thead>
+                <tbody slot="body" slot-scope="{ displayData }">
+                      <!-- index number with i++ -->
+
+                  <tr v-for="(data, index) in displayData" :key="data.guid">
+                    <!-- index number -->
+                    <td scope="data">
+                      {{ data.id }}
+                    </td>
+                    <td>
+                      {{ data.name }}
+                    </td>
+                    <td>
+                        {{ data.jabatan }}
+                    </td>
+                    <td>
+                        {{ hargaPerPengguna[index++] | toCurrency }}
+                    </td>
+                    <td>
+                      <router-link
+                        :to="{
+                          name: 'detail-pengguna',
+                          params: { id: data.id },
+                        }"
+                      >
+                        <button class="btn btn-sm btn-primary p-y">
+                          <i class="ion ion-ios-eye"></i>
+                        </button>
+                      </router-link>
+                    </td>
+                  </tr>
+                </tbody>
+              </v-table>
+              <smart-pagination
+                :currentPage.sync="currentPage2"
+                :totalPages="totalPages2"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -266,6 +336,7 @@ import Vue from "vue";
 import InventarisPieChart from "./Chart/InventarisPieChart.vue";
 import KategoriPieChart from "./Chart/KategoriPieChart.vue";
 import InventarisTidakTerpakai from "./Chart/InventarisTidakTerpakai.vue";
+import JenisPieChart from "./Chart/JenisPieChart.vue";
 
 export default {
   name: "home",
@@ -276,15 +347,19 @@ export default {
     InventarisPieChart,
     KategoriPieChart,
     InventarisTidakTerpakai,
+    JenisPieChart,
   },
   data() {
     return {
+        i: 1,
       barang: [],
       buku: [],
+      hargaPerPengguna: [],
       users: [],
       NoPengguna: [],
       kategori: [],
       total: [],
+      totalbuku: [],
       user: "",
       loginType: "",
       pengguna: [],
@@ -292,6 +367,8 @@ export default {
       totalPages: 0,
       currentPage1: 1,
       totalPages1: 0,
+      currentPage2: 1,
+      totalPages2: 0,
     };
   },
   mounted() {
@@ -346,6 +423,12 @@ export default {
     });
     axios.get(`/api/pengguna/nopengguna`).then((response) => {
       this.NoPengguna = response.data.barang;
+    });
+    axios.get(`/api/inventaris/hargaPerPengguna`).then((response) => {
+      this.hargaPerPengguna = response.data.harga;
+    });
+    axios.get(`/api/buku/total`).then((response) => {
+      this.totalbuku = response.data.total;
     });
   },
 };

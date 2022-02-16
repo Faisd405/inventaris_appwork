@@ -61,4 +61,15 @@ class buku extends Model
         $buku = buku::count();
         return $buku;
     }
+
+    //get total harga
+    public function getTotalHarga() {
+        $buku = buku::sum('harga');
+        return $buku;
+    }
+
+    public function getBukuByJenisId($id)
+    {
+        return buku::with('lokasi','jenis','pengguna')->where('jenis_id', $id)->get();
+    }
 }

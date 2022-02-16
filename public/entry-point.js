@@ -54318,7 +54318,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '',
       name: 'home',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(47), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! @/components/Home */ "./resources/assets/src/components/Home.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! @/components/Home */ "./resources/assets/src/components/Home.vue"));
       },
       meta: _defineProperty({
         requiresAuth: true,
@@ -54693,7 +54693,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'laporan-barang',
       path: '/laporan/barang',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(47), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! @/components/Laporan/LaporanTBarang */ "./resources/assets/src/components/Laporan/LaporanTBarang.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! @/components/Laporan/LaporanTBarang */ "./resources/assets/src/components/Laporan/LaporanTBarang.vue"));
       }
     }, {
       name: 'laporan-buku',
@@ -54723,7 +54723,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'laporan-harga-barang',
       path: '/laporan/LaporanTHargaBarang',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(47), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! @/components/Laporan/LaporanTHargaBarang */ "./resources/assets/src/components/Laporan/LaporanTHargaBarang.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! @/components/Laporan/LaporanTHargaBarang */ "./resources/assets/src/components/Laporan/LaporanTHargaBarang.vue"));
       }
     }, //Route Pengajuan
     {

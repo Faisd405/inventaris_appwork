@@ -89,6 +89,7 @@ Route::put('/kategori/{id}', [KategoriController::class, 'update']);
 Route::get('/kategori/{id}', [KategoriController::class, 'show']);
 
 //Route API Buku
+Route::get('/buku/total', [BukuController::class, 'getTotalHarga']);
 Route::get('/buku', [BukuController::class, 'index']);
 Route::get('/buku/{id}', [BukuController::class, 'show']);
 Route::put('/buku/{id}', [BukuController::class, 'update']);
@@ -112,6 +113,7 @@ Route::delete('/lokasi/{id}', [LokasiController::class, 'destroy']);
 
 //Route API Jenis
 Route::get('/jenis', [JenisController::class, 'index']);
+Route::get('/namajenis', [JenisController::class, 'indexnama']);
 Route::get('/jenis/{id}', [JenisController::class, 'show']);
 Route::post('/jenis', [JenisController::class, 'store']);
 Route::put('/jenis/{id}', [JenisController::class, 'update']);
@@ -128,3 +130,4 @@ Route::get('/pengajuan/user/{id_user}', [PengajuanController::class, 'showByUser
 //Inventaris Laporan
 Route::get('/inventaris/barangdanbuku', [InventarisController::class, 'lengthBarangdanBuku']);
 Route::get('/inventaris/inventarisTidakDipakai', [InventarisController::class, 'inventarisTidakDipakai']);
+Route::get('/inventaris/hargaPerPengguna', [InventarisController::class, 'hargaPerPengguna']);

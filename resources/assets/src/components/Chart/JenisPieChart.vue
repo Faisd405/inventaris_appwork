@@ -50,8 +50,8 @@ export default {
     };
   },
   mounted() {
-    axios.get(`/api/namakategori`).then((response) => {
-      this.chartData.labels = response.data.kategori;
+    axios.get(`/api/namajenis`).then((response) => {
+      this.chartData.labels = response.data.jenis;
       this.chartData.datasets[0].data = response.data.jumlah;
       this.renderChart(this.chartData, this.options);
     });

@@ -8,7 +8,7 @@ class jenis extends Model
 {
     //
     protected $table = 'jenis';
-    protected $fillable = ['jenis_buku'];
+    protected $fillable = ['jenis_buku','jumlah'];
 
     public function buku()
     {
@@ -42,4 +42,18 @@ class jenis extends Model
         return $jenis;
     }
 
+
+    public function add($id)
+    {
+        $jenis = jenis::find($id);
+        $jenis->jumlah = $jenis->jumlah + 1;
+        $jenis->save();
+    }
+
+    public function minus($id)
+    {
+        $jenis = jenis::find($id);
+        $jenis->jumlah = $jenis->jumlah - 1;
+        $jenis->save();
+    }
 }

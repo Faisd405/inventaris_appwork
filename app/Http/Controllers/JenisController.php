@@ -33,6 +33,7 @@ class JenisController extends Controller
     //store json
     public function store(Request $request)
     {
+        $request['jumlah'] = 0;
         $jenis = $this->jenis->postJenis($request);
         return response()->json([
             'jenis' => $jenis
@@ -54,6 +55,16 @@ class JenisController extends Controller
         $jenis = $this->jenis->deleteJenis($id);
         return response()->json([
             'jenis' => $jenis
+        ], 200);
+    }
+
+    public function indexnama()
+    {
+        $jenis = $this->jenis->pluck('jenis_buku');
+        $jumlah = $this->jenis->pluck('jumlah');
+        return response()->json([
+            'jenis' => $jenis,
+            'jumlah' => $jumlah
         ], 200);
     }
 }

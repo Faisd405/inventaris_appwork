@@ -49,6 +49,7 @@
                   <tr>
                     <th scope="col">No</th>
                     <v-th sortKey="jenis_buku" scope="col">Nama Jenis</v-th>
+                    <v-th scope="col">Jumlah</v-th>
                     <th scope="col">Aksi</th>
                   </tr>
                 </thead>
@@ -60,6 +61,9 @@
                     </td>
                     <td>
                       {{ data.jenis_buku }}
+                    </td>
+                    <td>
+                      {{ data.jumlah }}
                     </td>
                     <td>
                       <span v-if="loginType == 'admin'">

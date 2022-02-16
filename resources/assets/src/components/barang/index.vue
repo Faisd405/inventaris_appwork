@@ -63,6 +63,17 @@
                   </td>
                 </tr>
                 <tr>
+                  <td><label>Nama Pengguna</label></td>
+                  <td class="px-2">:</td>
+                  <td>
+                    <b-input
+                      class="form-control-sm"
+                      v-model="nama_pengguna"
+                      placeholder="Cari Nama Barang"
+                    />
+                  </td>
+                </tr>
+                <tr>
                   <td><label>Lokasi Barang</label></td>
                   <td class="px-2">:</td>
                   <td>
@@ -208,6 +219,7 @@ export default {
         nama_barang: { value: "", keys: ["nama_barang"] },
       },
       lokasi_barang: "",
+        nama_pengguna: "",
       barang: [],
       lokasi: [],
       pageSize: 10,
@@ -231,7 +243,7 @@ export default {
   },
   computed: {
       filterBarang: function() {
-          return this.filterbarangByLokasi(this.barang);
+          return this.filterbarangByLokasi(this.filterbarangByPengguna(this.barang));
       },
   },
   methods: {
@@ -259,6 +271,11 @@ export default {
     filterbarangByLokasi: function(barang) {
       return barang.filter(
           (barang) => !barang.lokasi.lokasi.toString().indexOf(this.lokasi_barang)
+      );
+    },
+    filterbarangByPengguna: function(barang) {
+      return barang.filter(
+          (barang) => !barang.pengguna.name.toString().indexOf(this.nama_pengguna)
       );
     },
   },

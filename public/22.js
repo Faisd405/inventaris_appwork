@@ -128,6 +128,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -374,6 +378,14 @@ var render = function () {
                                 ]),
                                 _vm._v(" "),
                                 _c("td", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(data.jumlah) +
+                                      "\n                  "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
                                   _vm.loginType == "admin"
                                     ? _c(
                                         "span",
@@ -446,6 +458,10 @@ var render = function () {
                             { attrs: { sortKey: "jenis_buku", scope: "col" } },
                             [_vm._v("Nama Jenis")]
                           ),
+                          _vm._v(" "),
+                          _c("v-th", { attrs: { scope: "col" } }, [
+                            _vm._v("Jumlah"),
+                          ]),
                           _vm._v(" "),
                           _c("th", { attrs: { scope: "col" } }, [
                             _vm._v("Aksi"),

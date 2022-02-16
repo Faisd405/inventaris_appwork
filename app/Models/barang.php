@@ -128,4 +128,9 @@ class barang extends Model
 
         return $barang;
     }
+
+    public function getBarangByPenggunaId($id)
+    {
+        return barang::with('pengguna', 'kategori', 'lokasi')->where('pengguna_id', $id)->get();
+    }
 }
