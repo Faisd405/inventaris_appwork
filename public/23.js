@@ -265,7 +265,7 @@ var render = function () {
                     },
                     [
                       _c("option", { attrs: { value: "", disabled: "" } }, [
-                        _vm._v("Pilih User"),
+                        _vm._v("Pilih Sifat Kategori"),
                       ]),
                       _vm._v(" "),
                       _vm._l(_vm.sifat, function (sifat) {

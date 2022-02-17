@@ -32,7 +32,7 @@
                   class="form-control"
                   v-model="kategori.sifat_id"
                 >
-                  <option value="" disabled>Pilih User</option>
+                  <option value="" disabled>Pilih Sifat Kategori</option>
                   <option v-for="sifat in sifat" :key="sifat.id" :value="sifat.id">
                     {{ sifat.sifat_kategori }}
                   </option>

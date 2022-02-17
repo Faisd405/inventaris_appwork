@@ -56427,7 +56427,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\inventaris_appwork\resources\assets\src\entry-point.js */"./resources/assets/src/entry-point.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\inventaris_appwork2\inventaris_appwork\resources\assets\src\entry-point.js */"./resources/assets/src/entry-point.js");
 
 
 /***/ })

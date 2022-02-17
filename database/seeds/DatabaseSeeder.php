@@ -31,7 +31,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         pengguna::create([
-            'name' => '4VM'
+            'name' => '4VM',
+            'ktp' => 0,
+            'jabatan' => 'Kantor',
+            'surat_komitmen' => 'default.pdf',
         ]);
 
         lokasi::create([

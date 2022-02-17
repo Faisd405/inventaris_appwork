@@ -16,6 +16,7 @@ class CreateJenisTable extends Migration
         Schema::create('jenis', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('jenis_buku');
+            $table->integer('jumlah');
             $table->timestamps();
         });
     }
