@@ -13,14 +13,14 @@ use Maatwebsite\Excel\Concerns\WithEvents;
 use App\Models\barang;
 use Maatwebsite\Excel\Events\AfterSheet;
 
-class BarangExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoSize, WithEvents
+class BarangExport implements WithColumnFormatting, FromQuery, WithMapping, WithHeadings, ShouldAutoSize, WithEvents
 {
     use Exportable;
     private $rows = 0;
 
     public function query()
     {
-        return barang::query();
+        return barang::orderBy('pengguna_id', 'asc');
     }
 
     public function map($barang): array
@@ -80,6 +80,13 @@ class BarangExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoSi
                 $event->sheet->getDelegate()->setCellValue('B'. $total_harga_barang, '=SUM(F2:F'.$this->rows.')');
                 $event->sheet->getDelegate()->setCellValue('B'. $total_barang, '=COUNT(F2:F'.$this->rows.')');
             },
+        ];
+    }
+
+    public function columnFormats(): array
+    {
+        return [
+            'F' => NumberFormat::FORMAT_CURRENCY_IDR,
         ];
     }
 }

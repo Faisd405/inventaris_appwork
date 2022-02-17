@@ -83,6 +83,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (Response) {
         _this.name = Response.data.user.username;
         _this.id_api = Response.data.user.id;
+        _this.jabatan = Response.data.user.jabatan.nama;
 
         if (Response.data.success === true) {
           axios.post("/api/loginapi", {

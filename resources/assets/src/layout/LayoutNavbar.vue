@@ -8,7 +8,7 @@
     <b-navbar-brand to="/"><strong>MASIVE (Manajemen Informasi Inventaris)</strong></b-navbar-brand>
 
     <!-- Sidenav toggle -->
-    <!-- <b-navbar-nav
+    <b-navbar-nav
       class="align-items-lg-center mr-auto mr-lg-4"
       v-if="sidenavToggle"
     >
@@ -19,7 +19,7 @@
       >
         <i class="ion ion-md-menu text-large align-middle" />
       </a>
-    </b-navbar-nav> -->
+    </b-navbar-nav>
 
     <!-- Navbar toggle -->
     <b-navbar-toggle target="app-layout-navbar"></b-navbar-toggle>

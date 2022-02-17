@@ -73,6 +73,7 @@ export default {
         .then((Response) => {
           this.name = Response.data.user.username;
           this.id_api = Response.data.user.id;
+          this.jabatan = Response.data.user.jabatan.nama;
 
           if (Response.data.success === true) {
             axios

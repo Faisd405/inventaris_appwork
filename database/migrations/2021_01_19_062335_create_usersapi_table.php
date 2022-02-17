@@ -19,6 +19,8 @@ class CreateUsersapiTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->unsignedBigInteger('pengguna_id');
+            $table->foreign('pengguna_id')->references('id')->on('pengguna');
             $table->rememberToken();
             $table->timestamps();
         });
