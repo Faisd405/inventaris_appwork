@@ -79,6 +79,12 @@ class BarangExport implements WithColumnFormatting, FromQuery, WithMapping, With
                 $event->sheet->mergeCells('B'. $total_barang.':J'. $total_barang);
                 $event->sheet->getDelegate()->setCellValue('B'. $total_harga_barang, '=SUM(F2:F'.$this->rows.')');
                 $event->sheet->getDelegate()->setCellValue('B'. $total_barang, '=COUNT(F2:F'.$this->rows.')');
+
+                // format harga_barang dan total barang
+                $event->sheet->getDelegate()->getStyle('B'. $total_harga_barang)->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_CURRENCY_IDR);
+                $event->sheet->getDelegate()->getStyle('B'. $total_barang)->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_NUMBER);
+
+
             },
         ];
     }
