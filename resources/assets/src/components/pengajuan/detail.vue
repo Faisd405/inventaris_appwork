@@ -25,7 +25,7 @@
               <label>Jumlah :</label>
               <h3 v-text="pengajuan.jumlah_barang"></h3>
               <label>Nama Yang Mengajukan Barang</label>
-              <h3 v-text="pengajuan.user.name"></h3>
+              <h3 v-text="pengajuan.pengguna.name"></h3>
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@ export default {
         this.user = response.data;
         this.loginType = response.data.roles[0].name;
         if (this.loginType == "user") {
-          if (this.pengajuan.user_id != this.user.id) {
+          if (this.pengajuan.pengguna_id != this.user.id) {
             this.$router.push("/pengajuan/user/" + this.user.id);
           }
         }

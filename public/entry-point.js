@@ -2014,6 +2014,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = (_name$data$props$meth = {
   name: "app-layout-navbar",
@@ -2077,6 +2097,34 @@ var _data$name$components;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -36049,9 +36097,43 @@ var render = function () {
       attrs: { toggleable: "lg", variant: _vm.getLayoutNavbarBg() },
     },
     [
-      _c("b-navbar-brand", { attrs: { to: "/" } }, [
-        _c("strong", [_vm._v("MASIVE (Manajemen Informasi Inventaris)")]),
-      ]),
+      _vm.user
+        ? _c(
+            "span",
+            [
+              _vm.user.roles[0].name == "admin"
+                ? _c("b-navbar-brand", { attrs: { to: "/" } }, [
+                    _c("strong", [
+                      _vm._v("MASIVE (Manajemen Informasi Inventaris)"),
+                    ]),
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.user.roles[0].name == "user"
+                ? _c("b-navbar-brand", { attrs: { to: "/homepengguna" } }, [
+                    _c("strong", [
+                      _vm._v("MASIVE (Manajemen Informasi Inventaris)"),
+                    ]),
+                  ])
+                : _vm._e(),
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.user
+        ? _c(
+            "span",
+            [
+              _c("b-navbar-brand", { attrs: { to: "/login" } }, [
+                _c("strong", [
+                  _vm._v("MASIVE (Manajemen Informasi Inventaris)"),
+                ]),
+              ]),
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
       _vm.sidenavToggle
         ? _c(
@@ -36185,11 +36267,29 @@ var render = function () {
             [
               _c("sidenav-header", [_c("strong", [_vm._v("Dashboard")])]),
               _vm._v(" "),
-              _c(
-                "sidenav-router-link",
-                { attrs: { icon: "ion ion-ios-home", to: "/", exact: true } },
-                [_vm._v("Home")]
-              ),
+              _vm.user.roles[0].name == "admin"
+                ? _c(
+                    "sidenav-router-link",
+                    {
+                      attrs: { icon: "ion ion-ios-home", to: "/", exact: true },
+                    },
+                    [_vm._v("Home")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.user.roles[0].name == "user"
+                ? _c(
+                    "sidenav-router-link",
+                    {
+                      attrs: {
+                        icon: "ion ion-ios-home",
+                        to: "/homepengguna",
+                        exact: true,
+                      },
+                    },
+                    [_vm._v("Home")]
+                  )
+                : _vm._e(),
               _vm._v(" "),
               _c("sidenav-divider"),
               _vm._v(" "),
@@ -36289,13 +36389,44 @@ var render = function () {
                       attrs: {
                         icon: "ion ion-md-desktop",
                         to: {
+                          name: "detail-pengguna",
+                          params: { id: _vm.user.id },
+                        },
+                        exact: true,
+                      },
+                    },
+                    [_vm._v("Inventaris Pengguna")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.user.roles[0].name == "user"
+                ? _c(
+                    "sidenav-router-link",
+                    {
+                      attrs: {
+                        icon: "ion ion-md-desktop",
+                        to: {
                           name: "index-pengajuan",
                           params: { id: _vm.user.id },
                         },
                         exact: true,
                       },
                     },
-                    [_vm._v("Pengajuan Barang User")]
+                    [_vm._v("Pengajuan Barang Pengguna")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.user.roles[0].name == "admin"
+                ? _c(
+                    "sidenav-router-link",
+                    {
+                      attrs: {
+                        icon: "ion ion-md-desktop",
+                        to: "/pengajuan/admin/",
+                        exact: true,
+                      },
+                    },
+                    [_vm._v("Pengajuan Barang Admin")]
                   )
                 : _vm._e(),
               _vm._v(" "),
@@ -54340,7 +54471,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '',
       name: 'home',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! @/components/Home */ "./resources/assets/src/components/Home.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(48)]).then(__webpack_require__.bind(null, /*! @/components/Home */ "./resources/assets/src/components/Home.vue"));
       },
       meta: _defineProperty({
         requiresAuth: true,
@@ -54350,6 +54481,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       }, "if", function _if(isUser) {
         isUser: true;
       })
+    }, {
+      name: 'homePengguna',
+      path: '/homepengguna',
+      component: function component() {
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(49)]).then(__webpack_require__.bind(null, /*! @/components/HomePengguna */ "./resources/assets/src/components/HomePengguna.vue"));
+      }
     }, // Route Auth
     {
       name: 'login',
@@ -54447,10 +54584,14 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       component: function component() {
         return __webpack_require__.e(/*! import() */ 39).then(__webpack_require__.bind(null, /*! @/components/pengguna/edit */ "./resources/assets/src/components/pengguna/edit.vue"));
       },
-      meta: {
+      meta: _defineProperty({
         requiresAuth: true,
-        isAdmin: true
-      }
+        "if": function _if(isAdmin) {
+          isAdmin: true;
+        }
+      }, "if", function _if(isUser) {
+        isUser: true;
+      })
     }, {
       name: 'detail-pengguna',
       path: '/pengguna/detail/:id',
@@ -54862,7 +55003,7 @@ router.beforeEach(function (to, from, next) {
       })) {
         if (roles.includes('admin')) next();else if (roles[0] === 'user') {
           next({
-            name: 'home'
+            name: 'homePengguna'
           });
         }
       } else {

@@ -77,7 +77,7 @@ __webpack_require__.r(__webpack_exports__);
       _this2.loginType = response.data.roles[0].name;
 
       if (_this2.loginType == "user") {
-        if (_this2.pengajuan.user_id != _this2.user.id) {
+        if (_this2.pengajuan.pengguna_id != _this2.user.id) {
           _this2.$router.push("/pengajuan/user/" + _this2.user.id);
         }
       }
@@ -176,7 +176,7 @@ var render = function () {
               _c("label", [_vm._v("Nama Yang Mengajukan Barang")]),
               _vm._v(" "),
               _c("h3", {
-                domProps: { textContent: _vm._s(_vm.pengajuan.user.name) },
+                domProps: { textContent: _vm._s(_vm.pengajuan.pengguna.name) },
               }),
             ]),
           ]),

@@ -21,8 +21,8 @@ class CreatePengajuanTable extends Migration
             $table->integer('harga_barang');
             $table->integer('jumlah_barang');
             $table->string('status');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('pengguna_id');
+            $table->foreign('pengguna_id')->references('id')->on('pengguna');
             $table->string('image');
             $table->timestamps();
         });

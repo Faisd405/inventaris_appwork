@@ -32,6 +32,11 @@ const router = new Router({
                 }
             }
         },
+        {
+            name: 'homePengguna',
+            path: '/homepengguna',
+            component: () => import('@/components/HomePengguna'),
+        },
         // Route Auth
         {
             name: 'login',
@@ -120,7 +125,12 @@ const router = new Router({
             component: () => import('@/components/pengguna/edit'),
             meta: {
                 requiresAuth: true,
-                isAdmin: true
+                if (isAdmin) {
+                    isAdmin: true;
+                },
+                if (isUser) {
+                    isUser: true;
+                }
             }
         },
         {
@@ -492,7 +502,7 @@ router.beforeEach((to, from, next) => {
                 if (roles.includes('admin')) next()
                 else if (roles[0] === 'user') {
                     next({
-                        name: 'home'
+                        name: 'homePengguna'
                     })
                 }
             } else {

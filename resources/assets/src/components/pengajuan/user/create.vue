@@ -126,7 +126,7 @@ export default {
         formData.append("harga_barang", this.pengajuan.harga_barang);
         formData.append("jumlah_barang", this.pengajuan.jumlah_barang);
         formData.append("detail_barang", this.pengajuan.detail_barang);
-        formData.append("user_id", this.user.id);
+        formData.append("pengguna_id", this.user.id);
       axios
         .post("/api/pengajuan", formData)
         .then((response) => {

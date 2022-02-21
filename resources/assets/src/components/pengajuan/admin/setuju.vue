@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid-fluid p-3">
+  <div class="container-fluid p-3">
     <div class="row justify-content-center">
       <div class="col-xl-12">
         <div class="card card-default">
@@ -242,6 +242,7 @@ export default {
       this.barang.fungsi = this.pengajuan.fungsi;
       this.barang.harga_barang = this.pengajuan.harga_barang;
       this.barang.jumlah_barang = this.pengajuan.jumlah_barang;
+      this.barang.pengguna_id = this.pengajuan.pengguna.id;
     });
     axios.get("/api/kategori").then((response) => {
       this.kategori = response.data.kategori;

@@ -92,10 +92,21 @@
         <div class="card card-body" style="min-width: 20rem; max-height: 24rem">
           <div class="align-items-center">
             <div>
-              <h2>Name : {{ user.name }}</h2>
+              <h3>Name : {{ user.name }}</h3>
             </div>
             <div>
-              <h2>Roles : {{ loginType }}</h2>
+              <h3>Roles : {{ loginType }}</h3>
+            </div>
+            <div>
+              <h3>Jabatan : {{ user.jabatan }}</h3>
+            </div>
+            <div>
+              <h3>KTP : {{ user.ktp }}</h3>
+            </div>
+            <div>
+              <button class="btn btn-primary" @click="updateUserData()">
+                Sinkronisasi Data
+              </button>
             </div>
           </div>
         </div>
@@ -287,7 +298,7 @@
                   </tr>
                 </thead>
                 <tbody slot="body" slot-scope="{ displayData }">
-                      <!-- index number with i++ -->
+                  <!-- index number with i++ -->
 
                   <tr v-for="(data, index) in displayData" :key="data.guid">
                     <!-- index number -->
@@ -298,10 +309,10 @@
                       {{ data.name }}
                     </td>
                     <td>
-                        {{ data.jabatan }}
+                      {{ data.jabatan }}
                     </td>
                     <td>
-                        {{ hargaPerPengguna[index++] | toCurrency }}
+                      {{ hargaPerPengguna[index++] | toCurrency }}
                     </td>
                     <td>
                       <router-link
@@ -351,7 +362,7 @@ export default {
   },
   data() {
     return {
-        i: 1,
+      i: 1,
       barang: [],
       buku: [],
       hargaPerPengguna: [],
@@ -369,6 +380,7 @@ export default {
       totalPages1: 0,
       currentPage2: 1,
       totalPages2: 0,
+      updateUser: {},
     };
   },
   mounted() {
@@ -397,6 +409,24 @@ export default {
       this.setUser();
 
       this.$router.push("/");
+    },
+    updateUserData() {
+      let token_api = localStorage.getItem("token_api");
+      axios
+        .get(`https://laporan.4visionmedia.com/api/user`, {
+          headers: { Authorization: token_api },
+        })
+        .then((response) => {
+          this.updateUser = response.data;
+          axios
+            .put(`/api/pengguna/` + this.user.id, {
+              name: this.updateUser.username,
+              jabatan: this.updateUser.jabatan.nama,
+            })
+            .then((response) => {
+              this.setUser();
+            });
+        });
     },
   },
   created() {

@@ -11,7 +11,18 @@
       :class="{ 'py-1': orientation !== 'horizontal' }"
     >
       <sidenav-header> <strong>Dashboard</strong> </sidenav-header>
-      <sidenav-router-link icon="ion ion-ios-home" to="/" :exact="true"
+      <sidenav-router-link
+        icon="ion ion-ios-home"
+        to="/"
+        :exact="true"
+        v-if="user.roles[0].name == 'admin'"
+        >Home</sidenav-router-link
+      >
+      <sidenav-router-link
+        icon="ion ion-ios-home"
+        to="/homepengguna"
+        :exact="true"
+        v-if="user.roles[0].name == 'user'"
         >Home</sidenav-router-link
       >
 
@@ -53,47 +64,64 @@
       <sidenav-header> <strong>Modul Inventaris</strong> </sidenav-header>
       <sidenav-router-link
         icon="ion ion-md-desktop"
+        :to="{ name: 'detail-pengguna', params: { id: user.id } }"
+        :exact="true"
+        v-if="user.roles[0].name == 'user'"
+        >Inventaris Pengguna</sidenav-router-link
+      >
+      <sidenav-router-link
+        icon="ion ion-md-desktop"
         :to="{ name: 'index-pengajuan', params: { id: user.id } }"
         :exact="true"
         v-if="user.roles[0].name == 'user'"
-        >Pengajuan Barang User</sidenav-router-link
+        >Pengajuan Barang Pengguna</sidenav-router-link
+      >
+      <sidenav-router-link
+        icon="ion ion-md-desktop"
+        to="/pengajuan/admin/"
+        :exact="true"
+        v-if="user.roles[0].name == 'admin'"
+        >Pengajuan Barang Admin</sidenav-router-link
       >
       <span v-if="user.roles[0].name == 'admin'">
-      <sidenav-menu icon="ion ion-md-cube">
-        <template slot="link-text">
-          <strong>Inventaris Barang</strong>
-        </template>
-        <sidenav-router-link
-          icon="ion ion-md-list-box"
-          to="/barang"
-          :exact="true"
-          >Daftar Barang</sidenav-router-link
-        >
-        <sidenav-router-link
-          icon="ion ion-md-person"
-          to="/pengguna"
-          :exact="true"
-          >PIC Barang</sidenav-router-link
-        >
-      </sidenav-menu>
-      <sidenav-menu icon="ion ion-md-cube">
-        <template slot="link-text">
-          <strong>Inventaris Buku</strong>
-        </template>
-        <sidenav-router-link icon="ion ion-md-book" to="/buku" :exact="true"
-          >Daftar Buku</sidenav-router-link
-        >
-        <sidenav-router-link
-          icon="ion ion-md-person"
-          to="/pengguna"
-          :exact="true"
-          >PIC Buku</sidenav-router-link
-        >
-      </sidenav-menu>
+        <sidenav-menu icon="ion ion-md-cube">
+          <template slot="link-text">
+            <strong>Inventaris Barang</strong>
+          </template>
+          <sidenav-router-link
+            icon="ion ion-md-list-box"
+            to="/barang"
+            :exact="true"
+            >Daftar Barang</sidenav-router-link
+          >
+          <sidenav-router-link
+            icon="ion ion-md-person"
+            to="/pengguna"
+            :exact="true"
+            >PIC Barang</sidenav-router-link
+          >
+        </sidenav-menu>
+        <sidenav-menu icon="ion ion-md-cube">
+          <template slot="link-text">
+            <strong>Inventaris Buku</strong>
+          </template>
+          <sidenav-router-link icon="ion ion-md-book" to="/buku" :exact="true"
+            >Daftar Buku</sidenav-router-link
+          >
+          <sidenav-router-link
+            icon="ion ion-md-person"
+            to="/pengguna"
+            :exact="true"
+            >PIC Buku</sidenav-router-link
+          >
+        </sidenav-menu>
 
-      <sidenav-router-link icon="ion ion-md-desktop" to="/history" :exact="true"
-        >Riwayat Penggunaan Barang</sidenav-router-link
-      >
+        <sidenav-router-link
+          icon="ion ion-md-desktop"
+          to="/history"
+          :exact="true"
+          >Riwayat Penggunaan Barang</sidenav-router-link
+        >
       </span>
       <sidenav-divider />
       <sidenav-header> <strong>Laporan</strong> </sidenav-header>

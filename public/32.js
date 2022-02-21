@@ -256,6 +256,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.barang.fungsi = _this.pengajuan.fungsi;
       _this.barang.harga_barang = _this.pengajuan.harga_barang;
       _this.barang.jumlah_barang = _this.pengajuan.jumlah_barang;
+      _this.barang.pengguna_id = _this.pengajuan.pengguna.id;
     });
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/kategori").then(function (response) {
       _this.kategori = response.data.kategori;
@@ -401,7 +402,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container-fluid-fluid p-3" }, [
+  return _c("div", { staticClass: "container-fluid p-3" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-xl-12" }, [
         _c("div", { staticClass: "card card-default" }, [

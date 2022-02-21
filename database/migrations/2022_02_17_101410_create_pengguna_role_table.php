@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoleUsersapiTable extends Migration
+class CreatePenggunaRoleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateRoleUsersapiTable extends Migration
      */
     public function up()
     {
-        Schema::create('role_usersapi', function (Blueprint $table) {
+        Schema::create('pengguna_role', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('usersapi_id');
-            $table->foreign('usersapi_id')->references('id')->on('usersapi');
+            $table->unsignedBigInteger('pengguna_id');
+            $table->foreign('pengguna_id')->references('id')->on('pengguna');
             $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles');
             $table->timestamps();
@@ -30,6 +30,6 @@ class CreateRoleUsersapiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('role_usersapi');
+        Schema::dropIfExists('pengguna_role');
     }
 }

@@ -65,25 +65,29 @@ __webpack_require__.r(__webpack_exports__);
       email: "",
       password: "",
       error: null,
-      message: ""
+      message: "",
+      token: ""
     };
   },
   created: function created() {
-    if (this.$route.params.message !== undefined) {
-      this.message = this.$route.params.message + " Please login!";
+    if (this.$route.params.error !== undefined) {
+      this.error = this.$route.params.error + " Please login!";
     }
   },
   methods: {
     loginForm: function loginForm() {
       var _this = this;
 
+      this.message = "";
+      this.error = "";
       axios.post("https://laporan.4visionmedia.com/api/data/login", {
         email: this.email,
         password: this.password
       }).then(function (Response) {
         _this.name = Response.data.user.username;
         _this.id_api = Response.data.user.id;
-        _this.jabatan = Response.data.user.jabatan.nama;
+        _this.jabatan = Response.data.user.jabatan_id;
+        _this.token = Response.data.token.token;
 
         if (Response.data.success === true) {
           axios.post("/api/loginapi", {
@@ -91,15 +95,17 @@ __webpack_require__.r(__webpack_exports__);
             name: _this.name,
             email: _this.email,
             password: _this.password,
-            success: Response.data.success
+            success: Response.data.success,
+            jabatan: _this.jabatan
           }).then(function (response) {
             if (response.data.login === true) {
               localStorage.setItem("user", JSON.stringify(response.data.user));
               localStorage.setItem("token", response.data.token);
+              localStorage.setItem("token_api", _this.token);
               var loginType = response.data.user.roles[0].name;
 
               if (loginType === "user") {
-                _this.$router.push("/");
+                _this.$router.push("/homePengguna");
               } else if (loginType === "admin") {
                 _this.$router.push("/");
               } else {
@@ -108,7 +114,8 @@ __webpack_require__.r(__webpack_exports__);
 
               _this.$emit("IsloggedIn");
             } else {
-              _this.error = response.data.message;
+              _this.error = response.data.error;
+              _this.message = response.data.message;
             }
           });
         }
@@ -154,23 +161,6 @@ var render = function () {
             [
               _c("div", { staticClass: "card card-default" }, [
                 _c("div", { staticClass: "card-body" }, [
-                  _vm.message
-                    ? _c(
-                        "div",
-                        {
-                          staticClass: "alert alert-success",
-                          attrs: { role: "alert" },
-                        },
-                        [
-                          _vm._v(
-                            "\n            " +
-                              _vm._s(_vm.message) +
-                              "\n          "
-                          ),
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
                   _c("h4", { staticClass: "card-title" }, [_vm._v("Login")]),
                   _vm._v(" "),
                   _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
@@ -185,6 +175,20 @@ var render = function () {
                           "\n            " + _vm._s(_vm.error) + "\n          "
                         ),
                       ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.message
+                    ? _c(
+                        "div",
+                        { staticClass: "alert bg-success text-white" },
+                        [
+                          _vm._v(
+                            "\n            " +
+                              _vm._s(_vm.message) +
+                              "\n          "
+                          ),
+                        ]
+                      )
                     : _vm._e(),
                   _vm._v(" "),
                   _c(

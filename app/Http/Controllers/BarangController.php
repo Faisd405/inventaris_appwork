@@ -177,8 +177,8 @@ class BarangController extends Controller
 
     public function updateLampiran($request, $barang)
     {
-        $extension = $request['lampiran']->getClientOriginalExtension();
         if ($request->hasFile('lampiran')) {
+            $extension = $request['lampiran']->getClientOriginalExtension();
             $request->validate([
                 'lampiran' => 'required|max:2048|mimes:png,jpg,jpeg,pdf,docx,doc',
             ]);

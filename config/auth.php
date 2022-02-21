@@ -49,7 +49,7 @@ return [
 
         'etask' => [
             'driver' => 'jwt',
-            'provider' => 'usersapi',
+            'provider' => 'pengguna',
             'hash' => false,
         ],
     ],
@@ -77,9 +77,9 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        'usersapi' => [
+        'pengguna' => [
             'driver' => 'eloquent',
-            'model' => App\Models\usersapi::class,
+            'model' => App\Models\pengguna::class,
         ],
 
         // 'users' => [

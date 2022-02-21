@@ -4,14 +4,14 @@
       <div class="layout-example-block layout-example-block-1">
         <div class="card card-default">
           <div class="card-body">
-            <div v-if="message" class="alert alert-success" role="alert">
-              {{ message }}
-            </div>
             <h4 class="card-title">Login</h4>
             <h6 class="card-subtitle mb-2 text-muted">Login to your account</h6>
             <hr />
             <div v-if="error" class="alert bg-danger text-white">
               {{ error }}
+            </div>
+            <div v-if="message" class="alert bg-success text-white">
+              {{ message }}
             </div>
             <form @submit.prevent="loginForm">
               <div class="mb-3">
@@ -56,15 +56,18 @@ export default {
       password: "",
       error: null,
       message: "",
+      token: "",
     };
   },
   created() {
-    if (this.$route.params.message !== undefined) {
-      this.message = this.$route.params.message + " Please login!";
+    if (this.$route.params.error !== undefined) {
+      this.error = this.$route.params.error + " Please login!";
     }
   },
   methods: {
     loginForm() {
+        this.message = "";
+        this.error = "";
       axios
         .post("https://laporan.4visionmedia.com/api/data/login", {
           email: this.email,
@@ -73,7 +76,8 @@ export default {
         .then((Response) => {
           this.name = Response.data.user.username;
           this.id_api = Response.data.user.id;
-          this.jabatan = Response.data.user.jabatan.nama;
+          this.jabatan = Response.data.user.jabatan_id;
+          this.token = Response.data.token.token;
 
           if (Response.data.success === true) {
             axios
@@ -83,16 +87,18 @@ export default {
                 email: this.email,
                 password: this.password,
                 success: Response.data.success,
+                jabatan: this.jabatan,
               })
               .then((response) => {
                 if (response.data.login === true) {
                     localStorage.setItem("user", JSON.stringify(response.data.user)
                   );
                   localStorage.setItem("token", response.data.token);
+                  localStorage.setItem("token_api", this.token);
 
                   let loginType = response.data.user.roles[0].name;
                   if (loginType === "user") {
-                    this.$router.push("/");
+                    this.$router.push("/homePengguna");
                   } else if (loginType === "admin") {
                     this.$router.push("/");
                   } else {
@@ -101,7 +107,8 @@ export default {
 
                   this.$emit("IsloggedIn");
                 } else {
-                  this.error = response.data.message;
+                  this.error = response.data.error;
+                  this.message = response.data.message;
                 }
               });
           }

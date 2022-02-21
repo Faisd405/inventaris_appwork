@@ -26,7 +26,6 @@ class PenggunaRequest extends FormRequest
         return [
             //
             'name' => 'required',
-            'ktp' => 'required',
             'jabatan' => 'required',
         ];
     }

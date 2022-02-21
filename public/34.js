@@ -139,7 +139,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("harga_barang", this.pengajuan.harga_barang);
       formData.append("jumlah_barang", this.pengajuan.jumlah_barang);
       formData.append("detail_barang", this.pengajuan.detail_barang);
-      formData.append("user_id", this.user.id);
+      formData.append("pengguna_id", this.user.id);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/pengajuan", formData).then(function (response) {
         _this.$router.push("/pengajuan/user/" + _this.user.id);
       })["catch"](function (error) {

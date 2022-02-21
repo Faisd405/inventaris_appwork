@@ -129,6 +129,13 @@ class barang extends Model
         return $barang;
     }
 
+    //Length Barang By Pengguna
+    public function getLengthBarangByPengguna($id){
+        $barang = barang::where('pengguna_id', $id)->count();
+
+        return $barang;
+    }
+
     public function getBarangByPenggunaId($id)
     {
         return barang::with('pengguna', 'kategori', 'lokasi')->where('pengguna_id', $id)->get();

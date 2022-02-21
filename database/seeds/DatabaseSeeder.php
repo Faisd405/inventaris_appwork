@@ -35,6 +35,9 @@ class DatabaseSeeder extends Seeder
             'ktp' => 0,
             'jabatan' => 'Kantor',
             'surat_komitmen' => 'default.pdf',
+            'email' => 'dev@4visionmedia.com',
+            'password' => Hash::make('12345678'),
+            'id_api' => '1',
         ]);
 
         lokasi::create([

@@ -48,7 +48,7 @@ class PengajuanController extends Controller
 
     public function showByUserId($id){
         return response()->json([
-            'pengajuan' => $this->pengajuan->getPengajuanByUserId($id),
+            'pengajuan' => $this->pengajuan->getPengajuanBypenggunaId($id),
         ], 200);
     }
 

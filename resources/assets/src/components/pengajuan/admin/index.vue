@@ -57,7 +57,7 @@
                     <td>{{ data.harga_barang | toCurrency }}</td>
                     <td>{{ data.jumlah_barang }}</td>
                     <td>{{ data.status }}</td>
-                    <td>{{ data.user.name }}</td>
+                    <td>{{ data.pengguna.name }}</td>
                     <td>
                       <router-link
                         :to="{

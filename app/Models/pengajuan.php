@@ -10,20 +10,20 @@ class pengajuan extends Model
     protected $table = 'pengajuan';
 
     protected $fillable = [
-        'nama_barang', 'detail_barang', 'fungsi', 'harga_barang', 'jumlah_barang', 'status', 'user_id', 'image'
+        'nama_barang', 'detail_barang', 'fungsi', 'harga_barang', 'jumlah_barang', 'status', 'pengguna_id', 'image'
     ];
 
-    public function user()
+    public function pengguna()
     {
-        return $this->belongsTo('App\Models\user');
+        return $this->belongsTo('App\Models\pengguna');
     }
 
     public function getPengajuan(){
-        return pengajuan::with('user')->get();
+        return pengajuan::with('pengguna')->get();
     }
 
     public function getPengajuanById($id){
-        return pengajuan::with('user')->find($id);
+        return pengajuan::with('pengguna')->find($id);
     }
 
     public function postPengajuan($request, $imageName){
@@ -34,7 +34,7 @@ class pengajuan extends Model
         $pengajuan->harga_barang = $request->harga_barang;
         $pengajuan->jumlah_barang = $request->jumlah_barang;
         $pengajuan->status = 'Belum diterima';
-        $pengajuan->user_id = $request->user_id;
+        $pengajuan->pengguna_id = $request->pengguna_id;
         $pengajuan->image = $imageName;
         $pengajuan->save();
         return $pengajuan;
@@ -50,7 +50,7 @@ class pengajuan extends Model
         return $pengajuan->delete();
     }
 
-    public function getPengajuanByUserId($id){
-        return pengajuan::where('user_id', $id)->get();
+    public function getPengajuanBypenggunaId($id){
+        return pengajuan::where('pengguna_id', $id)->get();
     }
 }

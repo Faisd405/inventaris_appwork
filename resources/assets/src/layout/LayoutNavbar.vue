@@ -5,7 +5,25 @@
     class="layout-navbar align-items-lg-center container-p-x"
   >
     <!-- Brand -->
-    <b-navbar-brand to="/"><strong>MASIVE (Manajemen Informasi Inventaris)</strong></b-navbar-brand>
+    <span v-if="user">
+      <b-navbar-brand to="/" v-if="user.roles[0].name == 'admin'"
+        ><strong
+          >MASIVE (Manajemen Informasi Inventaris)</strong
+        ></b-navbar-brand
+      >
+      <b-navbar-brand to="/homepengguna" v-if="user.roles[0].name == 'user'"
+        ><strong
+          >MASIVE (Manajemen Informasi Inventaris)</strong
+        ></b-navbar-brand
+      >
+    </span>
+    <span v-if="!user">
+      <b-navbar-brand to="/login"
+        ><strong
+          >MASIVE (Manajemen Informasi Inventaris)</strong
+        ></b-navbar-brand
+      >
+    </span>
 
     <!-- Sidenav toggle -->
     <b-navbar-nav
@@ -39,7 +57,9 @@
       <b-collapse is-nav id="app-layout-navbar">
         <b-navbar-nav class="align-items-lg-center">
           <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>
-          <b-nav-item :to="{ name: 'loginapi' }">Login With My E-task Account</b-nav-item>
+          <b-nav-item :to="{ name: 'loginapi' }"
+            >Login With My E-task Account</b-nav-item
+          >
         </b-navbar-nav>
       </b-collapse></template
     >
@@ -47,7 +67,7 @@
 </template>
 
 <script>
-import Axios from 'axios';
+import Axios from "axios";
 export default {
   name: "app-layout-navbar",
   data() {

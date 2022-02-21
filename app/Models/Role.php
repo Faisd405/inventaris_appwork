@@ -14,9 +14,9 @@ class Role extends Model
         return $this->hasMany('App\Models\role_user');
     }
 
-    public function role_usersapi()
+    public function role_pengguna()
     {
-        return $this->hasMany('App\Models\role_usersapi');
+        return $this->hasMany('App\Models\role_pengguna');
     }
 
 }

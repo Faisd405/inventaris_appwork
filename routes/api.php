@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\UsersapiController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\BukuController;
@@ -30,9 +29,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/tes/{email}', [PenggunaController::class, 'getUserByEmail']);
+
 //Auth
 Route::post('/login', [UserController::class, 'login']);
-Route::post('/loginapi', [UsersapiController::class, 'login']);
+Route::post('/loginapi', [PenggunaController::class, 'login']);
 Route::get('/user', [UserController::class, 'getUser']);
 
 //Route API User
@@ -41,14 +42,6 @@ Route::get('/users/{id}', [UserController::class, 'show']);
 Route::post('/users', [UserController::class, 'store']);
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::delete('/users/{id}', [UserController::class, 'destroy'])->middleware('auth:api');
-
-//Route API UserApi
-Route::get('/usersapi', [UsersapiController::class, 'index']);
-Route::get('/usersapi/{id}', [UsersapiController::class, 'show']);
-Route::post('/usersapi', [UsersapiController::class, 'store']);
-Route::put('/usersapi/{id}', [UsersapiController::class, 'update']);
-Route::delete('/usersapi/{id}', [UsersapiController::class, 'destroy'])->middleware('auth:api');
-Route::get('/usersapi/email/{email}', [UsersapiController::class, 'getUserByEmail']);
 
 //Route API Roles
 Route::get('/roles', [RolesController::class, 'index']);
@@ -74,6 +67,7 @@ Route::delete('/history/{id}', [HistoryController::class, 'destroy']);
 //Route API Pengguna
 Route::get('/pengguna/pengguna', [PenggunaController::class, 'pengguna']);
 Route::get('/pengguna/nopengguna', [PenggunaController::class, 'nopengguna']);
+Route::get('/pengguna/total/{id}', [PenggunaController::class, 'getLengthInventarisByPengguna']);
 Route::get('/pengguna', [PenggunaController::class, 'index']);
 Route::get('/pengguna/{id}', [PenggunaController::class, 'show']);
 Route::post('/pengguna', [PenggunaController::class, 'store']);
