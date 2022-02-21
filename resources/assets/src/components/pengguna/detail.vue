@@ -11,7 +11,7 @@
           <div class="card-body">
             <div class="table-responsive mt-2">
               <h2>Inventaris Barang</h2>
-              <div class="card card-body bg-light m-2 w-50">
+              <div class="card card-body bg-light m-2 w-50" v-if="user.roles[0].name == 'admin'">
                 <form :action="'/pengguna/surat_komitmen/' + pengguna.id">
                   <div class="form-group">
                     <label>Kode Lampiran : </label>

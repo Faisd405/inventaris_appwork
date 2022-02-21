@@ -97,17 +97,6 @@
             <div>
               <h3>Roles : {{ loginType }}</h3>
             </div>
-            <div>
-              <h3>Jabatan : {{ user.jabatan }}</h3>
-            </div>
-            <div>
-              <h3>KTP : {{ user.ktp }}</h3>
-            </div>
-            <div>
-              <button class="btn btn-primary" @click="updateUserData()">
-                Sinkronisasi Data
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -409,24 +398,6 @@ export default {
       this.setUser();
 
       this.$router.push("/");
-    },
-    updateUserData() {
-      let token_api = localStorage.getItem("token_api");
-      axios
-        .get(`https://laporan.4visionmedia.com/api/user`, {
-          headers: { Authorization: token_api },
-        })
-        .then((response) => {
-          this.updateUser = response.data;
-          axios
-            .put(`/api/pengguna/` + this.user.id, {
-              name: this.updateUser.username,
-              jabatan: this.updateUser.jabatan.nama,
-            })
-            .then((response) => {
-              this.setUser();
-            });
-        });
     },
   },
   created() {

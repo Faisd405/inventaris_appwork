@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[13],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/barang/index.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/barang/index.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/barang/detail.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/barang/detail.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -108,216 +108,72 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
-    title: "Barang"
+    title: "Detail Barang"
   },
   data: function data() {
     return {
-      filters: {
-        nama_barang: {
-          value: "",
-          keys: ["nama_barang"]
-        }
+      barang: {
+        pengguna: {},
+        kategori: {},
+        lokasi: {}
       },
-      lokasi_barang: "",
-      nama_pengguna: "",
-      barang: [],
-      lokasi: [],
-      pageSize: 10,
-      user: "",
-      isLoggedIn: false,
-      loginType: "",
-      currentPage: 1,
-      totalPages: 0,
-      DataDelete: {}
+      kategori: [],
+      history: [],
+      fields: [, {
+        key: "id",
+        label: "Id"
+      }, {
+        key: "pengguna.name",
+        label: "Nama Pengguna"
+      }, {
+        key: "tanggal_awal_penggunaan",
+        label: "Tanggal Awal Penggunaan"
+      }, {
+        key: "tanggal_akhir_penggunaan",
+        label: "Tanggal Akhir Penggunaan"
+      }, {
+        key: "keterangan",
+        label: "Keterangan"
+      }],
+      sortBy: "id",
+      sortDesc: true
     };
   },
-  created: function created() {
-    var _this = this;
-
-    var uri = "/api/barang";
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(uri).then(function (response) {
-      _this.barang = response.data.barang;
-    });
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/lokasi").then(function (response) {
-      _this.lokasi = response.data.lokasi;
-    });
-  },
-  computed: {
-    filterBarang: function filterBarang() {
-      return this.filterbarangByLokasi(this.filterbarangByPengguna(this.barang));
-    }
-  },
   methods: {
-    showModal: function showModal(data) {
-      this.DataDelete = data;
-      this.$refs.modalDelete.open();
-    },
-    closeModal: function closeModal() {
-      this.$refs.modalDelete.close();
-    },
-    deleteData: function deleteData(id) {
-      this.closeModal();
-      this.destroy(id);
-    },
-    destroy: function destroy(id) {
-      var _this2 = this;
+    deleteLampiran: function deleteLampiran() {
+      var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("/api/barang/".concat(id)).then(function (response) {
-        _this2.barang = _this2.barang.filter(function (barang) {
-          return barang.id != id;
-        });
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/api/barang/Lampiran/" + this.$route.params.id).then(function (response) {
+        _this.barang.lampiran = "default.pdf";
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    filterbarangByLokasi: function filterbarangByLokasi(barang) {
-      var _this3 = this;
+    deleteImage: function deleteImage() {
+      var _this2 = this;
 
-      return barang.filter(function (barang) {
-        return !barang.lokasi.lokasi.toString().indexOf(_this3.lokasi_barang);
-      });
-    },
-    filterbarangByPengguna: function filterbarangByPengguna(barang) {
-      var _this4 = this;
-
-      return barang.filter(function (barang) {
-        return !barang.pengguna.name.toString().indexOf(_this4.nama_pengguna);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/api/barang/Image/" + this.$route.params.id).then(function (response) {
+        _this2.barang.image = "default.jpg";
+      })["catch"](function (error) {
+        console.log(error);
       });
     }
   },
-  mounted: function mounted() {
-    var _this5 = this;
+  created: function created() {
+    var _this3 = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Content-Type"] = "application/json";
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("token");
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user").then(function (response) {
-      _this5.user = response.data;
-      _this5.loginType = response.data.roles[0].name;
-    })["catch"](function (error) {
-      if (error.response.status === 401 || error.response.status === 500) {
-        localStorage.clear();
-
-        _this5.$router.push("/login");
-      }
-
-      console.error(error);
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/kategori").then(function (response) {
+      _this3.kategori = response.data.kategori;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/barang/" + this.$route.params.id).then(function (response) {
+      _this3.barang = response.data.barang;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/history/" + this.$route.params.id).then(function (response) {
+      _this3.history = response.data.history;
     });
   }
 });
@@ -335,10 +191,10 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.filter("toCurrency", function (value)
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/barang/index.vue?vue&type=template&id=08c9c7f8&":
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/barang/index.vue?vue&type=template&id=08c9c7f8& ***!
-  \***********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/barang/detail.vue?vue&type=template&id=101b740f&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/src/components/barang/detail.vue?vue&type=template&id=101b740f& ***!
+  \************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -350,666 +206,235 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "container-fluid d-flex align-items-stretch flex-grow-1 p-0",
-    },
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "flex-shrink-1 flex-grow-1 container-p-x container-p-y",
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "layout-example-block layout-example-block-1" },
-            [
-              _vm._m(1),
+  return _c("div", { staticClass: "container-fluid p-3" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-xl-12" }, [
+        _c("div", { staticClass: "card card-default" }, [
+          _c("div", { staticClass: "card-header" }, [_vm._v("Detail Barang")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", [
+              _c("img", {
+                staticClass: "img-thumbnail rounded mx-auto d-block",
+                attrs: { src: "/images/" + _vm.barang.image, width: "400px" },
+              }),
               _vm._v(" "),
-              _c("div", { staticClass: "card card-default" }, [
-                _c("div", { staticClass: "card-header" }, [_vm._v("Barang")]),
+              _vm.barang.image != "default.jpg"
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.deleteImage()
+                        },
+                      },
+                    },
+                    [_vm._v("\n              Hapus Gambar\n              ")]
+                  )
+                : _vm._e(),
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              [
+                _c("label", [_vm._v("Nama Barang : ")]),
                 _vm._v(" "),
-                _c("div", { staticClass: "card-body" }, [
-                  _vm.loginType == "admin"
-                    ? _c(
-                        "span",
-                        { staticClass: "d-flex flex-row-reverse" },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              directives: [
-                                {
-                                  name: "b-tooltip",
-                                  rawName: "v-b-tooltip.hover",
-                                  modifiers: { hover: true },
-                                },
-                              ],
-                              staticClass: "btn btn-md btn-primary mx-3",
-                              attrs: {
-                                to: { name: "create-barang" },
-                                title: "Tambah Data Barang Baru",
-                              },
-                            },
-                            [_vm._v("Tambah Data Barang")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "btn btn-md btn-warning",
-                              attrs: { to: { name: "relasiuserbarang" } },
-                            },
-                            [_vm._v("Ganti Pengguna Barang")]
-                          ),
-                          _vm._v(" "),
-                          _c("hr"),
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
+                _c("h3", {
+                  domProps: { textContent: _vm._s(_vm.barang.nama_barang) },
+                }),
+                _vm._v(" "),
+                _c("label", [_vm._v("Details Barang : ")]),
+                _vm._v(" "),
+                _c("h3", {
+                  domProps: { textContent: _vm._s(_vm.barang.detail_barang) },
+                }),
+                _vm._v(" "),
+                _c("label", [_vm._v("Kategori : ")]),
+                _vm._v(" "),
+                _c("h3", {
+                  domProps: {
+                    textContent: _vm._s(_vm.barang.kategori.nama_kategori),
+                  },
+                }),
+                _vm._v(" "),
+                _c("label", [_vm._v("Fungsi : ")]),
+                _vm._v(" "),
+                _c("h3", {
+                  domProps: { textContent: _vm._s(_vm.barang.fungsi) },
+                }),
+                _vm._v(" "),
+                _c("label", [_vm._v("Harga : ")]),
+                _vm._v(" "),
+                _c("h3", [
+                  _vm._v(_vm._s(_vm._f("toCurrency")(_vm.barang.harga_barang))),
+                ]),
+                _vm._v(" "),
+                _c("label", [_vm._v("Lokasi : ")]),
+                _vm._v(" "),
+                _c("h3", {
+                  domProps: { textContent: _vm._s(_vm.barang.lokasi.lokasi) },
+                }),
+                _vm._v(" "),
+                _c("label", [_vm._v("Pengguna : ")]),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: {
+                        name: "detail-pengguna",
+                        params: { id: _vm.barang.pengguna.id },
+                      },
+                    },
+                  },
+                  [
+                    _c("h3", {
+                      domProps: {
+                        textContent: _vm._s(_vm.barang.pengguna.name),
+                      },
+                    }),
+                  ]
+                ),
+                _vm._v(" "),
+                _c("label", [_vm._v("Tahun : ")]),
+                _vm._v(" "),
+                _c("h3", {
+                  domProps: { textContent: _vm._s(_vm.barang.year) },
+                }),
+                _vm._v(" "),
+                _c("label", [_vm._v("Jumlah :")]),
+                _vm._v(" "),
+                _c("h3", {
+                  domProps: { textContent: _vm._s(_vm.barang.jumlah_barang) },
+                }),
+                _vm._v(" "),
+                _c("label", [
                   _c(
-                    "div",
-                    [
-                      _c("table", [
-                        _c("tr", [
-                          _vm._m(2),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "px-2" }, [_vm._v(":")]),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            [
-                              _c("b-input", {
-                                staticClass: "form-control-sm",
-                                attrs: { placeholder: "Cari Nama Barang" },
-                                model: {
-                                  value: _vm.filters.nama_barang.value,
-                                  callback: function ($$v) {
-                                    _vm.$set(
-                                      _vm.filters.nama_barang,
-                                      "value",
-                                      $$v
-                                    )
-                                  },
-                                  expression: "filters.nama_barang.value",
-                                },
-                              }),
-                            ],
-                            1
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("tr", [
-                          _vm._m(3),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "px-2" }, [_vm._v(":")]),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            [
-                              _c("b-input", {
-                                staticClass: "form-control-sm",
-                                attrs: { placeholder: "Cari Nama Pengguna" },
-                                model: {
-                                  value: _vm.nama_pengguna,
-                                  callback: function ($$v) {
-                                    _vm.nama_pengguna = $$v
-                                  },
-                                  expression: "nama_pengguna",
-                                },
-                              }),
-                            ],
-                            1
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("tr", [
-                          _vm._m(4),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "px-2" }, [_vm._v(":")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.lokasi_barang,
-                                    expression: "lokasi_barang",
-                                  },
-                                ],
-                                staticClass: "form-control",
-                                on: {
-                                  change: function ($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call(
-                                        $event.target.options,
-                                        function (o) {
-                                          return o.selected
-                                        }
-                                      )
-                                      .map(function (o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.lokasi_barang = $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  },
-                                },
-                              },
-                              [
-                                _c("option", { attrs: { value: "" } }, [
-                                  _vm._v("Semua Lokasi Barang"),
-                                ]),
-                                _vm._v(" "),
-                                _vm._l(_vm.lokasi, function (lokasi) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: lokasi.id,
-                                      domProps: { value: lokasi.lokasi },
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                      " +
-                                          _vm._s(lokasi.lokasi) +
-                                          "\n                    "
-                                      ),
-                                    ]
-                                  )
-                                }),
-                              ],
-                              2
-                            ),
-                          ]),
-                        ]),
-                        _vm._v(" "),
-                        _c("tr", [
-                          _vm._m(5),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "px-2" }, [_vm._v(":")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.pageSize,
-                                    expression: "pageSize",
-                                  },
-                                ],
-                                staticClass: "form-control",
-                                on: {
-                                  change: function ($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call(
-                                        $event.target.options,
-                                        function (o) {
-                                          return o.selected
-                                        }
-                                      )
-                                      .map(function (o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.pageSize = $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  },
-                                },
-                              },
-                              [
-                                _c("option", { domProps: { value: 10 } }, [
-                                  _vm._v("10"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { domProps: { value: 25 } }, [
-                                  _vm._v("25"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { domProps: { value: 50 } }, [
-                                  _vm._v("50"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { domProps: { value: 100 } }, [
-                                  _vm._v("100"),
-                                ]),
-                              ]
-                            ),
-                          ]),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c(
-                        "v-table",
-                        {
-                          staticClass: "table table-striped table-bordered",
-                          attrs: {
-                            id: "table-barang",
-                            data: _vm.filterBarang,
-                            filters: _vm.filters,
-                            currentPage: _vm.currentPage,
-                            pageSize: _vm.pageSize,
-                          },
-                          on: {
-                            "update:currentPage": function ($event) {
-                              _vm.currentPage = $event
-                            },
-                            "update:current-page": function ($event) {
-                              _vm.currentPage = $event
-                            },
-                            totalPagesChanged: function ($event) {
-                              _vm.totalPages = $event
-                            },
-                          },
-                          scopedSlots: _vm._u([
-                            {
-                              key: "body",
-                              fn: function (ref) {
-                                var displayData = ref.displayData
-                                return _c(
-                                  "tbody",
-                                  {},
-                                  _vm._l(displayData, function (data) {
-                                    return _c("tr", { key: data.guid }, [
-                                      _c("td", [_vm._v(_vm._s(data.id))]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(data.nama_barang)),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(data.detail_barang)),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(
-                                          _vm._s(data.kategori.nama_kategori)
-                                        ),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v(_vm._s(data.fungsi))]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(
-                                          _vm._s(
-                                            _vm._f("toCurrency")(
-                                              data.harga_barang
-                                            )
-                                          )
-                                        ),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(data.lokasi.lokasi)),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(data.detail_lokasi)),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(data.pengguna.name)),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", [_vm._v(_vm._s(data.year))]),
-                                      _vm._v(" "),
-                                      _c("td", [
-                                        _vm._v(_vm._s(data.jumlah_barang)),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        [
-                                          _c(
-                                            "router-link",
-                                            {
-                                              staticClass:
-                                                "btn btn-sm btn-info",
-                                              attrs: {
-                                                to: {
-                                                  name: "detail-barang",
-                                                  params: { id: data.id },
-                                                },
-                                              },
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "ion ion-ios-eye",
-                                              }),
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _vm.loginType == "admin"
-                                            ? _c(
-                                                "span",
-                                                [
-                                                  _c(
-                                                    "router-link",
-                                                    {
-                                                      staticClass:
-                                                        "btn btn-sm btn-warning",
-                                                      attrs: {
-                                                        to: {
-                                                          name: "edit-barang",
-                                                          params: {
-                                                            id: data.id,
-                                                          },
-                                                        },
-                                                      },
-                                                    },
-                                                    [
-                                                      _c("i", {
-                                                        staticClass:
-                                                          "ion ion-md-create",
-                                                      }),
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "button",
-                                                    {
-                                                      staticClass:
-                                                        "btn btn-sm btn-danger",
-                                                      on: {
-                                                        click: function (
-                                                          $event
-                                                        ) {
-                                                          return _vm.showModal(
-                                                            data
-                                                          )
-                                                        },
-                                                      },
-                                                    },
-                                                    [
-                                                      _c("i", {
-                                                        staticClass:
-                                                          "ion ion-ios-trash",
-                                                      }),
-                                                    ]
-                                                  ),
-                                                ],
-                                                1
-                                              )
-                                            : _vm._e(),
-                                        ],
-                                        1
-                                      ),
-                                    ])
-                                  }),
-                                  0
-                                )
-                              },
-                            },
-                          ]),
-                        },
-                        [
-                          _c(
-                            "thead",
-                            { attrs: { slot: "head" }, slot: "head" },
-                            [
-                              _c(
-                                "tr",
-                                [
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("No"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-th",
-                                    {
-                                      attrs: {
-                                        sortKey: "nama_barang",
-                                        scope: "col",
-                                      },
-                                    },
-                                    [_vm._v("Nama Barang")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Detail Barang"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Kategori"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Fungsi"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-th",
-                                    {
-                                      attrs: {
-                                        sortKey: "harga_barang",
-                                        scope: "col",
-                                      },
-                                    },
-                                    [_vm._v("Harga Barang")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Lokasi"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Detail Lokasi"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Pemakai"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-th",
-                                    {
-                                      attrs: { sortKey: "year", scope: "col" },
-                                    },
-                                    [_vm._v("Tahun")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-th",
-                                    {
-                                      attrs: {
-                                        sortKey: "jumlah_barang",
-                                        scope: "col",
-                                      },
-                                    },
-                                    [_vm._v("Jumlah Barang")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("th", { attrs: { scope: "col" } }, [
-                                    _vm._v("Aksi"),
-                                  ]),
-                                ],
-                                1
-                              ),
-                            ]
-                          ),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("smart-pagination", {
-                        attrs: {
-                          currentPage: _vm.currentPage,
-                          totalPages: _vm.totalPages,
-                        },
-                        on: {
-                          "update:currentPage": function ($event) {
-                            _vm.currentPage = $event
-                          },
-                          "update:current-page": function ($event) {
-                            _vm.currentPage = $event
-                          },
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "sweet-modal",
-                        { ref: "modalDelete", attrs: { icon: "warning" } },
-                        [
-                          _c("div", { staticClass: "d-block text-center" }, [
-                            _c("h3", [
-                              _vm._v(
-                                "\n                  Apakah Anda Yakin Mau Menghapus Data Barang\n                  "
-                              ),
-                              _vm.DataDelete
-                                ? _c("div", [
-                                    _vm._v(_vm._s(_vm.DataDelete.nama_barang)),
-                                  ])
-                                : _vm._e(),
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-danger btn-lg",
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.deleteData(_vm.DataDelete.id)
-                                  },
-                                },
-                              },
-                              [
-                                _vm._v(
-                                  "\n                  Hapus\n                "
-                                ),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-primary btn-lg",
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.closeModal()
-                                  },
-                                },
-                              },
-                              [
-                                _vm._v(
-                                  "\n                  Batal\n                "
-                                ),
-                              ]
-                            ),
-                          ]),
-                        ]
-                      ),
-                    ],
-                    1
+                    "a",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: {
+                        href: "/barang/detailbarang_pdf/" + _vm.barang.id,
+                      },
+                    },
+                    [_vm._v("Print Detail Barang")]
                   ),
                 ]),
-              ]),
-            ]
-          ),
-        ]
-      ),
-    ]
-  )
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "\n      flex-shrink-1 flex-grow-0\n      w-25\n      pallet-light\n      container-p-x container-p-y\n      card card-default\n    ",
-        staticStyle: { "min-width": "200px" },
-      },
-      [
-        _c("div", [_vm._v("Export Barang")]),
-        _vm._v(" "),
-        _c("hr"),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-md btn-secondary mt-3 flex",
-            attrs: { href: "/barang/barang_excel" },
-          },
-          [_vm._v("\n      Export Excel\n    ")]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card mb-3" }, [
-      _c("div", { staticClass: "card-body pallet-darken font-lighten" }, [
-        _vm._v(
-          "\n          Ini adalah halaman Daftar Barang untuk meng list barang apa saja\n          yang ada di kantor, dipegang oleh siapa dan untuk mengetahui dimana\n          lokasi barang tersebut. Di halaman ini kita dapat meng export data\n          barang menjadi PDF dan Excel.\n        "
-        ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm.barang.lampiran
+              ? _c("div", [
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c("h2", { staticClass: "text-center" }, [
+                    _vm._v("\n              Lampiran Invoice\n            "),
+                  ]),
+                  _vm._v(" "),
+                  _c("iframe", {
+                    attrs: {
+                      src: "/lampiran/" + _vm.barang.lampiran,
+                      type: "document.pdf",
+                      width: "100%",
+                      height: "500px",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _vm.barang.lampiran != "default.pdf"
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.deleteLampiran()
+                            },
+                          },
+                        },
+                        [
+                          _c("i", { staticClass: "fas fa-trash-alt" }),
+                          _vm._v(" Delete Lampiran\n              "),
+                        ]
+                      )
+                    : _vm._e(),
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c(
+              "div",
+              [
+                _c("h2", { staticClass: "text-center" }, [
+                  _vm._v("Daftar Riwayat Pengguna"),
+                ]),
+                _vm._v(" "),
+                _c("b-table", {
+                  attrs: {
+                    fields: _vm.fields,
+                    items: _vm.history,
+                    "sort-by": _vm.sortBy,
+                    "sort-desc": _vm.sortDesc,
+                  },
+                  on: {
+                    "update:sortBy": function ($event) {
+                      _vm.sortBy = $event
+                    },
+                    "update:sort-by": function ($event) {
+                      _vm.sortBy = $event
+                    },
+                    "update:sortDesc": function ($event) {
+                      _vm.sortDesc = $event
+                    },
+                    "update:sort-desc": function ($event) {
+                      _vm.sortDesc = $event
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("label", [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: {
+                        href: "/barang/HistoryPDFDetail/" + _vm.barang.id,
+                      },
+                    },
+                    [_vm._v("Print Riwayat Barang")]
+                  ),
+                ]),
+              ],
+              1
+            ),
+          ]),
+        ]),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("label", [_vm._v("Nama Barang")])])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("label", [_vm._v("Nama Pengguna")])])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("label", [_vm._v("Lokasi Barang")])])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("label", [_vm._v("Jumlah Baris")])])
-  },
-]
+    ]),
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
 
 /***/ }),
 
-/***/ "./resources/assets/src/components/barang/index.vue":
-/*!**********************************************************!*\
-  !*** ./resources/assets/src/components/barang/index.vue ***!
-  \**********************************************************/
+/***/ "./resources/assets/src/components/barang/detail.vue":
+/*!***********************************************************!*\
+  !*** ./resources/assets/src/components/barang/detail.vue ***!
+  \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_vue_vue_type_template_id_08c9c7f8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=08c9c7f8& */ "./resources/assets/src/components/barang/index.vue?vue&type=template&id=08c9c7f8&");
-/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/assets/src/components/barang/index.vue?vue&type=script&lang=js&");
+/* harmony import */ var _detail_vue_vue_type_template_id_101b740f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./detail.vue?vue&type=template&id=101b740f& */ "./resources/assets/src/components/barang/detail.vue?vue&type=template&id=101b740f&");
+/* harmony import */ var _detail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./detail.vue?vue&type=script&lang=js& */ "./resources/assets/src/components/barang/detail.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -1019,9 +444,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _index_vue_vue_type_template_id_08c9c7f8___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _index_vue_vue_type_template_id_08c9c7f8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _detail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _detail_vue_vue_type_template_id_101b740f___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _detail_vue_vue_type_template_id_101b740f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -1031,38 +456,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/src/components/barang/index.vue"
+component.options.__file = "resources/assets/src/components/barang/detail.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/src/components/barang/index.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************!*\
-  !*** ./resources/assets/src/components/barang/index.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************/
+/***/ "./resources/assets/src/components/barang/detail.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/assets/src/components/barang/detail.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/barang/index.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detail.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/barang/detail.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/src/components/barang/index.vue?vue&type=template&id=08c9c7f8&":
-/*!*****************************************************************************************!*\
-  !*** ./resources/assets/src/components/barang/index.vue?vue&type=template&id=08c9c7f8& ***!
-  \*****************************************************************************************/
+/***/ "./resources/assets/src/components/barang/detail.vue?vue&type=template&id=101b740f&":
+/*!******************************************************************************************!*\
+  !*** ./resources/assets/src/components/barang/detail.vue?vue&type=template&id=101b740f& ***!
+  \******************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_08c9c7f8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=08c9c7f8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/barang/index.vue?vue&type=template&id=08c9c7f8&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_08c9c7f8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_template_id_101b740f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detail.vue?vue&type=template&id=101b740f& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/src/components/barang/detail.vue?vue&type=template&id=101b740f&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_template_id_101b740f___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_08c9c7f8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_template_id_101b740f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

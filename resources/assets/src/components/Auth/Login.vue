@@ -1,7 +1,6 @@
 <template>
-  <div class="container-fluid d-flex align-items-stretch flex-grow-1 p-0">
-    <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
-      <div class="layout-example-block layout-example-block-1">
+  <div class="container">
+      <div class="layout-example-block layout-example-block-1 mt-5">
         <div class="card card-default">
           <div class="card-body">
             <div v-if="message" class="alert alert-success" role="alert">
@@ -39,7 +38,6 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 

@@ -1,10 +1,9 @@
 <template>
-  <div class="container-fluid d-flex align-items-stretch flex-grow-1 p-0">
-    <div class="flex-shrink-1 flex-grow-1 container-p-x container-p-y">
-      <div class="layout-example-block layout-example-block-1">
+  <div class="container">
+      <div class="layout-example-block layout-example-block-1 mt-5">
         <div class="card card-default">
           <div class="card-body">
-            <h4 class="card-title">Login</h4>
+            <h4 class="card-title">Login With My E-Task Account</h4>
             <h6 class="card-subtitle mb-2 text-muted">Login to your account</h6>
             <hr />
             <div v-if="error" class="alert bg-danger text-white">
@@ -39,7 +38,6 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 
