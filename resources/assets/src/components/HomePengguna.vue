@@ -3,6 +3,13 @@
     <div class="d-flex flex-row">
       <div class="d-flex flex-column bd-highlight mb-3 mx-1 mt-3">
         <div class="card card-body" style="min-width: 20rem; max-height: 24rem">
+          <span class="d-flex justify-content-end">
+            <b-badge variant="success" pill>
+              <span class="text-white">
+                {{ user.jabatan }}
+              </span>
+            </b-badge>
+          </span>
           <div class="align-items-center">
             <table>
               <tr>
@@ -14,11 +21,6 @@
                 <td>Email</td>
                 <td>:</td>
                 <td>{{ user.email }}</td>
-              </tr>
-              <tr>
-                <td>Jabatan</td>
-                <td>:</td>
-                <td>{{ user.jabatan }}</td>
               </tr>
             </table>
             <br />

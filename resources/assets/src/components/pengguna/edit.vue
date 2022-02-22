@@ -69,6 +69,7 @@ export default {
     return {
       pengguna: {},
         errors: [],
+        user: {},
     };
   },
   created() {
@@ -89,6 +90,11 @@ export default {
       .then((response) => {
         this.user = response.data;
         this.loginType = response.data.roles[0].name;
+        if (this.loginType == "user") {
+          if (this.pengguna.id != this.user.id) {
+            this.$router.push("/pengguna/edit/" + this.user.id);
+          }
+        }
       })
       .catch((error) => {
         if (error.response.status === 401 || error.response.status === 500) {

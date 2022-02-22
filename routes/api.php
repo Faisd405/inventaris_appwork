@@ -72,6 +72,7 @@ Route::get('/pengguna', [PenggunaController::class, 'index']);
 Route::get('/pengguna/{id}', [PenggunaController::class, 'show']);
 Route::post('/pengguna', [PenggunaController::class, 'store']);
 Route::put('/pengguna/{id}', [PenggunaController::class, 'update']);
+Route::post('/pengguna/{id}/lampiran', [PenggunaController::class, 'updateLampiran']);
 Route::delete('/pengguna/{id}', [PenggunaController::class, 'destroy']);
 
 //Route API Kategori

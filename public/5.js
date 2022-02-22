@@ -223,6 +223,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -352,6 +354,23 @@ var render = function () {
               staticStyle: { "min-width": "20rem", "max-height": "24rem" },
             },
             [
+              _c(
+                "span",
+                { staticClass: "d-flex justify-content-end" },
+                [
+                  _c("b-badge", { attrs: { variant: "success", pill: "" } }, [
+                    _c("span", { staticClass: "text-white" }, [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.user.jabatan) +
+                          "\n            "
+                      ),
+                    ]),
+                  ]),
+                ],
+                1
+              ),
+              _vm._v(" "),
               _c("div", { staticClass: "align-items-center" }, [
                 _c("table", [
                   _c("tr", [
@@ -368,14 +387,6 @@ var render = function () {
                     _c("td", [_vm._v(":")]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(_vm.user.email))]),
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("Jabatan")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(":")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.user.jabatan))]),
                   ]),
                 ]),
                 _vm._v(" "),

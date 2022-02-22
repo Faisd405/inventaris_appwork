@@ -11,31 +11,51 @@
           <div class="card-body">
             <div class="table-responsive mt-2">
               <h2>Inventaris Barang</h2>
-              <div class="card card-body bg-light m-2 w-50" v-if="user.roles[0].name == 'admin'">
-                <form :action="'/pengguna/surat_komitmen/' + pengguna.id">
-                  <div class="form-group">
-                    <label>Kode Lampiran : </label>
-                    <b-input
-                      type="text"
-                      class="form-control form-control-sm"
-                      style="width: 200px"
-                      name="kode_lampiran"
-                      v-model="kode_lampiran"
-                      required
-                    />
-                    <div>
-                      <span class="text-muted"
-                        ><small>
-                          Contoh : NO. 008 / BIK / 4VM / XI / 2021</small
-                        ></span
-                      >
-                    </div>
+              <div
+                class="card bg-light m-2 w-50"
+                v-if="user.roles[0].name == 'admin'"
+              >
+                <div class="card-header">
+                  Lampiran Surat Komitmen Penggunaan Barang
+                </div>
+                <div class="card-body">
+                  <div>
+                    <a
+                      class="btn btn-success btn-sm text-white"
+                      :href="'/pengguna/detail/' + pengguna.id + '/lampiran'"
+                      >Lihat Surat Komitmen</a
+                    >
                   </div>
-                  <button class="btn btn-primary btn-sm" type="submit">
-                    Generate Surat Komitmen
-                  </button>
-                </form>
+                  <hr />
+                  <div>
+                    <p>Generator Surat Komitmen Penggunaan Barang :</p>
+                    <form :action="'/pengguna/surat_komitmen/' + pengguna.id">
+                      <div class="form-group">
+                        <label>Kode Lampiran : </label>
+                        <b-input
+                          type="text"
+                          class="form-control form-control-sm"
+                          style="width: 200px"
+                          name="kode_lampiran"
+                          v-model="kode_lampiran"
+                          required
+                        />
+                        <div>
+                          <span class="text-muted"
+                            ><small>
+                              Contoh : NO. 008 / BIK / 4VM / XI / 2021</small
+                            ></span
+                          >
+                        </div>
+                      </div>
+                      <button class="btn btn-primary btn-sm" type="submit">
+                        Generate Surat Komitmen
+                      </button>
+                    </form>
+                  </div>
+                </div>
               </div>
+              <br />
               <div>
                 <label>Jumlah Baris:</label>
                 <select class="form-control" v-model="pageSize">
@@ -201,14 +221,12 @@
                 <div class="d-block text-center">
                   <h3>
                     <div v-if="DataDelete.nama_barang">
-                      Apakah Anda Yakin Mau Menghapus Data Barang {{
-                        DataDelete.nama_barang
-                      }}
+                      Apakah Anda Yakin Mau Menghapus Data Barang
+                      {{ DataDelete.nama_barang }}
                     </div>
                     <div v-if="DataDelete.judul">
-                      Apakah Anda Yakin Mau Menghapus Data Buku {{
-                        DataDelete.judul
-                      }}
+                      Apakah Anda Yakin Mau Menghapus Data Buku
+                      {{ DataDelete.judul }}
                     </div>
                   </h3>
                   <button

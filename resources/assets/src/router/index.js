@@ -144,6 +144,15 @@ const router = new Router({
                 },
             }
         },
+        {
+            name: 'lampiran-pengguna',
+            path: '/pengguna/detail/:id/lampiran',
+            component: () => import('@/components/pengguna/lampiran'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
+        },
         // Route kategori
         {
             name: 'index-kategori',

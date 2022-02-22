@@ -7,13 +7,15 @@ use App\Models\barang;
 use App\Models\pengguna;
 use App\Models\buku;
 use App\Http\Requests\PenggunaRequest;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use JWTAuth;
 
 class PenggunaController extends Controller
 {
-    public function __construct(pengguna $pengguna, barang $barang, buku $buku) {
+    public function __construct(pengguna $pengguna, barang $barang, buku $buku)
+    {
         $this->pengguna = $pengguna;
         $this->barang = $barang;
         $this->buku = $buku;
@@ -53,6 +55,35 @@ class PenggunaController extends Controller
         ], 200);
     }
 
+    public function updateLampiran(Request $request, $id)
+    {
+        $pengguna = $this->pengguna->find($id);
+
+        $filename = $this->updateLampiranPDF($request, $pengguna);
+
+        $pengguna->surat_komitmen = $filename;
+        $pengguna->save();
+        return response()->json([
+            'success' => true,
+            'message' => 'Lampiran berhasil diupdate',
+            'pengguna' => $pengguna,
+        ], 200);
+    }
+
+    public function updateLampiranPDF($request, $pengguna)
+    {
+        if ($request->hasFile('surat_komitmen')) {
+            $file = $request->file('surat_komitmen');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('/surat_komitmen'), $filename);
+
+            if ($pengguna->surat_komitmen != "default.pdf" || $pengguna->surat_komitmen != null) {
+                File::delete('surat_komitmen/' . $pengguna->surat_komitmen);
+            }
+        }
+        return $filename;
+    }
+
     // show json
     public function show($id)
     {
@@ -80,11 +111,20 @@ class PenggunaController extends Controller
     // update json
     public function update(PenggunaRequest $request, $id)
     {
-        if (Auth::guard('etask')->check()){
+        if (Auth::guard('etask')->check()) {
             $user = Auth::guard('etask')->user();
-            $pengguna = $this->pengguna->putPengguna($request, $id);
+            if ($user->id == $id) {
+                $pengguna = $this->pengguna->putPengguna($request, $id);
+                return $this->respons($pengguna);
+            }
+            if ($user->id != $id) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Anda tidak memiliki akses',
+                ], 401);
+            }
         }
-        if (Auth::check()){
+        if (Auth::check()) {
             $user = Auth::user();
             if ($user->id != 1) {
                 return response()->json([
@@ -191,7 +231,8 @@ class PenggunaController extends Controller
         }
     }
 
-    public function getLengthInventarisByPengguna($id){
+    public function getLengthInventarisByPengguna($id)
+    {
         $buku = $this->buku->getLengthBukuByPengguna($id);
         $barang = $this->barang->getLengthBarangByPengguna($id);
 

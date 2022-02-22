@@ -80,7 +80,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       pengguna: {},
-      errors: []
+      errors: [],
+      user: {}
     };
   },
   created: function created() {
@@ -102,6 +103,12 @@ __webpack_require__.r(__webpack_exports__);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user").then(function (response) {
       _this2.user = response.data;
       _this2.loginType = response.data.roles[0].name;
+
+      if (_this2.loginType == "user") {
+        if (_this2.pengguna.id != _this2.user.id) {
+          _this2.$router.push("/pengguna/edit/" + _this2.user.id);
+        }
+      }
     })["catch"](function (error) {
       if (error.response.status === 401 || error.response.status === 500) {
         localStorage.clear();

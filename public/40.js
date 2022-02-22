@@ -246,6 +246,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -394,64 +412,96 @@ var render = function () {
                 _c("h2", [_vm._v("Inventaris Barang")]),
                 _vm._v(" "),
                 _vm.user.roles[0].name == "admin"
-                  ? _c(
-                      "div",
-                      { staticClass: "card card-body bg-light m-2 w-50" },
-                      [
-                        _c(
-                          "form",
-                          {
-                            attrs: {
-                              action:
-                                "/pengguna/surat_komitmen/" + _vm.pengguna.id,
-                            },
-                          },
-                          [
-                            _c(
-                              "div",
-                              { staticClass: "form-group" },
-                              [
-                                _c("label", [_vm._v("Kode Lampiran : ")]),
-                                _vm._v(" "),
-                                _c("b-input", {
-                                  staticClass: "form-control form-control-sm",
-                                  staticStyle: { width: "200px" },
-                                  attrs: {
-                                    type: "text",
-                                    name: "kode_lampiran",
-                                    required: "",
-                                  },
-                                  model: {
-                                    value: _vm.kode_lampiran,
-                                    callback: function ($$v) {
-                                      _vm.kode_lampiran = $$v
-                                    },
-                                    expression: "kode_lampiran",
-                                  },
-                                }),
-                                _vm._v(" "),
-                                _vm._m(0),
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-primary btn-sm",
-                                attrs: { type: "submit" },
-                              },
-                              [
-                                _vm._v(
-                                  "\n                  Generate Surat Komitmen\n                "
-                                ),
-                              ]
-                            ),
-                          ]
+                  ? _c("div", { staticClass: "card bg-light m-2 w-50" }, [
+                      _c("div", { staticClass: "card-header" }, [
+                        _vm._v(
+                          "\n                Lampiran Surat Komitmen Penggunaan Barang\n              "
                         ),
-                      ]
-                    )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card-body" }, [
+                        _c("div", [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-success btn-sm text-white",
+                              attrs: {
+                                href:
+                                  "/pengguna/detail/" +
+                                  _vm.pengguna.id +
+                                  "/lampiran",
+                              },
+                            },
+                            [_vm._v("Lihat Surat Komitmen")]
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("hr"),
+                        _vm._v(" "),
+                        _c("div", [
+                          _c("p", [
+                            _vm._v(
+                              "Generator Surat Komitmen Penggunaan Barang :"
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "form",
+                            {
+                              attrs: {
+                                action:
+                                  "/pengguna/surat_komitmen/" + _vm.pengguna.id,
+                              },
+                            },
+                            [
+                              _c(
+                                "div",
+                                { staticClass: "form-group" },
+                                [
+                                  _c("label", [_vm._v("Kode Lampiran : ")]),
+                                  _vm._v(" "),
+                                  _c("b-input", {
+                                    staticClass: "form-control form-control-sm",
+                                    staticStyle: { width: "200px" },
+                                    attrs: {
+                                      type: "text",
+                                      name: "kode_lampiran",
+                                      required: "",
+                                    },
+                                    model: {
+                                      value: _vm.kode_lampiran,
+                                      callback: function ($$v) {
+                                        _vm.kode_lampiran = $$v
+                                      },
+                                      expression: "kode_lampiran",
+                                    },
+                                  }),
+                                  _vm._v(" "),
+                                  _vm._m(0),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-primary btn-sm",
+                                  attrs: { type: "submit" },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                      Generate Surat Komitmen\n                    "
+                                  ),
+                                ]
+                              ),
+                            ]
+                          ),
+                        ]),
+                      ]),
+                    ])
                   : _vm._e(),
+                _vm._v(" "),
+                _c("br"),
                 _vm._v(" "),
                 _c("div", [
                   _c("label", [_vm._v("Jumlah Baris:")]),
@@ -976,7 +1026,7 @@ var render = function () {
                         _vm.DataDelete.nama_barang
                           ? _c("div", [
                               _vm._v(
-                                "\n                    Apakah Anda Yakin Mau Menghapus Data Barang " +
+                                "\n                    Apakah Anda Yakin Mau Menghapus Data Barang\n                    " +
                                   _vm._s(_vm.DataDelete.nama_barang) +
                                   "\n                  "
                               ),
@@ -986,7 +1036,7 @@ var render = function () {
                         _vm.DataDelete.judul
                           ? _c("div", [
                               _vm._v(
-                                "\n                    Apakah Anda Yakin Mau Menghapus Data Buku " +
+                                "\n                    Apakah Anda Yakin Mau Menghapus Data Buku\n                    " +
                                   _vm._s(_vm.DataDelete.judul) +
                                   "\n                  "
                               ),
@@ -1040,7 +1090,7 @@ var staticRenderFns = [
       _c("span", { staticClass: "text-muted" }, [
         _c("small", [
           _vm._v(
-            "\n                        Contoh : NO. 008 / BIK / 4VM / XI / 2021"
+            "\n                            Contoh : NO. 008 / BIK / 4VM / XI / 2021"
           ),
         ]),
       ]),
