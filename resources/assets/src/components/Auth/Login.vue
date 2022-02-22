@@ -1,14 +1,15 @@
 <template>
-  <div class="container">
-      <div class="layout-example-block layout-example-block-1 mt-5">
-        <div class="card card-default">
+  <div class="container-fluid" :style="background">
+    <div class="container">
+      <div class="layout-example-block layout-example-block-1 mt-5 mx-5">
+        <div class="card border-primary card-default">
           <div class="card-body">
             <div v-if="message" class="alert alert-success" role="alert">
               {{ message }}
             </div>
             <h4 class="card-title">Login</h4>
             <h6 class="card-subtitle mb-2 text-muted">Login to your account</h6>
-            <hr />
+            <hr style="border: 0.5px solid lightblue" />
             <div v-if="error" class="alert bg-danger text-white">
               {{ error }}
             </div>
@@ -38,6 +39,7 @@
           </div>
         </div>
       </div>
+    </div>
   </div>
 </template>
 
@@ -52,6 +54,13 @@ export default {
       password: "",
       error: null,
       message: "",
+      background: {
+        "background-image": "url(images/background/background.jpg)",
+        "background-repeat": "no-repeat",
+        "background-size": "cover",
+        "background-position": "center",
+        "background-attachment": "fixed",
+      },
     };
   },
   created() {

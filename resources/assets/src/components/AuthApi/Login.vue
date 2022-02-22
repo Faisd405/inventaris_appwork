@@ -1,11 +1,12 @@
 <template>
-  <div class="container">
-      <div class="layout-example-block layout-example-block-1 mt-5">
-        <div class="card card-default">
+  <div class="container-fluid" :style="background">
+    <div class="container">
+      <div class="layout-example-block layout-example-block-1 mt-5 mx-5">
+        <div class="card border-success card-default">
           <div class="card-body">
             <h4 class="card-title">Login With My E-Task Account</h4>
             <h6 class="card-subtitle mb-2 text-muted">Login to your account</h6>
-            <hr />
+            <hr  style="border: 0.5px solid lightgreen"/>
             <div v-if="error" class="alert bg-danger text-white">
               {{ error }}
             </div>
@@ -33,11 +34,12 @@
                   required
                 />
               </div>
-              <button type="submit" class="btn btn-primary">Login</button>
+              <button type="submit" class="btn btn-success">Login</button>
             </form>
           </div>
         </div>
       </div>
+    </div>
   </div>
 </template>
 
@@ -55,6 +57,13 @@ export default {
       error: null,
       message: "",
       token: "",
+      background: {
+        "background-image": "url(images/background/background.jpg)",
+        "background-repeat": "no-repeat",
+        "background-size": "cover",
+        "background-position": "center",
+        "background-attachment": "fixed",
+      },
     };
   },
   created() {
@@ -64,8 +73,8 @@ export default {
   },
   methods: {
     loginForm() {
-        this.message = "";
-        this.error = "";
+      this.message = "";
+      this.error = "";
       axios
         .post("https://laporan.4visionmedia.com/api/data/login", {
           email: this.email,
@@ -89,7 +98,9 @@ export default {
               })
               .then((response) => {
                 if (response.data.login === true) {
-                    localStorage.setItem("user", JSON.stringify(response.data.user)
+                  localStorage.setItem(
+                    "user",
+                    JSON.stringify(response.data.user)
                   );
                   localStorage.setItem("token", response.data.token);
                   localStorage.setItem("token_api", this.token);

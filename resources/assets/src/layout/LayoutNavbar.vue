@@ -34,6 +34,7 @@
         class="nav-item nav-link px-0 ml-2 ml-lg-0"
         href="javascript:void(0)"
         @click="toggleSidenav"
+        v-if="user"
       >
         <i class="ion ion-md-menu text-large align-middle" />
       </a>

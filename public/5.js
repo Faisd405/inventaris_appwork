@@ -301,7 +301,8 @@ __webpack_require__.r(__webpack_exports__);
         _this2.updateUser = response.data;
         axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/api/pengguna/" + _this2.user.id, {
           name: _this2.updateUser.username,
-          jabatan: _this2.updateUser.jabatan.nama
+          jabatan: _this2.updateUser.jabatan.nama,
+          id_api: _this2.updateUser.id
         }).then(function (response) {
           window.location.reload();
         });

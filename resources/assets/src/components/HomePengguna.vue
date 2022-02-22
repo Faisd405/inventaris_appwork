@@ -289,6 +289,7 @@ export default {
             .put(`/api/pengguna/` + this.user.id, {
               name: this.updateUser.username,
               jabatan: this.updateUser.jabatan.nama,
+              id_api: this.updateUser.id,
             })
             .then((response) => {
               window.location.reload();

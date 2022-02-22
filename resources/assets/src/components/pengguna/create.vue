@@ -18,6 +18,16 @@
               </div>
 
               <div class="form-group">
+                <label>Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  v-model="pengguna.email"
+                  placeholder="Masukan Email"
+                />
+              </div>
+
+              <div class="form-group">
                 <label>No KTP</label>
                 <input
                   type="number"

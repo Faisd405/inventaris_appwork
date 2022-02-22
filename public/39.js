@@ -72,6 +72,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -176,6 +186,32 @@ var render = function () {
                           return
                         }
                         _vm.$set(_vm.pengguna, "name", $event.target.value)
+                      },
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Email")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.pengguna.email,
+                        expression: "pengguna.email",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "email", placeholder: "Masukan Email" },
+                    domProps: { value: _vm.pengguna.email },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.pengguna, "email", $event.target.value)
                       },
                     },
                   }),

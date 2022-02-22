@@ -59,6 +59,7 @@
                   <tr>
                     <th scope="col">No</th>
                     <v-th sortKey="name" scope="col">Nama Pengguna</v-th>
+                    <v-th sortKey="email" scope="col">Email</v-th>
                     <th sortKey="ktp" scope="col">No KTP</th>
                     <th sortKey="jabatan" scope="col">Jabatan Pengguna</th>
                     <th scope="col">Aksi</th>
@@ -72,6 +73,9 @@
                     </td>
                     <td>
                       {{ data.name }}
+                    </td>
+                    <td>
+                      {{ data.email }}
                     </td>
                     <td>
                       {{ data.ktp }}

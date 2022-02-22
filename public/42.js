@@ -153,6 +153,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -408,6 +412,14 @@ var render = function () {
                                 _c("td", [
                                   _vm._v(
                                     "\n                    " +
+                                      _vm._s(data.email) +
+                                      "\n                  "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                    " +
                                       _vm._s(data.ktp) +
                                       "\n                  "
                                   ),
@@ -518,6 +530,12 @@ var render = function () {
                             "v-th",
                             { attrs: { sortKey: "name", scope: "col" } },
                             [_vm._v("Nama Pengguna")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-th",
+                            { attrs: { sortKey: "email", scope: "col" } },
+                            [_vm._v("Email")]
                           ),
                           _vm._v(" "),
                           _c(

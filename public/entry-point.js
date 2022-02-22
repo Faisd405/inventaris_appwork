@@ -2036,6 +2036,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = (_name$data$props$meth = {
   name: "app-layout-navbar",
@@ -36142,19 +36143,21 @@ var render = function () {
             "b-navbar-nav",
             { staticClass: "align-items-lg-center mr-auto mr-lg-4" },
             [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-item nav-link px-0 ml-2 ml-lg-0",
-                  attrs: { href: "javascript:void(0)" },
-                  on: { click: _vm.toggleSidenav },
-                },
-                [
-                  _c("i", {
-                    staticClass: "ion ion-md-menu text-large align-middle",
-                  }),
-                ]
-              ),
+              _vm.user
+                ? _c(
+                    "a",
+                    {
+                      staticClass: "nav-item nav-link px-0 ml-2 ml-lg-0",
+                      attrs: { href: "javascript:void(0)" },
+                      on: { click: _vm.toggleSidenav },
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "ion ion-md-menu text-large align-middle",
+                      }),
+                    ]
+                  )
+                : _vm._e(),
             ]
           )
         : _vm._e(),

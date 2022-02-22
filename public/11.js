@@ -52,6 +52,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
     title: "Login"
@@ -64,7 +66,14 @@ __webpack_require__.r(__webpack_exports__);
       password: "",
       error: null,
       message: "",
-      token: ""
+      token: "",
+      background: {
+        "background-image": "url(images/background/background.jpg)",
+        "background-repeat": "no-repeat",
+        "background-size": "cover",
+        "background-position": "center",
+        "background-attachment": "fixed"
+      }
     };
   },
   created: function created() {
@@ -141,119 +150,128 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c(
-      "div",
-      { staticClass: "layout-example-block layout-example-block-1 mt-5" },
-      [
-        _c("div", { staticClass: "card card-default" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _c("h4", { staticClass: "card-title" }, [
-              _vm._v("Login With My E-Task Account"),
-            ]),
-            _vm._v(" "),
-            _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
-              _vm._v("Login to your account"),
-            ]),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _vm.error
-              ? _c("div", { staticClass: "alert bg-danger text-white" }, [
-                  _vm._v("\n            " + _vm._s(_vm.error) + "\n          "),
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.message
-              ? _c("div", { staticClass: "alert bg-success text-white" }, [
-                  _vm._v(
-                    "\n            " + _vm._s(_vm.message) + "\n          "
-                  ),
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _c(
-              "form",
-              {
-                on: {
-                  submit: function ($event) {
-                    $event.preventDefault()
-                    return _vm.loginForm.apply(null, arguments)
+  return _c("div", { staticClass: "container-fluid", style: _vm.background }, [
+    _c("div", { staticClass: "container" }, [
+      _c(
+        "div",
+        {
+          staticClass: "layout-example-block layout-example-block-1 mt-5 mx-5",
+        },
+        [
+          _c("div", { staticClass: "card border-success card-default" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("h4", { staticClass: "card-title" }, [
+                _vm._v("Login With My E-Task Account"),
+              ]),
+              _vm._v(" "),
+              _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
+                _vm._v("Login to your account"),
+              ]),
+              _vm._v(" "),
+              _c("hr", { staticStyle: { border: "0.5px solid lightgreen" } }),
+              _vm._v(" "),
+              _vm.error
+                ? _c("div", { staticClass: "alert bg-danger text-white" }, [
+                    _vm._v(
+                      "\n            " + _vm._s(_vm.error) + "\n          "
+                    ),
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.message
+                ? _c("div", { staticClass: "alert bg-success text-white" }, [
+                    _vm._v(
+                      "\n            " + _vm._s(_vm.message) + "\n          "
+                    ),
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function ($event) {
+                      $event.preventDefault()
+                      return _vm.loginForm.apply(null, arguments)
+                    },
                   },
                 },
-              },
-              [
-                _c("div", { staticClass: "mb-3" }, [
-                  _c(
-                    "label",
-                    { staticClass: "form-label", attrs: { for: "email" } },
-                    [_vm._v("Email address")]
-                  ),
+                [
+                  _c("div", { staticClass: "mb-3" }, [
+                    _c(
+                      "label",
+                      { staticClass: "form-label", attrs: { for: "email" } },
+                      [_vm._v("Email address")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.email,
+                          expression: "email",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "email", id: "email", required: "" },
+                      domProps: { value: _vm.email },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.email = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.email,
-                        expression: "email",
+                  _c("div", { staticClass: "mb-3" }, [
+                    _c(
+                      "label",
+                      { staticClass: "form-label", attrs: { for: "password" } },
+                      [_vm._v("Password")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.password,
+                          expression: "password",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "password", id: "password", required: "" },
+                      domProps: { value: _vm.password },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.password = $event.target.value
+                        },
                       },
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "email", id: "email", required: "" },
-                    domProps: { value: _vm.email },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.email = $event.target.value
-                      },
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "mb-3" }, [
-                  _c(
-                    "label",
-                    { staticClass: "form-label", attrs: { for: "password" } },
-                    [_vm._v("Password")]
-                  ),
+                    }),
+                  ]),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.password,
-                        expression: "password",
-                      },
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "password", id: "password", required: "" },
-                    domProps: { value: _vm.password },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.password = $event.target.value
-                      },
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success",
+                      attrs: { type: "submit" },
                     },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                  [_vm._v("Login")]
-                ),
-              ]
-            ),
+                    [_vm._v("Login")]
+                  ),
+                ]
+              ),
+            ]),
           ]),
-        ]),
-      ]
-    ),
+        ]
+      ),
+    ]),
   ])
 }
 var staticRenderFns = []
