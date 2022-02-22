@@ -348,7 +348,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -985,7 +984,7 @@ var render = function () {
           "div",
           {
             staticClass: "card text-white pallet-dark col-md-6 m-1 shadow-lg",
-            staticStyle: { "min-width": "18rem", height: "12rem" },
+            staticStyle: { "min-width": "21.5rem", height: "8rem" },
           },
           [
             _c(
@@ -1031,7 +1030,7 @@ var render = function () {
           "div",
           {
             staticClass: "flex-column card card-body m-1",
-            staticStyle: { "max-width": "18rem", "max-height": "24rem" },
+            staticStyle: { "max-width": "21.5rem", "max-height": "24rem" },
           },
           [
             _c("label", [_vm._v("Kategori Barang :")]),
@@ -1047,8 +1046,8 @@ var render = function () {
           "div",
           {
             staticClass:
-              "\n          card\n          text-white\n          pallet-dark\n          col-md-6\n          m-1\n          shadow-lg\n          table-responsive\n        ",
-            staticStyle: { "min-width": "18rem", height: "12rem" },
+              "\n          card\n          text-white\n          pallet-dark\n          col-md-6\n          m-1\n          shadow-lg\n        ",
+            staticStyle: { "min-width": "21.5rem", height: "8rem" },
           },
           [
             _c(
@@ -1090,7 +1089,7 @@ var render = function () {
           "div",
           {
             staticClass: "flex-column card card-body m-1",
-            staticStyle: { "max-width": "18rem", "max-height": "24rem" },
+            staticStyle: { "max-width": "21.5rem", "max-height": "24rem" },
           },
           [
             _c("label", [_vm._v("Jenis Buku :")]),
@@ -1110,7 +1109,7 @@ var render = function () {
           "div",
           {
             staticClass: "flex-column card card-body",
-            staticStyle: { "min-width": "800px", "min-height": "500px" },
+            staticStyle: { "min-width": "690px", "min-height": "500px" },
           },
           [
             _c("label", [

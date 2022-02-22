@@ -4,7 +4,7 @@
       <div class="d-flex flex-column bd-highlight mb-3 mx-1">
         <div
           class="card text-white pallet-dark m-1 shadow-lg"
-          style="min-width: 16rem; height: 12rem"
+          style="min-width: 16rem; height: 12rem;"
         >
           <div class="card-header">
             <router-link to="/laporan/barang" class="text-primary">
@@ -193,7 +193,7 @@
       <div class="flex-column bd-highlight mb-3 mx-1">
         <div
           class="card text-white pallet-dark col-md-6 m-1 shadow-lg"
-          style="min-width: 18rem; height: 12rem"
+          style="min-width: 21.5rem; height: 8rem"
         >
           <div class="card-header">
             <router-link to="/laporan/LaporanTHargaBarang" class="text-primary"
@@ -210,7 +210,7 @@
         </div>
         <div
           class="flex-column card card-body m-1"
-          style="max-width: 18rem; max-height: 24rem"
+          style="max-width: 21.5rem; max-height: 24rem"
         >
           <label>Kategori Barang :</label>
           <KategoriPieChart
@@ -225,9 +225,8 @@
             col-md-6
             m-1
             shadow-lg
-            table-responsive
           "
-          style="min-width: 18rem; height: 12rem"
+          style="min-width: 21.5rem; height: 8rem"
         >
           <div class="card-header">
             <router-link to="/laporan/LaporanTHargaBarang" class="text-primary"
@@ -244,7 +243,7 @@
         </div>
         <div
           class="flex-column card card-body m-1"
-          style="max-width: 18rem; max-height: 24rem"
+          style="max-width: 21.5rem; max-height: 24rem"
         >
           <label>Jenis Buku :</label>
           <JenisPieChart
@@ -257,7 +256,7 @@
       <div class="d-flex flex-row bd-highlight mb-3 mx-1">
         <div
           class="flex-column card card-body"
-          style="min-width: 800px; min-height: 500px"
+          style="min-width: 690px; min-height: 500px"
         >
           <label>Data Inventaris tidak terpakai sepanjang tahun :</label>
           <InventarisTidakTerpakai
