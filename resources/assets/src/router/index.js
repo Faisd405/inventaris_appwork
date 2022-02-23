@@ -469,6 +469,12 @@ const router = new Router({
                 }
             }
         },
+        //setting image
+        {
+            name: 'index-image',
+            path: '/image',
+            component: () => import('@/components/image/index'),
+        },
         ]
     }]
 })

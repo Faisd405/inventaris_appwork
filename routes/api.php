@@ -13,6 +13,7 @@ use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\InventarisController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -126,3 +127,9 @@ Route::get('/pengajuan/user/{id_user}', [PengajuanController::class, 'showByUser
 Route::get('/inventaris/barangdanbuku', [InventarisController::class, 'lengthBarangdanBuku']);
 Route::get('/inventaris/inventarisTidakDipakai', [InventarisController::class, 'inventarisTidakDipakai']);
 Route::get('/inventaris/hargaPerPengguna', [InventarisController::class, 'hargaPerPengguna']);
+
+//Ganti Gambar dan Lampiran
+Route::post('/image/imageBackgroundLogin', [ImageController::class, 'imageBackgroundLogin']);
+Route::post('/image/imageDefaultImage', [ImageController::class, 'imageDefaultImage']);
+Route::post('/image/imageDefaultPDF', [ImageController::class, 'imageDefaultPDF']);
+Route::post('/image/imageDefaultSuratKomitmen', [ImageController::class, 'imageDefaultSuratKomitmen']);

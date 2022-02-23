@@ -161,6 +161,12 @@
         :exact="true"
         >Laporan Harga Barang</sidenav-router-link
       >
+      <sidenav-divider />
+      <sidenav-header> <strong>Setting</strong> </sidenav-header>
+      <sidenav-router-link icon="ion ion-md-settings" to="/image" :exact="true"
+        >Ganti Background Login, Gambar Default dan Lampiran
+        PDF</sidenav-router-link
+      >
     </div>
   </sidenav>
 </template>
