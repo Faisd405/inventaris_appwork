@@ -18,6 +18,16 @@
               </div>
 
               <div class="form-group">
+                <label>Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  v-model="pengguna.email"
+                  placeholder="Masukan Email"
+                />
+              </div>
+
+              <div class="form-group">
                 <label>No KTP</label>
                 <input
                   type="number"
@@ -68,8 +78,8 @@ export default {
   data() {
     return {
       pengguna: {},
-        errors: [],
-        user: {},
+      errors: [],
+      user: {},
     };
   },
   created() {
@@ -111,10 +121,10 @@ export default {
         this.$router.push("/pengguna");
       });
     },
-    checkForm: function(e){
-        if(this.pengguna.name == ""){
-            this.errors.push("Nama pengguna tidak boleh kosong");
-        }
+    checkForm: function (e) {
+      if (this.pengguna.name == "") {
+        this.errors.push("Nama pengguna tidak boleh kosong");
+      }
       if (this.errors.length > 0) {
         e.preventDefault();
       }
