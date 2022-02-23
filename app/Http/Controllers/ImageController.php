@@ -12,7 +12,7 @@ class ImageController extends Controller
         $image = $request->file('file');
         $imageName = 'background.jpg';
         $image->move(public_path('images/background'), $imageName);
-        return response()->json(['success'=>$imageName]);
+        return response()->json(['success'=>true]);
     }
 
     public function imageDefaultImage(Request $request){
@@ -20,7 +20,7 @@ class ImageController extends Controller
         $imageName = 'default.jpg';
         $image->move(public_path('images'), $imageName);
         $image->move(public_path('pengajuan'), $imageName);
-        return response()->json(['success'=>$imageName]);
+        return response()->json(['success'=>true]);
     }
 
     //imageDefaultPDF
@@ -28,7 +28,7 @@ class ImageController extends Controller
         $image = $request->file('file');
         $imageName = 'default.pdf';
         $image->move(public_path('lampiran'), $imageName);
-        return response()->json(['success'=>$imageName]);
+        return response()->json(['success'=>true]);
     }
 
     //imageDefaultSuratKomitmen
@@ -36,6 +36,6 @@ class ImageController extends Controller
         $image = $request->file('file');
         $imageName = 'default.pdf';
         $image->move(public_path('surat_komitmen'), $imageName);
-        return response()->json(['success'=>$imageName]);
+        return response()->json(['success'=>true]);
     }
 }
