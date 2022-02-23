@@ -143,6 +143,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -282,6 +289,8 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid mt-3" }, [
+    _vm._m(0),
+    _vm._v(" "),
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-header" }, [
         _vm._v("Setting Default Gambar dan Lampiran"),
@@ -547,7 +556,20 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card mb-3" }, [
+      _c("div", { staticClass: "card-body pallet-darken font-lighten" }, [
+        _vm._v(
+          "\n      Ini adalah halaman untuk mengganti Background saat Login, Gambar Default\n      untuk Barang yang belum ada gambar, dan mengganti Lampiran Default PDF\n      Invoice dan Surat Komitmen\n    "
+        ),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 

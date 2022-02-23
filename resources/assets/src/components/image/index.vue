@@ -1,5 +1,12 @@
 <template>
   <div class="container-fluid mt-3">
+    <div class="card mb-3">
+      <div class="card-body pallet-darken font-lighten">
+        Ini adalah halaman untuk mengganti Background saat Login, Gambar Default
+        untuk Barang yang belum ada gambar, dan mengganti Lampiran Default PDF
+        Invoice dan Surat Komitmen
+      </div>
+    </div>
     <div class="card">
       <div class="card-header">Setting Default Gambar dan Lampiran</div>
       <div class="card-body">
