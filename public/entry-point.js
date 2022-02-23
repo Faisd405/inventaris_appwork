@@ -2273,6 +2273,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = (_data$name$components = {
   data: function data() {
@@ -36609,25 +36611,33 @@ var render = function () {
                 [_vm._v("Laporan Harga Barang")]
               ),
               _vm._v(" "),
-              _c("sidenav-divider"),
-              _vm._v(" "),
-              _c("sidenav-header", [_c("strong", [_vm._v("Setting")])]),
-              _vm._v(" "),
-              _c(
-                "sidenav-router-link",
-                {
-                  attrs: {
-                    icon: "ion ion-md-settings",
-                    to: "/image",
-                    exact: true,
-                  },
-                },
-                [
-                  _vm._v(
-                    "Ganti Background Login, Gambar Default dan Lampiran\n      PDF"
-                  ),
-                ]
-              ),
+              _vm.user.roles[0].name == "admin"
+                ? _c(
+                    "span",
+                    [
+                      _c("sidenav-divider"),
+                      _vm._v(" "),
+                      _c("sidenav-header", [_c("strong", [_vm._v("Setting")])]),
+                      _vm._v(" "),
+                      _c(
+                        "sidenav-router-link",
+                        {
+                          attrs: {
+                            icon: "ion ion-md-settings",
+                            to: "/image",
+                            exact: true,
+                          },
+                        },
+                        [
+                          _vm._v(
+                            "Ganti Background Login, Gambar Default dan Lampiran\n      PDF"
+                          ),
+                        ]
+                      ),
+                    ],
+                    1
+                  )
+                : _vm._e(),
             ],
             1
           ),
