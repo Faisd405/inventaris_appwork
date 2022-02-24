@@ -4,40 +4,50 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class jenis extends Model
+class Jenis extends Model
 {
     //
     protected $table = 'jenis';
-    protected $fillable = ['jenis_buku','jumlah'];
+    protected $fillable = ['jenis_buku', 'jumlah'];
 
     public function buku()
     {
         return $this->hasMany('App\Models\buku', 'jenis_id', 'id');
     }
 
-    public function getJenis() {
-        $jenis = jenis::with('buku')->get();
+    public function scopeWithJenis()
+    {
+        return $this->with('buku');
+    }
+
+    public function getJenis()
+    {
+        $jenis = self::scopeWithJenis()->get();
         return $jenis;
     }
 
-    public function getJenisById($id) {
-        $jenis = jenis::with('buku')->find($id);
+    public function getJenisById($id)
+    {
+        $jenis = self::scopeWithJenis()->find($id);
         return $jenis;
     }
 
-    public function postJenis($request) {
-        $jenis = jenis::create($request->all());
+    public function postJenis($request)
+    {
+        $jenis = self::create($request->all());
         return $jenis;
     }
 
-    public function putJenis($request, $id) {
-        $jenis = jenis::find($id);
+    public function putJenis($request, $id)
+    {
+        $jenis = self::find($id);
         $jenis->update($request->all());
         return $jenis;
     }
 
-    public function deleteJenis($id) {
-        $jenis = jenis::find($id);
+    public function deleteJenis($id)
+    {
+        $jenis = self::find($id);
         $jenis->delete();
         return $jenis;
     }
@@ -45,14 +55,14 @@ class jenis extends Model
 
     public function add($id)
     {
-        $jenis = jenis::find($id);
+        $jenis = self::find($id);
         $jenis->jumlah = $jenis->jumlah + 1;
         $jenis->save();
     }
 
     public function minus($id)
     {
-        $jenis = jenis::find($id);
+        $jenis = self::find($id);
         $jenis->jumlah = $jenis->jumlah - 1;
         $jenis->save();
     }

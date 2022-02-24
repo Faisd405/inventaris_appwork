@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class sifat extends Model
+class Sifat extends Model
 {
     protected $table = 'sifat';
 
@@ -17,25 +17,28 @@ class sifat extends Model
 
     public function getSifat()
     {
-        return sifat::all();
+        return self::all();
     }
 
     public function getSifatById($id)
     {
-        return sifat::find($id);
+        return self::find($id);
     }
 
-    public function postSifat($request){
-        return sifat::create($request->all());
+    public function postSifat($request)
+    {
+        return self::create($request->all());
     }
 
-    public function updateSifat($request, $id){
-        $sifat = sifat::find($id);
+    public function updateSifat($request, $id)
+    {
+        $sifat = self::find($id);
         return $sifat->update($request->all());
     }
 
-    public function deleteSifat($id){
-        $sifat = sifat::find($id);
+    public function deleteSifat($id)
+    {
+        $sifat = self::find($id);
         return $sifat->delete();
     }
 }

@@ -4,10 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class barang extends Model
+class Barang extends Model
 {
     protected $table = 'barang';
-    protected $fillable = ['nama_barang', 'kode_barang', 'detail_barang', 'kategori_id', 'fungsi', 'harga_barang', 'lokasi_id','detail_lokasi', 'pengguna_id', 'year', 'image', 'jumlah_barang','lampiran'];
+    protected $fillable = [
+        'nama_barang',
+        'kode_barang',
+        'detail_barang',
+        'kategori_id',
+        'fungsi',
+        'harga_barang',
+        'lokasi_id',
+        'detail_lokasi',
+        'pengguna_id',
+        'year',
+        'image',
+        'jumlah_barang',
+        'lampiran'
+    ];
 
     public function kategori()
     {
@@ -29,24 +43,39 @@ class barang extends Model
         return $this->belongsTo('App\Models\history', 'barang_id', 'id');
     }
 
+    public function scopeWithBarang()
+    {
+        return $this->with('pengguna', 'kategori', 'lokasi');
+    }
+
     public function getBarang()
     {
-        return barang::with('pengguna', 'kategori', 'lokasi')->get();
+        return $this->scopeWithBarang()->get();
+    }
+
+    public function getBarangByNoPengguna($id)
+    {
+        return self::where('pengguna_id', '!=', $id)->with('pengguna', 'kategori', 'lokasi')->get();
     }
 
     public function getBarangByKategoriId($id)
     {
-        return barang::with('pengguna', 'kategori', 'lokasi')->where('kategori_id', $id)->get();
+        return $this->scopeWithBarang()->where('kategori_id', $id)->get();
+    }
+
+    public function getBarangbyPengguna($id)
+    {
+        return self::where('pengguna_id', $id)->scopeWithBarang()->get();
     }
 
     public function getBarangByLokasiId($id)
     {
-        return barang::with('pengguna', 'kategori', 'lokasi')->where('lokasi_id', $id)->get();
+        return $this->scopeWithBarang()->where('lokasi_id', $id)->get();
     }
 
     public function getBarangById($id)
     {
-        return barang::with('pengguna', 'kategori', 'lokasi')->find($id);
+        return $this->scopeWithBarang()->find($id);
     }
 
     public function postBarang($request, $imageName, $lampiranName)
@@ -73,7 +102,7 @@ class barang extends Model
 
     public function putBarang($request, $id)
     {
-        $barang = barang::find($id);
+        $barang = self::find($id);
         $barang->update($request->all());
         return $barang;
     }
@@ -89,55 +118,61 @@ class barang extends Model
 
     public function deleteBarang($id)
     {
-        $barang = barang::find($id);
+        $barang = self::find($id);
         $barang->delete();
         return $barang;
     }
 
-    public function getHarga(){
-        $harga_barang = barang::selectRaw('sum(harga_barang) as total, year(year) as year')
+    public function getHarga()
+    {
+        $harga_barang = self::selectRaw('sum(harga_barang) as total, year(year) as year')
             ->groupBy('year')->pluck('total');
 
         return $harga_barang;
     }
 
-    public function getYear(){
-        $year = barang::selectRaw('sum(harga_barang) as total, year(year) as year')
+    public function getYear()
+    {
+        $year = self::selectRaw('sum(harga_barang) as total, year(year) as year')
             ->groupBy('year')->pluck('year');
 
         return $year;
     }
 
-    public function getTotalHarga(){
-        $barang = barang::sum('harga_barang');
+    public function getTotalHarga()
+    {
+        $barang = self::sum('harga_barang');
 
         return $barang;
     }
 
     //Length Barang By all Lokasi
-    public function getLengthBarangByLokasi(){
-        $barang = barang::selectRaw('count(*) as total, lokasi_id')
+    public function getLengthBarangByLokasi()
+    {
+        $barang = self::selectRaw('count(*) as total, lokasi_id')
             ->groupBy('lokasi_id')->pluck('total');
 
         return $barang;
     }
 
     //Length Barang
-    public function getLengthBarang(){
-        $barang = barang::count();
+    public function getLengthBarang()
+    {
+        $barang = Barang::count();
 
         return $barang;
     }
 
     //Length Barang By Pengguna
-    public function getLengthBarangByPengguna($id){
-        $barang = barang::where('pengguna_id', $id)->count();
+    public function getLengthBarangByPengguna($id)
+    {
+        $barang = Barang::where('pengguna_id', $id)->count();
 
         return $barang;
     }
 
     public function getBarangByPenggunaId($id)
     {
-        return barang::with('pengguna', 'kategori', 'lokasi')->where('pengguna_id', $id)->get();
+        return $this->scopeWithBarang()->where('pengguna_id', $id)->get();
     }
 }

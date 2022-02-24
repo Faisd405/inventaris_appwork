@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\lokasi;
-use App\Models\barang;
-use App\Models\buku;
+use App\Models\Lokasi;
+use App\Models\Barang;
+use App\Models\Buku;
 
 class LokasiController extends Controller
 {
-    public function __construct(lokasi $lokasi, barang $barang, buku $buku)
+    protected $lokasi;
+    protected $barang;
+    protected $buku;
+
+    public function __construct(Lokasi $lokasi, Barang $barang, Buku $buku)
     {
         $this->lokasi = $lokasi;
         $this->barang = $barang;
@@ -65,7 +69,8 @@ class LokasiController extends Controller
     }
 
     //Length Barang By Lokasi
-    public function getLengthBarangByLokasi(){
+    public function getLengthBarangByLokasi()
+    {
         $lokasi = $this->lokasi->selectLokasi();
         $jumlah = $this->barang->getLengthBarangByLokasi();
         return response()->json([

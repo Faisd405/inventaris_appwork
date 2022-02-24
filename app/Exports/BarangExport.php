@@ -10,17 +10,18 @@ use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
-use App\Models\barang;
+use App\Models\Barang;
 use Maatwebsite\Excel\Events\AfterSheet;
 
-class BarangExport implements WithColumnFormatting, FromQuery, WithMapping, WithHeadings, ShouldAutoSize, WithEvents
+class BarangExport implements WithColumnFormatting, FromQuery, WithMapping,
+    WithHeadings, ShouldAutoSize, WithEvents
 {
     use Exportable;
     private $rows = 0;
 
     public function query()
     {
-        return barang::orderBy('pengguna_id', 'asc');
+        return Barang::orderBy('pengguna_id', 'asc');
     }
 
     public function map($barang): array

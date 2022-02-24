@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\lokasi;
+use App\Models\Lokasi;
 
 class LokasiRequest extends FormRequest
 {

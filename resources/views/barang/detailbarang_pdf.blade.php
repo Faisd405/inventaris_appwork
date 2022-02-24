@@ -39,7 +39,7 @@
         <div class="card-body">
             <br>
             <img src="{{ public_path('/images/' . $barang->image) }}" class="img-thumbnail rounded mx-auto d-block"
-                width="150px">
+                style="width: 180px">
             <table>
                 <tbody>
                     <tr>

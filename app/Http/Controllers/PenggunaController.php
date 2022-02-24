@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\barang;
-use App\Models\pengguna;
-use App\Models\buku;
+use App\Models\Barang;
+use App\Models\Pengguna;
+use App\Models\Buku;
 use App\Http\Requests\PenggunaRequest;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +14,11 @@ use JWTAuth;
 
 class PenggunaController extends Controller
 {
-    public function __construct(pengguna $pengguna, barang $barang, buku $buku)
+    protected $pengguna;
+    protected $buku;
+    protected $barang;
+
+    public function __construct(Pengguna $pengguna, Barang $barang, Buku $buku)
     {
         $this->pengguna = $pengguna;
         $this->barang = $barang;
@@ -35,9 +39,9 @@ class PenggunaController extends Controller
     }
 
     //Index barang where pengguna_id = 1
-    public function nopengguna()
+    public function noPengguna()
     {
-        $barang = $this->pengguna->getBarangbyPengguna(1);
+        $barang = $this->barang->getBarangbyPengguna(1);
         return response()->json([
             'success' => true,
             'message' => 'List Semua barang',
@@ -47,7 +51,7 @@ class PenggunaController extends Controller
 
     public function pengguna()
     {
-        $barang = $this->pengguna->getBarangbyNoPengguna(1);
+        $barang = $this->barang->getBarangbyNoPengguna(1);
         return response()->json([
             'success' => true,
             'message' => 'List Semua barang',
@@ -88,8 +92,8 @@ class PenggunaController extends Controller
     public function show($id)
     {
         $pengguna = $this->pengguna->getPenggunaById($id);
-        $barang = $this->pengguna->getBarangbyPengguna($id);
-        $buku = $this->pengguna->getBukuByPengguna($id);
+        $barang = $this->barang->getBarangbyPengguna($id);
+        $buku = $this->buku->getbukubyPengguna($id);
 
         if ($barang && $pengguna) {
             return response()->json([
@@ -151,13 +155,16 @@ class PenggunaController extends Controller
         return $this->respons($pengguna);
     }
 
-    public function surat_komitmen($id, Request $request)
+    public function suratKomitmen($id, Request $request)
     {
         $pengguna = $this->pengguna->getPenggunaById($id);
-        $barang = $this->pengguna->getBarangbyPengguna($id);
+        $barang = $this->barang->getBarangbyPengguna($id);
         $kode_lampiran = $request->kode_lampiran;
 
-        $pdf = \PDF::loadView('pengguna.surat_komitmen', compact('pengguna', 'barang', 'kode_lampiran'))->setPaper('a4', 'potrait');
+        $pdf = \PDF::loadView(
+            'pengguna.surat_komitmen',
+            compact('pengguna', 'barang', 'kode_lampiran')
+        )->setPaper('a4', 'potrait');
         return $pdf->stream('surat_komitmen.pdf');
     }
 

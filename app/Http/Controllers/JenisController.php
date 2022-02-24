@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\jenis;
+use App\Models\Jenis;
 
 class JenisController extends Controller
 {
-    public function __construct(jenis $jenis)
+    protected $jenis;
+
+    public function __construct(Jenis $jenis)
     {
         $this->jenis = $jenis;
     }
@@ -58,7 +60,7 @@ class JenisController extends Controller
         ], 200);
     }
 
-    public function indexnama()
+    public function indexNama()
     {
         $jenis = $this->jenis->pluck('jenis_buku');
         $jumlah = $this->jenis->pluck('jumlah');

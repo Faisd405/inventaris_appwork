@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class role_user extends Model
+class RoleUser extends Model
 {
     protected $table = 'role_user';
 
@@ -24,5 +24,4 @@ class role_user extends Model
     {
         return $this->where('user_id', $id)->delete();
     }
-
 }

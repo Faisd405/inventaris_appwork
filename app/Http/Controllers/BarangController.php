@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\barang;
-use App\Models\kategori;
-use App\Models\pengguna;
+use App\Models\Barang;
+use App\Models\Kategori;
+use App\Models\Pengguna;
 use PDF;
 use Illuminate\Support\Facades\File;
 use App\Exports\BarangExport;
-use App\Models\history;
+use App\Models\History;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use App\Services\BarangServices;
 
 class BarangController extends Controller
 {
@@ -19,8 +20,13 @@ class BarangController extends Controller
     protected $kategori;
     protected $pengguna;
     protected $history;
-    public function __construct(barang $barang, kategori $kategori, pengguna $pengguna, history $history)
-    {
+
+    public function __construct(
+        Barang $barang,
+        Kategori $kategori,
+        Pengguna $pengguna,
+        History $history
+    ) {
         $this->barang = $barang;
         $this->kategori = $kategori;
         $this->pengguna = $pengguna;
@@ -57,7 +63,7 @@ class BarangController extends Controller
     }
 
     //total harga barang
-    public function total_harga()
+    public function totalHarga()
     {
         $total_harga = $this->barang->getTotalHarga();
         // parse int
@@ -69,47 +75,10 @@ class BarangController extends Controller
         ], 200);
     }
 
-    public function image($request)
+    public function store(Request $request, BarangServices $barangServices)
     {
-        if ($request->hasFile('image')) {
-            $request->validate([
-                'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:6000',
-            ]);
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
-        } else {
-            $imageName = "default.jpg";
-        }
-        return $imageName;
-    }
-
-    public function lampiran($request)
-    {
-        //getClientOriginalExtension
-        if ($request->hasFile('lampiran')) {
-            $extension = $request['lampiran']->getClientOriginalExtension();
-            $request->validate([
-                'lampiran' => 'required|max:2048|mimes:png,jpg,jpeg,pdf,docx,doc',
-            ]);
-            if ($extension == 'pdf') {
-                $lampiranName = time() . '.' . $request->lampiran->extension();
-                $request->lampiran->move(public_path('lampiran'), $lampiranName);
-            }
-            if ($extension == 'jpg' || $extension == 'png' || $extension == 'jpeg') {
-                $lampiranName = time() . '.' . $request->lampiran->extension();
-                $request->lampiran->move(public_path('lampiran'), $lampiranName);
-            }
-        } else {
-            $lampiranName = "default.pdf";
-        }
-
-        return $lampiranName;
-    }
-
-    public function store(Request $request)
-    {
-        $imageName = $this->image($request);
-        $lampiranName = $this->lampiran($request);
+        $imageName = $barangServices->image($request);
+        $lampiranName = $barangServices->lampiran($request);
         $barang = $this->barang->postBarang($request, $imageName, $lampiranName);
 
         $this->kategori->add($barang->kategori_id);
@@ -144,7 +113,7 @@ class BarangController extends Controller
     public function relasi(Request $request, $id)
     {
         $barang = $this->barang->getBarangById($id);
-        $pengguna_barang = barang::find($id);
+        $pengguna_barang = Barang::find($id);
 
         if ($request->pengguna_id != $pengguna_barang->pengguna_id) {
             $this->history->updateHistory($request, $barang, $id);
@@ -155,49 +124,6 @@ class BarangController extends Controller
         return response()->json([
             'barang' => $barang,
         ], 200);
-    }
-
-    public function gantifoto($request, $barang)
-    {
-        if ($request->hasFile('image')) {
-            $request->validate([
-                'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:6000',
-            ]);
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
-            if ($barang->image != "default.jpg") {
-                File::delete('images/' . $barang->image);
-            }
-        } else {
-            $imageName = $barang->image;
-        }
-
-        return $imageName;
-    }
-
-    public function updateLampiran($request, $barang)
-    {
-        if ($request->hasFile('lampiran')) {
-            $extension = $request['lampiran']->getClientOriginalExtension();
-            $request->validate([
-                'lampiran' => 'required|max:2048|mimes:png,jpg,jpeg,pdf,docx,doc',
-            ]);
-            if ($extension == 'pdf') {
-                $lampiranName = time() . '.' . $request->lampiran->extension();
-                $request->lampiran->move(public_path('lampiran'), $lampiranName);
-            }
-            if ($extension == 'jpg' || $extension == 'png' || $extension == 'jpeg') {
-                $lampiranName = time() . '.' . $request->lampiran->extension();
-                $request->lampiran->move(public_path('lampiran'), $lampiranName);
-            }
-            if ($barang->lampiran != "default.pdf") {
-                File::delete('lampiran/' . $barang->lampiran);
-            }
-        } else {
-            $lampiranName = $barang->lampiran;
-        }
-
-        return $lampiranName;
     }
 
     public function destroyLampiran($id)
@@ -220,19 +146,19 @@ class BarangController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, BarangServices $barangServices)
     {
         $barang = $this->barang->getBarangById($id);
-        $pengguna_barang = barang::find($id);
+        $pengguna_barang = Barang::find($id);
 
         if ($request->pengguna_id != $pengguna_barang->pengguna_id) {
             $this->history->updateHistory($request, $barang, $id);
         }
 
-        $this->barang->putBarang($request, $id);
+        $this->barang->putBarang($request, $id,);
 
-        $imageName = $this->gantifoto($request, $barang);
-        $updateLampiran = $this->updateLampiran($request, $barang);
+        $imageName = $barangServices->gantiFoto($request, $barang);
+        $updateLampiran = $barangServices->updateLampiran($request, $barang);
 
         if ($barang->kategori_id != $request->kategori_id) {
             $this->kategori->minus($barang->kategori_id);
@@ -240,8 +166,6 @@ class BarangController extends Controller
         }
 
         $this->barang->updateBarang($request, $barang, $imageName, $updateLampiran);
-
-
 
         return response()->json([
             'success' => true,
@@ -260,16 +184,16 @@ class BarangController extends Controller
         ], 200);
     }
 
-    public function detailbarang_pdf($id)
+    public function detailBarangPDF($id)
     {
         $name = 'Laporan Detail Barang ' . date('d-m-Y') . '.pdf';
-        $barang = barang::find($id);
+        $barang = Barang::find($id);
 
         $pdf = PDF::loadview('barang.detailbarang_pdf', compact('barang'));
         return $pdf->stream($name);
     }
 
-    public function barang_excel()
+    public function barangExcel()
     {
         $name = 'Laporan Barang ' . date('d-m-Y') . '.xlsx';
         return Excel::download(new BarangExport, $name);

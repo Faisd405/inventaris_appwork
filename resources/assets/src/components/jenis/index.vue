@@ -48,8 +48,8 @@
                 <thead slot="head">
                   <tr>
                     <th scope="col">No</th>
-                    <v-th sortKey="jenis_buku" scope="col">Nama Jenis</v-th>
-                    <v-th scope="col">Jumlah</v-th>
+                    <th scope="col">Nama Jenis</th>
+                    <th scope="col">Jumlah</th>
                     <th scope="col">Aksi</th>
                   </tr>
                 </thead>

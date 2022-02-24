@@ -448,27 +448,19 @@ var render = function () {
                   },
                   [
                     _c("thead", { attrs: { slot: "head" }, slot: "head" }, [
-                      _c(
-                        "tr",
-                        [
-                          _c("th", { attrs: { scope: "col" } }, [_vm._v("No")]),
-                          _vm._v(" "),
-                          _c(
-                            "v-th",
-                            { attrs: { sortKey: "jenis_buku", scope: "col" } },
-                            [_vm._v("Nama Jenis")]
-                          ),
-                          _vm._v(" "),
-                          _c("v-th", { attrs: { scope: "col" } }, [
-                            _vm._v("Jumlah"),
-                          ]),
-                          _vm._v(" "),
-                          _c("th", { attrs: { scope: "col" } }, [
-                            _vm._v("Aksi"),
-                          ]),
-                        ],
-                        1
-                      ),
+                      _c("tr", [
+                        _c("th", { attrs: { scope: "col" } }, [_vm._v("No")]),
+                        _vm._v(" "),
+                        _c("th", { attrs: { scope: "col" } }, [
+                          _vm._v("Nama Jenis"),
+                        ]),
+                        _vm._v(" "),
+                        _c("th", { attrs: { scope: "col" } }, [
+                          _vm._v("Jumlah"),
+                        ]),
+                        _vm._v(" "),
+                        _c("th", { attrs: { scope: "col" } }, [_vm._v("Aksi")]),
+                      ]),
                     ]),
                   ]
                 ),

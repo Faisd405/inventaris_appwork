@@ -4,13 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class pengajuan extends Model
+class Pengajuan extends Model
 {
     //
     protected $table = 'pengajuan';
 
     protected $fillable = [
-        'nama_barang', 'detail_barang', 'fungsi', 'harga_barang', 'jumlah_barang', 'status', 'pengguna_id', 'image'
+        'nama_barang',
+        'detail_barang',
+        'fungsi',
+        'harga_barang',
+        'jumlah_barang',
+        'status',
+        'pengguna_id',
+        'image'
     ];
 
     public function pengguna()
@@ -18,16 +25,25 @@ class pengajuan extends Model
         return $this->belongsTo('App\Models\pengguna');
     }
 
-    public function getPengajuan(){
-        return pengajuan::with('pengguna')->get();
+    //scopeWithPengajuan
+    public function scopeWithPengajuan()
+    {
+        return $this->with('pengguna');
     }
 
-    public function getPengajuanById($id){
-        return pengajuan::with('pengguna')->find($id);
+    public function getPengajuan()
+    {
+        return self::scopeWithPengajuan()->get();
     }
 
-    public function postPengajuan($request, $imageName){
-        $pengajuan = new pengajuan;
+    public function getPengajuanById($id)
+    {
+        return self::scopeWithPengajuan()->find($id);
+    }
+
+    public function postPengajuan($request, $imageName)
+    {
+        $pengajuan = new Pengajuan;
         $pengajuan->nama_barang = $request->nama_barang;
         $pengajuan->detail_barang = $request->detail_barang;
         $pengajuan->fungsi = $request->fungsi;
@@ -40,17 +56,20 @@ class pengajuan extends Model
         return $pengajuan;
     }
 
-    public function putPengajuan($request, $id){
-        $pengajuan = pengajuan::find($id);
+    public function putPengajuan($request, $id)
+    {
+        $pengajuan = self::find($id);
         return $pengajuan->update($request->all());
     }
 
-    public function deletePengajuan($id){
-        $pengajuan = pengajuan::find($id);
+    public function deletePengajuan($id)
+    {
+        $pengajuan = self::find($id);
         return $pengajuan->delete();
     }
 
-    public function getPengajuanBypenggunaId($id){
-        return pengajuan::where('pengguna_id', $id)->get();
+    public function getPengajuanBypenggunaId($id)
+    {
+        return self::where('pengguna_id', $id)->get();
     }
 }

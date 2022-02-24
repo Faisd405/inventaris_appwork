@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\sifat;
+use App\Models\Sifat;
 use App\Http\Requests\SifatRequest;
 
 class SifatController extends Controller
 {
-    public function __construct(sifat $sifat)
+    protected $sifat;
+
+    public function __construct(Sifat $sifat)
     {
         $this->sifat = $sifat;
     }
 
-    public function respons($sifat){
+    public function respons($sifat)
+    {
         return response()->json([
             'sifat' => $sifat,
         ]);
@@ -53,5 +56,4 @@ class SifatController extends Controller
         $sifat = $this->sifat->deleteSifat($id);
         return $this->respons($sifat);
     }
-
 }

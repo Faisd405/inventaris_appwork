@@ -4,7 +4,7 @@
       <div class="d-flex flex-column bd-highlight mb-3 mx-1">
         <div
           class="card text-white pallet-dark m-1 shadow-lg"
-          style="min-width: 16rem; height: 12rem;"
+          style="min-width: 16rem; height: 12rem"
         >
           <div class="card-header">
             <router-link to="/laporan/barang" class="text-primary">
@@ -218,14 +218,7 @@
           ></KategoriPieChart>
         </div>
         <div
-          class="
-            card
-            text-white
-            pallet-dark
-            col-md-6
-            m-1
-            shadow-lg
-          "
+          class="card text-white pallet-dark col-md-6 m-1 shadow-lg"
           style="min-width: 21.5rem; height: 8rem"
         >
           <div class="card-header">

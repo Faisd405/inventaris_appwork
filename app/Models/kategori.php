@@ -4,78 +4,86 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class kategori extends Model
+class Kategori extends Model
 {
     protected $table = 'kategori';
 
     protected $fillable = [
-        'nama_kategori', 'fungsi', 'sifat_id','jumlah'
+        'nama_kategori', 'fungsi', 'sifat_id', 'jumlah'
     ];
 
 
     public function sifat()
     {
-        return $this->hasone('App\Models\sifat','id','sifat_id');
+        return $this->hasone('App\Models\sifat', 'id', 'sifat_id');
     }
 
-    public function barang(){
-        return $this->belongsTo('App\Models\barang');
+    public function barang()
+    {
+        return $this->belongsTo('App\Models\Barang');
     }
 
-    public function getKategori(){
-        $kategori = kategori::with('sifat')->get();
+    public function getKategori()
+    {
+        $kategori = self::with('sifat')->get();
         return $kategori;
     }
 
     //selectRaw
-    public function getKategoriRawNama(){
-        $kategori = kategori::selectRaw('nama_kategori')->get();
+    public function getKategoriRawNama()
+    {
+        $kategori = self::selectRaw('nama_kategori')->get();
         return $kategori;
     }
 
-    public function getKategoriById($id){
-        $kategori = kategori::with('sifat')->find($id);
+    public function getKategoriById($id)
+    {
+        $kategori = self::with('sifat')->find($id);
         return $kategori;
     }
 
-    public function postKategori($request){
+    public function postKategori($request)
+    {
         $request->merge([
             'jumlah' => 0
         ]);
-        $kategori = kategori::create($request->all());
+        $kategori = self::create($request->all());
         return $kategori;
     }
 
-    public function putKategori($request, $id){
-        $kategori = kategori::find($id);
+    public function putKategori($request, $id)
+    {
+        $kategori = self::find($id);
         $kategori->update($request->all());
         return $kategori;
     }
 
-    public function deleteKategori($id){
-        $kategori = kategori::find($id);
+    public function deleteKategori($id)
+    {
+        $kategori = self::find($id);
         $kategori->delete();
         return $kategori;
     }
 
     // pluck nama kategori dan jumlah
-    public function indexnama(){
-        $namakategori = kategori::pluck('nama_kategori');
-        $jumlah = kategori::pluck('jumlah');
+    public function indexNama()
+    {
+        $namakategori = self::pluck('nama_kategori');
+        $jumlah = self::pluck('jumlah');
         return $namakategori . $jumlah;
     }
 
 
     public function add($id)
     {
-        $kategori = kategori::find($id);
+        $kategori = self::find($id);
         $kategori->jumlah = $kategori->jumlah + 1;
         $kategori->save();
     }
 
     public function minus($id)
     {
-        $kategori = kategori::find($id);
+        $kategori = self::find($id);
         $kategori->jumlah = $kategori->jumlah - 1;
         $kategori->save();
     }

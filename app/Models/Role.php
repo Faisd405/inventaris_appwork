@@ -9,14 +9,13 @@ class Role extends Model
     protected $table = 'roles';
 
 
-    public function role_user()
+    public function RoleUser()
     {
-        return $this->hasMany('App\Models\role_user');
+        return $this->hasMany('App\Models\RoleUser');
     }
 
-    public function role_pengguna()
+    public function RolePengguna()
     {
-        return $this->hasMany('App\Models\role_pengguna');
+        return $this->hasMany('App\Models\RolePengguna');
     }
-
 }

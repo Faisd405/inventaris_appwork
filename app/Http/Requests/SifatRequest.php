@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\sifat;
+use App\Models\Sifat;
 
 class SifatRequest extends FormRequest
 {

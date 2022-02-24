@@ -8,21 +8,21 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Support\Facades\Hash;
-use App\Models\barang;
+use App\Models\Barang;
 
-class pengguna extends Authenticatable implements JWTSubject
+class Pengguna extends Authenticatable implements JWTSubject
 {
     use Notifiable;
     //
     protected $table = 'pengguna';
 
     protected $fillable = [
-        'name','ktp','jabatan','surat_komitmen','email','password','id_api'
+        'name', 'ktp', 'jabatan', 'surat_komitmen', 'email', 'password', 'id_api'
     ];
 
     public function barang()
     {
-        return $this->belongsTo('App\Models\barang');
+        return $this->belongsTo('App\Models\Barang');
     }
 
     public function buku()
@@ -47,25 +47,27 @@ class pengguna extends Authenticatable implements JWTSubject
 
     public function getPengguna()
     {
-        return pengguna::all();
+        return Pengguna::all();
     }
 
     public function getPenggunaById($id)
     {
-        return pengguna::find($id);
+        return Pengguna::find($id);
     }
 
-    public function postPengguna($request){
+    public function postPengguna($request)
+    {
         // Merge surat_komitmen with request
         $request->merge(['surat_komitmen' => 'default.pdf']);
         // Create new pengguna
-        $pengguna = pengguna::create($request->all());
+        $pengguna = Pengguna::create($request->all());
         // Return new pengguna
         return $pengguna;
     }
 
-    public function putPengguna($request, $id){
-        $pengguna = pengguna::find($id);
+    public function putPengguna($request, $id)
+    {
+        $pengguna = Pengguna::find($id);
 
         $request->merge(['surat_komitmen' => $pengguna->surat_komitmen]);
 
@@ -74,24 +76,10 @@ class pengguna extends Authenticatable implements JWTSubject
         return $pengguna;
     }
 
-    public function deletePengguna($id){
-        $pengguna = pengguna::find($id);
+    public function deletePengguna($id)
+    {
+        $pengguna = Pengguna::find($id);
         return $pengguna->delete();
-    }
-
-    public function getBarangbyPengguna($id)
-    {
-        return barang::where('pengguna_id', $id)->with('pengguna', 'kategori', 'lokasi')->get();
-    }
-
-    public function getBukuByPengguna($id)
-    {
-        return buku::where('pengguna_id', $id)->with('pengguna', 'jenis', 'lokasi')->get();
-    }
-
-    public function getBarangByNoPengguna($id)
-    {
-        return barang::where('pengguna_id','!=' , $id)->with('pengguna', 'kategori', 'lokasi')->get();
     }
 
     public function getUserByEmail($email)
@@ -137,7 +125,6 @@ class pengguna extends Authenticatable implements JWTSubject
             'message' => 'Password User Berhasil Diupdate!',
             'user' => $user
         ], 200);
-
     }
 
     // attach role user

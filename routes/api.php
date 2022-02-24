@@ -52,7 +52,7 @@ Route::get('/barang', [BarangController::class, 'index']);
 Route::put('/barang/relasi/{id}', [BarangController::class, 'relasi']);
 Route::put('/barang/Lampiran/{id}', [BarangController::class, 'destroyLampiran']);
 Route::put('/barang/Image/{id}', [BarangController::class, 'destroyImage']);
-Route::get('/barang/total', [BarangController::class, 'total_harga']);
+Route::get('/barang/total', [BarangController::class, 'totalHarga']);
 Route::get('/barang/year', [BarangController::class, 'indexHarga']);
 Route::get('/barang/{id}', [BarangController::class, 'show']);
 Route::post('/barang', [BarangController::class, 'store']);
@@ -67,7 +67,7 @@ Route::delete('/history/{id}', [HistoryController::class, 'destroy']);
 
 //Route API Pengguna
 Route::get('/pengguna/pengguna', [PenggunaController::class, 'pengguna']);
-Route::get('/pengguna/nopengguna', [PenggunaController::class, 'nopengguna']);
+Route::get('/pengguna/nopengguna', [PenggunaController::class, 'noPengguna']);
 Route::get('/pengguna/total/{id}', [PenggunaController::class, 'getLengthInventarisByPengguna']);
 Route::get('/pengguna', [PenggunaController::class, 'index']);
 Route::get('/pengguna/{id}', [PenggunaController::class, 'show']);
@@ -79,7 +79,7 @@ Route::delete('/pengguna/{id}', [PenggunaController::class, 'destroy']);
 //Route API Kategori
 Route::get('/kategori', [KategoriController::class, 'index']);
 Route::post('/kategori', [KategoriController::class, 'store']);
-Route::get('/namakategori', [KategoriController::class, 'indexnama']);
+Route::get('/namakategori', [KategoriController::class, 'indexNama']);
 Route::delete('/kategori/{id}', [KategoriController::class, 'destroy']);
 Route::put('/kategori/{id}', [KategoriController::class, 'update']);
 Route::get('/kategori/{id}', [KategoriController::class, 'show']);
@@ -109,7 +109,7 @@ Route::delete('/lokasi/{id}', [LokasiController::class, 'destroy']);
 
 //Route API Jenis
 Route::get('/jenis', [JenisController::class, 'index']);
-Route::get('/namajenis', [JenisController::class, 'indexnama']);
+Route::get('/namajenis', [JenisController::class, 'indexNama']);
 Route::get('/jenis/{id}', [JenisController::class, 'show']);
 Route::post('/jenis', [JenisController::class, 'store']);
 Route::put('/jenis/{id}', [JenisController::class, 'update']);

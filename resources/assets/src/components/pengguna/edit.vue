@@ -17,7 +17,7 @@
                 />
               </div>
 
-              <div class="form-group">
+              <div class="form-group" v-if="loginType == 'admin'">
                 <label>Email</label>
                 <input
                   type="email"
@@ -80,6 +80,7 @@ export default {
       pengguna: {},
       errors: [],
       user: {},
+      loginType: "",
     };
   },
   created() {

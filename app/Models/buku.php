@@ -4,10 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class buku extends Model
+class Buku extends Model
 {
     protected $table = 'buku';
-    protected $fillable = ['judul', 'penulis', 'penerbit', 'tanggal', 'jumlah', 'kondisi', 'jenis_id', 'pengguna_id', 'lokasi_id', 'harga'];
+    protected $fillable = [
+        'judul',
+        'penulis',
+        'penerbit',
+        'tanggal',
+        'jumlah',
+        'kondisi',
+        'jenis_id',
+        'pengguna_id',
+        'lokasi_id',
+        'harga'
+    ];
 
     public function lokasi()
     {
@@ -24,39 +35,49 @@ class buku extends Model
         return $this->hasOne('App\Models\pengguna', 'id', 'pengguna_id');
     }
 
+    public function scopeWithBuku()
+    {
+        return $this->with('lokasi', 'jenis', 'pengguna');
+    }
+
     public function getBuku()
     {
-        $buku = buku::with('lokasi', 'jenis', 'pengguna')->get();
+        $buku = self::scopeWithBuku()->get();
         return $buku;
     }
 
     public function getBukuById($id)
     {
-        $buku = buku::with('lokasi', 'jenis', 'pengguna')->find($id);
+        $buku = self::scopeWithBuku()->find($id);
         return $buku;
+    }
+
+    public function getBukuByPengguna($id)
+    {
+        return self::where('pengguna_id', $id)->scopeWithBuku()->get();
     }
 
     public function getBukuByLokasiId($id)
     {
-        return buku::with('lokasi', 'jenis', 'pengguna')->where('lokasi_id', $id)->get();
+        return self::scopeWithBuku()->where('lokasi_id', $id)->get();
     }
 
     public function postBuku($request)
     {
-        $buku = buku::create($request->all());
+        $buku = self::create($request->all());
         return $buku;
     }
 
     public function putBuku($request, $id)
     {
-        $buku = buku::find($id);
+        $buku = self::find($id);
         $buku->update($request->all());
         return $buku;
     }
 
     public function deleteBuku($id)
     {
-        $buku = buku::find($id);
+        $buku = self::find($id);
         $buku->delete();
         return $buku;
     }
@@ -64,27 +85,27 @@ class buku extends Model
     //Lenth Buku
     public function getLengthBuku()
     {
-        $buku = buku::count();
+        $buku = self::count();
         return $buku;
     }
 
     //get length by pengguna
     public function getLengthBukuByPengguna($id)
     {
-        $buku = buku::where('pengguna_id', $id)->count();
+        $buku = self::where('pengguna_id', $id)->count();
         return $buku;
     }
 
     //get total harga
     public function getTotalHarga()
     {
-        $buku = buku::sum('harga');
+        $buku = self::sum('harga');
         return $buku;
     }
 
 
     public function getBukuByJenisId($id)
     {
-        return buku::with('lokasi', 'jenis', 'pengguna')->where('jenis_id', $id)->get();
+        return self::scopeWithBuku()->where('jenis_id', $id)->get();
     }
 }

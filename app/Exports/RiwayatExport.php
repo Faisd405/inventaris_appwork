@@ -10,8 +10,8 @@ use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
-use App\Models\barang;
-use App\Models\history;
+use App\Models\Barang;
+use App\Models\History;
 use Maatwebsite\Excel\Events\AfterSheet;
 
 class RiwayatExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoSize, WithEvents
@@ -50,20 +50,20 @@ class RiwayatExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoS
         // }
 
         if ($this->barang_id && $this->tanggal_awal && $this->tanggal_akhir) {
-            return history::query()
+            return History::query()
                 ->where('barang_id', $this->barang_id)
                 ->where('tanggal_awal_penggunaan', $this->tanggal_awal)
                 ->where('tanggal_akhir_penggunaan', $this->tanggal_akhir);
         } elseif ($this->barang_id && $this->tanggal_awal) {
-            return history::query()
+            return History::query()
                 ->where('barang_id', $this->barang_id)
                 ->where('tanggal_awal_penggunaan', $this->tanggal_awal);
         } elseif ($this->barang_id && $this->tanggal_akhir) {
-            return history::query()
+            return History::query()
                 ->where('barang_id', $this->barang_id)
                 ->where('tanggal_akhir_penggunaan', $this->tanggal_akhir);
         } elseif ($this->barang_id) {
-            return history::query()
+            return History::query()
                 ->where('barang_id', $this->barang_id);
         }
 

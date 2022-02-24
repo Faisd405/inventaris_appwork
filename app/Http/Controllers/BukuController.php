@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\buku;
-use App\Models\jenis;
+use App\Models\Buku;
+use App\Models\Jenis;
 
 class BukuController extends Controller
 {
-    public function __construct(buku $buku, jenis $jenis)
+    protected $buku;
+    protected $jenis;
+
+    public function __construct(Buku $buku, Jenis $jenis)
     {
         $this->buku = $buku;
         $this->jenis = $jenis;

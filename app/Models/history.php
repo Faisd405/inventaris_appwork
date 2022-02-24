@@ -4,15 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class history extends Model
+class History extends Model
 {
     //
     protected $table = 'history';
-    protected $fillable = ['id', 'pengguna_id', 'barang_id', 'tanggal_awal_penggunaan', 'tanggal_akhir_penggunaan', 'keterangan', 'status'];
+    protected $fillable = [
+        'id',
+        'pengguna_id',
+        'barang_id',
+        'tanggal_awal_penggunaan',
+        'tanggal_akhir_penggunaan',
+        'keterangan',
+        'status'
+    ];
 
     public function barang()
     {
-        return $this->belongsTo('App\Models\barang', 'barang_id');
+        return $this->belongsTo('App\Models\Barang', 'barang_id');
     }
 
     public function pengguna()
@@ -22,7 +30,7 @@ class history extends Model
 
     public function barangHistory($barang)
     {
-        $history = new history;
+        $history = new History;
         $history->pengguna_id = $barang->pengguna_id;
         $history->barang_id = $barang->id;
         $history->tanggal_awal_penggunaan = date('d-m-Y');
@@ -32,24 +40,30 @@ class history extends Model
         $history->save();
     }
 
+    //scopeWithHistory
+    public function scopeWithHistory()
+    {
+        return $this->with('barang', 'pengguna');
+    }
+
     public function getHistory()
     {
-        return $this->with('pengguna', 'barang')->get();
+        return $this->scopeWithHistory()->get();
     }
 
     public function getHistoryById($id)
     {
-        return $this->with('pengguna', 'barang')->find($id);
+        return $this->scopeWithHistory()->find($id);
     }
 
     public function getHistoryByPenggunaId($id)
     {
-        return $this->with('pengguna', 'barang')->where('pengguna_id', $id)->get();
+        return $this->scopeWithHistory()->where('pengguna_id', $id)->get();
     }
 
     public function getHistoryDetailByBarangId($id)
     {
-        return $this->with('pengguna', 'barang')->where('barang_id', $id)->get();
+        return $this->scopeWithHistory()->where('barang_id', $id)->get();
     }
 
     public function getTanggalAwalUnique()
@@ -60,23 +74,20 @@ class history extends Model
     public function getHistoryDetailByBarangIdAndDate($barang_id, $tanggal_awal, $tanggal_akhir)
     {
         if ($barang_id && $tanggal_awal && $tanggal_akhir) {
-            $history = $this->with('pengguna', 'barang')
+            $history = $this->scopeWithHistory()
                 ->where('barang_id', $barang_id)
                 ->where('tanggal_awal_penggunaan', $tanggal_awal)
                 ->where('tanggal_akhir_penggunaan', $tanggal_akhir)->get();
-        }
-        elseif ($barang_id && $tanggal_awal) {
-            $history = $this->with('pengguna', 'barang')
+        } elseif ($barang_id && $tanggal_awal) {
+            $history = $this->scopeWithHistory()
                 ->where('barang_id', $barang_id)
                 ->where('tanggal_awal_penggunaan', $tanggal_awal)->get();
-        }
-        elseif ($barang_id && $tanggal_akhir) {
-            $history = $this->with('pengguna', 'barang')
+        } elseif ($barang_id && $tanggal_akhir) {
+            $history = $this->scopeWithHistory()
                 ->where('barang_id', $barang_id)
                 ->where('tanggal_akhir_penggunaan', $tanggal_akhir)->get();
-        }
-        elseif ($barang_id) {
-            $history = $this->with('pengguna', 'barang')
+        } elseif ($barang_id) {
+            $history = $this->scopeWithHistory()
                 ->where('barang_id', $barang_id)->get();
         }
         return $history;
@@ -84,7 +95,7 @@ class history extends Model
 
     public function putHistory($request, $barang)
     {
-        $historyupdate = history::find($request->id_history);
+        $historyupdate = self::find($request->id_history);
         if ($historyupdate) {
             $historyupdate->tanggal_akhir_penggunaan = date('d-m-Y');
             if ($request->keterangan) {
@@ -97,7 +108,7 @@ class history extends Model
             $historyupdate->update();
         }
 
-        $history = new history;
+        $history = new History;
         $history->pengguna_id = $request->pengguna_id;
         $history->barang_id = $barang->id;
         $history->tanggal_awal_penggunaan = date('d-m-Y');
@@ -109,7 +120,7 @@ class history extends Model
 
     public function updateHistory($request, $barang, $id)
     {
-        $history = history::where('barang_id', $id)->orderBy('id', 'desc')->first();
+        $history = self::where('barang_id', $id)->orderBy('id', 'desc')->first();
         if ($history) {
             $history->tanggal_akhir_penggunaan = date('d-m-Y');
             if ($request->keterangan != "undefined") {
@@ -124,7 +135,7 @@ class history extends Model
             $history->update();
         }
 
-        $history = new history;
+        $history = new History;
         $history->pengguna_id = $request->pengguna_id;
         $history->barang_id = $id;
         $history->tanggal_awal_penggunaan = date('d-m-Y');
@@ -136,7 +147,7 @@ class history extends Model
 
     public function deleteHistory($id)
     {
-        $history = history::find($id);
+        $history = self::find($id);
         $history->delete();
     }
 }

@@ -4,18 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\role_user;
-use App\Models\pengguna;
+use App\Models\RoleUser;
+use App\Models\Pengguna;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use JWTAuth;
 
 class UserController extends Controller
 {
-    public function __construct(User $user, role_user $role_user, pengguna $pengguna)
+    protected $user;
+    protected $RoleUser;
+    protected $pengguna;
+
+    public function __construct(User $user, RoleUser $RoleUser, Pengguna $pengguna)
     {
         $this->user = $user;
-        $this->role_user = $role_user;
+        $this->RoleUser = $RoleUser;
         $this->pengguna = $pengguna;
     }
 
@@ -88,7 +92,7 @@ class UserController extends Controller
                 'data'    => ''
             ], 404);
         }
-        $this->role_user->deleteRoleUserByUserId($id);
+        $this->RoleUser->deleteRoleUserByUserId($id);
 
         $users = $this->user->deleteUser($id);
 
@@ -123,7 +127,8 @@ class UserController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
             $data = $this->user->arrayMerge($user);
-        } if (Auth::guard('etask')->check()) {
+        }
+        if (Auth::guard('etask')->check()) {
             $user = Auth::guard('etask')->user();
             $data = $this->pengguna->arrayMerge($user);
         }

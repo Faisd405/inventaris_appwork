@@ -341,13 +341,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -1045,8 +1038,7 @@ var render = function () {
         _c(
           "div",
           {
-            staticClass:
-              "\n          card\n          text-white\n          pallet-dark\n          col-md-6\n          m-1\n          shadow-lg\n        ",
+            staticClass: "card text-white pallet-dark col-md-6 m-1 shadow-lg",
             staticStyle: { "min-width": "21.5rem", height: "8rem" },
           },
           [

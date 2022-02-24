@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\kategori;
-use App\Models\barang;
+use App\Models\Kategori;
+use App\Models\Barang;
 
 class KategoriController extends Controller
 {
-    public function __construct(kategori $kategori, barang $barang)
+    protected $kategori;
+    protected $barang;
+
+    public function __construct(Kategori $kategori, Barang $barang)
     {
         $this->kategori = $kategori;
         $this->barang = $barang;
@@ -34,7 +37,7 @@ class KategoriController extends Controller
         }
     }
 
-    public function indexnama()
+    public function indexNama()
     {
         $kategori = $this->kategori->pluck('nama_kategori');
         $jumlah = $this->kategori->pluck('jumlah');

@@ -3,9 +3,9 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use App\Models\role_user;
-use App\Models\lokasi;
-use App\Models\pengguna;
+use App\Models\RoleUser;
+use App\Models\Lokasi;
+use App\Models\Pengguna;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,12 +25,12 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('12345678')
         ]);
 
-        role_user::create([
+        RoleUser::create([
             'user_id' => 1,
             'role_id' => 2
         ]);
 
-        pengguna::create([
+        Pengguna::create([
             'name' => '4VM',
             'ktp' => 0,
             'jabatan' => 'Kantor',
@@ -40,11 +40,11 @@ class DatabaseSeeder extends Seeder
             'id_api' => '1',
         ]);
 
-        lokasi::create([
+        Lokasi::create([
             'lokasi' => 'Four Vision Media - Office 1',
         ]);
 
-        lokasi::create([
+        Lokasi::create([
             'lokasi' => 'Four Vision Media - Office 2',
         ]);
 

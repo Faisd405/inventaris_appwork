@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\barang;
-use App\Models\history;
+use App\Models\Barang;
+use App\Models\History;
 use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 
 class HistoryController extends Controller
 {
     //
-    public function __construct(history $history, barang $barang)
+    protected $history;
+    protected $barang;
+
+    public function __construct(History $history, Barang $barang)
     {
         $this->history = $history;
         $this->barang = $barang;
@@ -37,7 +40,7 @@ class HistoryController extends Controller
         ], 200);
     }
 
-    public function HistoryPDFDetail($id)
+    public function historyPDFDetail($id)
     {
         $history = $this->history->getHistoryDetailByBarangId($id);
         $pdf = PDF::loadView('barang.riwayatbarangdetail_pdf', compact('history'));
@@ -46,7 +49,7 @@ class HistoryController extends Controller
     }
 
 
-    public function HistoryPDF()
+    public function historyPDF()
     {
         $history = $this->history->getHistory();
         $pdf = PDF::loadView('barang.riwayatbarang_pdf', compact('history'));
@@ -81,17 +84,30 @@ class HistoryController extends Controller
     }
 
 
-    public function HistoryDetailBarangPDF($barang_id, $tanggal_awal=NULL, $tanggal_akhir=NULL)
+    public function historyDetailBarangPDF($barang_id, $tanggal_awal = NULL, $tanggal_akhir = NULL)
     {
-        $history = $this->history->getHistoryDetailByBarangIdAndDate($barang_id, $tanggal_awal, $tanggal_akhir);
-        $pdf = PDF::loadView('history.riwayatbarangdetail_pdf', compact('history', 'tanggal_awal', 'tanggal_akhir'));
+        $history = $this->history->getHistoryDetailByBarangIdAndDate(
+            $barang_id,
+            $tanggal_awal,
+            $tanggal_akhir
+        );
+
+        $pdf = PDF::loadView(
+            'history.riwayatbarangdetail_pdf',
+            compact('history', 'tanggal_awal', 'tanggal_akhir')
+        );
+
         $name = 'Laporan Riwayat Detail Barang ' . date('d-m-Y') . '.pdf';
         return $pdf->stream($name);
     }
 
-    public function HistoryDetailBarangExcel($barang_id, $tanggal_awal=NULL, $tanggal_akhir=NULL)
+    public function historyDetailBarangExcel($barang_id, $tanggal_awal = NULL, $tanggal_akhir = NULL)
     {
         $name = 'Laporan Riwayat Detail Barang ' . date('d-m-Y') . '.xlsx';
-        return Excel::download(new \App\Exports\RiwayatExport($barang_id, $tanggal_awal, $tanggal_akhir), $name);
+        return Excel::download(new \App\Exports\RiwayatExport(
+            $barang_id,
+            $tanggal_awal,
+            $tanggal_akhir
+        ), $name);
     }
 }
