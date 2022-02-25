@@ -50,9 +50,9 @@ class InventarisController extends Controller
             distinct()->select('tanggal_awal_penggunaan')->
             pluck('tanggal_awal_penggunaan');
         
-            $kategori_barang = $this->kategori->getKategori()->pluck('nama_kategori');
+            $kategoriBarang = $this->kategori->getKategori()->pluck('nama_kategori');
 
-        for ($i = 0; $i < count($kategori_barang); $i++) {
+        for ($i = 0; $i < count($kategoriBarang); $i++) {
             for ($j = 0; $j < count($tanggal); $j++) {
                 $kategori[$i][$j] = $this->history->getHistoryByPenggunaId(1)->
                     where('tanggal_awal_penggunaan', $tanggal[$j])->
@@ -63,7 +63,7 @@ class InventarisController extends Controller
 
         return response()->json([
             'kategori' => $kategori,
-            'kategori_barang' => $kategori_barang,
+            'kategori_barang' => $kategoriBarang,
             'tanggal' => $tanggal,
         ], 200);
     }

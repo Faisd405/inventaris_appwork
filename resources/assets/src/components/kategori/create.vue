@@ -33,7 +33,11 @@
                   v-model="kategori.sifat_id"
                 >
                   <option value="" disabled>Pilih Sifat Kategori</option>
-                  <option v-for="sifat in sifat" :key="sifat.id" :value="sifat.id">
+                  <option
+                    v-for="sifat in sifat"
+                    :key="sifat.id"
+                    :value="sifat.id"
+                  >
                     {{ sifat.sifat_kategori }}
                   </option>
                 </select>
@@ -61,7 +65,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   metaInfo: {
     title: "Create Kategori",
@@ -78,9 +82,9 @@ export default {
     };
   },
   created() {
-      axios.get('/api/sifat').then(response => {
-        this.sifat = response.data.sifat;
-      });
+    axios.get("/api/sifat").then((response) => {
+      this.sifat = response.data.sifat;
+    });
   },
   methods: {
     KategoriStore() {
@@ -93,24 +97,24 @@ export default {
           console.log(error.response.data.errors);
         });
     },
-    checkForm: function(e){
-        this.errors = [];
-        if(this.kategori.nama_kategori == ""){
-            this.errors.push("Nama Kategori tidak boleh kosong");
-        }
-        if(this.kategori.fungsi == ""){
-            this.errors.push("Fungsi tidak boleh kosong");
-        }
-        if(this.kategori.sifat_id == ""){
-            this.errors.push("Sifat tidak boleh kosong");
-        }
+    checkForm: function (e) {
+      this.errors = [];
+      if (this.kategori.nama_kategori == "") {
+        this.errors.push("Nama Kategori tidak boleh kosong");
+      }
+      if (this.kategori.fungsi == "") {
+        this.errors.push("Fungsi tidak boleh kosong");
+      }
+      if (this.kategori.sifat_id == "") {
+        this.errors.push("Sifat tidak boleh kosong");
+      }
       if (this.errors.length > 0) {
         e.preventDefault();
       }
       if (this.errors.length == 0) {
         this.KategoriStore();
       }
-    }
+    },
   },
 };
 </script>

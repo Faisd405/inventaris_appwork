@@ -73,6 +73,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -92,7 +96,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/sifat').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/sifat").then(function (response) {
       _this.sifat = response.data.sifat;
     });
   },

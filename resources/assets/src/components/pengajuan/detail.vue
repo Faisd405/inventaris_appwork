@@ -43,7 +43,11 @@ export default {
   },
   data() {
     return {
-      pengajuan: {},
+      pengajuan: {
+        pengguna: {
+          name: "",
+        },
+      },
     };
   },
   created() {

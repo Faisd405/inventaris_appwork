@@ -19,11 +19,15 @@ class RiwayatExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoS
     use Exportable;
     private $rows = 0;
 
-    public function __construct($barang_id, $tanggal_awal, $tanggal_akhir)
+    protected $barangId;
+    protected $tanggalAwal;
+    protected $tanggalAkhir;
+
+    public function __construct($barangId, $tanggalAwal, $tanggalAkhir)
     {
-        $this->barang_id = $barang_id;
-        $this->tanggal_awal = $tanggal_awal;
-        $this->tanggal_akhir = $tanggal_akhir;
+        $this->barangId = $barangId;
+        $this->tanggalAwal = $tanggalAwal;
+        $this->tanggalAkhir = $tanggalAkhir;
     }
 
     public function query()
@@ -49,22 +53,22 @@ class RiwayatExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoS
         //         ->where('barang_id', $barang_id);
         // }
 
-        if ($this->barang_id && $this->tanggal_awal && $this->tanggal_akhir) {
+        if ($this->barangId && $this->tanggalAwal && $this->tanggalAkhir) {
             return History::query()
-                ->where('barang_id', $this->barang_id)
-                ->where('tanggal_awal_penggunaan', $this->tanggal_awal)
-                ->where('tanggal_akhir_penggunaan', $this->tanggal_akhir);
-        } elseif ($this->barang_id && $this->tanggal_awal) {
+                ->where('barang_id', $this->barangId)
+                ->where('tanggal_awal_penggunaan', $this->tanggalAwal)
+                ->where('tanggal_akhir_penggunaan', $this->tanggalAkhir);
+        } elseif ($this->barangId && $this->tanggalAwal) {
             return History::query()
-                ->where('barang_id', $this->barang_id)
-                ->where('tanggal_awal_penggunaan', $this->tanggal_awal);
-        } elseif ($this->barang_id && $this->tanggal_akhir) {
+                ->where('barang_id', $this->barangId)
+                ->where('tanggal_awal_penggunaan', $this->tanggalAwal);
+        } elseif ($this->barangId && $this->tanggalAkhir) {
             return History::query()
-                ->where('barang_id', $this->barang_id)
-                ->where('tanggal_akhir_penggunaan', $this->tanggal_akhir);
-        } elseif ($this->barang_id) {
+                ->where('barang_id', $this->barangId)
+                ->where('tanggal_akhir_penggunaan', $this->tanggalAkhir);
+        } elseif ($this->barangId) {
             return History::query()
-                ->where('barang_id', $this->barang_id);
+                ->where('barang_id', $this->barangId);
         }
 
     }

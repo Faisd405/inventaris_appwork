@@ -275,7 +275,11 @@ __webpack_require__.r(__webpack_exports__);
       barang: [],
       pengguna: {},
       buku: [],
-      user: "",
+      user: {
+        roles: [{
+          name: ""
+        }]
+      },
       isLoggedIn: false,
       loginType: "",
       currentPage: 1,

@@ -99,13 +99,13 @@ class Pengguna extends Authenticatable implements JWTSubject
         return array_merge($user->toArray(), ['roles' => $user->roles()->get()->toArray()]);
     }
 
-    public function postuser($name, $email, $password, $id_api, $jabatan)
+    public function postuser($name, $email, $password, $idApi, $jabatan)
     {
         $user = $this->create([
             'name' => $name,
             'email' => $email,
             'password' => Hash::make($password),
-            'id_api' => $id_api,
+            'id_api' => $idApi,
             'jabatan' => $jabatan,
             'surat_komitmen' => 'default.pdf',
             'ktp' => 0,

@@ -72,18 +72,18 @@ class BarangExport implements WithColumnFormatting, FromQuery, WithMapping,
         return [
             AfterSheet::class => function(AfterSheet $event){
                 ++$this->rows;
-                $total_harga_barang = $this->rows+1;
-                $total_barang = $this->rows+2;
-                $event->sheet->getDelegate()->setCellValue('A'. $total_harga_barang, 'Total Harga Barang');
-                $event->sheet->getDelegate()->setCellValue('A'. $total_barang, 'Total Barang');
-                $event->sheet->mergeCells('B'. $total_harga_barang.':J'. $total_harga_barang);
-                $event->sheet->mergeCells('B'. $total_barang.':J'. $total_barang);
-                $event->sheet->getDelegate()->setCellValue('B'. $total_harga_barang, '=SUM(F2:F'.$this->rows.')');
-                $event->sheet->getDelegate()->setCellValue('B'. $total_barang, '=COUNT(F2:F'.$this->rows.')');
+                $totalHargaBarang = $this->rows+1;
+                $totalBarang = $this->rows+2;
+                $event->sheet->getDelegate()->setCellValue('A'. $totalHargaBarang, 'Total Harga Barang');
+                $event->sheet->getDelegate()->setCellValue('A'. $totalBarang, 'Total Barang');
+                $event->sheet->mergeCells('B'. $totalHargaBarang.':K'. $totalHargaBarang);
+                $event->sheet->mergeCells('B'. $totalBarang.':K'. $totalBarang);
+                $event->sheet->getDelegate()->setCellValue('B'. $totalHargaBarang, '=SUM(F2:F'.$this->rows.')');
+                $event->sheet->getDelegate()->setCellValue('B'. $totalBarang, '=COUNT(F2:F'.$this->rows.')');
 
                 // format harga_barang dan total barang
-                $event->sheet->getDelegate()->getStyle('B'. $total_harga_barang)->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_CURRENCY_IDR);
-                $event->sheet->getDelegate()->getStyle('B'. $total_barang)->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_NUMBER);
+                $event->sheet->getDelegate()->getStyle('B'. $totalHargaBarang)->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_CURRENCY_IDR);
+                $event->sheet->getDelegate()->getStyle('B'. $totalBarang)->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_NUMBER);
 
 
             },

@@ -125,10 +125,10 @@ const router = new Router({
             component: () => import('@/components/pengguna/edit'),
             meta: {
                 requiresAuth: true,
-                if (isAdmin) {
+                if(isAdmin) {
                     isAdmin: true;
                 },
-                if (isUser) {
+                if(isUser) {
                     isUser: true;
                 }
             }

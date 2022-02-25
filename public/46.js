@@ -71,7 +71,7 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (errors) {
       console.log(errors);
     });
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/sifat').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/sifat").then(function (response) {
       _this.ValidSifat = response.data.sifat;
     });
   },

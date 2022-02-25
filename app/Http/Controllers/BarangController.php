@@ -51,13 +51,13 @@ class BarangController extends Controller
 
     public function indexHarga()
     {
-        $harga_barang = $this->barang->getHarga();
+        $hargaBarang = $this->barang->getHarga();
         $year = $this->barang->getYear();
 
         return response()->json([
             'success' => true,
             'message' => 'barang Berhasil Ditampilkan!',
-            'harga_barang' => $harga_barang,
+            'harga_barang' => $hargaBarang,
             'year'    => $year
         ], 200);
     }
@@ -65,13 +65,13 @@ class BarangController extends Controller
     //total harga barang
     public function totalHarga()
     {
-        $total_harga = $this->barang->getTotalHarga();
+        $totalHarga = $this->barang->getTotalHarga();
         // parse int
-        $total_harga = (int) $total_harga;
+        $totalHarga = (int) $totalHarga;
         return response()->json([
             'success' => true,
             'message' => 'barang Berhasil Ditampilkan!',
-            'total'    => $total_harga
+            'total'    => $totalHarga
         ], 200);
     }
 
@@ -113,9 +113,9 @@ class BarangController extends Controller
     public function relasi(Request $request, $id)
     {
         $barang = $this->barang->getBarangById($id);
-        $pengguna_barang = Barang::find($id);
+        $penggunaBarang = Barang::find($id);
 
-        if ($request->pengguna_id != $pengguna_barang->pengguna_id) {
+        if ($request->pengguna_id != $penggunaBarang->pengguna_id) {
             $this->history->updateHistory($request, $barang, $id);
         }
         $this->barang->putBarang($request, $id);
@@ -149,9 +149,9 @@ class BarangController extends Controller
     public function update(Request $request, $id, BarangServices $barangServices)
     {
         $barang = $this->barang->getBarangById($id);
-        $pengguna_barang = Barang::find($id);
+        $penggunaBarang = Barang::find($id);
 
-        if ($request->pengguna_id != $pengguna_barang->pengguna_id) {
+        if ($request->pengguna_id != $penggunaBarang->pengguna_id) {
             $this->history->updateHistory($request, $barang, $id);
         }
 

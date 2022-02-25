@@ -52,7 +52,7 @@ class HistoryController extends Controller
     public function historyPDF()
     {
         $history = $this->history->getHistory();
-        $pdf = PDF::loadView('barang.riwayatbarang_pdf', compact('history'));
+        $pdf = PDF::loadView('barang.riwayatbarang_pdf', compact('history'))->setPaper('a4', 'landscape');
         $name = 'Laporan Riwayat Barang ' . date('d-m-Y') . '.pdf';
         return $pdf->stream($name);
     }
@@ -84,30 +84,30 @@ class HistoryController extends Controller
     }
 
 
-    public function historyDetailBarangPDF($barang_id, $tanggal_awal = NULL, $tanggal_akhir = NULL)
+    public function historyDetailBarangPDF($barangId, $tanggalAwal = NULL, $tanggalAkhir = NULL)
     {
         $history = $this->history->getHistoryDetailByBarangIdAndDate(
-            $barang_id,
-            $tanggal_awal,
-            $tanggal_akhir
+            $barangId,
+            $tanggalAwal,
+            $tanggalAkhir
         );
 
         $pdf = PDF::loadView(
             'history.riwayatbarangdetail_pdf',
-            compact('history', 'tanggal_awal', 'tanggal_akhir')
-        );
+            compact('history', 'tanggalAwal', 'tanggalAkhir')
+        )->setPaper('a4', 'landscape');
 
         $name = 'Laporan Riwayat Detail Barang ' . date('d-m-Y') . '.pdf';
         return $pdf->stream($name);
     }
 
-    public function historyDetailBarangExcel($barang_id, $tanggal_awal = NULL, $tanggal_akhir = NULL)
+    public function historyDetailBarangExcel($barangId, $tanggalAwal = NULL, $tanggalAkhir = NULL)
     {
         $name = 'Laporan Riwayat Detail Barang ' . date('d-m-Y') . '.xlsx';
         return Excel::download(new \App\Exports\RiwayatExport(
-            $barang_id,
-            $tanggal_awal,
-            $tanggal_akhir
+            $barangId,
+            $tanggalAwal,
+            $tanggalAkhir
         ), $name);
     }
 }

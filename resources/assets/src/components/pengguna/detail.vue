@@ -261,7 +261,13 @@ export default {
       barang: [],
       pengguna: {},
       buku: [],
-      user: "",
+      user: {
+        roles: [
+          {
+            name: "",
+          },
+        ],
+      },
       isLoggedIn: false,
       loginType: "",
       currentPage: 1,

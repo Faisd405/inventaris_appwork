@@ -71,41 +71,41 @@ class History extends Model
         return $this->distinct()->select('tanggal_awal_penggunaan')->get();
     }
 
-    public function getHistoryDetailByBarangIdAndDate($barang_id, $tanggal_awal, $tanggal_akhir)
+    public function getHistoryDetailByBarangIdAndDate($barangId, $tanggalAwal, $tanggalAkhir)
     {
-        if ($barang_id && $tanggal_awal && $tanggal_akhir) {
+        if ($barangId && $tanggalAwal && $tanggalAkhir) {
             $history = $this->WithHistory()
-                ->where('barang_id', $barang_id)
-                ->where('tanggal_awal_penggunaan', $tanggal_awal)
-                ->where('tanggal_akhir_penggunaan', $tanggal_akhir)->get();
-        } elseif ($barang_id && $tanggal_awal) {
+                ->where('barang_id', $barangId)
+                ->where('tanggal_awal_penggunaan', $tanggalAwal)
+                ->where('tanggal_akhir_penggunaan', $tanggalAkhir)->get();
+        } elseif ($barangId && $tanggalAwal) {
             $history = $this->WithHistory()
-                ->where('barang_id', $barang_id)
-                ->where('tanggal_awal_penggunaan', $tanggal_awal)->get();
-        } elseif ($barang_id && $tanggal_akhir) {
+                ->where('barang_id', $barangId)
+                ->where('tanggal_awal_penggunaan', $tanggalAwal)->get();
+        } elseif ($barangId && $tanggalAkhir) {
             $history = $this->WithHistory()
-                ->where('barang_id', $barang_id)
-                ->where('tanggal_akhir_penggunaan', $tanggal_akhir)->get();
-        } elseif ($barang_id) {
+                ->where('barang_id', $barangId)
+                ->where('tanggal_akhir_penggunaan', $tanggalAkhir)->get();
+        } elseif ($barangId) {
             $history = $this->WithHistory()
-                ->where('barang_id', $barang_id)->get();
+                ->where('barang_id', $barangId)->get();
         }
         return $history;
     }
 
     public function putHistory($request, $barang)
     {
-        $historyupdate = self::find($request->id_history);
-        if ($historyupdate) {
-            $historyupdate->tanggal_akhir_penggunaan = date('d-m-Y');
+        $historyUpdate = self::find($request->id_history);
+        if ($historyUpdate) {
+            $historyUpdate->tanggal_akhir_penggunaan = date('d-m-Y');
             if ($request->keterangan) {
-                $historyupdate->keterangan = $request->keterangan;
+                $historyUpdate->keterangan = $request->keterangan;
             }
             if (!$request->keterangan) {
-                $historyupdate->keterangan = "Pengguna " . $barang->nama_barang . " Diganti pada tanggal " . date('d-m-Y');
+                $historyUpdate->keterangan = "Pengguna " . $barang->nama_barang . " Diganti pada tanggal " . date('d-m-Y');
             }
-            $historyupdate->status = "Tidak Digunakan";
-            $historyupdate->update();
+            $historyUpdate->status = "Tidak Digunakan";
+            $historyUpdate->update();
         }
 
         $history = new History;

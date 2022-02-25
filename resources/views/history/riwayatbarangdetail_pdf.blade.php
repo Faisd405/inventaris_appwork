@@ -25,11 +25,11 @@
 <body>
     <h2 class="text-center">Daftar Riwayat Pengguna Barang {{ $history[0]->barang->nama_barang }}</h2>
     <h4 class="text-left">
-        @if ($tanggal_awal)
-            Pada Tanggal {{ $tanggal_awal }}
+        @if ($tanggalAwal)
+            Pada Tanggal {{ $tanggalAwal }}
         @endif
-        @if ($tanggal_akhir)
-            Hingga {{ $tanggal_akhir }}
+        @if ($tanggalAkhir)
+            Hingga {{ $tanggalAkhir }}
         @endif
     </h4>
     <table class='table table-bordered '>

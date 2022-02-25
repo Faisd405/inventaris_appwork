@@ -48,7 +48,7 @@ export default {
   data() {
     return {
       lokasi: {},
-        errors: [],
+      errors: [],
     };
   },
   created() {
@@ -63,18 +63,18 @@ export default {
         this.$router.push("/lokasi");
       });
     },
-    checkForm: function(e){
-        this.errors = [];
-        if(this.lokasi.lokasi == ""){
-            this.errors.push("Nama lokasi tidak boleh kosong");
-        }
+    checkForm: function (e) {
+      this.errors = [];
+      if (this.lokasi.lokasi == "") {
+        this.errors.push("Nama lokasi tidak boleh kosong");
+      }
       if (this.errors.length > 0) {
         e.preventDefault();
       }
       if (this.errors.length == 0) {
         this.LokasiUpdate();
       }
-    }
+    },
   },
 };
 </script>

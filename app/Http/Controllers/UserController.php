@@ -13,13 +13,13 @@ use JWTAuth;
 class UserController extends Controller
 {
     protected $user;
-    protected $RoleUser;
+    protected $roleUser;
     protected $pengguna;
 
-    public function __construct(User $user, RoleUser $RoleUser, Pengguna $pengguna)
+    public function __construct(User $user, RoleUser $roleUser, Pengguna $pengguna)
     {
         $this->user = $user;
-        $this->RoleUser = $RoleUser;
+        $this->roleUser = $roleUser;
         $this->pengguna = $pengguna;
     }
 
@@ -92,7 +92,7 @@ class UserController extends Controller
                 'data'    => ''
             ], 404);
         }
-        $this->RoleUser->deleteRoleUserByUserId($id);
+        $this->roleUser->deleteRoleUserByUserId($id);
 
         $users = $this->user->deleteUser($id);
 

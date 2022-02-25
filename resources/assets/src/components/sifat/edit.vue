@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
   metaInfo: {
     title: "Edit Sifat",
@@ -47,34 +47,35 @@ export default {
   data() {
     return {
       sifat: {},
-        errors: [],
-        ValidSifat: [],
+      errors: [],
+      ValidSifat: [],
     };
   },
   created() {
-      axios.get(`/api/sifat/${this.$route.params.id}`)
+    axios
+      .get(`/api/sifat/${this.$route.params.id}`)
       .then((response) => {
         this.sifat = response.data.sifat;
       })
       .catch((errors) => {
         console.log(errors);
       });
-      axios.get('/api/sifat').then((response) => {
-        this.ValidSifat = response.data.sifat;
-      });
+    axios.get("/api/sifat").then((response) => {
+      this.ValidSifat = response.data.sifat;
+    });
   },
   methods: {
     SifatUpdate() {
       let uri = "/api/sifat/" + this.$route.params.id;
       axios.put(uri, this.sifat).then((response) => {
         this.$router.push("/sifat");
-        });
+      });
     },
-    checkForm: function(e){
-        this.errors = [];
-        if(this.sifat.sifat_kategori == ""){
-            this.errors.push("Sifat Barang harus diisi");
-        }
+    checkForm: function (e) {
+      this.errors = [];
+      if (this.sifat.sifat_kategori == "") {
+        this.errors.push("Sifat Barang harus diisi");
+      }
       if (this.ValidSifat.length > 0) {
         for (let i = 0; i < this.ValidSifat.length; i++) {
           if (this.ValidSifat[i].sifat_kategori == this.sifat.sifat_kategori) {
@@ -88,7 +89,7 @@ export default {
       if (this.errors.length == 0) {
         this.SifatUpdate();
       }
-    }
+    },
   },
 };
 </script>

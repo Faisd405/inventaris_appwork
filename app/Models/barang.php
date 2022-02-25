@@ -125,10 +125,10 @@ class Barang extends Model
 
     public function getHarga()
     {
-        $harga_barang = self::selectRaw('sum(harga_barang) as total, year(year) as year')
+        $hargaBarang = self::selectRaw('sum(harga_barang) as total, year(year) as year')
             ->groupBy('year')->pluck('total');
 
-        return $harga_barang;
+        return $hargaBarang;
     }
 
     public function getYear()

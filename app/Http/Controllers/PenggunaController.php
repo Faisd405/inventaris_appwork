@@ -146,11 +146,11 @@ class PenggunaController extends Controller
     {
         $pengguna = $this->pengguna->getPenggunaById($id);
         $barang = $this->barang->getBarangbyPengguna($id);
-        $kode_lampiran = $request->kode_lampiran;
+        $kodeLampiran = $request->kode_lampiran;
 
         $pdf = \PDF::loadView(
             'pengguna.surat_komitmen',
-            compact('pengguna', 'barang', 'kode_lampiran')
+            compact('pengguna', 'barang', 'kodeLampiran')
         )->setPaper('a4', 'potrait');
         return $pdf->stream('surat_komitmen.pdf');
     }
@@ -179,7 +179,7 @@ class PenggunaController extends Controller
         $name = $request->name;
         $email = $request->email;
         $password = $request->password;
-        $id_api = $request->id_api;
+        $idApi = $request->id_api;
         $credentials = $this->credentials($request);
         $success = $request->success;
         $jabatan = $request->jabatan;
@@ -213,7 +213,7 @@ class PenggunaController extends Controller
                     ], 200);
                 }
             } else {
-                $createUser = $this->pengguna->postuser($name, $email, $password, $id_api, $jabatan);
+                $createUser = $this->pengguna->postuser($name, $email, $password, $idApi, $jabatan);
                 $createUser->roles()->attach(1);
 
                 return response()->json(['message' => 'Registrasi Telah Berhasil, Silahkan Submit Kembali'], 201);
