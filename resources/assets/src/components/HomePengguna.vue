@@ -21,7 +21,7 @@
                 class="rounded m-1"
                 style="width: 80px"
               />
-              <table class="center">
+              <table class="align-center">
                 <tr>
                   <td>Name</td>
                   <td>:</td>
@@ -95,16 +95,16 @@
       <div class="d-flex flex-column bd-highlight mb-3 mx-1 mt-3">
         <div
           class="card text-white pallet-dark m-1 shadow-lg"
-          style="min-width: 70rem"
+          style="min-width: 70rem; height: 75px"
         >
           <div class="card-body align-justify d-flex justify-content-between">
             <span
               class="card-title text-white"
-              style="font-size: 26px; font-weight: bolder"
+              style="font-size: 20px; font-weight: bolder"
             >
               Pengajuan barang Terkirim
             </span>
-            <span style="font-size: 26px; font-weight: bolder">
+            <span style="font-size: 20px; font-weight: bolder">
               <router-link
                 class="card-title text-white"
                 :to="{ name: 'index-pengajuan', params: { id: user.id } }"

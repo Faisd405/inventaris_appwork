@@ -121,6 +121,7 @@
     "dependencies": {
         "@popperjs/core": "^2.11.0",
         "@vue/composition-api": "^1.4.4",
+        "bootstrap-icons": "^1.8.1",
         "vuejs-smart-table": "0.0.8"
     }
 }

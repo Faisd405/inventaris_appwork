@@ -412,7 +412,7 @@ var render = function () {
                       })
                     : _vm._e(),
                   _vm._v(" "),
-                  _c("table", { staticClass: "center" }, [
+                  _c("table", { staticClass: "align-center" }, [
                     _c("tr", [
                       _c("td", [_vm._v("Name")]),
                       _vm._v(" "),
@@ -568,7 +568,7 @@ var render = function () {
             "div",
             {
               staticClass: "card text-white pallet-dark m-1 shadow-lg",
-              staticStyle: { "min-width": "70rem" },
+              staticStyle: { "min-width": "70rem", height: "75px" },
             },
             [
               _c(
@@ -583,7 +583,7 @@ var render = function () {
                     {
                       staticClass: "card-title text-white",
                       staticStyle: {
-                        "font-size": "26px",
+                        "font-size": "20px",
                         "font-weight": "bolder",
                       },
                     },
@@ -598,7 +598,7 @@ var render = function () {
                     "span",
                     {
                       staticStyle: {
-                        "font-size": "26px",
+                        "font-size": "20px",
                         "font-weight": "bolder",
                       },
                     },

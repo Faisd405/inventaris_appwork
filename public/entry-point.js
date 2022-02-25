@@ -1962,6 +1962,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap-vue */ "./node_modules/bootstrap-vue/es/index.js");
+/* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__);
 var _name$data$props$meth;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2037,6 +2039,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = (_name$data$props$meth = {
   name: "app-layout-navbar",
@@ -36187,18 +36194,27 @@ var render = function () {
                   [
                     _c(
                       "div",
-                      { staticClass: "navbar-nav ml-auto" },
+                      {
+                        staticClass:
+                          "navbar-nav ml-auto align-items-lg-center mr-lg-4",
+                      },
                       [
                         _c("b-nav-item", { attrs: { to: {} } }, [
-                          _vm._v(
-                            _vm._s(_vm.user.name) +
-                              ", Seorang " +
-                              _vm._s(_vm.user.roles[0].name)
-                          ),
+                          _vm._v(_vm._s(_vm.user.name)),
+                        ]),
+                        _vm._v(" "),
+                        _c("b-nav-item", [
+                          _c("i", {
+                            staticClass:
+                              "ion ion-ios-notifications align-center",
+                          }),
                         ]),
                         _vm._v(" "),
                         _c("b-nav-item", { on: { click: _vm.logout } }, [
-                          _vm._v("Logout"),
+                          _vm._v("\n            Logout"),
+                          _c("i", {
+                            staticClass: "ion ion-md-exit align-center ml-2",
+                          }),
                         ]),
                       ],
                       1

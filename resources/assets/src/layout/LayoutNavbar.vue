@@ -45,11 +45,15 @@
     <template v-if="isLoggedIn">
       <b-collapse is-nav id="app-layout-navbar">
         <b-navbar-nav class="align-items-lg-center collapse navbar-collapse">
-          <div class="navbar-nav ml-auto">
-            <b-nav-item :to="{}"
-              >{{ user.name }}, Seorang {{ user.roles[0].name }}</b-nav-item
+          <div class="navbar-nav ml-auto align-items-lg-center mr-lg-4">
+            <b-nav-item :to="{}">{{ user.name }}</b-nav-item>
+            <b-nav-item>
+              <i class="ion ion-ios-notifications align-center"></i
+            ></b-nav-item>
+            <b-nav-item @click="logout">
+              Logout<i class="ion ion-md-exit align-center ml-2"></i
+              ></b-nav-item
             >
-            <b-nav-item @click="logout">Logout</b-nav-item>
           </div>
         </b-navbar-nav>
       </b-collapse></template
@@ -71,6 +75,8 @@
 
 <script>
 import Axios from "axios";
+import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
+
 export default {
   name: "app-layout-navbar",
   data() {
