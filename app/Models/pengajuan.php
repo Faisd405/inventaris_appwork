@@ -26,19 +26,19 @@ class Pengajuan extends Model
     }
 
     //scopeWithPengajuan
-    public function scopeWithPengajuan()
+    public function scopeWithPengajuan($query)
     {
-        return $this->with('pengguna');
+        return $query->with('pengguna');
     }
 
     public function getPengajuan()
     {
-        return self::scopeWithPengajuan()->get();
+        return self::WithPengajuan()->get();
     }
 
     public function getPengajuanById($id)
     {
-        return self::scopeWithPengajuan()->find($id);
+        return self::WithPengajuan()->find($id);
     }
 
     public function postPengajuan($request, $imageName)

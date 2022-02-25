@@ -41,29 +41,29 @@ class History extends Model
     }
 
     //scopeWithHistory
-    public function scopeWithHistory()
+    public function scopeWithHistory($query)
     {
-        return $this->with('barang', 'pengguna');
+        return $query->with('barang', 'pengguna');
     }
 
     public function getHistory()
     {
-        return $this->scopeWithHistory()->get();
+        return $this->WithHistory()->get();
     }
 
     public function getHistoryById($id)
     {
-        return $this->scopeWithHistory()->find($id);
+        return $this->WithHistory()->find($id);
     }
 
     public function getHistoryByPenggunaId($id)
     {
-        return $this->scopeWithHistory()->where('pengguna_id', $id)->get();
+        return $this->WithHistory()->where('pengguna_id', $id)->get();
     }
 
     public function getHistoryDetailByBarangId($id)
     {
-        return $this->scopeWithHistory()->where('barang_id', $id)->get();
+        return $this->WithHistory()->where('barang_id', $id)->get();
     }
 
     public function getTanggalAwalUnique()
@@ -74,20 +74,20 @@ class History extends Model
     public function getHistoryDetailByBarangIdAndDate($barang_id, $tanggal_awal, $tanggal_akhir)
     {
         if ($barang_id && $tanggal_awal && $tanggal_akhir) {
-            $history = $this->scopeWithHistory()
+            $history = $this->WithHistory()
                 ->where('barang_id', $barang_id)
                 ->where('tanggal_awal_penggunaan', $tanggal_awal)
                 ->where('tanggal_akhir_penggunaan', $tanggal_akhir)->get();
         } elseif ($barang_id && $tanggal_awal) {
-            $history = $this->scopeWithHistory()
+            $history = $this->WithHistory()
                 ->where('barang_id', $barang_id)
                 ->where('tanggal_awal_penggunaan', $tanggal_awal)->get();
         } elseif ($barang_id && $tanggal_akhir) {
-            $history = $this->scopeWithHistory()
+            $history = $this->WithHistory()
                 ->where('barang_id', $barang_id)
                 ->where('tanggal_akhir_penggunaan', $tanggal_akhir)->get();
         } elseif ($barang_id) {
-            $history = $this->scopeWithHistory()
+            $history = $this->WithHistory()
                 ->where('barang_id', $barang_id)->get();
         }
         return $history;

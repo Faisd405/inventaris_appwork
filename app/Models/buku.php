@@ -35,31 +35,31 @@ class Buku extends Model
         return $this->hasOne('App\Models\pengguna', 'id', 'pengguna_id');
     }
 
-    public function scopeWithBuku()
+    public function scopeWithBuku($query)
     {
-        return $this->with('lokasi', 'jenis', 'pengguna');
+        return $query->with('lokasi', 'jenis', 'pengguna');
     }
 
     public function getBuku()
     {
-        $buku = self::scopeWithBuku()->get();
+        $buku = self::WithBuku()->get();
         return $buku;
     }
 
     public function getBukuById($id)
     {
-        $buku = self::scopeWithBuku()->find($id);
+        $buku = self::WithBuku()->find($id);
         return $buku;
     }
 
     public function getBukuByPengguna($id)
     {
-        return self::where('pengguna_id', $id)->scopeWithBuku()->get();
+        return self::where('pengguna_id', $id)->WithBuku()->get();
     }
 
     public function getBukuByLokasiId($id)
     {
-        return self::scopeWithBuku()->where('lokasi_id', $id)->get();
+        return self::WithBuku()->where('lokasi_id', $id)->get();
     }
 
     public function postBuku($request)
@@ -106,6 +106,6 @@ class Buku extends Model
 
     public function getBukuByJenisId($id)
     {
-        return self::scopeWithBuku()->where('jenis_id', $id)->get();
+        return self::WithBuku()->where('jenis_id', $id)->get();
     }
 }

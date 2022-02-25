@@ -11,18 +11,29 @@
             </b-badge>
           </span>
           <div class="align-items-center">
-            <table>
-              <tr>
-                <td>Name</td>
-                <td>:</td>
-                <td>{{ user.name }}</td>
-              </tr>
-              <tr>
-                <td>Email</td>
-                <td>:</td>
-                <td>{{ user.email }}</td>
-              </tr>
-            </table>
+            <div class="d-flex justify-content-between">
+              <img
+                v-if="users.has_dokumen.foto_pegawai"
+                :src="
+                  'https://laporan.4visionmedia.com/dokumen/foto_pegawai/' +
+                  users.has_dokumen.foto_pegawai
+                "
+                class="rounded m-1"
+                style="width: 80px"
+              />
+              <table class="center">
+                <tr>
+                  <td>Name</td>
+                  <td>:</td>
+                  <td>{{ user.name }}</td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td>:</td>
+                  <td>{{ user.email }}</td>
+                </tr>
+              </table>
+            </div>
             <br />
             <div>
               <button
@@ -232,6 +243,11 @@ export default {
       buku: [],
       pengajuan: [],
       user: "",
+      users: {
+        has_dokumen: {
+          foto_pegawai: "",
+        }
+      },
       loginType: "",
       currentPage: 1,
       totalPages: 0,
@@ -298,6 +314,16 @@ export default {
             });
         });
     },
+  },
+
+  created() {
+    axios
+      .get("https://laporan.4visionmedia.com/api/user", {
+        headers: { Authorization: localStorage.getItem("token_api") },
+      })
+      .then((response) => {
+        this.users = response.data;
+      });
   },
 };
 

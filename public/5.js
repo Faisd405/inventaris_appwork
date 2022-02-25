@@ -225,6 +225,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -249,6 +260,11 @@ __webpack_require__.r(__webpack_exports__);
       buku: [],
       pengajuan: [],
       user: "",
+      users: {
+        has_dokumen: {
+          foto_pegawai: ""
+        }
+      },
       loginType: "",
       currentPage: 1,
       totalPages: 0,
@@ -310,6 +326,17 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     }
+  },
+  created: function created() {
+    var _this3 = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://laporan.4visionmedia.com/api/user", {
+      headers: {
+        Authorization: localStorage.getItem("token_api")
+      }
+    }).then(function (response) {
+      _this3.users = response.data;
+    });
   }
 });
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.filter("toCurrency", function (value) {
@@ -372,21 +399,35 @@ var render = function () {
               ),
               _vm._v(" "),
               _c("div", { staticClass: "align-items-center" }, [
-                _c("table", [
-                  _c("tr", [
-                    _c("td", [_vm._v("Name")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(":")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.user.name))]),
-                  ]),
+                _c("div", { staticClass: "d-flex justify-content-between" }, [
+                  _vm.users.has_dokumen.foto_pegawai
+                    ? _c("img", {
+                        staticClass: "rounded m-1",
+                        staticStyle: { width: "80px" },
+                        attrs: {
+                          src:
+                            "https://laporan.4visionmedia.com/dokumen/foto_pegawai/" +
+                            _vm.users.has_dokumen.foto_pegawai,
+                        },
+                      })
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c("tr", [
-                    _c("td", [_vm._v("Email")]),
+                  _c("table", { staticClass: "center" }, [
+                    _c("tr", [
+                      _c("td", [_vm._v("Name")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(":")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.user.name))]),
+                    ]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(":")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.user.email))]),
+                    _c("tr", [
+                      _c("td", [_vm._v("Email")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(":")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.user.email))]),
+                    ]),
                   ]),
                 ]),
                 _vm._v(" "),

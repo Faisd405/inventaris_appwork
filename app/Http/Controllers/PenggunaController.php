@@ -9,6 +9,7 @@ use App\Models\Buku;
 use App\Http\Requests\PenggunaRequest;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use App\Services\PenggunaServices;
 use Auth;
 use JWTAuth;
 
@@ -59,11 +60,11 @@ class PenggunaController extends Controller
         ], 200);
     }
 
-    public function updateLampiran(Request $request, $id)
+    public function updateLampiran(Request $request, $id, PenggunaServices $penggunaServices)
     {
         $pengguna = $this->pengguna->find($id);
 
-        $filename = $this->updateLampiranPDF($request, $pengguna);
+        $filename = $penggunaServices->updateLampiranPDF($request, $pengguna);
 
         $pengguna->surat_komitmen = $filename;
         $pengguna->save();
@@ -72,20 +73,6 @@ class PenggunaController extends Controller
             'message' => 'Lampiran berhasil diupdate',
             'pengguna' => $pengguna,
         ], 200);
-    }
-
-    public function updateLampiranPDF($request, $pengguna)
-    {
-        if ($request->hasFile('surat_komitmen')) {
-            $file = $request->file('surat_komitmen');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('/surat_komitmen'), $filename);
-
-            if ($pengguna->surat_komitmen != "default.pdf" || $pengguna->surat_komitmen != null) {
-                File::delete('surat_komitmen/' . $pengguna->surat_komitmen);
-            }
-        }
-        return $filename;
     }
 
     // show json

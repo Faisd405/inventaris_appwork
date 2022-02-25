@@ -15,20 +15,20 @@ class Jenis extends Model
         return $this->hasMany('App\Models\buku', 'jenis_id', 'id');
     }
 
-    public function scopeWithJenis()
+    public function scopeWithJenis($query)
     {
-        return $this->with('buku');
+        return $query->with('buku');
     }
 
     public function getJenis()
     {
-        $jenis = self::scopeWithJenis()->get();
+        $jenis = self::WithJenis()->get();
         return $jenis;
     }
 
     public function getJenisById($id)
     {
-        $jenis = self::scopeWithJenis()->find($id);
+        $jenis = self::WithJenis()->find($id);
         return $jenis;
     }
 

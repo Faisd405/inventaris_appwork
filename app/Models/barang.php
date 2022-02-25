@@ -43,45 +43,45 @@ class Barang extends Model
         return $this->belongsTo('App\Models\history', 'barang_id', 'id');
     }
 
-    public function scopeWithBarang()
+    public function scopeWithBarang($query)
     {
-        return $this->with('pengguna', 'kategori', 'lokasi');
+        return $query->with('kategori', 'pengguna', 'lokasi');
     }
 
     public function getBarang()
     {
-        return $this->scopeWithBarang()->get();
+        return self::WithBarang()->get();
     }
 
     public function getBarangByNoPengguna($id)
     {
-        return self::where('pengguna_id', '!=', $id)->with('pengguna', 'kategori', 'lokasi')->get();
+        return self::where('pengguna_id', '!=', $id)->WithBarang()->get();
     }
 
     public function getBarangByKategoriId($id)
     {
-        return $this->scopeWithBarang()->where('kategori_id', $id)->get();
+        return self::WithBarang()->where('kategori_id', $id)->get();
     }
 
     public function getBarangbyPengguna($id)
     {
-        return self::where('pengguna_id', $id)->scopeWithBarang()->get();
+        return self::where('pengguna_id', $id)->WithBarang()->get();
     }
 
     public function getBarangByLokasiId($id)
     {
-        return $this->scopeWithBarang()->where('lokasi_id', $id)->get();
+        return self::WithBarang()->where('lokasi_id', $id)->get();
     }
 
     public function getBarangById($id)
     {
-        return $this->scopeWithBarang()->find($id);
+        return self::WithBarang()->find($id);
     }
 
     public function postBarang($request, $imageName, $lampiranName)
     {
         //mass asignment
-        $barang = $this->create([
+        $barang = self::create([
             'nama_barang' => $request->nama_barang,
             'kode_barang' => $request->kode_barang,
             'detail_barang' => $request->detail_barang,
@@ -158,7 +158,7 @@ class Barang extends Model
     //Length Barang
     public function getLengthBarang()
     {
-        $barang = Barang::count();
+        $barang = self::count();
 
         return $barang;
     }
@@ -166,13 +166,13 @@ class Barang extends Model
     //Length Barang By Pengguna
     public function getLengthBarangByPengguna($id)
     {
-        $barang = Barang::where('pengguna_id', $id)->count();
+        $barang = self::where('pengguna_id', $id)->count();
 
         return $barang;
     }
 
     public function getBarangByPenggunaId($id)
     {
-        return $this->scopeWithBarang()->where('pengguna_id', $id)->get();
+        return self::WithBarang()->where('pengguna_id', $id)->get();
     }
 }

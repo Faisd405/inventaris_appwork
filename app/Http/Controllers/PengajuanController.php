@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pengajuan;
 use Illuminate\Support\Facades\File;
+use App\Services\PengajuanServices;
 
 class PengajuanController extends Controller
 {
@@ -28,9 +29,9 @@ class PengajuanController extends Controller
         ], 200);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, PengajuanServices $pengajuanServices)
     {
-        $imageName = $this->image($request);
+        $imageName = $pengajuanServices->image($request);
         return response()->json([
             'pengajuan' => $this->pengajuan->postPengajuan($request, $imageName),
         ], 200);
@@ -57,21 +58,6 @@ class PengajuanController extends Controller
         return response()->json([
             'pengajuan' => $this->pengajuan->getPengajuanBypenggunaId($id),
         ], 200);
-    }
-
-
-    public function image($request)
-    {
-        if ($request->hasFile('image')) {
-            $request->validate([
-                'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:6048',
-            ]);
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('pengajuan'), $imageName);
-        } else {
-            $imageName = "default.jpg";
-        }
-        return $imageName;
     }
 
     public function deleteImage($image)
