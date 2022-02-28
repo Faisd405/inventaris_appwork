@@ -20,9 +20,9 @@ class Pengajuan extends Model
         'image'
     ];
 
-    public function pengguna()
+    public function Pengguna()
     {
-        return $this->belongsTo('App\Models\pengguna');
+        return $this->belongsTo('App\Models\Pengguna');
     }
 
     //scopeWithPengajuan

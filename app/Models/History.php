@@ -18,14 +18,14 @@ class History extends Model
         'status'
     ];
 
-    public function barang()
+    public function Barang()
     {
         return $this->belongsTo('App\Models\Barang', 'barang_id');
     }
 
-    public function pengguna()
+    public function Pengguna()
     {
-        return $this->belongsTo('App\Models\pengguna', 'pengguna_id');
+        return $this->belongsTo('App\Models\Pengguna', 'pengguna_id');
     }
 
     public function barangHistory($barang)

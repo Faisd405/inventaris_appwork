@@ -20,14 +20,14 @@ class Pengguna extends Authenticatable implements JWTSubject
         'name', 'ktp', 'jabatan', 'surat_komitmen', 'email', 'password', 'id_api'
     ];
 
-    public function barang()
+    public function Barang()
     {
         return $this->belongsTo('App\Models\Barang');
     }
 
-    public function buku()
+    public function Buku()
     {
-        return $this->belongsTo('App\Models\buku');
+        return $this->belongsTo('App\Models\Buku');
     }
 
     public function roles()

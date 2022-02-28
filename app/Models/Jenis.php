@@ -10,9 +10,9 @@ class Jenis extends Model
     protected $table = 'jenis';
     protected $fillable = ['jenis_buku', 'jumlah'];
 
-    public function buku()
+    public function Buku()
     {
-        return $this->hasMany('App\Models\buku', 'jenis_id', 'id');
+        return $this->hasMany('App\Models\Buku', 'jenis_id', 'id');
     }
 
     public function scopeWithJenis($query)

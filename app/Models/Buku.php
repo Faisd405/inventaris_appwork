@@ -20,19 +20,19 @@ class Buku extends Model
         'harga'
     ];
 
-    public function lokasi()
+    public function Lokasi()
     {
-        return $this->hasOne('App\Models\lokasi', 'id', 'lokasi_id');
+        return $this->hasOne('App\Models\Lokasi', 'id', 'lokasi_id');
     }
 
-    public function jenis()
+    public function Jenis()
     {
-        return $this->hasOne('App\Models\jenis', 'id', 'jenis_id');
+        return $this->hasOne('App\Models\Jenis', 'id', 'jenis_id');
     }
 
-    public function pengguna()
+    public function Pengguna()
     {
-        return $this->hasOne('App\Models\pengguna', 'id', 'pengguna_id');
+        return $this->hasOne('App\Models\Pengguna', 'id', 'pengguna_id');
     }
 
     public function scopeWithBuku($query)

@@ -13,9 +13,9 @@ class Kategori extends Model
     ];
 
 
-    public function sifat()
+    public function Sifat()
     {
-        return $this->hasone('App\Models\sifat', 'id', 'sifat_id');
+        return $this->hasone('App\Models\Sifat', 'id', 'sifat_id');
     }
 
     public function barang()

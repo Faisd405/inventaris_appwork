@@ -23,19 +23,19 @@ class Barang extends Model
         'lampiran'
     ];
 
-    public function kategori()
+    public function Kategori()
     {
-        return $this->hasOne('App\Models\kategori', 'id', 'kategori_id');
+        return $this->hasOne('App\Models\Kategori', 'id', 'kategori_id');
     }
 
-    public function pengguna()
+    public function Pengguna()
     {
-        return $this->hasOne('App\Models\pengguna', 'id', 'pengguna_id');
+        return $this->hasOne('App\Models\Pengguna', 'id', 'pengguna_id');
     }
 
-    public function lokasi()
+    public function Lokasi()
     {
-        return $this->hasOne('App\Models\lokasi', 'id', 'lokasi_id');
+        return $this->hasOne('App\Models\Lokasi', 'id', 'lokasi_id');
     }
 
     public function history()

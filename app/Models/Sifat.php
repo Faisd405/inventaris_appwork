@@ -10,9 +10,9 @@ class Sifat extends Model
 
     protected $fillable = ['sifat_kategori'];
 
-    public function kategori()
+    public function Kategori()
     {
-        return $this->belongsTo('App\Models\kategori');
+        return $this->belongsTo('App\Models\Kategori');
     }
 
     public function getSifat()
