@@ -43,7 +43,7 @@ class History extends Model
     //scopeWithHistory
     public function scopeWithHistory($query)
     {
-        return $query->with('barang', 'pengguna');
+        return $query->with('Barang', 'Pengguna');
     }
 
     public function getHistory()

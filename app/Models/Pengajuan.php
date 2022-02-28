@@ -28,7 +28,7 @@ class Pengajuan extends Model
     //scopeWithPengajuan
     public function scopeWithPengajuan($query)
     {
-        return $query->with('pengguna');
+        return $query->with('Pengguna');
     }
 
     public function getPengajuan()

@@ -17,7 +17,7 @@ class Jenis extends Model
 
     public function scopeWithJenis($query)
     {
-        return $query->with('buku');
+        return $query->with('Buku');
     }
 
     public function getJenis()

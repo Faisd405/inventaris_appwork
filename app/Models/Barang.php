@@ -45,7 +45,7 @@ class Barang extends Model
 
     public function scopeWithBarang($query)
     {
-        return $query->with('kategori', 'pengguna', 'lokasi');
+        return $query->with('Kategori', 'Pengguna', 'Lokasi');
     }
 
     public function getBarang()

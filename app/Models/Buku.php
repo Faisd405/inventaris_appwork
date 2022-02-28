@@ -37,7 +37,7 @@ class Buku extends Model
 
     public function scopeWithBuku($query)
     {
-        return $query->with('lokasi', 'jenis', 'pengguna');
+        return $query->with('Lokasi', 'Jenis', 'Pengguna');
     }
 
     public function getBuku()
