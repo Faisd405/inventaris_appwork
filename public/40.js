@@ -92,7 +92,9 @@ __webpack_require__.r(__webpack_exports__);
       pengguna: {
         name: "",
         ktp: null,
-        jabatan: ""
+        jabatan: "",
+        password: "0",
+        id_api: "0"
       },
       errors: []
     };

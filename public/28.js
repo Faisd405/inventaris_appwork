@@ -311,7 +311,7 @@ var render = function () {
                     ],
                     staticClass: "form-control",
                     attrs: {
-                      type: "text",
+                      type: "number",
                       placeholder: "Masukan Jumlah Barang",
                     },
                     domProps: { value: _vm.kategori.jumlah },

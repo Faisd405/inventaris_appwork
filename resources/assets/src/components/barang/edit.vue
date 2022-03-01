@@ -72,7 +72,7 @@
               <div class="form-group">
                 <label for="harga_barang">Harga Barang</label>
                 <input
-                  type="text"
+                  type="number"
                   name="harga_barang"
                   class="form-control"
                   v-model="barang.harga_barang"

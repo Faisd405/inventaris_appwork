@@ -81,7 +81,7 @@
               <div class="form-group">
                 <label for="year">Tahun</label>
                 <input
-                  type="year"
+                  type="number"
                   name="year"
                   class="form-control"
                   v-model="barang.year"

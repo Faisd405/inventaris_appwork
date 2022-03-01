@@ -45,7 +45,7 @@
               <div class="form-group">
                 <label>Jumlah</label>
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
                   v-model="kategori.jumlah"
                   placeholder="Masukan Jumlah Barang"

@@ -81,6 +81,8 @@ export default {
         name: "",
         ktp: null,
         jabatan: "",
+        password: "0",
+        id_api: "0",
       },
       errors: [],
     };

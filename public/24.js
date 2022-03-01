@@ -183,7 +183,7 @@ var render = function () {
                       },
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "text", placeholder: "Masukan Jumlah" },
+                    attrs: { type: "number", placeholder: "Masukan Jumlah" },
                     domProps: { value: _vm.jenis.jumlah },
                     on: {
                       input: function ($event) {

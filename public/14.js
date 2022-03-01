@@ -677,7 +677,7 @@ var render = function () {
                     ],
                     staticClass: "form-control",
                     attrs: {
-                      type: "text",
+                      type: "number",
                       name: "harga_barang",
                       placeholder: "Masukan Harga Barang",
                     },

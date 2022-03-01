@@ -658,7 +658,7 @@ var render = function () {
                     ],
                     staticClass: "form-control",
                     attrs: {
-                      type: "year",
+                      type: "number",
                       name: "year",
                       placeholder: "Masukan Tahun",
                     },
