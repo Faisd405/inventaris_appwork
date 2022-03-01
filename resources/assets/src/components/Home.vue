@@ -258,16 +258,14 @@
         </div>
       </div>
       <div class="d-flex flex-row bd-highlight mb-3 mx-1">
-        <div class="table-responsive mt-2">
+        <div class="mt-2">
           <div class="card card-default">
             <div class="card-header">Daftar Pengguna</div>
             <div class="card-body">
               <v-table
                 :data="pengguna"
-                class="table table-striped table-bordered"
-                :currentPage.sync="currentPage2"
-                :pageSize="5"
-                @totalPagesChanged="totalPages2 = $event"
+                class="table table-striped table-bordered table-responsive"
+                 style="max-height: 500px"
               >
                 <thead slot="head">
                   <tr>
@@ -310,10 +308,6 @@
                   </tr>
                 </tbody>
               </v-table>
-              <smart-pagination
-                :currentPage.sync="currentPage2"
-                :totalPages="totalPages2"
-              />
             </div>
           </div>
         </div>
@@ -359,8 +353,6 @@ export default {
       totalPages: 0,
       currentPage1: 1,
       totalPages1: 0,
-      currentPage2: 1,
-      totalPages2: 0,
       updateUser: {},
     };
   },

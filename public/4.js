@@ -335,12 +335,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -376,8 +370,6 @@ __webpack_require__.r(__webpack_exports__);
       totalPages: 0,
       currentPage1: 1,
       totalPages1: 0,
-      currentPage2: 1,
-      totalPages2: 0,
       updateUser: {}
     };
   },
@@ -1117,7 +1109,7 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "d-flex flex-row bd-highlight mb-3 mx-1" }, [
-        _c("div", { staticClass: "table-responsive mt-2" }, [
+        _c("div", { staticClass: "mt-2" }, [
           _c("div", { staticClass: "card card-default" }, [
             _c("div", { staticClass: "card-header" }, [
               _vm._v("Daftar Pengguna"),
@@ -1130,23 +1122,10 @@ var render = function () {
                 _c(
                   "v-table",
                   {
-                    staticClass: "table table-striped table-bordered",
-                    attrs: {
-                      data: _vm.pengguna,
-                      currentPage: _vm.currentPage2,
-                      pageSize: 5,
-                    },
-                    on: {
-                      "update:currentPage": function ($event) {
-                        _vm.currentPage2 = $event
-                      },
-                      "update:current-page": function ($event) {
-                        _vm.currentPage2 = $event
-                      },
-                      totalPagesChanged: function ($event) {
-                        _vm.totalPages2 = $event
-                      },
-                    },
+                    staticClass:
+                      "table table-striped table-bordered table-responsive",
+                    staticStyle: { "max-height": "500px" },
+                    attrs: { data: _vm.pengguna },
                     scopedSlots: _vm._u([
                       {
                         key: "body",
@@ -1262,21 +1241,6 @@ var render = function () {
                     ]),
                   ]
                 ),
-                _vm._v(" "),
-                _c("smart-pagination", {
-                  attrs: {
-                    currentPage: _vm.currentPage2,
-                    totalPages: _vm.totalPages2,
-                  },
-                  on: {
-                    "update:currentPage": function ($event) {
-                      _vm.currentPage2 = $event
-                    },
-                    "update:current-page": function ($event) {
-                      _vm.currentPage2 = $event
-                    },
-                  },
-                }),
               ],
               1
             ),
