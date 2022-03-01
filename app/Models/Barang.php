@@ -38,9 +38,9 @@ class Barang extends Model
         return $this->hasOne('App\Models\Lokasi', 'id', 'lokasi_id');
     }
 
-    public function history()
+    public function History()
     {
-        return $this->belongsTo('App\Models\history', 'barang_id', 'id');
+        return $this->belongsTo('App\Models\History', 'barang_id', 'id');
     }
 
     public function scopeWithBarang($query)
