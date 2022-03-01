@@ -84,7 +84,7 @@
 <body>
     <div class="header">SURAT KOMITMEN PENGGUNAAN BARANG INVENTARIS KANTOR</div>
     <div class="header">FOUR VISION MEDIA</div>
-    <div class="subheader">{{$kode_lampiran}}</div>
+    <div class="subheader">{{$kodeLampiran}}</div>
     <hr>
     <div class="sentence1">
         Yang bertanda tangan dibawah ini :
