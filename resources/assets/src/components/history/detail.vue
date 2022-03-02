@@ -140,7 +140,7 @@
 
                 <v-table
                   :data="filterhistorys"
-                  class="table table-striped table-bordered"
+                  class="table table-bordered"
                   :currentPage.sync="currentPage"
                   :pageSize="pageSize"
                   @totalPagesChanged="totalPages = $event"
@@ -152,17 +152,67 @@
                       <th>Tanggal Akhir Penggunaan</th>
                       <th>Nama Pengguna</th>
                       <th>Keterangan</th>
-                      <th>Status</th>
+                      <v-th sortKey="status" defaultSort="asc">Status</v-th>
                     </tr>
                   </thead>
                   <tbody slot="body" slot-scope="{ displayData }">
                     <tr v-for="history in displayData" :key="history.id">
-                      <td>{{ history.barang.nama_barang }}</td>
-                      <td>{{ history.tanggal_awal_penggunaan }}</td>
-                      <td>{{ history.tanggal_akhir_penggunaan }}</td>
-                      <td>{{ history.pengguna.name }}</td>
-                      <td>{{ history.keterangan }}</td>
-                      <td>{{ history.status }}</td>
+                      <td
+                        v-if="history.status == 'Masih Digunakan'"
+                        class="pallet-light"
+                      >
+                        {{ history.barang.nama_barang }}
+                      </td>
+                      <td
+                        v-if="history.status == 'Masih Digunakan'"
+                        class="pallet-light"
+                      >
+                        {{ history.tanggal_awal_penggunaan }}
+                      </td>
+                      <td
+                        v-if="history.status == 'Masih Digunakan'"
+                        class="pallet-light"
+                      >
+                        {{ history.tanggal_akhir_penggunaan }}
+                      </td>
+                      <td
+                        v-if="history.status == 'Masih Digunakan'"
+                        class="pallet-light"
+                      >
+                        {{ history.pengguna.name }}
+                      </td>
+                      <td
+                        v-if="history.status == 'Masih Digunakan'"
+                        class="pallet-light"
+                      >
+                        {{ history.keterangan }}
+                      </td>
+                      <td
+                        v-if="history.status == 'Masih Digunakan'"
+                        class="pallet-light"
+                        style="font-weight: 700;"
+                      >
+                        {{ history.status }}
+                      </td>
+
+                      <td v-if="history.status != 'Masih Digunakan'">
+                        {{ history.barang.nama_barang }}
+                      </td>
+                      <td v-if="history.status != 'Masih Digunakan'">
+                        {{ history.tanggal_awal_penggunaan }}
+                      </td>
+                      <td v-if="history.status != 'Masih Digunakan'">
+                        {{ history.tanggal_akhir_penggunaan }}
+                      </td>
+                      <td v-if="history.status != 'Masih Digunakan'">
+                        {{ history.pengguna.name }}
+                      </td>
+                      <td v-if="history.status != 'Masih Digunakan'">
+                        {{ history.keterangan }}
+                      </td>
+                      <td v-if="history.status != 'Masih Digunakan'">
+                        {{ history.status }}
+                      </td>
                     </tr>
                   </tbody>
                 </v-table>
@@ -193,6 +243,9 @@ export default {
       currentPage: 1,
       totalPages: 0,
       pageSize: 10,
+      BgColor: {
+        backgroundColor: "lightblue",
+      },
     };
   },
 
@@ -262,6 +315,9 @@ export default {
           !history.tanggal_akhir_penggunaan.indexOf(this.tanggal_akhir)
       );
     },
+    status(row) {
+      return row.status.length;
+    }
   },
 };
 </script>

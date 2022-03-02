@@ -93,6 +93,11 @@
                     <td>{{ data.lokasi.lokasi }}</td>
                     <td>{{ data.harga_barang | toCurrency }}</td>
                     <td>
+                      <router-link
+                        :to="{ name: 'detail-barang', params: { id: data.id } }"
+                        class="btn btn-sm btn-primary"
+                        >Detail</router-link
+                      >
                       <span v-if="loginType == 'admin'">
                         <router-link
                           :to="{
@@ -110,7 +115,6 @@
                           <i class="ion ion-ios-trash"></i>
                         </button>
                       </span>
-                      <span v-if="loginType != 'admin'"> Tidak ada Akses </span>
                     </td>
                   </tr>
                 </tbody>

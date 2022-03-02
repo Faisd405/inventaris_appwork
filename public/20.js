@@ -191,6 +191,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -202,7 +252,10 @@ __webpack_require__.r(__webpack_exports__);
       barangs: "",
       currentPage: 1,
       totalPages: 0,
-      pageSize: 10
+      pageSize: 10,
+      BgColor: {
+        backgroundColor: "lightblue"
+      }
     };
   },
   created: function created() {
@@ -263,6 +316,9 @@ __webpack_require__.r(__webpack_exports__);
       return historys.filter(function (history) {
         return !history.tanggal_akhir_penggunaan.indexOf(_this5.tanggal_akhir);
       });
+    },
+    status: function status(row) {
+      return row.status.length;
     }
   }
 });
@@ -675,7 +731,7 @@ var render = function () {
                   _c(
                     "v-table",
                     {
-                      staticClass: "table table-striped table-bordered",
+                      staticClass: "table table-bordered",
                       attrs: {
                         data: _vm.filterhistorys,
                         currentPage: _vm.currentPage,
@@ -702,31 +758,162 @@ var render = function () {
                               {},
                               _vm._l(displayData, function (history) {
                                 return _c("tr", { key: history.id }, [
-                                  _c("td", [
-                                    _vm._v(_vm._s(history.barang.nama_barang)),
-                                  ]),
+                                  history.status == "Masih Digunakan"
+                                    ? _c(
+                                        "td",
+                                        { staticClass: "pallet-light" },
+                                        [
+                                          _vm._v(
+                                            "\n                      " +
+                                              _vm._s(
+                                                history.barang.nama_barang
+                                              ) +
+                                              "\n                    "
+                                          ),
+                                        ]
+                                      )
+                                    : _vm._e(),
                                   _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      _vm._s(history.tanggal_awal_penggunaan)
-                                    ),
-                                  ]),
+                                  history.status == "Masih Digunakan"
+                                    ? _c(
+                                        "td",
+                                        { staticClass: "pallet-light" },
+                                        [
+                                          _vm._v(
+                                            "\n                      " +
+                                              _vm._s(
+                                                history.tanggal_awal_penggunaan
+                                              ) +
+                                              "\n                    "
+                                          ),
+                                        ]
+                                      )
+                                    : _vm._e(),
                                   _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      _vm._s(history.tanggal_akhir_penggunaan)
-                                    ),
-                                  ]),
+                                  history.status == "Masih Digunakan"
+                                    ? _c(
+                                        "td",
+                                        { staticClass: "pallet-light" },
+                                        [
+                                          _vm._v(
+                                            "\n                      " +
+                                              _vm._s(
+                                                history.tanggal_akhir_penggunaan
+                                              ) +
+                                              "\n                    "
+                                          ),
+                                        ]
+                                      )
+                                    : _vm._e(),
                                   _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(history.pengguna.name)),
-                                  ]),
+                                  history.status == "Masih Digunakan"
+                                    ? _c(
+                                        "td",
+                                        { staticClass: "pallet-light" },
+                                        [
+                                          _vm._v(
+                                            "\n                      " +
+                                              _vm._s(history.pengguna.name) +
+                                              "\n                    "
+                                          ),
+                                        ]
+                                      )
+                                    : _vm._e(),
                                   _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(history.keterangan)),
-                                  ]),
+                                  history.status == "Masih Digunakan"
+                                    ? _c(
+                                        "td",
+                                        { staticClass: "pallet-light" },
+                                        [
+                                          _vm._v(
+                                            "\n                      " +
+                                              _vm._s(history.keterangan) +
+                                              "\n                    "
+                                          ),
+                                        ]
+                                      )
+                                    : _vm._e(),
                                   _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(history.status))]),
+                                  history.status == "Masih Digunakan"
+                                    ? _c(
+                                        "td",
+                                        {
+                                          staticClass: "pallet-light",
+                                          staticStyle: { "font-weight": "700" },
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                      " +
+                                              _vm._s(history.status) +
+                                              "\n                    "
+                                          ),
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  history.status != "Masih Digunakan"
+                                    ? _c("td", [
+                                        _vm._v(
+                                          "\n                      " +
+                                            _vm._s(history.barang.nama_barang) +
+                                            "\n                    "
+                                        ),
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  history.status != "Masih Digunakan"
+                                    ? _c("td", [
+                                        _vm._v(
+                                          "\n                      " +
+                                            _vm._s(
+                                              history.tanggal_awal_penggunaan
+                                            ) +
+                                            "\n                    "
+                                        ),
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  history.status != "Masih Digunakan"
+                                    ? _c("td", [
+                                        _vm._v(
+                                          "\n                      " +
+                                            _vm._s(
+                                              history.tanggal_akhir_penggunaan
+                                            ) +
+                                            "\n                    "
+                                        ),
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  history.status != "Masih Digunakan"
+                                    ? _c("td", [
+                                        _vm._v(
+                                          "\n                      " +
+                                            _vm._s(history.pengguna.name) +
+                                            "\n                    "
+                                        ),
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  history.status != "Masih Digunakan"
+                                    ? _c("td", [
+                                        _vm._v(
+                                          "\n                      " +
+                                            _vm._s(history.keterangan) +
+                                            "\n                    "
+                                        ),
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  history.status != "Masih Digunakan"
+                                    ? _c("td", [
+                                        _vm._v(
+                                          "\n                      " +
+                                            _vm._s(history.status) +
+                                            "\n                    "
+                                        ),
+                                      ])
+                                    : _vm._e(),
                                 ])
                               }),
                               0
@@ -737,19 +924,32 @@ var render = function () {
                     },
                     [
                       _c("thead", { attrs: { slot: "head" }, slot: "head" }, [
-                        _c("tr", [
-                          _c("th", [_vm._v("Nama Barang")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Tanggal Awal Penggunaan")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Tanggal Akhir Penggunaan")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Nama Pengguna")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Keterangan")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Status")]),
-                        ]),
+                        _c(
+                          "tr",
+                          [
+                            _c("th", [_vm._v("Nama Barang")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Tanggal Awal Penggunaan")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Tanggal Akhir Penggunaan")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Nama Pengguna")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Keterangan")]),
+                            _vm._v(" "),
+                            _c(
+                              "v-th",
+                              {
+                                attrs: {
+                                  sortKey: "status",
+                                  defaultSort: "asc",
+                                },
+                              },
+                              [_vm._v("Status")]
+                            ),
+                          ],
+                          1
+                        ),
                       ]),
                     ]
                   ),
