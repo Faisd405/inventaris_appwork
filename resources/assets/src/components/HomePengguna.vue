@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="d-flex flex-row">
       <div class="d-flex flex-column bd-highlight mb-3 mx-1 mt-3">
-        <div class="card card-body" style="min-width: 20rem; max-height: 24rem">
+        <div class="card card-body" style="min-width: 20rem; min-height: 220px">
           <span class="d-flex justify-content-end">
             <b-badge variant="success" pill>
               <span class="text-white">
@@ -55,7 +55,7 @@
       <div class="d-flex flex-column bd-highlight mb-3 mx-1 mt-3">
         <div
           class="card text-white pallet-dark m-1 shadow-lg"
-          style="min-width: 24rem; height: 10rem"
+          style="min-width: 370px; min-height: 220px"
         >
           <div class="card-header">
             <strong> Invetaris Barang </strong>
@@ -63,18 +63,18 @@
           <div class="card-body align-middle">
             <span
               class="card-title text-white"
-              style="font-size: 26px; font-weight: bolder"
+              style="font-size: 32px; font-weight: bolder"
             >
               {{ barang.length }}
             </span>
-            <span class="card-title text-white">Barang Digunakan</span>
+            <span class="card-title text-white" style="font-size: 24px;">Barang Digunakan</span>
           </div>
         </div>
       </div>
       <div class="d-flex flex-column bd-highlight mb-3 mx-1 mt-3">
         <div
           class="card text-white pallet-dark m-1 shadow-lg"
-          style="min-width: 24rem; height: 10rem"
+          style="min-width: 370px; min-height: 220px"
         >
           <div class="card-header">
             <strong> Invetaris Buku </strong>
@@ -82,11 +82,11 @@
           <div class="card-body align-middle">
             <span
               class="card-title text-white"
-              style="font-size: 26px; font-weight: bolder"
+              style="font-size: 32px; font-weight: bolder"
             >
               {{ buku.length }}
             </span>
-            <span class="card-title text-white">Buku Digunakan</span>
+            <span class="card-title text-white" style="font-size: 24px;">Buku Digunakan</span>
           </div>
         </div>
       </div>
@@ -246,7 +246,7 @@ export default {
       users: {
         has_dokumen: {
           foto_pegawai: "",
-        }
+        },
       },
       loginType: "",
       currentPage: 1,

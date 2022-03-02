@@ -378,7 +378,7 @@ var render = function () {
             "div",
             {
               staticClass: "card card-body",
-              staticStyle: { "min-width": "20rem", "max-height": "24rem" },
+              staticStyle: { "min-width": "20rem", "min-height": "220px" },
             },
             [
               _c(
@@ -484,7 +484,7 @@ var render = function () {
             "div",
             {
               staticClass: "card text-white pallet-dark m-1 shadow-lg",
-              staticStyle: { "min-width": "24rem", height: "10rem" },
+              staticStyle: { "min-width": "370px", "min-height": "220px" },
             },
             [
               _vm._m(0),
@@ -495,7 +495,7 @@ var render = function () {
                   {
                     staticClass: "card-title text-white",
                     staticStyle: {
-                      "font-size": "26px",
+                      "font-size": "32px",
                       "font-weight": "bolder",
                     },
                   },
@@ -508,9 +508,14 @@ var render = function () {
                   ]
                 ),
                 _vm._v(" "),
-                _c("span", { staticClass: "card-title text-white" }, [
-                  _vm._v("Barang Digunakan"),
-                ]),
+                _c(
+                  "span",
+                  {
+                    staticClass: "card-title text-white",
+                    staticStyle: { "font-size": "24px" },
+                  },
+                  [_vm._v("Barang Digunakan")]
+                ),
               ]),
             ]
           ),
@@ -525,7 +530,7 @@ var render = function () {
             "div",
             {
               staticClass: "card text-white pallet-dark m-1 shadow-lg",
-              staticStyle: { "min-width": "24rem", height: "10rem" },
+              staticStyle: { "min-width": "370px", "min-height": "220px" },
             },
             [
               _vm._m(1),
@@ -536,7 +541,7 @@ var render = function () {
                   {
                     staticClass: "card-title text-white",
                     staticStyle: {
-                      "font-size": "26px",
+                      "font-size": "32px",
                       "font-weight": "bolder",
                     },
                   },
@@ -549,9 +554,14 @@ var render = function () {
                   ]
                 ),
                 _vm._v(" "),
-                _c("span", { staticClass: "card-title text-white" }, [
-                  _vm._v("Buku Digunakan"),
-                ]),
+                _c(
+                  "span",
+                  {
+                    staticClass: "card-title text-white",
+                    staticStyle: { "font-size": "24px" },
+                  },
+                  [_vm._v("Buku Digunakan")]
+                ),
               ]),
             ]
           ),

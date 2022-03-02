@@ -36534,22 +36534,22 @@ var render = function () {
                         ],
                         2
                       ),
-                      _vm._v(" "),
-                      _c(
-                        "sidenav-router-link",
-                        {
-                          attrs: {
-                            icon: "ion ion-md-desktop",
-                            to: "/history",
-                            exact: true,
-                          },
-                        },
-                        [_vm._v("Riwayat Penggunaan Barang")]
-                      ),
                     ],
                     1
                   )
                 : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "sidenav-router-link",
+                {
+                  attrs: {
+                    icon: "ion ion-md-desktop",
+                    to: "/history",
+                    exact: true,
+                  },
+                },
+                [_vm._v("Riwayat Penggunaan Barang")]
+              ),
               _vm._v(" "),
               _c("sidenav-divider"),
               _vm._v(" "),

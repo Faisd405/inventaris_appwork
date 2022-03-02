@@ -116,13 +116,13 @@
           >
         </sidenav-menu>
 
+      </span>
         <sidenav-router-link
           icon="ion ion-md-desktop"
           to="/history"
           :exact="true"
           >Riwayat Penggunaan Barang</sidenav-router-link
         >
-      </span>
       <sidenav-divider />
       <sidenav-header> <strong>Laporan</strong> </sidenav-header>
       <sidenav-router-link
