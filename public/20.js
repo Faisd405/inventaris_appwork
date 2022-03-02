@@ -191,21 +191,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       barang_id: ["", ""],
       tanggal_awal: "",
       tanggal_akhir: "",
-      historys: {
-        barang: {
-          nama_barang: ""
-        }
-      },
+      historys: [],
       barang: [],
       barangs: "",
       currentPage: 1,
@@ -710,15 +702,9 @@ var render = function () {
                               {},
                               _vm._l(displayData, function (history) {
                                 return _c("tr", { key: history.id }, [
-                                  history.barang != null
-                                    ? _c("td", [
-                                        _vm._v(
-                                          "\n                      " +
-                                            _vm._s(history.barang.nama_barang) +
-                                            "\n                    "
-                                        ),
-                                      ])
-                                    : _vm._e(),
+                                  _c("td", [
+                                    _vm._v(_vm._s(history.barang.nama_barang)),
+                                  ]),
                                   _vm._v(" "),
                                   _c("td", [
                                     _vm._v(
@@ -732,15 +718,9 @@ var render = function () {
                                     ),
                                   ]),
                                   _vm._v(" "),
-                                  history.pengguna != null
-                                    ? _c("td", [
-                                        _vm._v(
-                                          "\n                      " +
-                                            _vm._s(history.pengguna.name) +
-                                            "\n                    "
-                                        ),
-                                      ])
-                                    : _vm._e(),
+                                  _c("td", [
+                                    _vm._v(_vm._s(history.pengguna.name)),
+                                  ]),
                                   _vm._v(" "),
                                   _c("td", [
                                     _vm._v(_vm._s(history.keterangan)),

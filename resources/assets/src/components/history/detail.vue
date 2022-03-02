@@ -157,14 +157,10 @@
                   </thead>
                   <tbody slot="body" slot-scope="{ displayData }">
                     <tr v-for="history in displayData" :key="history.id">
-                      <td v-if="history.barang != null">
-                        {{ history.barang.nama_barang }}
-                      </td>
+                      <td>{{ history.barang.nama_barang }}</td>
                       <td>{{ history.tanggal_awal_penggunaan }}</td>
                       <td>{{ history.tanggal_akhir_penggunaan }}</td>
-                      <td v-if="history.pengguna != null">
-                        {{ history.pengguna.name }}
-                      </td>
+                      <td>{{ history.pengguna.name }}</td>
                       <td>{{ history.keterangan }}</td>
                       <td>{{ history.status }}</td>
                     </tr>
@@ -191,11 +187,7 @@ export default {
       barang_id: ["", ""],
       tanggal_awal: "",
       tanggal_akhir: "",
-      historys: {
-        barang: {
-          nama_barang: "",
-        },
-      },
+      historys: [],
       barang: [],
       barangs: "",
       currentPage: 1,
