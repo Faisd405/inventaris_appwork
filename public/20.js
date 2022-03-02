@@ -197,7 +197,11 @@ __webpack_require__.r(__webpack_exports__);
       barang_id: ["", ""],
       tanggal_awal: "",
       tanggal_akhir: "",
-      historys: [],
+      historys: {
+        barang: {
+          nama_barang: ""
+        }
+      },
       barang: [],
       barangs: "",
       currentPage: 1,
