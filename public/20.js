@@ -191,6 +191,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -706,9 +710,15 @@ var render = function () {
                               {},
                               _vm._l(displayData, function (history) {
                                 return _c("tr", { key: history.id }, [
-                                  _c("td", [
-                                    _vm._v(_vm._s(history.barang.nama_barang)),
-                                  ]),
+                                  history.barang != null
+                                    ? _c("td", [
+                                        _vm._v(
+                                          "\n                      " +
+                                            _vm._s(history.barang.nama_barang) +
+                                            "\n                    "
+                                        ),
+                                      ])
+                                    : _vm._e(),
                                   _vm._v(" "),
                                   _c("td", [
                                     _vm._v(
@@ -722,9 +732,15 @@ var render = function () {
                                     ),
                                   ]),
                                   _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(history.pengguna.name)),
-                                  ]),
+                                  history.pengguna != null
+                                    ? _c("td", [
+                                        _vm._v(
+                                          "\n                      " +
+                                            _vm._s(history.pengguna.name) +
+                                            "\n                    "
+                                        ),
+                                      ])
+                                    : _vm._e(),
                                   _vm._v(" "),
                                   _c("td", [
                                     _vm._v(_vm._s(history.keterangan)),
