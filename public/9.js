@@ -83,6 +83,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -299,6 +312,38 @@ var render = function () {
                                       "\n                  "
                                   ),
                                 ]),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  [
+                                    _c(
+                                      "router-link",
+                                      {
+                                        attrs: {
+                                          to: {
+                                            name: "detail-pengguna",
+                                            params: { id: data.id },
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "btn btn-sm btn-primary p-y",
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "ion ion-ios-eye",
+                                            }),
+                                          ]
+                                        ),
+                                      ]
+                                    ),
+                                  ],
+                                  1
+                                ),
                               ])
                             }),
                             0
@@ -319,6 +364,10 @@ var render = function () {
                             { attrs: { sortKey: "name", scope: "col" } },
                             [_vm._v("Nama Pengguna")]
                           ),
+                          _vm._v(" "),
+                          _c("th", { attrs: { scope: "col" } }, [
+                            _vm._v("Aksi"),
+                          ]),
                         ],
                         1
                       ),

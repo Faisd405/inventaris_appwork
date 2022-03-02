@@ -44,6 +44,7 @@
                   <tr>
                     <th scope="col">No</th>
                     <v-th sortKey="name" scope="col">Nama Pengguna</v-th>
+                    <th scope="col">Aksi</th>
                   </tr>
                 </thead>
                 <tbody slot="body" slot-scope="{ displayData }">
@@ -54,6 +55,18 @@
                     </td>
                     <td>
                       {{ data.name }}
+                    </td>
+                    <td>
+                      <router-link
+                        :to="{
+                          name: 'detail-pengguna',
+                          params: { id: data.id },
+                        }"
+                      >
+                        <button class="btn btn-sm btn-primary p-y">
+                          <i class="ion ion-ios-eye"></i>
+                        </button>
+                      </router-link>
                     </td>
                   </tr>
                 </tbody>
