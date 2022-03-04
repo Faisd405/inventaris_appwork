@@ -20,7 +20,7 @@ class Pengajuan extends Model
         'image'
     ];
 
-    public function Pengguna()
+    public function pengguna()
     {
         return $this->belongsTo('App\Models\Pengguna');
     }

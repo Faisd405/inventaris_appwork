@@ -54607,12 +54607,6 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/barang/detail/:id',
       component: function component() {
         return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! @/components/barang/detail */ "./resources/assets/src/components/barang/detail.vue"));
-      },
-      meta: {
-        requiresAuth: true,
-        "if": function _if(isAdmin) {
-          isAdmin: true;
-        }
       }
     }, // Router Pengguna
     {
@@ -56666,7 +56660,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\inventaris_appwork2\inventaris_appwork\resources\assets\src\entry-point.js */"./resources/assets/src/entry-point.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\inventaris_appwork\resources\assets\src\entry-point.js */"./resources/assets/src/entry-point.js");
 
 
 /***/ })

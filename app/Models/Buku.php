@@ -20,17 +20,17 @@ class Buku extends Model
         'harga'
     ];
 
-    public function Lokasi()
+    public function lokasi()
     {
         return $this->hasOne('App\Models\Lokasi', 'id', 'lokasi_id');
     }
 
-    public function Jenis()
+    public function jenis()
     {
         return $this->hasOne('App\Models\Jenis', 'id', 'jenis_id');
     }
 
-    public function Pengguna()
+    public function pengguna()
     {
         return $this->hasOne('App\Models\Pengguna', 'id', 'pengguna_id');
     }

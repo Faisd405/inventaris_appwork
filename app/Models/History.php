@@ -18,12 +18,12 @@ class History extends Model
         'status'
     ];
 
-    public function Barang()
+    public function barang()
     {
         return $this->belongsTo('App\Models\Barang', 'barang_id');
     }
 
-    public function Pengguna()
+    public function pengguna()
     {
         return $this->belongsTo('App\Models\Pengguna', 'pengguna_id');
     }
@@ -123,14 +123,13 @@ class History extends Model
         $history = self::where('barang_id', $id)->orderBy('id', 'desc')->first();
         if ($history) {
             $history->tanggal_akhir_penggunaan = date('d-m-Y');
+            $history->keterangan = "Pengguna " . $barang->nama_barang . " Diganti pada tanggal " . date('d-m-Y');
             if ($request->keterangan != "undefined") {
                 $history->keterangan = $request->keterangan;
             }
             if ($request->keterangan == "undefined") {
                 $history->keterangan = "Pengguna " . $barang->nama_barang . " Diganti pada tanggal " . date('d-m-Y');
-            } else {
-                $history->keterangan = "Pengguna " . $barang->nama_barang . " Diganti pada tanggal " . date('d-m-Y');
-            }
+            } 
             $history->status = "Tidak Digunakan";
             $history->update();
         }

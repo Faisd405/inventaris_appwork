@@ -184,15 +184,15 @@ class PenggunaController extends Controller
         $success = $request->success;
         $jabatan = $request->jabatan;
 
-        $ByEmail = $this->getUserByEmail($email);
+        $byEmail = $this->getUserByEmail($email);
 
         if ($success) {
-            if ($ByEmail) {
-                $id = $ByEmail->id;
+            if ($byEmail) {
+                $id = $byEmail->id;
                 $credentials = $this->credentials($request);
 
-                if (empty($ByEmail->roles[0])) {
-                    $this->pengguna->attachRole($ByEmail);
+                if (empty($byEmail->roles[0])) {
+                    $this->pengguna->attachRole($byEmail);
                 }
 
                 if (Auth::guard('etask')->attempt($credentials)) {

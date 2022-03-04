@@ -113,9 +113,8 @@ class BarangController extends Controller
     public function relasi(Request $request, $id)
     {
         $barang = $this->barang->getBarangById($id);
-        $penggunaBarang = Barang::find($id);
 
-        if ($request->pengguna_id != $penggunaBarang->pengguna_id) {
+        if ($request->pengguna_id != $barang->pengguna_id) {
             $this->history->updateHistory($request, $barang, $id);
         }
         $this->barang->putBarang($request, $id);
@@ -149,9 +148,8 @@ class BarangController extends Controller
     public function update(Request $request, $id, BarangServices $barangServices)
     {
         $barang = $this->barang->getBarangById($id);
-        $penggunaBarang = Barang::find($id);
 
-        if ($request->pengguna_id != $penggunaBarang->pengguna_id) {
+        if ($request->pengguna_id != $barang->pengguna_id) {
             $this->history->updateHistory($request, $barang, $id);
         }
 
@@ -187,7 +185,7 @@ class BarangController extends Controller
     public function detailBarangPDF($id)
     {
         $name = 'Laporan Detail Barang ' . date('d-m-Y') . '.pdf';
-        $barang = Barang::find($id);
+        $barang = $this->barang->getBarangById($id);
 
         $pdf = PDF::loadview('barang.detailbarang_pdf', compact('barang'));
         return $pdf->stream($name);

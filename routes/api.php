@@ -12,6 +12,7 @@ use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\PengajuanController;
+use App\Http\Controllers\PermintaanController;
 use App\Http\Controllers\InventarisController;
 use App\Http\Controllers\ImageController;
 
@@ -123,6 +124,12 @@ Route::put('/pengajuan/{id}', [PengajuanController::class, 'update']);
 Route::delete('/pengajuan/{id}', [PengajuanController::class, 'destroy']);
 Route::get('/pengajuan/user/{idUser}', [PengajuanController::class, 'showByUserId']);
 
+//Route API Permintaan
+Route::get('/permintaan', [PermintaanController::class, 'index']);
+Route::get('/permintaan/{id}', [PermintaanController::class, 'show']);
+Route::get('/permintaan/barang/{id}', [PermintaanController::class, 'showByBarangId']);
+Route::get('/permintaan/pengguna/{id}', [PermintaanController::class, 'showByPenggunaId']);
+
 //Inventaris Laporan
 Route::get('/inventaris/barangdanbuku', [InventarisController::class, 'lengthBarangdanBuku']);
 Route::get('/inventaris/inventarisTidakDipakai', [InventarisController::class, 'inventarisTidakDipakai']);
@@ -133,3 +140,4 @@ Route::post('/image/imageBackgroundLogin', [ImageController::class, 'imageBackgr
 Route::post('/image/imageDefaultImage', [ImageController::class, 'imageDefaultImage']);
 Route::post('/image/imageDefaultPDF', [ImageController::class, 'imageDefaultPDF']);
 Route::post('/image/imageDefaultSuratKomitmen', [ImageController::class, 'imageDefaultSuratKomitmen']);
+

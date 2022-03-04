@@ -13,7 +13,7 @@ class Kategori extends Model
     ];
 
 
-    public function Sifat()
+    public function sifat()
     {
         return $this->hasone('App\Models\Sifat', 'id', 'sifat_id');
     }

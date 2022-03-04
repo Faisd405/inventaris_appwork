@@ -29,7 +29,7 @@
 <body>
     <div class="card shadow mb-4">
         <div id="outer-div">
-            <div id="inner-div">{!! DNS2D::getBarcodeHTML("$barang->kode_barang", 'QRCODE', 4, 4) !!}</div>
+            <div id="inner-div">{!! DNS2D::getBarcodeHTML("http://inventaris.4visionmedia.net/barang/detail/$barang->id", 'QRCODE', 4, 4) !!}</div>
         </div>
 
 

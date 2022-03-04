@@ -59,6 +59,7 @@ class BarangServices
     
     public function updateLampiran($request, $barang)
     {
+        $lampiranName = $barang->lampiran;
         if ($request->hasFile('lampiran')) {
             $extension = $request['lampiran']->getClientOriginalExtension();
             $request->validate([
@@ -75,8 +76,6 @@ class BarangServices
             if ($barang->lampiran != "default.pdf") {
                 File::delete('lampiran/' . $barang->lampiran);
             }
-        } else {
-            $lampiranName = $barang->lampiran;
         }
 
         return $lampiranName;

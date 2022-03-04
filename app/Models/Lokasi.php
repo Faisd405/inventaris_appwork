@@ -13,12 +13,12 @@ class Lokasi extends Model
         'lokasi',
     ];
 
-    public function Barang()
+    public function barang()
     {
         return $this->belongsTo('App\Models\Barang');
     }
 
-    public function Buku()
+    public function buku()
     {
         return $this->belongsTo('App\Models\Buku');
     }

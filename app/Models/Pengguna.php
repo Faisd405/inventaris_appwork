@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-use Illuminate\Support\Facades\Hash;
+use Hash;
 use App\Models\Barang;
 
 class Pengguna extends Authenticatable implements JWTSubject
@@ -20,12 +20,12 @@ class Pengguna extends Authenticatable implements JWTSubject
         'name', 'ktp', 'jabatan', 'surat_komitmen', 'email', 'password', 'id_api'
     ];
 
-    public function Barang()
+    public function barang()
     {
         return $this->belongsTo('App\Models\Barang');
     }
 
-    public function Buku()
+    public function buku()
     {
         return $this->belongsTo('App\Models\Buku');
     }
@@ -47,12 +47,12 @@ class Pengguna extends Authenticatable implements JWTSubject
 
     public function getPengguna()
     {
-        return Pengguna::all();
+        return self::all();
     }
 
     public function getPenggunaById($id)
     {
-        return Pengguna::find($id);
+        return self::find($id);
     }
 
     public function postPengguna($request)
@@ -60,14 +60,14 @@ class Pengguna extends Authenticatable implements JWTSubject
         // Merge surat_komitmen with request
         $request->merge(['surat_komitmen' => 'default.pdf']);
         // Create new pengguna
-        $pengguna = Pengguna::create($request->all());
+        $pengguna = self::create($request->all());
         // Return new pengguna
         return $pengguna;
     }
 
     public function putPengguna($request, $id)
     {
-        $pengguna = Pengguna::find($id);
+        $pengguna = self::find($id);
 
         $request->merge(['surat_komitmen' => $pengguna->surat_komitmen]);
 
@@ -78,7 +78,7 @@ class Pengguna extends Authenticatable implements JWTSubject
 
     public function deletePengguna($id)
     {
-        $pengguna = Pengguna::find($id);
+        $pengguna = self::find($id);
         return $pengguna->delete();
     }
 

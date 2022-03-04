@@ -91,12 +91,6 @@ const router = new Router({
             name: 'detail-barang',
             path: '/barang/detail/:id',
             component: () => import('@/components/barang/detail'),
-            meta: {
-                requiresAuth: true,
-                if(isAdmin) {
-                    isAdmin: true;
-                },
-            }
         },
         // Router Pengguna
         {

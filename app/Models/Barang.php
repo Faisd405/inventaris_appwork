@@ -23,22 +23,22 @@ class Barang extends Model
         'lampiran'
     ];
 
-    public function Kategori()
+    public function kategori()
     {
         return $this->hasOne('App\Models\Kategori', 'id', 'kategori_id');
     }
 
-    public function Pengguna()
+    public function pengguna()
     {
         return $this->hasOne('App\Models\Pengguna', 'id', 'pengguna_id');
     }
 
-    public function Lokasi()
+    public function lokasi()
     {
         return $this->hasOne('App\Models\Lokasi', 'id', 'lokasi_id');
     }
 
-    public function History()
+    public function history()
     {
         return $this->belongsTo('App\Models\History', 'barang_id', 'id');
     }
@@ -53,26 +53,41 @@ class Barang extends Model
         return self::WithBarang()->get();
     }
 
+    /**
+     * @SuppressWarnings(ShortVariable)
+     */
     public function getBarangByNoPengguna($id)
     {
         return self::where('pengguna_id', '!=', $id)->WithBarang()->get();
     }
 
+    /**
+     * @SuppressWarnings(ShortVariable)
+     */
     public function getBarangByKategoriId($id)
     {
         return self::WithBarang()->where('kategori_id', $id)->get();
     }
 
+    /**
+     * @SuppressWarnings(ShortVariable)
+     */
     public function getBarangbyPengguna($id)
     {
         return self::where('pengguna_id', $id)->WithBarang()->get();
     }
 
+    /**
+     * @SuppressWarnings(ShortVariable)
+     */
     public function getBarangByLokasiId($id)
     {
         return self::WithBarang()->where('lokasi_id', $id)->get();
     }
 
+    /**
+     * @SuppressWarnings(ShortVariable)
+     */
     public function getBarangById($id)
     {
         return self::WithBarang()->find($id);
@@ -100,6 +115,9 @@ class Barang extends Model
         return $barang;
     }
 
+    /**
+     * @SuppressWarnings(ShortVariable)
+     */
     public function putBarang($request, $id)
     {
         $barang = self::find($id);
@@ -107,15 +125,18 @@ class Barang extends Model
         return $barang;
     }
 
-    public function updateBarang($request, $barang, $imageName, $LampiranName)
+    public function updateBarang($request, $barang, $imageName, $lampiranName)
     {
         $barang->update($request->all());
         $barang->image = $imageName;
-        $barang->lampiran = $LampiranName;
+        $barang->lampiran = $lampiranName;
         $barang->save();
         return $barang;
     }
 
+    /**
+     * @SuppressWarnings(ShortVariable)
+     */
     public function deleteBarang($id)
     {
         $barang = self::find($id);

@@ -33,7 +33,9 @@ class UserController extends Controller
             'user' => $users
         ], 200);
     }
-
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     public function show($id)
     {
         $users = $this->user->getUserById($id);
@@ -102,7 +104,9 @@ class UserController extends Controller
             'data'    => $users
         ], 200);
     }
-
+    /**
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     public function login(Request $request)
     {
         $credentials = $this->credentials($request);

@@ -10,7 +10,7 @@ class Jenis extends Model
     protected $table = 'jenis';
     protected $fillable = ['jenis_buku', 'jumlah'];
 
-    public function Buku()
+    public function buku()
     {
         return $this->hasMany('App\Models\Buku', 'jenis_id', 'id');
     }
@@ -26,6 +26,9 @@ class Jenis extends Model
         return $jenis;
     }
 
+    /**
+     * @SuppressWarnings(ShortVariable)
+     */
     public function getJenisById($id)
     {
         $jenis = self::WithJenis()->find($id);
@@ -38,6 +41,9 @@ class Jenis extends Model
         return $jenis;
     }
 
+    /**
+     * @SuppressWarnings(ShortVariable)
+     */
     public function putJenis($request, $id)
     {
         $jenis = self::find($id);
@@ -45,6 +51,9 @@ class Jenis extends Model
         return $jenis;
     }
 
+    /**
+     * @SuppressWarnings(ShortVariable)
+     */
     public function deleteJenis($id)
     {
         $jenis = self::find($id);
@@ -52,7 +61,9 @@ class Jenis extends Model
         return $jenis;
     }
 
-
+    /**
+     * @SuppressWarnings(ShortVariable)
+     */
     public function add($id)
     {
         $jenis = self::find($id);
@@ -60,6 +71,9 @@ class Jenis extends Model
         $jenis->save();
     }
 
+    /**
+     * @SuppressWarnings(ShortVariable)
+     */
     public function minus($id)
     {
         $jenis = self::find($id);
