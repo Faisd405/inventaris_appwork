@@ -483,36 +483,9 @@ const router = new Router({
             }
         },
         {
-            name: 'edit-permintaan',
-            path: '/permintaan/user/edit/:id',
-            component: () => import('@/components/permintaan/user/edit'),
-            meta: {
-                requiresAuth: true,
-                isUser: true
-            }
-        },
-        {
             name: 'index-permintaan-admin',
-            path: '/permintaan/',
+            path: '/permintaan/admin',
             component: () => import('@/components/permintaan/admin/index'),
-            meta: {
-                requiresAuth: true,
-                isAdmin: true
-            }
-        },
-        {
-            name: 'create-permintaan-admin',
-            path: '/permintaan/admin/create',
-            component: () => import('@/components/permintaan/admin/create'),
-            meta: {
-                requiresAuth: true,
-                isAdmin: true
-            }
-        },
-        {
-            name: 'edit-permintaan-admin',
-            path: '/permintaan/admin/edit/:id',
-            component: () => import('@/components/permintaan/admin/edit'),
             meta: {
                 requiresAuth: true,
                 isAdmin: true

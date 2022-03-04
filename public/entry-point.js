@@ -55082,40 +55082,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         isUser: true
       }
     }, {
-      name: 'edit-permintaan',
-      path: '/permintaan/user/edit/:id',
-      component: function component() {
-        return __webpack_require__.e(/*! import() */ 53).then(__webpack_require__.bind(null, /*! @/components/permintaan/user/edit */ "./resources/assets/src/components/permintaan/user/edit.vue"));
-      },
-      meta: {
-        requiresAuth: true,
-        isUser: true
-      }
-    }, {
       name: 'index-permintaan-admin',
-      path: '/permintaan/',
+      path: '/permintaan/admin',
       component: function component() {
         return __webpack_require__.e(/*! import() */ 56).then(__webpack_require__.bind(null, /*! @/components/permintaan/admin/index */ "./resources/assets/src/components/permintaan/admin/index.vue"));
-      },
-      meta: {
-        requiresAuth: true,
-        isAdmin: true
-      }
-    }, {
-      name: 'create-permintaan-admin',
-      path: '/permintaan/admin/create',
-      component: function component() {
-        return __webpack_require__.e(/*! import() */ 54).then(__webpack_require__.bind(null, /*! @/components/permintaan/admin/create */ "./resources/assets/src/components/permintaan/admin/create.vue"));
-      },
-      meta: {
-        requiresAuth: true,
-        isAdmin: true
-      }
-    }, {
-      name: 'edit-permintaan-admin',
-      path: '/permintaan/admin/edit/:id',
-      component: function component() {
-        return __webpack_require__.e(/*! import() */ 55).then(__webpack_require__.bind(null, /*! @/components/permintaan/admin/edit */ "./resources/assets/src/components/permintaan/admin/edit.vue"));
       },
       meta: {
         requiresAuth: true,
