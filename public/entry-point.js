@@ -2282,6 +2282,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = (_data$name$components = {
   data: function data() {
@@ -36461,6 +36474,37 @@ var render = function () {
                   )
                 : _vm._e(),
               _vm._v(" "),
+              _vm.user.roles[0].name == "user"
+                ? _c(
+                    "sidenav-router-link",
+                    {
+                      attrs: {
+                        icon: "ion ion-md-desktop",
+                        to: {
+                          name: "index-permintaan",
+                          params: { id: _vm.user.id },
+                        },
+                        exact: true,
+                      },
+                    },
+                    [_vm._v("Permintaan Barang Pengguna")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.user.roles[0].name == "admin"
+                ? _c(
+                    "sidenav-router-link",
+                    {
+                      attrs: {
+                        icon: "ion ion-md-desktop",
+                        to: "/permintaan/admin/",
+                        exact: true,
+                      },
+                    },
+                    [_vm._v("Permintaan Barang Admin")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
               _vm.user.roles[0].name == "admin"
                 ? _c(
                     "span",
@@ -36646,7 +36690,7 @@ var render = function () {
                         },
                         [
                           _vm._v(
-                            "Ganti Background Login, Gambar Default dan Lampiran\n      PDF"
+                            "Ganti Background Login, Gambar Default dan Lampiran\n        PDF"
                           ),
                         ]
                       ),
@@ -55016,6 +55060,77 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       }, "if", function _if(isUser) {
         isUser: true;
       })
+    }, // Route Permintaan
+    {
+      name: 'create-permintaan',
+      path: '/permintaan/user/create',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 52).then(__webpack_require__.bind(null, /*! @/components/permintaan/user/create */ "./resources/assets/src/components/permintaan/user/create.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isUser: true
+      }
+    }, {
+      name: 'index-permintaan',
+      path: '/permintaan/user/:id',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 51).then(__webpack_require__.bind(null, /*! @/components/permintaan/user/index */ "./resources/assets/src/components/permintaan/user/index.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isUser: true
+      }
+    }, {
+      name: 'edit-permintaan',
+      path: '/permintaan/user/edit/:id',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 53).then(__webpack_require__.bind(null, /*! @/components/permintaan/user/edit */ "./resources/assets/src/components/permintaan/user/edit.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isUser: true
+      }
+    }, {
+      name: 'index-permintaan-admin',
+      path: '/permintaan/',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 56).then(__webpack_require__.bind(null, /*! @/components/permintaan/admin/index */ "./resources/assets/src/components/permintaan/admin/index.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
+      }
+    }, {
+      name: 'create-permintaan-admin',
+      path: '/permintaan/admin/create',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 54).then(__webpack_require__.bind(null, /*! @/components/permintaan/admin/create */ "./resources/assets/src/components/permintaan/admin/create.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
+      }
+    }, {
+      name: 'edit-permintaan-admin',
+      path: '/permintaan/admin/edit/:id',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 55).then(__webpack_require__.bind(null, /*! @/components/permintaan/admin/edit */ "./resources/assets/src/components/permintaan/admin/edit.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
+      }
+    }, {
+      name: 'detail-permintaan',
+      path: '/permintaan/detail/:id',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 57).then(__webpack_require__.bind(null, /*! @/components/permintaan/detail */ "./resources/assets/src/components/permintaan/detail.vue"));
+      },
+      meta: {
+        requiresAuth: true,
+        isAdmin: true
+      }
     }, //setting image
     {
       name: 'index-image',

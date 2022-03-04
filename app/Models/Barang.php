@@ -43,6 +43,11 @@ class Barang extends Model
         return $this->belongsTo('App\Models\History', 'barang_id', 'id');
     }
 
+    public function permintaan()
+    {
+        return $this->hasMany('App\Models\Permintaan', 'barang_id', 'id');
+    }
+
     public function scopeWithBarang($query)
     {
         return $query->with('Kategori', 'Pengguna', 'Lokasi');

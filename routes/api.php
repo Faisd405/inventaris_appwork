@@ -128,7 +128,10 @@ Route::get('/pengajuan/user/{idUser}', [PengajuanController::class, 'showByUserI
 Route::get('/permintaan', [PermintaanController::class, 'index']);
 Route::get('/permintaan/{id}', [PermintaanController::class, 'show']);
 Route::get('/permintaan/barang/{id}', [PermintaanController::class, 'showByBarangId']);
-Route::get('/permintaan/pengguna/{id}', [PermintaanController::class, 'showByPenggunaId']);
+Route::get('/permintaan/user/{id}', [PermintaanController::class, 'showByPenggunaId']);
+Route::post('/permintaan', [PermintaanController::class, 'store']);
+Route::put('/permintaan/{id}', [PermintaanController::class, 'update']);
+Route::delete('/permintaan/{id}', [PermintaanController::class, 'destroy']);
 
 //Inventaris Laporan
 Route::get('/inventaris/barangdanbuku', [InventarisController::class, 'lengthBarangdanBuku']);

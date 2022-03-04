@@ -83,6 +83,20 @@
         v-if="user.roles[0].name == 'admin'"
         >Pengajuan Barang Admin</sidenav-router-link
       >
+      <sidenav-router-link
+        icon="ion ion-md-desktop"
+        :to="{ name: 'index-permintaan', params: { id: user.id } }"
+        :exact="true"
+        v-if="user.roles[0].name == 'user'"
+        >Permintaan Barang Pengguna</sidenav-router-link
+      >
+      <sidenav-router-link
+        icon="ion ion-md-desktop"
+        to="/permintaan/admin/"
+        :exact="true"
+        v-if="user.roles[0].name == 'admin'"
+        >Permintaan Barang Admin</sidenav-router-link
+      >
       <span v-if="user.roles[0].name == 'admin'">
         <sidenav-menu icon="ion ion-md-cube">
           <template slot="link-text">
@@ -115,14 +129,10 @@
             >PIC Buku</sidenav-router-link
           >
         </sidenav-menu>
-
       </span>
-        <sidenav-router-link
-          icon="ion ion-md-desktop"
-          to="/history"
-          :exact="true"
-          >Riwayat Penggunaan Barang</sidenav-router-link
-        >
+      <sidenav-router-link icon="ion ion-md-desktop" to="/history" :exact="true"
+        >Riwayat Penggunaan Barang</sidenav-router-link
+      >
       <sidenav-divider />
       <sidenav-header> <strong>Laporan</strong> </sidenav-header>
       <sidenav-router-link
@@ -162,13 +172,16 @@
         >Laporan Harga Barang</sidenav-router-link
       >
       <span v-if="user.roles[0].name == 'admin'">
-      <sidenav-divider />
-      <sidenav-header> <strong>Setting</strong> </sidenav-header>
-      <sidenav-router-link icon="ion ion-md-settings" to="/image" :exact="true"
-        >Ganti Background Login, Gambar Default dan Lampiran
-        PDF</sidenav-router-link
-
-      ></span>
+        <sidenav-divider />
+        <sidenav-header> <strong>Setting</strong> </sidenav-header>
+        <sidenav-router-link
+          icon="ion ion-md-settings"
+          to="/image"
+          :exact="true"
+          >Ganti Background Login, Gambar Default dan Lampiran
+          PDF</sidenav-router-link
+        ></span
+      >
     </div>
   </sidenav>
 </template>

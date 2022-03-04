@@ -24,6 +24,7 @@ class PermintaanController extends Controller
     public function index()
     {
         $permintaan = $this->permintaan->getPermintaan();
+
         return response()->json([
             'status' => 'success',
             'permintaan' => $permintaan
@@ -36,6 +37,7 @@ class PermintaanController extends Controller
     public function show($id)
     {
         $permintaan = $this->permintaan->getPermintaanById($id);
+
         return response()->json([
             'status' => 'success',
             'permintaan' => $permintaan
@@ -48,6 +50,7 @@ class PermintaanController extends Controller
     public function showByBarangId($id)
     {
         $permintaan = $this->permintaan->getPermintaanByBarangId($id);
+
         return response()->json([
             'status' => 'success',
             'permintaan' => $permintaan
@@ -60,6 +63,43 @@ class PermintaanController extends Controller
     public function showByPenggunaId($id)
     {
         $permintaan = $this->permintaan->getPermintaanByPenggunaId($id);
+
+        return response()->json([
+            'status' => 'success',
+            'permintaan' => $permintaan
+        ], 200);
+    }
+
+    public function store(Request $request)
+    {
+        $permintaan = $this->permintaan->postPermintaan($request);
+
+        return response()->json([
+            'status' => 'success',
+            'permintaan' => $permintaan
+        ], 200);
+    }
+
+    /**
+     * @SuppressWarnings(ShortVariable)
+     */
+    public function update(Request $request, $id)
+    {
+        $permintaan = $this->permintaan->putPermintaan($request, $id);
+
+        return response()->json([
+            'status' => 'success',
+            'permintaan' => $permintaan
+        ], 200);
+    }
+
+    /**
+     * @SuppressWarnings(ShortVariable)
+     */
+    public function destroy($id)
+    {
+        $permintaan = $this->permintaan->deletePermintaan($id);
+
         return response()->json([
             'status' => 'success',
             'permintaan' => $permintaan

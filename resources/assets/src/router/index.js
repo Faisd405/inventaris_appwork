@@ -463,6 +463,70 @@ const router = new Router({
                 }
             }
         },
+        // Route Permintaan
+        {
+            name: 'create-permintaan',
+            path: '/permintaan/user/create',
+            component: () => import('@/components/permintaan/user/create'),
+            meta: {
+                requiresAuth: true,
+                isUser: true
+            }
+        },
+        {
+            name: 'index-permintaan',
+            path: '/permintaan/user/:id',
+            component: () => import('@/components/permintaan/user/index'),
+            meta: {
+                requiresAuth: true,
+                isUser: true
+            }
+        },
+        {
+            name: 'edit-permintaan',
+            path: '/permintaan/user/edit/:id',
+            component: () => import('@/components/permintaan/user/edit'),
+            meta: {
+                requiresAuth: true,
+                isUser: true
+            }
+        },
+        {
+            name: 'index-permintaan-admin',
+            path: '/permintaan/',
+            component: () => import('@/components/permintaan/admin/index'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
+        },
+        {
+            name: 'create-permintaan-admin',
+            path: '/permintaan/admin/create',
+            component: () => import('@/components/permintaan/admin/create'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
+        },
+        {
+            name: 'edit-permintaan-admin',
+            path: '/permintaan/admin/edit/:id',
+            component: () => import('@/components/permintaan/admin/edit'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
+        },
+        {
+            name: 'detail-permintaan',
+            path: '/permintaan/detail/:id',
+            component: () => import('@/components/permintaan/detail'),
+            meta: {
+                requiresAuth: true,
+                isAdmin: true
+            }
+        },
         //setting image
         {
             name: 'index-image',
