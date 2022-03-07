@@ -12,9 +12,15 @@
                 class="img-thumbnail rounded mx-auto d-block"
                 width="400px"
               />
-              <button v-if="barang.image != 'default.jpg'" class="btn btn-danger" @click.prevent="deleteImage()">
-                Hapus Gambar
+              <div v-if="loginType == 'admin'">
+                <button
+                  v-if="barang.image != 'default.jpg'"
+                  class="btn btn-danger"
+                  @click.prevent="deleteImage()"
+                >
+                  Hapus Gambar
                 </button>
+              </div>
             </div>
             <div>
               <label>Nama Barang : </label>
@@ -52,21 +58,22 @@
               >
             </div>
             <div v-if="barang.lampiran">
-                <!-- delete -->
-            <hr />
-              <h2 class="text-center">
-                Lampiran Invoice
-              </h2>
+              <!-- delete -->
+              <hr />
+              <h2 class="text-center">Lampiran Invoice</h2>
               <iframe
                 :src="'/lampiran/' + barang.lampiran"
                 type="document.pdf"
                 width="100%"
                 height="500px"
               ></iframe>
-                <button v-if="barang.lampiran != 'default.pdf'" @click.prevent="deleteLampiran()"
-                  class="btn btn-danger">
-                  <i class="fas fa-trash-alt"></i> Delete Lampiran
-                </button>
+              <button
+                v-if="barang.lampiran != 'default.pdf'"
+                @click.prevent="deleteLampiran()"
+                class="btn btn-danger"
+              >
+                <i class="fas fa-trash-alt"></i> Delete Lampiran
+              </button>
             </div>
             <hr />
             <div>
@@ -109,6 +116,8 @@ export default {
       },
       kategori: [],
       history: [],
+      user: [],
+      loginType: 'admin',
       fields: [
         ,
         { key: "id", label: "Id" },
@@ -126,6 +135,16 @@ export default {
       sortBy: "id",
       sortDesc: true,
     };
+  },
+  mounted() {
+    axios.defaults.headers.common["Content-Type"] = "application/json";
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + localStorage.getItem("token");
+
+    axios.get(`/api/user`).then((response) => {
+      this.user = response.data;
+      this.loginType = response.data.roles[0].name;
+    });
   },
   methods: {
     deleteLampiran() {

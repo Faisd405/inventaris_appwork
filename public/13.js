@@ -108,6 +108,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -123,6 +130,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       kategori: [],
       history: [],
+      user: [],
+      loginType: 'admin',
       fields: [, {
         key: "id",
         label: "Id"
@@ -143,37 +152,47 @@ __webpack_require__.r(__webpack_exports__);
       sortDesc: true
     };
   },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Content-Type"] = "application/json";
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("token");
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user").then(function (response) {
+      _this.user = response.data;
+      _this.loginType = response.data.roles[0].name;
+    });
+  },
   methods: {
     deleteLampiran: function deleteLampiran() {
-      var _this = this;
+      var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/api/barang/Lampiran/" + this.$route.params.id).then(function (response) {
-        _this.barang.lampiran = "default.pdf";
+        _this2.barang.lampiran = "default.pdf";
       })["catch"](function (error) {
         console.log(error);
       });
     },
     deleteImage: function deleteImage() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/api/barang/Image/" + this.$route.params.id).then(function (response) {
-        _this2.barang.image = "default.jpg";
+        _this3.barang.image = "default.jpg";
       })["catch"](function (error) {
         console.log(error);
       });
     }
   },
   created: function created() {
-    var _this3 = this;
+    var _this4 = this;
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/kategori").then(function (response) {
-      _this3.kategori = response.data.kategori;
+      _this4.kategori = response.data.kategori;
     });
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/barang/" + this.$route.params.id).then(function (response) {
-      _this3.barang = response.data.barang;
+      _this4.barang = response.data.barang;
     });
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/history/" + this.$route.params.id).then(function (response) {
-      _this3.history = response.data.history;
+      _this4.history = response.data.history;
     });
   }
 });
@@ -219,20 +238,28 @@ var render = function () {
                 attrs: { src: "/images/" + _vm.barang.image, width: "400px" },
               }),
               _vm._v(" "),
-              _vm.barang.image != "default.jpg"
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger",
-                      on: {
-                        click: function ($event) {
-                          $event.preventDefault()
-                          return _vm.deleteImage()
-                        },
-                      },
-                    },
-                    [_vm._v("\n              Hapus Gambar\n              ")]
-                  )
+              _vm.loginType == "admin"
+                ? _c("div", [
+                    _vm.barang.image != "default.jpg"
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            on: {
+                              click: function ($event) {
+                                $event.preventDefault()
+                                return _vm.deleteImage()
+                              },
+                            },
+                          },
+                          [
+                            _vm._v(
+                              "\n                Hapus Gambar\n              "
+                            ),
+                          ]
+                        )
+                      : _vm._e(),
+                  ])
                 : _vm._e(),
             ]),
             _vm._v(" "),
@@ -331,7 +358,7 @@ var render = function () {
                   _c("hr"),
                   _vm._v(" "),
                   _c("h2", { staticClass: "text-center" }, [
-                    _vm._v("\n              Lampiran Invoice\n            "),
+                    _vm._v("Lampiran Invoice"),
                   ]),
                   _vm._v(" "),
                   _c("iframe", {
@@ -357,7 +384,7 @@ var render = function () {
                         },
                         [
                           _c("i", { staticClass: "fas fa-trash-alt" }),
-                          _vm._v(" Delete Lampiran\n              "),
+                          _vm._v(" Delete Lampiran\n            "),
                         ]
                       )
                     : _vm._e(),
