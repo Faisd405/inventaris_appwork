@@ -119,7 +119,7 @@ export default {
       kategori: [],
       history: [],
       user: [],
-      loginType: "admin",
+      loginType: "guest",
       fields: [
         ,
         { key: "id", label: "Id" },

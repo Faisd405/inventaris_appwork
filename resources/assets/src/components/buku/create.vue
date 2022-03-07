@@ -35,12 +35,14 @@
                 />
               </div>
               <div class="form-group">
-                <label>Tanggal</label>
+                <label>Tahun</label>
                 <input
-                  type="text"
+                  type="number"
+                  min="1901"
+                  max="2099"
                   class="form-control"
                   v-model="buku.tanggal"
-                  placeholder="Masukan Tanggal"
+                  placeholder="Masukan Tahun"
                 />
               </div>
               <div class="form-group">
@@ -209,7 +211,15 @@ export default {
         this.errors.push("Penerbit tidak boleh kosong");
       }
       if (this.buku.tanggal == "") {
-        this.errors.push("Tanggal tidak boleh kosong");
+        this.errors.push("Tahun tidak boleh kosong");
+      }
+      if (this.barang.tanggal != "") {
+        if (this.barang.tanggal < 1901) {
+          this.errors.push("Tahun tidak boleh kurang dari 1901");
+        }
+        if (this.barang.tanggal.length > 4) {
+          this.errors.push("Tahun tidak boleh lebih dari 4 digit");
+        }
       }
       if (this.buku.kondisi == "") {
         this.errors.push("Kondisi tidak boleh kosong");

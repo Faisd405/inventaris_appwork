@@ -158,7 +158,7 @@
                     <th scope="col">No</th>
                     <v-th sortKey="judul" scope="col">Judul</v-th>
                     <v-th sortKey="tanggal_terbit" scope="col"
-                      >Tanggal Terbit</v-th
+                      >Tahun</v-th
                     >
                     <v-th sortKey="harga" scope="col">Harga</v-th>
                   </tr>

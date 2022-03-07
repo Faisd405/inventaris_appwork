@@ -55,7 +55,7 @@
                     <th sortKey="penulis" scope="col">Penulis</th>
                     <th sortKey="penerbit" scope="col">Penerbit</th>
                     <v-th sortKey="tanggal_terbit" scope="col"
-                      >Tanggal Terbit</v-th
+                      >Tahun</v-th
                     >
                     <th sortKey="kondisi" scope="col">Kondisi</th>
                     <v-th sortKey="jumlah" scope="col">Jumlah</v-th>

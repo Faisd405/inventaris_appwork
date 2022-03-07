@@ -981,7 +981,7 @@ var render = function () {
                                 scope: "col",
                               },
                             },
-                            [_vm._v("Tanggal Terbit")]
+                            [_vm._v("Tahun")]
                           ),
                           _vm._v(" "),
                           _c(

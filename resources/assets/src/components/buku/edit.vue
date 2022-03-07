@@ -35,12 +35,14 @@
                 />
               </div>
               <div class="form-group">
-                <label>Tanggal</label>
+                <label>Tahun</label>
                 <input
-                  type="text"
+                  type="number"
+                  min="1901"
+                  max="2099"
                   class="form-control"
                   v-model="buku.tanggal"
-                  placeholder="Masukan Tanggal"
+                  placeholder="Masukan Tahun"
                 />
               </div>
               <div class="form-group">
@@ -62,41 +64,41 @@
                 />
               </div>
               <!-- jenis -->
-                <div class="form-group">
-                    <label>Jenis</label>
-                    <select
-                    name="jenis"
-                    class="form-control"
-                    v-model="buku.jenis_id"
-                    >
-                    <option value="" disabled>Pilih Jenis</option>
-                    <option
-                        v-for="jenis in jenis"
-                        :value="jenis.id"
-                        :key="jenis.id"
-                    >
-                        {{ jenis.jenis_buku }}
-                    </option>
-                    </select>
-                </div>
-                <!-- pengguna -->
-                <div class="form-group">
-                    <label>Pengguna</label>
-                    <select
-                    name="pengguna"
-                    class="form-control"
-                    v-model="buku.pengguna_id"
-                    >
-                    <option value="" disabled>Pilih Pengguna</option>
-                    <option
-                        v-for="pengguna in pengguna"
-                        :value="pengguna.id"
-                        :key="pengguna.id"
-                    >
-                        {{ pengguna.name }}
-                    </option>
-                    </select>
-                </div>
+              <div class="form-group">
+                <label>Jenis</label>
+                <select
+                  name="jenis"
+                  class="form-control"
+                  v-model="buku.jenis_id"
+                >
+                  <option value="" disabled>Pilih Jenis</option>
+                  <option
+                    v-for="jenis in jenis"
+                    :value="jenis.id"
+                    :key="jenis.id"
+                  >
+                    {{ jenis.jenis_buku }}
+                  </option>
+                </select>
+              </div>
+              <!-- pengguna -->
+              <div class="form-group">
+                <label>Pengguna</label>
+                <select
+                  name="pengguna"
+                  class="form-control"
+                  v-model="buku.pengguna_id"
+                >
+                  <option value="" disabled>Pilih Pengguna</option>
+                  <option
+                    v-for="pengguna in pengguna"
+                    :value="pengguna.id"
+                    :key="pengguna.id"
+                  >
+                    {{ pengguna.name }}
+                  </option>
+                </select>
+              </div>
               <!-- Lokasi -->
               <div class="form-group">
                 <label for="lokasi_id">Lokasi</label>
@@ -124,7 +126,7 @@
                   v-model="buku.harga"
                   placeholder="Masukan Harga"
                 />
-                </div>
+              </div>
 
               <div class="form-group">
                 <button class="btn btn-md btn-success" type="submit">
@@ -158,8 +160,8 @@ export default {
       buku: {},
       errors: [],
       lokasi: [],
-        jenis: [],
-        pengguna: [],
+      jenis: [],
+      pengguna: [],
     };
   },
   created() {
@@ -194,8 +196,16 @@ export default {
       if (!this.buku.penerbit) {
         this.errors.push("Penerbit harus diisi");
       }
-      if (!this.buku.tanggal) {
-        this.errors.push("Tanggal harus diisi");
+      if (this.buku.tanggal == "") {
+        this.errors.push("Tahun harus diisi");
+      }
+      if (this.barang.tanggal != "") {
+        if (this.barang.tanggal < 1901) {
+          this.errors.push("Tahun tidak boleh kurang dari 1901");
+        }
+        if (this.barang.tanggal.length > 4) {
+          this.errors.push("Tahun tidak boleh lebih dari 4 digit");
+        }
       }
       if (!this.buku.kondisi) {
         this.errors.push("Kondisi harus diisi");

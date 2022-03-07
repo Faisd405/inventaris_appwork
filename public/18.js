@@ -160,6 +160,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -214,8 +216,18 @@ __webpack_require__.r(__webpack_exports__);
         this.errors.push("Penerbit harus diisi");
       }
 
-      if (!this.buku.tanggal) {
-        this.errors.push("Tanggal harus diisi");
+      if (this.buku.tanggal == "") {
+        this.errors.push("Tahun harus diisi");
+      }
+
+      if (this.barang.tanggal != "") {
+        if (this.barang.tanggal < 1901) {
+          this.errors.push("Tahun tidak boleh kurang dari 1901");
+        }
+
+        if (this.barang.tanggal.length > 4) {
+          this.errors.push("Tahun tidak boleh lebih dari 4 digit");
+        }
       }
 
       if (!this.buku.kondisi) {
@@ -366,7 +378,7 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Tanggal")]),
+                  _c("label", [_vm._v("Tahun")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -378,7 +390,12 @@ var render = function () {
                       },
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "text", placeholder: "Masukan Tanggal" },
+                    attrs: {
+                      type: "number",
+                      min: "1901",
+                      max: "2099",
+                      placeholder: "Masukan Tahun",
+                    },
                     domProps: { value: _vm.buku.tanggal },
                     on: {
                       input: function ($event) {
@@ -490,9 +507,9 @@ var render = function () {
                           { key: jenis.id, domProps: { value: jenis.id } },
                           [
                             _vm._v(
-                              "\n                      " +
+                              "\n                  " +
                                 _vm._s(jenis.jenis_buku) +
-                                "\n                  "
+                                "\n                "
                             ),
                           ]
                         )
@@ -552,9 +569,9 @@ var render = function () {
                           },
                           [
                             _vm._v(
-                              "\n                      " +
+                              "\n                  " +
                                 _vm._s(pengguna.name) +
-                                "\n                  "
+                                "\n                "
                             ),
                           ]
                         )

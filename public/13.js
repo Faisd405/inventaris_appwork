@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
       kategori: [],
       history: [],
       user: [],
-      loginType: "admin",
+      loginType: "guest",
       fields: [, {
         key: "id",
         label: "Id"
