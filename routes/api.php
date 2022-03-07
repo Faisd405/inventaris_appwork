@@ -126,6 +126,7 @@ Route::get('/pengajuan/user/{idUser}', [PengajuanController::class, 'showByUserI
 
 //Route API Permintaan
 Route::get('/permintaan', [PermintaanController::class, 'index']);
+Route::post('/permintaan/setuju', [PermintaanController::class, 'setuju']);
 Route::get('/permintaan/{id}', [PermintaanController::class, 'show']);
 Route::get('/permintaan/barang/{id}', [PermintaanController::class, 'showByBarangId']);
 Route::get('/permintaan/user/{id}', [PermintaanController::class, 'showByPenggunaId']);

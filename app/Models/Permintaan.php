@@ -78,4 +78,13 @@ class Permintaan extends Model
         $permintaan = $this->find($id);
         $permintaan->delete();
     }
+
+    /**
+     * @SuppressWarnings(ShortVariable)
+     */
+    public function deletePermintaanByBarangId($id)
+    {
+        $permintaan = $this->where('barang_id', $id);
+        $permintaan->delete();
+    }
 }

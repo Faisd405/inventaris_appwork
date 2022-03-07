@@ -201,4 +201,14 @@ class Barang extends Model
     {
         return self::WithBarang()->where('pengguna_id', $id)->get();
     }
+    
+    public function setujuPermintaanBarang($data){
+        $barang = self::find($data['barang_id']);
+
+        $barang->update([
+            'pengguna_id' => $data['pengguna_id'],
+        ]);
+
+        return $barang;
+    }
 }

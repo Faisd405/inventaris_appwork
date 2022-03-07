@@ -140,11 +140,11 @@ export default {
       };
       axios.post(uri, data).then((response) => {
         this.closeModal();
-        this.$router.push("/permintaan");
+        this.$router.push("/permintaan/user/" + this.user.id);
       });
     },
   },
-  
+
   mounted() {
     axios.defaults.headers.common["Content-Type"] = "application/json";
     axios.defaults.headers.common["Authorization"] =

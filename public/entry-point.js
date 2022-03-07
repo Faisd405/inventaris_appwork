@@ -54761,7 +54761,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-users',
       path: '/users',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 50).then(__webpack_require__.bind(null, /*! @/components/users/index */ "./resources/assets/src/components/users/index.vue"));
+        return __webpack_require__.e(/*! import() */ 53).then(__webpack_require__.bind(null, /*! @/components/users/index */ "./resources/assets/src/components/users/index.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -54773,7 +54773,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-users',
       path: '/users/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 48).then(__webpack_require__.bind(null, /*! @/components/users/create */ "./resources/assets/src/components/users/create.vue"));
+        return __webpack_require__.e(/*! import() */ 51).then(__webpack_require__.bind(null, /*! @/components/users/create */ "./resources/assets/src/components/users/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -54783,7 +54783,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'edit-users',
       path: '/users/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 49).then(__webpack_require__.bind(null, /*! @/components/users/edit */ "./resources/assets/src/components/users/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 52).then(__webpack_require__.bind(null, /*! @/components/users/edit */ "./resources/assets/src/components/users/edit.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -54827,7 +54827,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-sifat',
       path: '/sifat',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 47).then(__webpack_require__.bind(null, /*! @/components/sifat/index */ "./resources/assets/src/components/sifat/index.vue"));
+        return __webpack_require__.e(/*! import() */ 50).then(__webpack_require__.bind(null, /*! @/components/sifat/index */ "./resources/assets/src/components/sifat/index.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -54839,7 +54839,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-sifat',
       path: '/sifat/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 45).then(__webpack_require__.bind(null, /*! @/components/sifat/create */ "./resources/assets/src/components/sifat/create.vue"));
+        return __webpack_require__.e(/*! import() */ 48).then(__webpack_require__.bind(null, /*! @/components/sifat/create */ "./resources/assets/src/components/sifat/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -54849,7 +54849,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'edit-sifat',
       path: '/sifat/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 46).then(__webpack_require__.bind(null, /*! @/components/sifat/edit */ "./resources/assets/src/components/sifat/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 49).then(__webpack_require__.bind(null, /*! @/components/sifat/edit */ "./resources/assets/src/components/sifat/edit.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -55065,7 +55065,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-permintaan',
       path: '/permintaan/user/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 52).then(__webpack_require__.bind(null, /*! @/components/permintaan/user/create */ "./resources/assets/src/components/permintaan/user/create.vue"));
+        return __webpack_require__.e(/*! import() */ 46).then(__webpack_require__.bind(null, /*! @/components/permintaan/user/create */ "./resources/assets/src/components/permintaan/user/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -55075,7 +55075,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-permintaan',
       path: '/permintaan/user/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 51).then(__webpack_require__.bind(null, /*! @/components/permintaan/user/index */ "./resources/assets/src/components/permintaan/user/index.vue"));
+        return __webpack_require__.e(/*! import() */ 47).then(__webpack_require__.bind(null, /*! @/components/permintaan/user/index */ "./resources/assets/src/components/permintaan/user/index.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -55085,7 +55085,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'index-permintaan-admin',
       path: '/permintaan/admin',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 56).then(__webpack_require__.bind(null, /*! @/components/permintaan/admin/index */ "./resources/assets/src/components/permintaan/admin/index.vue"));
+        return __webpack_require__.e(/*! import() */ 45).then(__webpack_require__.bind(null, /*! @/components/permintaan/admin/index */ "./resources/assets/src/components/permintaan/admin/index.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -55095,7 +55095,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'detail-permintaan',
       path: '/permintaan/detail/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 57).then(__webpack_require__.bind(null, /*! @/components/permintaan/detail */ "./resources/assets/src/components/permintaan/detail.vue"));
+        return __webpack_require__.e(/*! import() */ 54).then(__webpack_require__.bind(null, /*! @/components/permintaan/detail */ "./resources/assets/src/components/permintaan/detail.vue"));
       },
       meta: {
         requiresAuth: true,

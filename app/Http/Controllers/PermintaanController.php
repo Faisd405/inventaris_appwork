@@ -105,4 +105,18 @@ class PermintaanController extends Controller
             'permintaan' => $permintaan
         ], 200);
     }
+
+    public function setuju(Request $request)
+    {
+        $data = $this->permintaan->getPermintaanById($request->id);
+
+        $setuju = $this->barang->setujuPermintaanBarang($data);
+
+        $this->permintaan->deletePermintaanByBarangId($data->barang_id);
+
+        return response()->json([
+            'status' => 'success',
+            'permintaan' => $setuju
+        ], 200);
+    }
 }
