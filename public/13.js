@@ -115,6 +115,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -131,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
       kategori: [],
       history: [],
       user: [],
-      loginType: 'admin',
+      loginType: "admin",
       fields: [, {
         key: "id",
         label: "Id"
@@ -370,23 +372,27 @@ var render = function () {
                     },
                   }),
                   _vm._v(" "),
-                  _vm.barang.lampiran != "default.pdf"
-                    ? _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-danger",
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              return _vm.deleteLampiran()
-                            },
-                          },
-                        },
-                        [
-                          _c("i", { staticClass: "fas fa-trash-alt" }),
-                          _vm._v(" Delete Lampiran\n            "),
-                        ]
-                      )
+                  _vm.loginType == "admin"
+                    ? _c("div", [
+                        _vm.barang.lampiran != "default.pdf"
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger",
+                                on: {
+                                  click: function ($event) {
+                                    $event.preventDefault()
+                                    return _vm.deleteLampiran()
+                                  },
+                                },
+                              },
+                              [
+                                _c("i", { staticClass: "fas fa-trash-alt" }),
+                                _vm._v(" Delete Lampiran\n              "),
+                              ]
+                            )
+                          : _vm._e(),
+                      ])
                     : _vm._e(),
                 ])
               : _vm._e(),

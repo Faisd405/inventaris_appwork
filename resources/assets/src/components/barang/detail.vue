@@ -67,13 +67,15 @@
                 width="100%"
                 height="500px"
               ></iframe>
-              <button
-                v-if="barang.lampiran != 'default.pdf'"
-                @click.prevent="deleteLampiran()"
-                class="btn btn-danger"
-              >
-                <i class="fas fa-trash-alt"></i> Delete Lampiran
-              </button>
+              <div v-if="loginType == 'admin'">
+                <button
+                  v-if="barang.lampiran != 'default.pdf'"
+                  @click.prevent="deleteLampiran()"
+                  class="btn btn-danger"
+                >
+                  <i class="fas fa-trash-alt"></i> Delete Lampiran
+                </button>
+              </div>
             </div>
             <hr />
             <div>
@@ -117,7 +119,7 @@ export default {
       kategori: [],
       history: [],
       user: [],
-      loginType: 'admin',
+      loginType: "admin",
       fields: [
         ,
         { key: "id", label: "Id" },
