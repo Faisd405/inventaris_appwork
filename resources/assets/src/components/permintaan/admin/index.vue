@@ -40,6 +40,7 @@
                     <th scope="col">Harga Barang</th>
                     <th scope="col">Jumlah Barang</th>
                     <th scope="col">Nama User</th>
+                    <th scope="col">Keterangan</th>
                     <th scope="col">Aksi</th>
                   </tr>
                 </thead>
@@ -52,6 +53,7 @@
                     <td>{{ data.barang.harga_barang | toCurrency }}</td>
                     <td>{{ data.barang.jumlah_barang }}</td>
                     <td>{{ data.pengguna.name }}</td>
+                    <td>{{ data.keterangan }}</td>
                     <td>
                       <button
                         @click="showModal(data)"

@@ -142,6 +142,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -384,6 +386,8 @@ var render = function () {
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(data.pengguna.name))]),
                                 _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(data.keterangan))]),
+                                _vm._v(" "),
                                 _c("td", [
                                   _c(
                                     "button",
@@ -455,6 +459,10 @@ var render = function () {
                         _vm._v(" "),
                         _c("th", { attrs: { scope: "col" } }, [
                           _vm._v("Nama User"),
+                        ]),
+                        _vm._v(" "),
+                        _c("th", { attrs: { scope: "col" } }, [
+                          _vm._v("Keterangan"),
                         ]),
                         _vm._v(" "),
                         _c("th", { attrs: { scope: "col" } }, [_vm._v("Aksi")]),
