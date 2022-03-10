@@ -883,7 +883,7 @@ var render = function () {
                             _c(
                               "button",
                               {
-                                staticClass: "btn btn-danger btn-lg",
+                                staticClass: "btn btn-success btn-lg",
                                 on: {
                                   click: function ($event) {
                                     return _vm.deleteData(_vm.DataDelete.id)

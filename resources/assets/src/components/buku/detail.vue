@@ -15,7 +15,7 @@
               <div v-if="loginType == 'admin'">
                 <button
                   v-if="buku.image != 'default.jpg'"
-                  class="btn btn-danger"
+                  class="btn btn-success"
                   @click.prevent="deleteImage()"
                 >
                   Hapus Gambar

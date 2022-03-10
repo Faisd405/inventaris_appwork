@@ -196,7 +196,7 @@ var render = function () {
                       ? _c(
                           "button",
                           {
-                            staticClass: "btn btn-danger",
+                            staticClass: "btn btn-success",
                             on: {
                               click: function ($event) {
                                 $event.preventDefault()

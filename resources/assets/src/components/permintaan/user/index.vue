@@ -94,7 +94,7 @@
                   </h3>
                   <button
                     @click="deleteData(DataDelete.id)"
-                    class="btn btn-danger btn-lg"
+                    class="btn btn-success btn-lg"
                   >
                     Hapus
                   </button>
