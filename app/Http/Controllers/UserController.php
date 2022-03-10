@@ -7,8 +7,8 @@ use App\Models\User;
 use App\Models\RoleUser;
 use App\Models\Pengguna;
 use Illuminate\Support\Facades\Hash;
-use Auth;
-use JWTAuth;
+use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {

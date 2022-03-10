@@ -10,8 +10,9 @@ use App\Http\Requests\PenggunaRequest;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use App\Services\PenggunaServices;
-use Auth;
-use JWTAuth;
+use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Barryvdh\DomPDF\PDF;
 
 class PenggunaController extends Controller
 {
@@ -148,7 +149,7 @@ class PenggunaController extends Controller
         $barang = $this->barang->getBarangbyPengguna($id);
         $kodeLampiran = $request->kode_lampiran;
 
-        $pdf = \PDF::loadView(
+        $pdf = PDF::loadView(
             'pengguna.surat_komitmen',
             compact('pengguna', 'barang', 'kodeLampiran')
         )->setPaper('a4', 'potrait');

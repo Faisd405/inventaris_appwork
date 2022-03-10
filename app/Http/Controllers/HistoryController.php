@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\History;
-use PDF;
+use Barryvdh\DomPDF\PDF;
 use Maatwebsite\Excel\Facades\Excel;
 
 class HistoryController extends Controller

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Kategori;
 use App\Models\Pengguna;
-use PDF;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\File;
 use App\Exports\BarangExport;
 use App\Models\History;
