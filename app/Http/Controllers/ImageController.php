@@ -21,6 +21,7 @@ class ImageController extends Controller
         $imageName = 'default.jpg';
         $image->move(public_path('images'), $imageName);
         $image->move(public_path('pengajuan'), $imageName);
+        $image->move(public_path('gambarBuku'), $imageName);
         return response()->json(['success' => true]);
     }
 
@@ -30,6 +31,8 @@ class ImageController extends Controller
         $image = $request->file('file');
         $imageName = 'default.pdf';
         $image->move(public_path('lampiran'), $imageName);
+        $image->move(public_path('lampiranBuku'), $imageName);
+
         return response()->json(['success' => true]);
     }
 

@@ -88,6 +88,8 @@ Route::get('/kategori/{id}', [KategoriController::class, 'show']);
 
 //Route API Buku
 Route::get('/buku/total', [BukuController::class, 'getTotalHarga']);
+Route::put('/buku/Lampiran/{id}', [BukuController::class, 'destroyLampiran']);
+Route::put('/buku/Image/{id}', [BukuController::class, 'destroyImage']);
 Route::get('/buku', [BukuController::class, 'index']);
 Route::get('/buku/{id}', [BukuController::class, 'show']);
 Route::put('/buku/{id}', [BukuController::class, 'update']);

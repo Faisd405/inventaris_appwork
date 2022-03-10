@@ -92,4 +92,30 @@ class BukuController extends Controller
             'total' => $total
         ], 200);
     }
+
+    public function destroyImage($id)
+    {
+        $buku = $this->buku->getBukuById($id);
+        if ($buku->image != "default.jpg") {
+            File::delete('gambarBuku/' . $buku->image);
+        }
+        $buku->image = "default.jpg";
+        $buku->save();
+        return response()->json([
+            'buku' => $buku
+        ], 200);
+    }
+
+    public function destroyLampiran($id)
+    {
+        $buku = $this->buku->getBukuById($id);
+        if ($buku->lampiran != "default.pdf") {
+            File::delete('lampiranBuku/' . $buku->lampiran);
+        }
+        $buku->lampiran = "default.pdf";
+        $buku->save();
+        return response()->json([
+            'buku' => $buku
+        ], 200);
+    }
 }
