@@ -54803,6 +54803,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         }
       }
     }, {
+      name: 'detail-buku',
+      path: '/buku/detail/:id',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 55).then(__webpack_require__.bind(null, /*! @/components/buku/detail */ "./resources/assets/src/components/buku/detail.vue"));
+      }
+    }, {
       name: 'create-buku',
       path: '/buku/create',
       component: function component() {

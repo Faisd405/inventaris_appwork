@@ -54,9 +54,7 @@
                     <v-th sortKey="judul" scope="col">Judul</v-th>
                     <th sortKey="penulis" scope="col">Penulis</th>
                     <th sortKey="penerbit" scope="col">Penerbit</th>
-                    <v-th sortKey="tanggal_terbit" scope="col"
-                      >Tahun</v-th
-                    >
+                    <v-th sortKey="tanggal_terbit" scope="col">Tahun</v-th>
                     <th sortKey="kondisi" scope="col">Kondisi</th>
                     <v-th sortKey="jumlah" scope="col">Jumlah</v-th>
                     <th sortKey="jenis" scope="col">Jenis</th>
@@ -100,9 +98,15 @@
                       {{ data.lokasi.lokasi }}
                     </td>
                     <td>
-                        {{data.harga}}
+                      {{ data.harga }}
                     </td>
                     <td>
+                      <router-link
+                        :to="{ name: 'detail-buku', params: { id: data.id } }"
+                        class="btn btn-sm btn-info"
+                      >
+                        <i class="ion ion-md-eye"></i>
+                      </router-link>
                       <span v-if="loginType == 'admin'">
                         <router-link
                           :to="{ name: 'edit-buku', params: { id: data.id } }"
@@ -117,7 +121,6 @@
                           <i class="ion ion-ios-trash"></i>
                         </button>
                       </span>
-                      <span v-if="loginType != 'admin'"> Tidak ada Akses </span>
                     </td>
                   </tr>
                 </tbody>

@@ -85,6 +85,8 @@
                 <input
                   type="year"
                   name="year"
+                  min="1901"
+                  max="2099"
                   class="form-control"
                   v-model="barang.year"
                   placeholder="Masukan Tahun"

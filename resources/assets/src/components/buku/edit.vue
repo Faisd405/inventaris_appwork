@@ -128,6 +128,68 @@
                 />
               </div>
 
+              <div class="form-group" v-if="!preview">
+                <label for="">Foto Lama</label>
+                <img
+                  :src="'/gambarBuku/' + buku.image"
+                  class="img-thumbnail rounded"
+                  width="280px"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="image">image</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  name="image"
+                  @change="onFileChange"
+                  accept="image/png, image/jpeg"
+                />
+              </div>
+              <br />
+              <div class="preview" v-if="preview">
+                <p>Preview:</p>
+                <img :src="preview" class="img-thumbnail" />
+              </div>
+
+              <div
+                v-if="
+                  buku.lampiran && buku.lampiran != 'default.pdf' && !previewPDF
+                "
+              >
+                <label>Lampiran Invoice Lama : </label>
+                <iframe
+                  :src="'/lampiranBuku/' + buku.lampiran"
+                  type="document.pdf"
+                  width="100%"
+                  height="500px"
+                ></iframe>
+              </div>
+              <div v-if="!buku.lampiran">
+                <p class="card card-body">Belum Upload Lampiran Invoice</p>
+              </div>
+              <div class="form-group">
+                <label for="lampiran">Lampiran Invoice</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  name="lampiran"
+                  accept="application/pdf, image/png, image/jpeg, image/jpg"
+                  @change="onFileChangePDF"
+                />
+              </div>
+              <div class="previewPDF" v-if="previewPDF">
+                <p>Preview PDF:</p>
+                <iframe
+                  :src="previewPDF"
+                  type="document.pdf"
+                  class="pdf-thumbnail"
+                  width="100%"
+                  height="500px"
+                ></iframe>
+              </div>
+
               <div class="form-group">
                 <button class="btn btn-md btn-success" type="submit">
                   SIMPAN
@@ -162,6 +224,8 @@ export default {
       lokasi: [],
       jenis: [],
       pengguna: [],
+      preview: null,
+      previewPDF: null,
     };
   },
   created() {
@@ -180,8 +244,22 @@ export default {
   },
   methods: {
     BookUpdate() {
-      let uri = "/api/buku/" + this.$route.params.id;
-      axios.put(uri, this.buku).then((response) => {
+      const formData = new FormData();
+      formData.append("judul", this.buku.judul);
+      formData.append("penulis", this.buku.penulis);
+      formData.append("penerbit", this.buku.penerbit);
+      formData.append("tanggal", this.buku.tanggal);
+      formData.append("kondisi", this.buku.kondisi);
+      formData.append("jumlah", this.buku.jumlah);
+      formData.append("jenis_id", this.buku.jenis_id);
+      formData.append("pengguna_id", this.buku.pengguna_id);
+      formData.append("lokasi_id", this.buku.lokasi_id);
+      formData.append("harga", this.buku.harga);
+      formData.append("image", this.buku.image);
+      formData.append("lampiran", this.buku.lampiran);
+
+      let uri = "/api/buku/" + this.$route.params.id + "?_method=PUT";
+      axios.post(uri, formData).then((response) => {
         this.$router.push("/buku");
       });
     },
@@ -199,11 +277,11 @@ export default {
       if (this.buku.tanggal == "") {
         this.errors.push("Tahun harus diisi");
       }
-      if (this.barang.tanggal != "") {
-        if (this.barang.tanggal < 1901) {
+      if (this.buku.tanggal != "") {
+        if (this.buku.tanggal < 1901) {
           this.errors.push("Tahun tidak boleh kurang dari 1901");
         }
-        if (this.barang.tanggal.length > 4) {
+        if (this.buku.tanggal.length > 4) {
           this.errors.push("Tahun tidak boleh lebih dari 4 digit");
         }
       }
@@ -228,6 +306,14 @@ export default {
       if (this.errors.length == 0) {
         this.BookUpdate();
       }
+    },
+    onFileChange(e) {
+      this.buku.image = e.target.files[0];
+      this.preview = URL.createObjectURL(e.target.files[0]);
+    },
+    onFileChangePDF(e) {
+      this.buku.lampiran = e.target.files[0];
+      this.previewPDF = URL.createObjectURL(e.target.files[0]);
     },
   },
 };

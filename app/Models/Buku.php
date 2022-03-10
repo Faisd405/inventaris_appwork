@@ -17,7 +17,9 @@ class Buku extends Model
         'jenis_id',
         'pengguna_id',
         'lokasi_id',
-        'harga'
+        'harga',
+        'image',
+        'lampiran'
     ];
 
     public function lokasi()
@@ -62,16 +64,42 @@ class Buku extends Model
         return self::WithBuku()->where('lokasi_id', $id)->get();
     }
 
-    public function postBuku($request)
+    public function postBuku($request,$imageName,$lampiranName)
     {
-        $buku = self::create($request->all());
+        $buku = self::create([
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'tanggal' => $request->tanggal,
+            'jumlah' => $request->jumlah,
+            'kondisi' => $request->kondisi,
+            'jenis_id' => $request->jenis_id,
+            'pengguna_id' => $request->pengguna_id,
+            'lokasi_id' => $request->lokasi_id,
+            'harga' => $request->harga,
+            'image' => $imageName,
+            'lampiran' => $lampiranName
+        ]);
         return $buku;
     }
 
-    public function putBuku($request, $id)
+    public function putBuku($request, $id, $imageName, $lampiranName)
     {
         $buku = self::find($id);
-        $buku->update($request->all());
+        $buku->update([
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'tanggal' => $request->tanggal,
+            'jumlah' => $request->jumlah,
+            'kondisi' => $request->kondisi,
+            'jenis_id' => $request->jenis_id,
+            'pengguna_id' => $request->pengguna_id,
+            'lokasi_id' => $request->lokasi_id,
+            'harga' => $request->harga,
+            'image' => $imageName,
+            'lampiran' => $lampiranName
+        ]);
         return $buku;
     }
 

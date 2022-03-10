@@ -129,6 +129,43 @@
                 />
               </div>
 
+              <div class="form-group">
+                <label for="image">Gambar</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  name="image"
+                  accept="image/png, image/jpeg"
+                  @change="onFileChange"
+                />
+              </div>
+              <br />
+              <div class="preview" v-if="preview">
+                <p>Preview:</p>
+                <img :src="preview" class="img-thumbnail" />
+                <br />
+              </div>
+              <div class="form-group">
+                <label for="lampiran">Lampiran Invoice</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  name="lampiran"
+                  accept="application/pdf, image/png, image/jpeg, image/jpg"
+                  @change="onFileChangePDF"
+                />
+              </div>
+              <div class="previewPDF" v-if="previewPDF">
+                <p>Preview PDF:</p>
+                <iframe
+                  :src="previewPDF"
+                  type="document.pdf"
+                  class="pdf-thumbnail"
+                  width="100%"
+                  height="500px"
+                ></iframe>
+              </div>
+
               <br />
               <div class="form-group">
                 <button class="btn btn-md btn-success" type="submit">
@@ -170,11 +207,16 @@ export default {
         jenis_id: "",
         pengguna_id: "",
         lokasi_id: "",
+        harga: "",
+        image: "",
+        lampiran: "",
       },
       lokasi: [],
       jenis: [],
       errors: [],
       pengguna: [],
+      preview: "",
+      previewPDF: "",
     };
   },
   created() {
@@ -190,8 +232,22 @@ export default {
   },
   methods: {
     BookStore() {
+      const formData = new FormData();
+      formData.append("judul", this.buku.judul);
+      formData.append("penulis", this.buku.penulis);
+      formData.append("penerbit", this.buku.penerbit);
+      formData.append("tanggal", this.buku.tanggal);
+      formData.append("kondisi", this.buku.kondisi);
+      formData.append("jumlah", this.buku.jumlah);
+      formData.append("jenis_id", this.buku.jenis_id);
+      formData.append("pengguna_id", this.buku.pengguna_id);
+      formData.append("lokasi_id", this.buku.lokasi_id);
+      formData.append("harga", this.buku.harga);
+      formData.append("image", this.buku.image);
+      formData.append("lampiran", this.buku.lampiran);
+
       axios
-        .post("/api/buku", this.buku)
+        .post("/api/buku", formData)
         .then((response) => {
           this.$router.push("/buku");
         })
@@ -213,11 +269,11 @@ export default {
       if (this.buku.tanggal == "") {
         this.errors.push("Tahun tidak boleh kosong");
       }
-      if (this.barang.tanggal != "") {
-        if (this.barang.tanggal < 1901) {
+      if (this.buku.tanggal != "") {
+        if (this.buku.tanggal < 1901) {
           this.errors.push("Tahun tidak boleh kurang dari 1901");
         }
-        if (this.barang.tanggal.length > 4) {
+        if (this.buku.tanggal.length > 4) {
           this.errors.push("Tahun tidak boleh lebih dari 4 digit");
         }
       }
@@ -242,6 +298,14 @@ export default {
       if (this.errors.length == 0) {
         this.BookStore();
       }
+    },
+    onFileChange(e) {
+      this.buku.image = e.target.files[0];
+      this.preview = URL.createObjectURL(e.target.files[0]);
+    },
+    onFileChangePDF(e) {
+      this.buku.lampiran = e.target.files[0];
+      this.previewPDF = URL.createObjectURL(e.target.files[0]);
     },
   },
 };

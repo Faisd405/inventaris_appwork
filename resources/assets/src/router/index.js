@@ -231,6 +231,11 @@ const router = new Router({
             }
         },
         {
+            name: 'detail-buku',
+            path: '/buku/detail/:id',
+            component: () => import('@/components/buku/detail'),
+        },
+        {
             name: 'create-buku',
             path: '/buku/create',
             component: () => import('@/components/buku/create'),

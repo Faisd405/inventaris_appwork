@@ -165,6 +165,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -181,12 +218,17 @@ __webpack_require__.r(__webpack_exports__);
         jumlah: "",
         jenis_id: "",
         pengguna_id: "",
-        lokasi_id: ""
+        lokasi_id: "",
+        harga: "",
+        image: "",
+        lampiran: ""
       },
       lokasi: [],
       jenis: [],
       errors: [],
-      pengguna: []
+      pengguna: [],
+      preview: "",
+      previewPDF: ""
     };
   },
   created: function created() {
@@ -206,7 +248,20 @@ __webpack_require__.r(__webpack_exports__);
     BookStore: function BookStore() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/buku", this.buku).then(function (response) {
+      var formData = new FormData();
+      formData.append("judul", this.buku.judul);
+      formData.append("penulis", this.buku.penulis);
+      formData.append("penerbit", this.buku.penerbit);
+      formData.append("tanggal", this.buku.tanggal);
+      formData.append("kondisi", this.buku.kondisi);
+      formData.append("jumlah", this.buku.jumlah);
+      formData.append("jenis_id", this.buku.jenis_id);
+      formData.append("pengguna_id", this.buku.pengguna_id);
+      formData.append("lokasi_id", this.buku.lokasi_id);
+      formData.append("harga", this.buku.harga);
+      formData.append("image", this.buku.image);
+      formData.append("lampiran", this.buku.lampiran);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/buku", formData).then(function (response) {
         _this2.$router.push("/buku");
       })["catch"](function (error) {
         console.log(error.response.data.errors);
@@ -231,12 +286,12 @@ __webpack_require__.r(__webpack_exports__);
         this.errors.push("Tahun tidak boleh kosong");
       }
 
-      if (this.barang.tanggal != "") {
-        if (this.barang.tanggal < 1901) {
+      if (this.buku.tanggal != "") {
+        if (this.buku.tanggal < 1901) {
           this.errors.push("Tahun tidak boleh kurang dari 1901");
         }
 
-        if (this.barang.tanggal.length > 4) {
+        if (this.buku.tanggal.length > 4) {
           this.errors.push("Tahun tidak boleh lebih dari 4 digit");
         }
       }
@@ -268,6 +323,14 @@ __webpack_require__.r(__webpack_exports__);
       if (this.errors.length == 0) {
         this.BookStore();
       }
+    },
+    onFileChange: function onFileChange(e) {
+      this.buku.image = e.target.files[0];
+      this.preview = URL.createObjectURL(e.target.files[0]);
+    },
+    onFileChangePDF: function onFileChangePDF(e) {
+      this.buku.lampiran = e.target.files[0];
+      this.previewPDF = URL.createObjectURL(e.target.files[0]);
     }
   }
 });
@@ -675,6 +738,68 @@ var render = function () {
                     },
                   }),
                 ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "image" } }, [_vm._v("Gambar")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "file",
+                      name: "image",
+                      accept: "image/png, image/jpeg",
+                    },
+                    on: { change: _vm.onFileChange },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _vm.preview
+                  ? _c("div", { staticClass: "preview" }, [
+                      _c("p", [_vm._v("Preview:")]),
+                      _vm._v(" "),
+                      _c("img", {
+                        staticClass: "img-thumbnail",
+                        attrs: { src: _vm.preview },
+                      }),
+                      _vm._v(" "),
+                      _c("br"),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "lampiran" } }, [
+                    _vm._v("Lampiran Invoice"),
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "file",
+                      name: "lampiran",
+                      accept:
+                        "application/pdf, image/png, image/jpeg, image/jpg",
+                    },
+                    on: { change: _vm.onFileChangePDF },
+                  }),
+                ]),
+                _vm._v(" "),
+                _vm.previewPDF
+                  ? _c("div", { staticClass: "previewPDF" }, [
+                      _c("p", [_vm._v("Preview PDF:")]),
+                      _vm._v(" "),
+                      _c("iframe", {
+                        staticClass: "pdf-thumbnail",
+                        attrs: {
+                          src: _vm.previewPDF,
+                          type: "document.pdf",
+                          width: "100%",
+                          height: "500px",
+                        },
+                      }),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _c("br"),
                 _vm._v(" "),

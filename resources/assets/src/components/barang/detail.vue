@@ -85,6 +85,7 @@
                 :items="history"
                 :sort-by.sync="sortBy"
                 :sort-desc.sync="sortDesc"
+                responsive="sm"
               >
               </b-table>
               <label

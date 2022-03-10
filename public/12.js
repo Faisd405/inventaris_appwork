@@ -223,6 +223,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -659,6 +661,8 @@ var render = function () {
                     staticClass: "form-control",
                     attrs: {
                       type: "number",
+                      min: "1901",
+                      max: "2099",
                       name: "year",
                       placeholder: "Masukan Tahun",
                     },

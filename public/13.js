@@ -117,6 +117,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -412,6 +413,7 @@ var render = function () {
                     items: _vm.history,
                     "sort-by": _vm.sortBy,
                     "sort-desc": _vm.sortDesc,
+                    responsive: "sm",
                   },
                   on: {
                     "update:sortBy": function ($event) {

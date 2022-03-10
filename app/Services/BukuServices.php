@@ -3,7 +3,8 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\File;
-class BarangServices
+
+class BukuServices
 {
     public function image($request)
     {
@@ -13,11 +14,10 @@ class BarangServices
                 'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:6000',
             ]);
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
+            $request->image->move(public_path('gambarBuku'), $imageName);
         }
         return $imageName;
     }
-
 
     public function lampiran($request)
     {
@@ -26,56 +26,53 @@ class BarangServices
         if ($request->hasFile('lampiran')) {
             $extension = $request['lampiran']->getClientOriginalExtension();
             $request->validate([
-                'lampiran' => 'required|max:2048|mimes:png,jpg,jpeg,pdf,docx,doc',
+                'lampiran' => 'required|mimes:png,jpg,jpeg,pdf,docx,doc',
             ]);
             if ($extension == 'pdf') {
                 $lampiranName = time() . '.' . $request->lampiran->extension();
-                $request->lampiran->move(public_path('lampiran'), $lampiranName);
+                $request->lampiran->move(public_path('lampiranBuku'), $lampiranName);
             }
             if ($extension == 'jpg' || $extension == 'png' || $extension == 'jpeg') {
                 $lampiranName = time() . '.' . $request->lampiran->extension();
-                $request->lampiran->move(public_path('lampiran'), $lampiranName);
+                $request->lampiran->move(public_path('lampiranBuku'), $lampiranName);
             }
         }
 
         return $lampiranName;
-    }
+    }   
 
-    public function gantiFoto($request, $barang)
+    public function gantiFoto($request, $buku)
     {
-        $imageName = $barang->image;
+        $imageName = $buku->image;
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:6000',
             ]);
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
-            if ($barang->image != "default.jpg") {
-                File::delete('images/' . $barang->image);
+            $request->image->move(public_path('gambarBuku'), $imageName);
+            if ($buku->image != "default.jpg") {
+                File::delete('gambarBuku/' . $buku->image);
             }
         }
 
         return $imageName;
     }
-    
-    public function updateLampiran($request, $barang)
+
+    public function updateLampiran($request, $buku)
     {
-        $lampiranName = $barang->lampiran;
+        $lampiranName = $buku->lampiran;
         if ($request->hasFile('lampiran')) {
             $extension = $request['lampiran']->getClientOriginalExtension();
             $request->validate([
-                'lampiran' => 'required|max:2048|mimes:png,jpg,jpeg,pdf,docx,doc',
+                'lampiran' => 'required|mimes:png,jpg,jpeg,pdf,docx,doc',
             ]);
             if ($extension == 'pdf') {
                 $lampiranName = time() . '.' . $request->lampiran->extension();
-                $request->lampiran->move(public_path('lampiran'), $lampiranName);
+                $request->lampiran->move(public_path('lampiranBuku'), $lampiranName);
             }
             if ($extension == 'jpg' || $extension == 'png' || $extension == 'jpeg') {
                 $lampiranName = time() . '.' . $request->lampiran->extension();
-                $request->lampiran->move(public_path('lampiran'), $lampiranName);
-            }
-            if ($barang->lampiran != "default.pdf") {
-                File::delete('lampiran/' . $barang->lampiran);
+                $request->lampiran->move(public_path('lampiranBuku'), $lampiranName);
             }
         }
 

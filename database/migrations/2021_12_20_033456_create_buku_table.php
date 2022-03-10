@@ -28,6 +28,8 @@ class CreateBukuTable extends Migration
             $table->unsignedBigInteger('lokasi_id');
             $table->foreign('lokasi_id')->references('id')->on('lokasi');
             $table->integer('harga');
+            $table->string('image');
+            $table->string('lampiran');
             $table->timestamps();
         });
     }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Buku;
 use App\Models\Jenis;
+use App\Services\BukuServices;
+use Illuminate\Support\Facades\File;
 
 class BukuController extends Controller
 {
@@ -34,19 +36,26 @@ class BukuController extends Controller
         ], 200);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, BukuServices $bukuServices)
     {
-        $buku = $this->buku->postBuku($request);
+        $imageName = $bukuServices->image($request);
+        $lampiranName = $bukuServices->lampiran($request);
+
+        $buku = $this->buku->postBuku($request, $imageName, $lampiranName);
         $this->jenis->add($buku->jenis_id);
         return response()->json([
             'buku' => $buku
         ], 200);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, BukuServices $bukuServices)
     {
         $buku = $this->buku->getBukuById($id);
-        $bukuUpdate = $this->buku->putBuku($request, $id);
+
+        $imageName = $bukuServices->gantiFoto($request, $buku);
+        $lampiranName = $bukuServices->updateLampiran($request, $buku);
+
+        $bukuUpdate = $this->buku->putBuku($request, $id, $imageName, $lampiranName);
         if ($buku->jenis_id != $request->jenis_id) {
             $this->jenis->minus($buku->jenis_id);
             $this->jenis->add($request->jenis_id);
@@ -59,6 +68,14 @@ class BukuController extends Controller
     public function destroy($id)
     {
         $buku = $this->buku->deleteBuku($id);
+
+        if ($buku->image != "default.jpg") {
+            File::delete('gambarBuku/' . $buku->image);
+        }
+        if ($buku->lampiran != "default.pdf") {
+            File::delete('lampiranBuku/' . $buku->lampiran);
+        }
+
         $this->jenis->minus($buku->jenis_id);
         return response()->json([
             'buku' => $buku

@@ -82,6 +82,8 @@
                 <label for="year">Tahun</label>
                 <input
                   type="number"
+                  min="1901"
+                  max="2099"
                   name="year"
                   class="form-control"
                   v-model="barang.year"

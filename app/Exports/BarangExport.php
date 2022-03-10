@@ -13,8 +13,13 @@ use Maatwebsite\Excel\Concerns\WithEvents;
 use App\Models\Barang;
 use Maatwebsite\Excel\Events\AfterSheet;
 
-class BarangExport implements WithColumnFormatting, FromQuery, WithMapping,
-    WithHeadings, ShouldAutoSize, WithEvents
+class BarangExport implements
+    WithColumnFormatting,
+    FromQuery,
+    WithMapping,
+    WithHeadings,
+    ShouldAutoSize,
+    WithEvents
 {
     use Exportable;
     private $rows = 0;
@@ -62,7 +67,7 @@ class BarangExport implements WithColumnFormatting, FromQuery, WithMapping,
     public function title(): string
     {
 
-        $name='Laporan Barang '.date('d-m-Y');
+        $name = 'Laporan Barang ' . date('d-m-Y');
         return $name;
     }
 
@@ -70,22 +75,20 @@ class BarangExport implements WithColumnFormatting, FromQuery, WithMapping,
     public function registerEvents(): array
     {
         return [
-            AfterSheet::class => function(AfterSheet $event){
+            AfterSheet::class => function (AfterSheet $event) {
                 ++$this->rows;
-                $totalHargaBarang = $this->rows+1;
-                $totalBarang = $this->rows+2;
-                $event->sheet->getDelegate()->setCellValue('A'. $totalHargaBarang, 'Total Harga Barang');
-                $event->sheet->getDelegate()->setCellValue('A'. $totalBarang, 'Total Barang');
-                $event->sheet->mergeCells('B'. $totalHargaBarang.':K'. $totalHargaBarang);
-                $event->sheet->mergeCells('B'. $totalBarang.':K'. $totalBarang);
-                $event->sheet->getDelegate()->setCellValue('B'. $totalHargaBarang, '=SUM(F2:F'.$this->rows.')');
-                $event->sheet->getDelegate()->setCellValue('B'. $totalBarang, '=COUNT(F2:F'.$this->rows.')');
+                $totalHargaBarang = $this->rows + 1;
+                $totalBarang = $this->rows + 2;
+                $event->sheet->getDelegate()->setCellValue('A' . $totalHargaBarang, 'Total Harga Barang');
+                $event->sheet->getDelegate()->setCellValue('A' . $totalBarang, 'Total Barang');
+                $event->sheet->mergeCells('B' . $totalHargaBarang . ':K' . $totalHargaBarang);
+                $event->sheet->mergeCells('B' . $totalBarang . ':K' . $totalBarang);
+                $event->sheet->getDelegate()->setCellValue('B' . $totalHargaBarang, '=SUM(F2:F' . $this->rows . ')');
+                $event->sheet->getDelegate()->setCellValue('B' . $totalBarang, '=COUNT(F2:F' . $this->rows . ')');
 
                 // format harga_barang dan total barang
-                $event->sheet->getDelegate()->getStyle('B'. $totalHargaBarang)->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_CURRENCY_IDR);
-                $event->sheet->getDelegate()->getStyle('B'. $totalBarang)->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_NUMBER);
-
-
+                $event->sheet->getDelegate()->getStyle('B' . $totalHargaBarang)->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_CURRENCY_IDR);
+                $event->sheet->getDelegate()->getStyle('B' . $totalBarang)->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_NUMBER);
             },
         ];
     }

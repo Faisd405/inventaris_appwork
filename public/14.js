@@ -254,6 +254,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -713,6 +715,8 @@ var render = function () {
                     attrs: {
                       type: "year",
                       name: "year",
+                      min: "1901",
+                      max: "2099",
                       placeholder: "Masukan Tahun",
                     },
                     domProps: { value: _vm.barang.year },
