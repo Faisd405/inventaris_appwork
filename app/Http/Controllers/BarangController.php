@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Kategori;
 use App\Models\Pengguna;
-use Barryvdh\DomPDF\PDF;
+use PDF;
 use Illuminate\Support\Facades\File;
 use App\Exports\BarangExport;
 use App\Models\History;
@@ -187,7 +187,7 @@ class BarangController extends Controller
         $name = 'Laporan Detail Barang ' . date('d-m-Y') . '.pdf';
         $barang = $this->barang->getBarangById($id);
 
-        $pdf = PDF::loadview('barang.detailbarang_pdf', compact('barang'));
+        $pdf = \PDF::loadview('barang.detailbarang_pdf', compact('barang'));
         return $pdf->stream($name);
     }
 

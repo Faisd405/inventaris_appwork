@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\History;
-use Barryvdh\DomPDF\PDF;
+use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 
 class HistoryController extends Controller
@@ -92,7 +92,7 @@ class HistoryController extends Controller
             $tanggalAkhir
         );
 
-        $pdf = PDF::loadView(
+        $pdf = \PDF::loadView(
             'history.riwayatbarangdetail_pdf',
             compact('history', 'tanggalAwal', 'tanggalAkhir')
         )->setPaper('a4', 'landscape');
