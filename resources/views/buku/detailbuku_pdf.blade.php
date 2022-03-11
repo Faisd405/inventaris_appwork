@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Detail Barang</title>
+    <title>Detail Buku</title>
     <style>
         #outer-div {
             width: 100%;
@@ -29,84 +29,98 @@
 <body>
     <div class="card shadow mb-4">
         <div id="outer-div">
-            <div id="inner-div">{!! DNS2D::getBarcodeHTML("http://inventaris.4visionmedia.net/barang/detail/$barang->id", 'QRCODE', 4, 4) !!}</div>
-            <div>01/{{sprintf("%02d", $barang->kategori_id)}}/{{sprintf("%02d", $barang->id)}}</div>
+            <div id="inner-div">
+                {!! DNS2D::getBarcodeHTML("http://inventaris.4visionmedia.net/buku/detail/$buku->id", 'QRCODE', 4, 4) !!}
+                <br>
+                <div>02/{{sprintf("%02d", $buku->jenis_id)}}/{{sprintf("%02d", $buku->id)}}</div>
+            </div>
         </div>
 
 
         <div class="card-header py-3">
-            <h1>Detail Barang {{ $barang->nama_barang }}</h1>
+            <h1>Detail Buku {{ $buku->judul }}</h1>
         </div>
         <div class="card-body">
             <br>
-            <img src="{{ public_path('/images/' . $barang->image) }}" class="img-thumbnail rounded mx-auto d-block"
+            <img src="{{ public_path('/gambarBuku/' . $buku->image) }}" class="img-thumbnail rounded mx-auto d-block"
                 style="width: 180px">
             <table>
                 <tbody>
                     <tr>
                         <th>
-                            <h3>Nama Barang</h3>
+                            <h3>Judul Buku</h3>
                         </th>
                         <td>
                             <h3>:</h3>
                         </td>
                         <td>
-                            <h3>{{ $barang->nama_barang }}</h3>
+                            <h3>{{ $buku->judul }}</h3>
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            <h3>Detail Barang</h3>
+                            <h3>Penulis</h3>
                         </th>
                         <td>
                             <h3>:</h3>
                         </td>
                         <td>
-                            <h3>{{ $barang->detail_barang }}</h3>
+                            <h3>{{ $buku->penulis }}</h3>
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            <h3>Harga Barang</h3>
+                            <h3>Penerbit</h3>
                         </th>
                         <td>
                             <h3>:</h3>
                         </td>
                         <td>
-                            <h3>@currency($barang->harga_barang)</h3>
+                            <h3>{{ $buku->penerbit }}</h3>
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            <h3>Kategori Barang</h3>
+                            <h3>Tanggal Terbit</h3>
                         </th>
                         <td>
                             <h3>:</h3>
                         </td>
                         <td>
-                            <h3>{{ $barang->kategori->nama_kategori }}</h3>
+                            <h3>{{ $buku->tanggal }}</h3>
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            <h3>Fungsi Barang</h3>
+                            <h3>Kondisi</h3>
                         </th>
                         <td>
                             <h3>:</h3>
                         </td>
                         <td>
-                            <h3>{{ $barang->fungsi }}</h3>
+                            <h3>{{ $buku->kondisi }}</h3>
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            <h3>Lokasi Barang</h3>
+                            <h3>Jumlah</h3>
                         </th>
                         <td>
                             <h3>:</h3>
                         </td>
                         <td>
-                            <h3>{{ $barang->lokasi->lokasi }}</h3>
+                            <h3>{{ $buku->jumlah }}</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <h3>Jenis</h3>
+                        </th>
+                        <td>
+                            <h3>:</h3>
+                        </td>
+                        <td>
+                            <h3>{{ $buku->jenis->jenis_buku }}</h3>
                         </td>
                     </tr>
                     <tr>
@@ -117,29 +131,29 @@
                             <h3>:</h3>
                         </td>
                         <td>
-                            <h3>{{ $barang->pengguna->name }}</h3>
+                            <h3>{{ $buku->pengguna->name }}</h3>
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            <h3>Tahun</h3>
+                            <h3>Lokasi</h3>
                         </th>
                         <td>
                             <h3>:</h3>
                         </td>
                         <td>
-                            <h3>{{ $barang->year }}</h3>
+                            <h3>{{ $buku->lokasi->lokasi }}</h3>
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            <h3>Jumlah Barang</h3>
+                            <h3>Harga</h3>
                         </th>
                         <td>
                             <h3>:</h3>
                         </td>
                         <td>
-                            <h3>{{ $barang->jumlah_barang }}</h3>
+                            <h3>@currency($buku->harga)</h3>
                         </td>
                     </tr>
                 </tbody>

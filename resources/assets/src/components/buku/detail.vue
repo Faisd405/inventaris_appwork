@@ -48,6 +48,12 @@
               <label>Tahun : </label>
               <h3 v-text="buku.tanggal"></h3>
             </div>
+              <label
+                ><a
+                  :href="'/buku/detailbuku_pdf/' + buku.id"
+                  class="btn btn-primary"
+                  >Print Detail Buku</a
+                ></label>
             <div v-if="buku.lampiran">
               <!-- delete -->
               <hr />

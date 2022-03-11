@@ -7,6 +7,7 @@ use App\Models\Buku;
 use App\Models\Jenis;
 use App\Services\BukuServices;
 use Illuminate\Support\Facades\File;
+use PDF;
 
 class BukuController extends Controller
 {
@@ -117,5 +118,13 @@ class BukuController extends Controller
         return response()->json([
             'buku' => $buku
         ], 200);
+    }
+
+    public function detailBukuPDF($id){
+        $name = 'Laporan Detail Buku ' . date('d-m-Y') . '.pdf';
+        $buku = $this->buku->getBukuById($id);
+
+        $pdf = \PDF::loadView('buku.detailbuku_pdf', compact('buku'));
+        return $pdf->stream($name);
     }
 }

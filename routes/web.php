@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BukuController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\PenggunaController;
 
@@ -19,6 +20,8 @@ Route::get('/barang/detailbarang_pdf/{id}', [BarangController::class, 'detailBar
 Route::get('/barang/HistoryPDFDetail/{id}', [HistoryController::class, 'historyPDFDetail'])->name('barang.riwayatbarang_pdf');
 Route::get('/barang/HistoryPDF', [HistoryController::class, 'historyPDF'])->name('barang.riwayatbarang_pdf');
 Route::get('/barang/barang_excel', [BarangController::class, 'barangExcel'])->name('barang.barang_excel');
+
+Route::get('/buku/detailbuku_pdf/{id}', [BukuController::class, 'detailBukuPDF'])->name('buku.detailbuku_pdf');
 
 Route::get('/history/history_pdf/detail/{barangId}', [HistoryController::class, 'historyDetailBarangPDF'])->name('history.HistoryDetailBarangPDF');
 Route::get('/history/history_pdf/detail/{barangId}/{tanggalAwal}', [HistoryController::class, 'historyDetailBarangPDF'])->name('history.HistoryDetailBarangPDF');
