@@ -30,7 +30,7 @@
     <div class="card shadow mb-4">
         <div id="outer-div">
             <div id="inner-div">{!! DNS2D::getBarcodeHTML("http://inventaris.4visionmedia.net/barang/detail/$barang->id", 'QRCODE', 4, 4) !!}</div>
-            <div>01/{{sprintf("%02d", $barang->kategori_id)}}/{{sprintf("%02d", $barang->id)}}</div>
+            <div>01 {{sprintf("%02d", $barang->kategori_id)}} {{sprintf("%03d", $barang->id)}}</div>
         </div>
 
 

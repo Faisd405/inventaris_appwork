@@ -32,7 +32,7 @@
             <div id="inner-div">
                 {!! DNS2D::getBarcodeHTML("http://inventaris.4visionmedia.net/buku/detail/$buku->id", 'QRCODE', 4, 4) !!}
                 <br>
-                <div>02/{{sprintf("%02d", $buku->jenis_id)}}/{{sprintf("%02d", $buku->id)}}</div>
+                <div>02 {{sprintf("%02d", $buku->jenis_id)}} {{sprintf("%03d", $buku->id)}}</div>
             </div>
         </div>
 
