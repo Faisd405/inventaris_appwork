@@ -50,7 +50,7 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->middleware('au
 Route::get('/roles', [RolesController::class, 'index']);
 
 //Route API Barang
-Route::get('/barang/KodeBarang', [BarangController::class, 'getKodeBarang']);
+// Route::get('/barang/KodeBarang', [BarangController::class, 'getKodeBarang']);
 Route::get('/barang', [BarangController::class, 'index']);
 Route::put('/barang/relasi/{id}', [BarangController::class, 'relasi']);
 Route::put('/barang/Lampiran/{id}', [BarangController::class, 'destroyLampiran']);
