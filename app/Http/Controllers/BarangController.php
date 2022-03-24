@@ -196,4 +196,18 @@ class BarangController extends Controller
         $name = 'Laporan Barang ' . date('d-m-Y') . '.xlsx';
         return Excel::download(new BarangExport, $name);
     }
+
+    public function getKodeBarang()
+    {
+        $barang = $this->barang->getBarang();
+        for ($i = 0; $i < count($barang); $i++){
+            $barang[$i]->kode_barang = $this->barang->kodeBarang($barang[$i]->kategori_id,$barang[$i]->year, $barang[$i]->id);
+            $barang[$i]->save();
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'barang Berhasil Ditampilkan!',
+            'barang'    => $barang,
+        ], 200);
+    }
 }
