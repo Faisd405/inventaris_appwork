@@ -20,17 +20,6 @@
               </div>
 
               <div class="form-group">
-                <label for="kode_barang">Kode Barang</label>
-                <input
-                  type="text"
-                  name="kode_barang"
-                  class="form-control"
-                  v-model="barang.kode_barang"
-                  placeholder="Masukan Kode Barang"
-                />
-              </div>
-
-              <div class="form-group">
                 <label for="detail_barang">Detail Barang</label>
                 <textarea
                   name="detail_barang"
@@ -342,9 +331,6 @@ export default {
       this.errors = [];
       if (this.barang.nama_barang == "") {
         this.errors.push("Nama Barang tidak boleh kosong");
-      }
-      if (this.barang.kode_barang == "") {
-        this.errors.push("Kode Barang tidak boleh kosong");
       }
       if (this.barang.detail_barang == "") {
         this.errors.push("Detail Barang tidak boleh kosong");

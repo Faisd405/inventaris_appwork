@@ -203,17 +203,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   metaInfo: {
@@ -274,7 +263,6 @@ __webpack_require__.r(__webpack_exports__);
 
       var formData = new FormData();
       formData.append("nama_barang", this.barang.nama_barang);
-      formData.append("kode_barang", this.barang.kode_barang);
       formData.append("detail_barang", this.barang.detail_barang);
       formData.append("kategori_id", this.barang.kategori_id);
       formData.append("fungsi", this.barang.fungsi);
@@ -308,10 +296,6 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.barang.nama_barang == "") {
         this.errors.push("Nama Barang tidak boleh kosong");
-      }
-
-      if (this.barang.kode_barang == "") {
-        this.errors.push("Kode Barang tidak boleh kosong");
       }
 
       if (this.barang.detail_barang == "") {
@@ -446,38 +430,6 @@ var render = function () {
                           return
                         }
                         _vm.$set(_vm.barang, "nama_barang", $event.target.value)
-                      },
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "kode_barang" } }, [
-                    _vm._v("Kode Barang"),
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.barang.kode_barang,
-                        expression: "barang.kode_barang",
-                      },
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      name: "kode_barang",
-                      placeholder: "Masukan Kode Barang",
-                    },
-                    domProps: { value: _vm.barang.kode_barang },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.barang, "kode_barang", $event.target.value)
                       },
                     },
                   }),

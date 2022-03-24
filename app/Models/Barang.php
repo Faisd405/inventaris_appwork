@@ -103,7 +103,7 @@ class Barang extends Model
         //mass asignment
         $barang = self::create([
             'nama_barang' => $request->nama_barang,
-            'kode_barang' => $request->kode_barang,
+            'kode_barang' => $request->kategori_id . '-' . $request->year . '-',
             'detail_barang' => $request->detail_barang,
             'kategori_id' => $request->kategori_id,
             'fungsi' => $request->fungsi,
@@ -116,6 +116,11 @@ class Barang extends Model
             'lampiran' => $lampiranName,
             'jumlah_barang' => $request->jumlah_barang,
         ]);
+
+        $idBarang = $barang->id;
+        $kodeBarang = sprintf("%03d", $request->kategori_id) . '-' . $request->year . '-' . sprintf("%03d", $idBarang);
+        $barang->kode_barang = $kodeBarang;
+        $barang->save();
 
         return $barang;
     }
