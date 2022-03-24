@@ -98,6 +98,11 @@ class Barang extends Model
         return self::WithBarang()->find($id);
     }
 
+    public function kodeBarang($kategori_id,$year,$id){
+        $kodeBarang = sprintf("%03d", $kategori_id) . '-' . $year . '-' . sprintf("%03d", $id);
+        return $kodeBarang;
+    }
+
     public function postBarang($request, $imageName, $lampiranName)
     {
         //mass asignment
@@ -118,7 +123,7 @@ class Barang extends Model
         ]);
 
         $idBarang = $barang->id;
-        $kodeBarang = sprintf("%03d", $request->kategori_id) . '-' . $request->year . '-' . sprintf("%03d", $idBarang);
+        $kodeBarang = $this->kodeBarang($request->kategori_id, $request->year, $idBarang);
         $barang->kode_barang = $kodeBarang;
         $barang->save();
 
@@ -131,6 +136,8 @@ class Barang extends Model
     public function putBarang($request, $id)
     {
         $barang = self::find($id);
+        $kodeBarang = $this->kodeBarang($request->kategori_id, $request->year, $id);
+        $barang->kode_barang = $kodeBarang;
         $barang->update($request->all());
         return $barang;
     }
@@ -138,6 +145,8 @@ class Barang extends Model
     public function updateBarang($request, $barang, $imageName, $lampiranName)
     {
         $barang->update($request->all());
+        $kodeBarang = $this->kodeBarang($request->kategori_id, $request->year, $barang->id);
+        $barang->kode_barang = $kodeBarang;
         $barang->image = $imageName;
         $barang->lampiran = $lampiranName;
         $barang->save();
