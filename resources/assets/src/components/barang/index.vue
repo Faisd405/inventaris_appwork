@@ -327,11 +327,6 @@ Vue.filter("toCurrency", function (value) {
 });
 </script>
 
-<style src="../../../../../node_modules/vue-multiselect/dist/vue-multiselect.min.css"></style>
+<style src="../styles/multiselect.css"></style>
 
-<style>
-.multiselect__single {
-  font-size: 12px;
-  width: auto;
-}
 </style>
