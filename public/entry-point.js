@@ -54574,7 +54574,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '',
       name: 'home',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! @/components/Home */ "./resources/assets/src/components/Home.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! @/components/Home */ "./resources/assets/src/components/Home.vue"));
       },
       meta: _defineProperty({
         requiresAuth: true,
@@ -54588,27 +54588,27 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'homePengguna',
       path: '/homepengguna',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! @/components/HomePengguna */ "./resources/assets/src/components/HomePengguna.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! @/components/HomePengguna */ "./resources/assets/src/components/HomePengguna.vue"));
       }
     }, // Route Auth
     {
       name: 'login',
       path: '/login',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! @/components/auth/Login */ "./resources/assets/src/components/auth/Login.vue"));
+        return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! @/components/auth/Login */ "./resources/assets/src/components/auth/Login.vue"));
       }
     }, {
       name: 'loginapi',
       path: '/loginapi',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! @/components/authapi/Login */ "./resources/assets/src/components/authapi/Login.vue"));
+        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! @/components/authapi/Login */ "./resources/assets/src/components/authapi/Login.vue"));
       }
     }, // Route barang
     {
       name: 'index-barang',
       path: '/barang',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(56), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, /*! @/components/barang/index */ "./resources/assets/src/components/barang/index.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(55), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! @/components/barang/index */ "./resources/assets/src/components/barang/index.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -54630,7 +54630,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'create-barang',
       path: '/barang/create',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! @/components/barang/create */ "./resources/assets/src/components/barang/create.vue"));
+        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! @/components/barang/create */ "./resources/assets/src/components/barang/create.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -54640,7 +54640,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'edit-barang',
       path: '/barang/edit/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! @/components/barang/edit */ "./resources/assets/src/components/barang/edit.vue"));
+        return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! @/components/barang/edit */ "./resources/assets/src/components/barang/edit.vue"));
       },
       meta: {
         requiresAuth: true,
@@ -54650,7 +54650,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'detail-barang',
       path: '/barang/detail/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! @/components/barang/detail */ "./resources/assets/src/components/barang/detail.vue"));
+        return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! @/components/barang/detail */ "./resources/assets/src/components/barang/detail.vue"));
       }
     }, // Router Pengguna
     {
@@ -54975,25 +54975,25 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'laporan-buku',
       path: '/laporan/buku',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! @/components/Laporan/LaporanTBuku */ "./resources/assets/src/components/Laporan/LaporanTBuku.vue"));
+        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! @/components/Laporan/LaporanTBuku */ "./resources/assets/src/components/Laporan/LaporanTBuku.vue"));
       }
     }, {
       name: 'laporan-pengguna',
       path: '/laporan/pengguna',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! @/components/Laporan/LaporanTpengguna */ "./resources/assets/src/components/Laporan/LaporanTpengguna.vue"));
+        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! @/components/Laporan/LaporanTpengguna */ "./resources/assets/src/components/Laporan/LaporanTpengguna.vue"));
       }
     }, {
       name: 'laporan-barang-terpakai',
       path: '/laporan/LaporanTBarangTerpakai',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! @/components/Laporan/LaporanTBarangTerpakai */ "./resources/assets/src/components/Laporan/LaporanTBarangTerpakai.vue"));
+        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! @/components/Laporan/LaporanTBarangTerpakai */ "./resources/assets/src/components/Laporan/LaporanTBarangTerpakai.vue"));
       }
     }, {
       name: 'laporan-barang-tidak-terpakai',
       path: '/laporan/LaporanTBarangTidakTerpakai',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! @/components/Laporan/LaporanTBarangTidakTerpakai */ "./resources/assets/src/components/Laporan/LaporanTBarangTidakTerpakai.vue"));
+        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! @/components/Laporan/LaporanTBarangTidakTerpakai */ "./resources/assets/src/components/Laporan/LaporanTBarangTidakTerpakai.vue"));
       }
     }, {
       name: 'laporan-harga-barang',
@@ -55101,7 +55101,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'detail-permintaan',
       path: '/permintaan/detail/:id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 55).then(__webpack_require__.bind(null, /*! @/components/permintaan/detail */ "./resources/assets/src/components/permintaan/detail.vue"));
+        return __webpack_require__.e(/*! import() */ 56).then(__webpack_require__.bind(null, /*! @/components/permintaan/detail */ "./resources/assets/src/components/permintaan/detail.vue"));
       },
       meta: {
         requiresAuth: true,
