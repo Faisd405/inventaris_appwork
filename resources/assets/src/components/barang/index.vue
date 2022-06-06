@@ -56,7 +56,6 @@
                   <td class="px-2">:</td>
                   <td>
                     <b-input
-                      class="form-control-sm"
                       v-model="filters.nama_barang.value"
                       placeholder="Cari Nama Barang"
                     />
@@ -66,11 +65,12 @@
                   <td><label>Nama Pengguna</label></td>
                   <td class="px-2">:</td>
                   <td>
-                    <b-input
-                      class="form-control-sm"
+                    <Multiselect
                       v-model="nama_pengguna"
-                      placeholder="Cari Nama Pengguna"
-                    />
+                      :options="pengguna"
+                      :custom-label="penggunaNameWithLang"
+                      placeholder="Select one"
+                    ></Multiselect>
                   </td>
                 </tr>
                 <tr>
@@ -205,21 +205,28 @@
   </div>
   <!-- / Content -->
 </template>
-
 <script>
 import axios from "axios";
 import Vue from "vue";
+import Multiselect from "vue-multiselect";
 export default {
   metaInfo: {
     title: "Barang",
+  },
+  components: {
+    Multiselect,
   },
   data() {
     return {
       filters: {
         nama_barang: { value: "", keys: ["nama_barang"] },
       },
+      pengguna: [{ name: "", jabatan: "" }],
       lokasi_barang: "",
-        nama_pengguna: "",
+      nama_pengguna: {
+        name: "",
+        jabatan: "",
+      },
       barang: [],
       lokasi: [],
       pageSize: 10,
@@ -240,13 +247,21 @@ export default {
     axios.get("/api/lokasi").then((response) => {
       this.lokasi = response.data.lokasi;
     });
+    axios.get("/api/pengguna").then((response) => {
+      this.pengguna.push(...response.data.pengguna);
+    });
   },
   computed: {
-      filterBarang: function() {
-          return this.filterbarangByLokasi(this.filterbarangByPengguna(this.barang));
-      },
+    filterBarang: function () {
+      return this.filterbarangByLokasi(
+        this.filterbarangByPengguna(this.barang)
+      );
+    },
   },
   methods: {
+    penggunaNameWithLang({ name, jabatan }) {
+      return `${name} - ${jabatan}`;
+    },
     showModal(data) {
       this.DataDelete = data;
       this.$refs.modalDelete.open();
@@ -268,14 +283,15 @@ export default {
           console.log(error);
         });
     },
-    filterbarangByLokasi: function(barang) {
+    filterbarangByLokasi: function (barang) {
       return barang.filter(
-          (barang) => !barang.lokasi.lokasi.toString().indexOf(this.lokasi_barang)
+        (barang) => !barang.lokasi.lokasi.toString().indexOf(this.lokasi_barang)
       );
     },
-    filterbarangByPengguna: function(barang) {
+    filterbarangByPengguna: function (barang) {
       return barang.filter(
-          (barang) => !barang.pengguna.name.toString().indexOf(this.nama_pengguna)
+        (barang) =>
+          !barang.pengguna.name.toString().indexOf(this.nama_pengguna.name)
       );
     },
   },
@@ -310,3 +326,12 @@ Vue.filter("toCurrency", function (value) {
   return formatter.format(value);
 });
 </script>
+
+<style src="../../../../../node_modules/vue-multiselect/dist/vue-multiselect.min.css"></style>
+
+<style>
+.multiselect__single {
+  font-size: 12px;
+  width: auto;
+}
+</style>
